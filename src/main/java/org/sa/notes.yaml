@@ -1,0 +1,4 @@
+apply coordinate system:
+  - this would remove the need to have field TileDTO field "neighbours"
+  - x: horizontal line (east—west)
+  - y: vertical-ish line (north east - south west)
