@@ -4,14 +4,18 @@ import org.sa.enums.TileType;
 
 public class TileDTO {
   public final TileType tileType;
-  public final boolean isTunnel;
+  public boolean isTunnel = false;
   public final int row;
   public final int column;
 
-  public TileDTO(TileType resource, boolean isTunnel, int row, int column) {
+  public TileDTO(TileType resource, int row, int column) {
     this.tileType = resource;
-    this.isTunnel = isTunnel;
     this.row = row;
     this.column = column;
+  }
+
+  public TileDTO markAsTunnel() {
+    isTunnel = true;
+    return this;
   }
 }
