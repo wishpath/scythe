@@ -30,7 +30,7 @@ public class Board {
     grid[2][7] = new TileDTO(TileType.WORKER, 2, 7);
 
     grid[3][1] = new TileDTO(TileType.FOOD, 3, 1);
-    grid[3][2] = new TileDTO(TileType.WORKER, 3, 2).markAsTunnel();
+    grid[3][2] = new TileDTO(TileType.WORKER, 3, 2);
     grid[3][3] = new TileDTO(TileType.WATER, 3, 3);
     grid[3][4] = new TileDTO(TileType.CENTER, 3, 4);
     grid[3][5] = new TileDTO(TileType.METAL, 3, 5);
@@ -40,8 +40,6 @@ public class Board {
     grid[4][0] = new TileDTO(TileType.NULL,  4, 0);
     grid[4][1] = new TileDTO(TileType.NULL,  4, 1);
     grid[4][2] = new TileDTO(TileType.NULL,  4, 2);
-    TileDTO southEast = new TileDTO(TileType.WATER,  4, 4);
-    TileDTO southWest = new TileDTO(TileType.OIL,  4, 3);
     grid[4][3] = new TileDTO(TileType.NULL,  4, 3);
     grid[4][4] = new TileDTO(TileType.NULL,  4, 4);
     grid[4][5] = new TileDTO(TileType.NULL,  4, 5);
