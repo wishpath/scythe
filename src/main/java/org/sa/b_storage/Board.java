@@ -37,28 +37,30 @@ public class Board {
     grid[3][6] = new TileDTO(TileType.OIL, 3, 6);
     grid[3][7] = new TileDTO(TileType.METAL, 3, 7);
 
-    grid[4][0] = new TileDTO(TileType.NULL,  4, 0);
-    grid[4][1] = new TileDTO(TileType.NULL,  4, 1);
-    grid[4][2] = new TileDTO(TileType.NULL,  4, 2);
-    grid[4][3] = new TileDTO(TileType.NULL,  4, 3);
-    grid[4][4] = new TileDTO(TileType.NULL,  4, 4);
-    grid[4][5] = new TileDTO(TileType.NULL,  4, 5);
-    grid[4][6] = new TileDTO(TileType.NULL,  4, 6);
+    grid[4][0] = new TileDTO(TileType.WOOD,  4, 0);
+    grid[4][1] = new TileDTO(TileType.WOOD,  4, 1);
+    grid[4][2] = new TileDTO(TileType.FOOD,  4, 2).markAsTunnel();
+    grid[4][3] = new TileDTO(TileType.OIL,  4, 3);
+    grid[4][4] = new TileDTO(TileType.WATER,  4, 4);
+    grid[4][5] = new TileDTO(TileType.WORKER,  4, 5).markAsTunnel();
+    grid[4][6] = new TileDTO(TileType.WATER,  4, 6);
 
-    grid[5][0] = new TileDTO(TileType.NULL,  5, 0);
-    grid[5][1] = new TileDTO(TileType.NULL,  5, 1);
-    grid[5][2] = new TileDTO(TileType.NULL,  5, 2);
-    grid[5][3] = new TileDTO(TileType.NULL,  5, 3);
-    grid[5][4] = new TileDTO(TileType.NULL,  5, 4);
-    grid[5][5] = new TileDTO(TileType.NULL,  5, 5);
-    grid[5][6] = new TileDTO(TileType.NULL,  5, 6);
+    grid[5][0] = new TileDTO(TileType.METAL,  5, 0);
+    grid[5][1] = new TileDTO(TileType.WORKER,  5, 1);
+    grid[5][2] = new TileDTO(TileType.WORKER,  5, 2);
+    grid[5][3] = new TileDTO(TileType.OIL,  5, 3).markAsTunnel();
+    grid[5][4] = new TileDTO(TileType.WOOD,  5, 4);
+    grid[5][5] = new TileDTO(TileType.METAL,  5, 5);
+    grid[5][6] = new TileDTO(TileType.OIL,  5, 6);
 
-    grid[6][0] = new TileDTO(TileType.NULL,  6, 0);
-    grid[6][1] = new TileDTO(TileType.NULL,  6, 1);
-    grid[6][2] = new TileDTO(TileType.NULL,  6, 2);
-    grid[6][3] = new TileDTO(TileType.NULL,  6, 3);
-    grid[6][4] = new TileDTO(TileType.NULL,  6, 4);
-    grid[6][5] = new TileDTO(TileType.NULL,  6, 5);
+    grid[6][0] = new TileDTO(TileType.OIL,  6, 0);
+    grid[6][1] = new TileDTO(TileType.WATER,  6, 1);
+    grid[6][2] = new TileDTO(TileType.FOOD,  6, 2);
+    grid[6][3] = new TileDTO(TileType.METAL,  6, 3);
+    grid[6][4] = new TileDTO(TileType.WORKER,  6, 4);
+    grid[6][5] = new TileDTO(TileType.FOOD,  6, 5);
+
+    grid[7][5] = new TileDTO(TileType.WORKER,  7, 2);
   }
 }
 
