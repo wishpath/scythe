@@ -4,9 +4,9 @@ import org.sa.DTO.TileDTO;
 import org.sa.enums.TileType;
 
 public class Board {
-  public TileDTO[][] grid = new TileDTO[8][9];
+  public static TileDTO[][] grid = new TileDTO[8][9];
 
-  public Board() {
+  static {
     grid[0][3] = new TileDTO(TileType.METAL, 0, 3);
     grid[0][4] = new TileDTO(TileType.FOOD, 0, 4);
     grid[0][5] = new TileDTO(TileType.WORKER, 0, 5);

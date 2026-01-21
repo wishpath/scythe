@@ -1,2 +1,9 @@
 TASKS:
-  - enter all tiles by coordinates;
+  - enter each faction details
+  - enter playerDTO details
+  - make CardPool:
+    - should contain all types of cards Faction:
+        - enlistCards
+        - missionCards (achieve StateDTO)
+        - attackCards? (or should this be randomly generated)
+        - goodieCards
