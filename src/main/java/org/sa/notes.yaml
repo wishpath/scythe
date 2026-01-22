@@ -1,4 +1,6 @@
 TASKS:
+  - finish mission MissionEstablishHumanShield
+  - add one more mission
   - enter each faction details
   - enter playerDTO details
   - make CardPool:

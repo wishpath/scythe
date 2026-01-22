@@ -9,7 +9,7 @@ public class PlayerDTO {
   public int score = 0;
   public int hearts = 0;
   public int coins = 0;
-  public int missionCards = 0; //should be List<MissionDTO>
+  public int missionCards = 0; //should be List<MissionDTO> or something mission should be enum
 
   //List<MoveDTO>
 
@@ -20,6 +20,7 @@ public class PlayerDTO {
   //player board state: each should have coordinate
   //HeroDTO
   //List<RobotDTO>
+  public int workerCount = 2;
   //List<WorkerDTO>
 
 
@@ -29,7 +30,7 @@ public class PlayerDTO {
     this.coins = faction.initialCoins;
 
     this.missionCards = faction.initialMissionCards;
-    //here pick 2 random missionCards from the CardPool and populate new field List<MissionDTO>
+    //here pick 2 random missionCards from the CardPool and populate new field List<MissionDTO> or anything that indicates concrete missions
 
   }
 }
