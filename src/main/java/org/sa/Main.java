@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Main {
   public static void main(String[] args) {
+    //player gets Faction card and Enlist card
+    //TODO: create Enlist card and place in playerDTO constructor
     PlayerDTO player = new PlayerDTO(Faction.GREEN);
 
     //player picks where to place workers
@@ -18,6 +20,5 @@ public class Main {
       workers.add(new WorkerDTO(player.faction.nextToHomeTiles.getFirst()));
     }
     player.initialiseWorkers(workers);
-    System.out.println("Let's play Scythe");
   }
 }

@@ -30,7 +30,9 @@ public enum Faction {
     this.initialHearts = initialHearts;
     this.initialCoins = initialCoins;
     this.initialMissionCards = initialMissionCards;
+    this.initialWorkersCount = initialWorkers;
     this.nextToHomeTiles = List.copyOf(homeTiles);
+
   }
 }
 

@@ -1,10 +1,12 @@
 package org.sa.b_storage;
 
 import org.sa.DTO.TileDTO;
+import org.sa.enums.Direction;
 import org.sa.enums.TileType;
 
 public class Board {
   public static TileDTO[][] grid = new TileDTO[8][9];
+  public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 3, 4);
 
   static {
     grid[0][3] = new TileDTO(TileType.METAL, 0, 3);
@@ -32,7 +34,7 @@ public class Board {
     grid[3][1] = new TileDTO(TileType.FOOD, 3, 1);
     grid[3][2] = new TileDTO(TileType.WORKER, 3, 2);
     grid[3][3] = new TileDTO(TileType.WATER, 3, 3);
-    grid[3][4] = new TileDTO(TileType.CENTER, 3, 4);
+    grid[3][4] = CENTER_FACTORY;
     grid[3][5] = new TileDTO(TileType.METAL, 3, 5);
     grid[3][6] = new TileDTO(TileType.OIL, 3, 6);
     grid[3][7] = new TileDTO(TileType.METAL, 3, 7);
@@ -61,6 +63,23 @@ public class Board {
     grid[6][5] = new TileDTO(TileType.FOOD,  6, 5);
 
     grid[7][5] = new TileDTO(TileType.WORKER,  7, 2);
+  }
+
+  public static boolean isItemAdjacent(TileDTO tile, TileDTO itemLocation) {
+    for (Direction direction : Direction.values())
+      if (isAdjacent(tile, direction, itemLocation))
+        return true;
+    return false;
+  }
+
+  public static boolean isAdjacent(TileDTO tile, Direction direction, TileDTO itemLocation) {
+    int row = tile.row + direction.deltaRow;
+    if (row < 0 || row >= grid.length) return false;
+    int column = tile.column + direction.deltaColumn;
+    if (column < 0 || column >= grid[0].length) return false;
+    TileDTO checkedTile = grid[row][column];
+    if (checkedTile == null) return false;
+    return checkedTile.equals(itemLocation);
   }
 }
 

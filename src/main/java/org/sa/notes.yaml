@@ -1,11 +1,18 @@
 TASKS:
-  - finish mission MissionEstablishHumanShield
+  - include TileType.HOME in the Board.grid
+  - create Enlist card and place in playerDTO constructor:
+      - enlistCard interface + concreted classes implementing just like Missions
   - add one more mission
-  - enter each faction details
   - enter playerDTO details
+  - generate random attack card when dealing (not pull from the pool)
   - make CardPool:
     - should contain all types of cards Faction:
         - enlistCards
-        - missionCards (achieve StateDTO)
-        - attackCards? (or should this be randomly generated)
-        - goodieCards
+        - missionCards
+
+LATER:
+  - enter each faction details
+  - goodieCards can come later in the CardPool (after first working version)
+
+LETS_NOT:
+  - have attack cards in the pool, since esier to simply generate random one

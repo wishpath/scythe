@@ -1,6 +1,8 @@
 package org.sa.mission;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.DTO.WorkerDTO;
+import org.sa.b_storage.Board;
 
 public class MissionEstablishHumanShield implements Mission{
   @Override
@@ -10,9 +12,13 @@ public class MissionEstablishHumanShield implements Mission{
      adjacent to Factory
      at the end of your turn
      */
-    if (player.workerCount < 5) return false;
+    if (player.workers.size() < 5) return false;
     int factoryAdjacentWorkersCount = 0;
-    //TODO: iterate player.workers, check Board.isAdjecent(3, 4), countAdjacent++
+
+    for (WorkerDTO worker : player.workers)
+      if (Board.isItemAdjacent(Board.CENTER_FACTORY, worker.location))
+        factoryAdjacentWorkersCount++;
+
     return factoryAdjacentWorkersCount >= 5;
   }
 }

@@ -20,10 +20,9 @@ public class PlayerDTO {
   public int attackCards = 0; //should be List<
 
   //player board state: each should have coordinate
-  //HeroDTO
-  //List<RobotDTO>
-  public int workerCount = 2;
-  //List<WorkerDTO>
+  //HeroDTO //initially of board new HeroDTO(null);
+  //List<RobotDTO> //initially empty list
+  public List<WorkerDTO> workers;
 
 
   public PlayerDTO(Faction faction) { //should provide ElistCard
@@ -37,5 +36,6 @@ public class PlayerDTO {
   }
 
   public void initialiseWorkers(List<WorkerDTO> workers) {
+    this.workers = workers;
   }
 }
