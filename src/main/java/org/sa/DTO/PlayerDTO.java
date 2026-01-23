@@ -2,6 +2,8 @@ package org.sa.DTO;
 
 import org.sa.enums.Faction;
 
+import java.util.List;
+
 public class PlayerDTO {
 
   //faction part
@@ -32,5 +34,8 @@ public class PlayerDTO {
     this.missionCards = faction.initialMissionCards;
     //here pick 2 random missionCards from the CardPool and populate new field List<MissionDTO> or anything that indicates concrete missions
 
+  }
+
+  public void initialiseWorkers(List<WorkerDTO> workers) {
   }
 }

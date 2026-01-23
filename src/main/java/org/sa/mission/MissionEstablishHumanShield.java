@@ -11,8 +11,8 @@ public class MissionEstablishHumanShield implements Mission{
      at the end of your turn
      */
     if (player.workerCount < 5) return false;
-    int factoryAdjecentWorkersCount = 0;
+    int factoryAdjacentWorkersCount = 0;
     //TODO: iterate player.workers, check Board.isAdjecent(3, 4), countAdjacent++
-    return factoryAdjecentWorkersCount >= 5;
+    return factoryAdjacentWorkersCount >= 5;
   }
 }
