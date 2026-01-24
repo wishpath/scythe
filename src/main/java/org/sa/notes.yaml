@@ -1,5 +1,6 @@
 TASKS:
-  - include TileType.HOME in the Board.grid
+  - fix grid (new coordinates, include home tiles):
+    - include TileType.HOME in the Board.grid
   - create Enlist card and place in playerDTO constructor:
       - enlistCard interface + concreted classes implementing just like Missions
   - add one more mission
@@ -15,4 +16,4 @@ LATER:
   - goodieCards can come later in the CardPool (after first working version)
 
 LETS_NOT:
-  - have attack cards in the pool, since esier to simply generate random one
+  - have attack cards in the pool, since easier to simply generate random one
