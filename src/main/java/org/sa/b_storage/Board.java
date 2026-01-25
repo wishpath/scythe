@@ -5,74 +5,83 @@ import org.sa.enums.Direction;
 import org.sa.enums.TileType;
 
 public class Board {
-  public static TileDTO[][] grid = new TileDTO[8][9];
-  public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 3, 4);
+  public static TileDTO[][] grid = new TileDTO[9][10];
+  public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 4, 5);
 
   static {
-    grid[0][3] = new TileDTO(TileType.METAL, 0, 3);
-    grid[0][4] = new TileDTO(TileType.FOOD, 0, 4);
-    grid[0][5] = new TileDTO(TileType.WORKER, 0, 5);
-    grid[0][6] = new TileDTO(TileType.WOOD, 0, 6);
-    grid[0][7] = new TileDTO(TileType.OIL, 0, 7);
-    grid[0][8] = new TileDTO(TileType.WORKER, 0, 8);
+    grid[0][5] = new TileDTO(TileType.HOME, 0, 3);
+    grid[0][8] = new TileDTO(TileType.METAL, 0, 8);
 
-    grid[1][2] = new TileDTO(TileType.WATER, 1, 2);
-    grid[1][3] = new TileDTO(TileType.OIL, 1, 3);
-    grid[1][4] = new TileDTO(TileType.WATER, 1, 4);
-    grid[1][5] = new TileDTO(TileType.OIL, 1, 5).markAsTunnel();
-    grid[1][6] = new TileDTO(TileType.METAL, 1, 6);
-    grid[1][7] = new TileDTO(TileType.FOOD, 1, 7);
-    grid[1][8] = new TileDTO(TileType.FOOD, 1, 8);
+    grid[1][4] = new TileDTO(TileType.METAL, 1, 4);
+    grid[1][5] = new TileDTO(TileType.FOOD, 1, 5);
+    grid[1][6] = new TileDTO(TileType.WORKER, 1, 6);
+    grid[1][7] = new TileDTO(TileType.WOOD, 1, 7);
+    grid[1][8] = new TileDTO(TileType.OIL, 1, 8);
+    grid[1][9] = new TileDTO(TileType.WORKER, 1, 9);
 
-    grid[2][2] = new TileDTO(TileType.WOOD, 2, 2);
-    grid[2][3] = new TileDTO(TileType.METAL, 2, 3).markAsTunnel();
-    grid[2][4] = new TileDTO(TileType.WOOD, 2, 4);
+    grid[2][3] = new TileDTO(TileType.WATER, 2, 3);
+    grid[2][4] = new TileDTO(TileType.OIL, 2, 4);
     grid[2][5] = new TileDTO(TileType.WATER, 2, 5);
-    grid[2][6] = new TileDTO(TileType.WOOD, 2, 6).markAsTunnel();
-    grid[2][7] = new TileDTO(TileType.WORKER, 2, 7);
+    grid[2][6] = new TileDTO(TileType.OIL, 2, 6).markAsTunnel();
+    grid[2][7] = new TileDTO(TileType.METAL, 2, 7);
+    grid[2][8] = new TileDTO(TileType.FOOD, 2, 8);
+    grid[2][9] = new TileDTO(TileType.FOOD, 2, 9);
 
-    grid[3][1] = new TileDTO(TileType.FOOD, 3, 1);
-    grid[3][2] = new TileDTO(TileType.WORKER, 3, 2);
-    grid[3][3] = new TileDTO(TileType.WATER, 3, 3);
-    grid[3][4] = CENTER_FACTORY;
-    grid[3][5] = new TileDTO(TileType.METAL, 3, 5);
-    grid[3][6] = new TileDTO(TileType.OIL, 3, 6);
-    grid[3][7] = new TileDTO(TileType.METAL, 3, 7);
+    grid[3][2] = new TileDTO(TileType.HOME, 3, 2);
+    grid[3][3] = new TileDTO(TileType.WOOD, 3, 3);
+    grid[3][4] = new TileDTO(TileType.METAL, 3, 4).markAsTunnel();
+    grid[3][5] = new TileDTO(TileType.WOOD, 3, 5);
+    grid[3][6] = new TileDTO(TileType.WATER, 3, 6);
+    grid[3][7] = new TileDTO(TileType.WOOD, 3, 7).markAsTunnel();
+    grid[3][8] = new TileDTO(TileType.WORKER, 3, 8);
+    grid[3][9] = new TileDTO(TileType.HOME, 3, 9);
 
-    grid[4][0] = new TileDTO(TileType.WOOD,  4, 0);
-    grid[4][1] = new TileDTO(TileType.WOOD,  4, 1);
-    grid[4][2] = new TileDTO(TileType.FOOD,  4, 2).markAsTunnel();
-    grid[4][3] = new TileDTO(TileType.OIL,  4, 3);
-    grid[4][4] = new TileDTO(TileType.WATER,  4, 4);
-    grid[4][5] = new TileDTO(TileType.WORKER,  4, 5).markAsTunnel();
-    grid[4][6] = new TileDTO(TileType.WATER,  4, 6);
+    grid[4][2] = new TileDTO(TileType.FOOD, 4, 2);
+    grid[4][3] = new TileDTO(TileType.WORKER, 4, 3);
+    grid[4][4] = new TileDTO(TileType.WATER, 4, 4);
+    grid[4][5] = CENTER_FACTORY;
+    grid[4][6] = new TileDTO(TileType.METAL, 4, 6);
+    grid[4][7] = new TileDTO(TileType.OIL, 4, 7);
+    grid[4][8] = new TileDTO(TileType.METAL, 4, 8);
 
-    grid[5][0] = new TileDTO(TileType.METAL,  5, 0);
-    grid[5][1] = new TileDTO(TileType.WORKER,  5, 1);
-    grid[5][2] = new TileDTO(TileType.WORKER,  5, 2);
-    grid[5][3] = new TileDTO(TileType.OIL,  5, 3).markAsTunnel();
-    grid[5][4] = new TileDTO(TileType.WOOD,  5, 4);
-    grid[5][5] = new TileDTO(TileType.METAL,  5, 5);
-    grid[5][6] = new TileDTO(TileType.OIL,  5, 6);
+    grid[5][1] = new TileDTO(TileType.WOOD,  5, 1);
+    grid[5][2] = new TileDTO(TileType.WOOD,  5, 2);
+    grid[5][3] = new TileDTO(TileType.FOOD,  5, 3).markAsTunnel();
+    grid[5][4] = new TileDTO(TileType.OIL,  5, 4);
+    grid[5][5] = new TileDTO(TileType.WATER,  5, 5);
+    grid[5][6] = new TileDTO(TileType.WORKER,  5, 6).markAsTunnel();
+    grid[5][7] = new TileDTO(TileType.WATER,  5, 7);
 
-    grid[6][0] = new TileDTO(TileType.OIL,  6, 0);
-    grid[6][1] = new TileDTO(TileType.WATER,  6, 1);
-    grid[6][2] = new TileDTO(TileType.FOOD,  6, 2);
-    grid[6][3] = new TileDTO(TileType.METAL,  6, 3);
-    grid[6][4] = new TileDTO(TileType.WORKER,  6, 4);
-    grid[6][5] = new TileDTO(TileType.FOOD,  6, 5);
+    grid[6][1] = new TileDTO(TileType.METAL,  6, 1);
+    grid[6][2] = new TileDTO(TileType.WORKER,  6, 2);
+    grid[6][3] = new TileDTO(TileType.WORKER,  6, 3);
+    grid[6][4] = new TileDTO(TileType.OIL,  6, 4).markAsTunnel();
+    grid[6][5] = new TileDTO(TileType.WOOD,  6, 5);
+    grid[6][6] = new TileDTO(TileType.METAL,  6, 6);
+    grid[6][7] = new TileDTO(TileType.OIL,  6, 7);
 
-    grid[7][5] = new TileDTO(TileType.WORKER,  7, 2);
+    grid[7][0] = new TileDTO(TileType.HOME,  7, 0);
+    grid[7][1] = new TileDTO(TileType.OIL,  7, 1);
+    grid[7][2] = new TileDTO(TileType.WATER,  7, 2);
+    grid[7][3] = new TileDTO(TileType.FOOD,  7, 3);
+    grid[7][4] = new TileDTO(TileType.METAL,  7, 4);
+    grid[7][5] = new TileDTO(TileType.WORKER,  7, 5);
+    grid[7][6] = new TileDTO(TileType.FOOD,  7, 6);
+    grid[7][6] = new TileDTO(TileType.FOOD,  7, 6);
+    grid[7][7] = new TileDTO(TileType.HOME,  7, 7);
+
+    grid[8][2] = new TileDTO(TileType.HOME,  8, 2);
+    grid[8][3] = new TileDTO(TileType.WORKER,  8, 3);
   }
 
   public static boolean isItemAdjacent(TileDTO tile, TileDTO itemLocation) {
     for (Direction direction : Direction.values())
-      if (isAdjacent(tile, direction, itemLocation))
+      if (isAdjacentToDirection(tile, direction, itemLocation))
         return true;
     return false;
   }
 
-  public static boolean isAdjacent(TileDTO tile, Direction direction, TileDTO itemLocation) {
+  public static boolean isAdjacentToDirection(TileDTO tile, Direction direction, TileDTO itemLocation) {
     int row = tile.row + direction.deltaRow;
     if (row < 0 || row >= grid.length) return false;
     int column = tile.column + direction.deltaColumn;
