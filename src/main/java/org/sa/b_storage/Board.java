@@ -4,6 +4,9 @@ import org.sa.DTO.TileDTO;
 import org.sa.enums.Direction;
 import org.sa.enums.TileType;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Board {
   public static TileDTO[][] grid = new TileDTO[9][10];
   public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 4, 5);
@@ -89,6 +92,21 @@ public class Board {
     TileDTO checkedTile = grid[row][column];
     if (checkedTile == null) return false;
     return checkedTile.equals(itemLocation);
+  }
+
+  public static Set<TileDTO> getNonNullNeighborsNotSelf(TileDTO tile) {
+    Set<TileDTO> neighbors = new HashSet<>();
+    for (Direction direction : Direction.values()) {
+      int row = tile.row + direction.deltaRow;
+      if (row < 0 || row >= grid.length) continue;
+
+      int column = tile.column + direction.deltaColumn;
+      if (column < 0 || column >= grid[0].length) continue;
+
+      TileDTO neighbor = grid[row][column];
+      if (neighbor != null && !neighbor.equals(tile)) neighbors.add(neighbor);
+    }
+    return neighbors;
   }
 }
 
