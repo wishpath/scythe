@@ -1,4 +1,5 @@
 TASKS:
+  - use method setRivers in Board
   - add one more mission
   - test:
     - if grid index matches DTO index!!!,

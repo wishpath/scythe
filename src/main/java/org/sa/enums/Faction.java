@@ -6,6 +6,7 @@ import static org.sa.b_storage.Board.grid;
 
 public enum Faction {
 
+  //TODO: finish up entering faction details
   RED("Rusviet Union", -1, -1, -1, 2,  grid[3][9]),
   BLACK("Saxony Empire", -1, -1, -1, 2, grid[7][0]),
   YELLOW("Crimean Khanate",  -1, -1, -1, 2, grid[8][2]),
