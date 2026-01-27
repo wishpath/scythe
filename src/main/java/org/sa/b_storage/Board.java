@@ -12,33 +12,53 @@ public class Board {
   public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 4, 5);
 
   static {
+    //TODO: test rivers, neighbour should have another half of the same river (or is null)
     grid[0][5] = new TileDTO(TileType.HOME, 0, 3);
     grid[0][8] = new TileDTO(TileType.METAL, 0, 8);
 
     grid[1][4] = new TileDTO(TileType.METAL, 1, 4);
     grid[1][5] = new TileDTO(TileType.FOOD, 1, 5);
-    grid[1][6] = new TileDTO(TileType.WORKER, 1, 6);
-    grid[1][7] = new TileDTO(TileType.WOOD, 1, 7);
-    grid[1][8] = new TileDTO(TileType.OIL, 1, 8);
-    grid[1][9] = new TileDTO(TileType.WORKER, 1, 9);
+    grid[1][6] = new TileDTO(TileType.WORKER, 1, 6)
+        .setRivers(Direction.EAST, Direction.SOUTH_EAST);
+    grid[1][7] = new TileDTO(TileType.WOOD, 1, 7)
+        .setRivers(Direction.SOUTH_WEST, Direction.WEST);
+    grid[1][8] = new TileDTO(TileType.OIL, 1, 8)
+        .setRivers(Direction.EAST, Direction.SOUTH_EAST);
+    grid[1][9] = new TileDTO(TileType.WORKER, 1, 9)
+        .setRivers(Direction.WEST);
 
     grid[2][3] = new TileDTO(TileType.WATER, 2, 3);
-    grid[2][4] = new TileDTO(TileType.OIL, 2, 4);
+    grid[2][4] = new TileDTO(TileType.OIL, 2, 4)
+        .setRivers(Direction.SOUTH_WEST);
     grid[2][5] = new TileDTO(TileType.WATER, 2, 5);
-    grid[2][6] = new TileDTO(TileType.OIL, 2, 6).markAsTunnel();
-    grid[2][7] = new TileDTO(TileType.METAL, 2, 7);
-    grid[2][8] = new TileDTO(TileType.FOOD, 2, 8);
-    grid[2][9] = new TileDTO(TileType.FOOD, 2, 9);
+    grid[2][6] = new TileDTO(TileType.OIL, 2, 6)
+        .markAsTunnel()
+        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.EAST);
+    grid[2][7] = new TileDTO(TileType.METAL, 2, 7)
+        .setRivers(Direction.WEST, Direction.EAST, Direction.SOUTH_EAST);
+    grid[2][8] = new TileDTO(TileType.FOOD, 2, 8)
+        .setRivers(Direction.WEST, Direction.NORTH_WEST, Direction.SOUTH_EAST);
+    grid[2][9] = new TileDTO(TileType.FOOD, 2, 9)
+        .setRivers(Direction.SOUTH_EAST, Direction.SOUTH_WEST);
 
     grid[3][2] = new TileDTO(TileType.HOME, 3, 2);
-    grid[3][3] = new TileDTO(TileType.WOOD, 3, 3);
-    grid[3][4] = new TileDTO(TileType.METAL, 3, 4).markAsTunnel();
+    grid[3][3] = new TileDTO(TileType.WOOD, 3, 3)
+        .setRivers(Direction.NORTH_EAST, Direction.EAST);
+    grid[3][4] = new TileDTO(TileType.METAL, 3, 4)
+        .markAsTunnel()
+        .setRivers(Direction.WEST, Direction.SOUTH_WEST);
     grid[3][5] = new TileDTO(TileType.WOOD, 3, 5);
     grid[3][6] = new TileDTO(TileType.WATER, 3, 6);
-    grid[3][7] = new TileDTO(TileType.WOOD, 3, 7).markAsTunnel();
-    grid[3][8] = new TileDTO(TileType.WORKER, 3, 8);
-    grid[3][9] = new TileDTO(TileType.HOME, 3, 9);
+    grid[3][7] = new TileDTO(TileType.WOOD, 3, 7)
+        .markAsTunnel()
+        .setRivers(Direction.NORTH_WEST, Direction.EAST, Direction.SOUTH_EAST);
+    grid[3][8] = new TileDTO(TileType.WORKER, 3, 8)
+        .setRivers(Direction.WEST, Direction.NORTH_WEST, Direction.NORTH_EAST);
+    grid[3][9] = new TileDTO(TileType.HOME, 3, 9)
+        .setRivers(Direction.NORTH_WEST);
 
+
+    //TODO: set rivers in grid rows 4 to 8
     grid[4][2] = new TileDTO(TileType.FOOD, 4, 2);
     grid[4][3] = new TileDTO(TileType.WORKER, 4, 3);
     grid[4][4] = new TileDTO(TileType.WATER, 4, 4);
@@ -49,16 +69,19 @@ public class Board {
 
     grid[5][1] = new TileDTO(TileType.WOOD,  5, 1);
     grid[5][2] = new TileDTO(TileType.WOOD,  5, 2);
-    grid[5][3] = new TileDTO(TileType.FOOD,  5, 3).markAsTunnel();
+    grid[5][3] = new TileDTO(TileType.FOOD,  5, 3)
+        .markAsTunnel();
     grid[5][4] = new TileDTO(TileType.OIL,  5, 4);
     grid[5][5] = new TileDTO(TileType.WATER,  5, 5);
-    grid[5][6] = new TileDTO(TileType.WORKER,  5, 6).markAsTunnel();
+    grid[5][6] = new TileDTO(TileType.WORKER,  5, 6)
+        .markAsTunnel();
     grid[5][7] = new TileDTO(TileType.WATER,  5, 7);
 
     grid[6][1] = new TileDTO(TileType.METAL,  6, 1);
     grid[6][2] = new TileDTO(TileType.WORKER,  6, 2);
     grid[6][3] = new TileDTO(TileType.WORKER,  6, 3);
-    grid[6][4] = new TileDTO(TileType.OIL,  6, 4).markAsTunnel();
+    grid[6][4] = new TileDTO(TileType.OIL,  6, 4)
+        .markAsTunnel();
     grid[6][5] = new TileDTO(TileType.WOOD,  6, 5);
     grid[6][6] = new TileDTO(TileType.METAL,  6, 6);
     grid[6][7] = new TileDTO(TileType.OIL,  6, 7);

@@ -1,5 +1,5 @@
 TASKS:
-  - use method setRivers in Board
+  - use method setRivers in Board: set rivers in grid rows 4 to 8
   - add one more mission
   - test:
     - if grid index matches DTO index!!!,
@@ -10,6 +10,7 @@ TASKS:
       - enlistCard interface + concreted classes implementing just like Missions
   - enter playerDTO details
   - generate random attack card when dealing (not pull from the pool)
+  - display board visually
   - make CardPool:
     - should contain all types of cards Faction:
         - enlistCards
