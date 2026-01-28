@@ -12,7 +12,9 @@ public class Board {
   public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 4, 5);
 
   static {
-    //TODO: test rivers, neighbour should have another half of the same river (or is null)
+    //TODO: test rivers,
+    // neighbour should have another half of the same river (or is null)
+    // rivers should not neighbor lakes
     grid[0][5] = new TileDTO(TileType.HOME, 0, 3);
     grid[0][8] = new TileDTO(TileType.METAL, 0, 8);
 
@@ -57,16 +59,20 @@ public class Board {
     grid[3][9] = new TileDTO(TileType.HOME, 3, 9)
         .setRivers(Direction.NORTH_WEST);
 
-
-    //TODO: set rivers in grid rows 4 to 8
-    grid[4][2] = new TileDTO(TileType.FOOD, 4, 2);
-    grid[4][3] = new TileDTO(TileType.WORKER, 4, 3);
+    grid[4][2] = new TileDTO(TileType.FOOD, 4, 2)
+        .setRivers(Direction.SOUTH_WEST, Direction.SOUTH_EAST);
+    grid[4][3] = new TileDTO(TileType.WORKER, 4, 3)
+        .setRivers(Direction.SOUTH_WEST, Direction.SOUTH_EAST, Direction.NORTH_EAST);
     grid[4][4] = new TileDTO(TileType.WATER, 4, 4);
     grid[4][5] = CENTER_FACTORY;
-    grid[4][6] = new TileDTO(TileType.METAL, 4, 6);
-    grid[4][7] = new TileDTO(TileType.OIL, 4, 7);
+    grid[4][6] = new TileDTO(TileType.METAL, 4, 6)
+        .setRivers(Direction.EAST);
+    grid[4][7] = new TileDTO(TileType.OIL, 4, 7)
+        .setRivers(Direction.SOUTH_WEST, Direction.WEST, Direction.NORTH_WEST);
     grid[4][8] = new TileDTO(TileType.METAL, 4, 8);
 
+
+    //TODO: set rivers in grid rows 5 to 8
     grid[5][1] = new TileDTO(TileType.WOOD,  5, 1);
     grid[5][2] = new TileDTO(TileType.WOOD,  5, 2);
     grid[5][3] = new TileDTO(TileType.FOOD,  5, 3)
