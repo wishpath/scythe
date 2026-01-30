@@ -85,16 +85,21 @@ public class Board {
         .setRivers(Direction.NORTH_EAST);
     grid[5][7] = new TileDTO(TileType.WATER,  5, 7);
 
-    //TODO: set rivers in grid rows 6 to 8
-    grid[6][1] = new TileDTO(TileType.METAL,  6, 1);
-    grid[6][2] = new TileDTO(TileType.WORKER,  6, 2);
-    grid[6][3] = new TileDTO(TileType.WORKER,  6, 3);
+    grid[6][1] = new TileDTO(TileType.METAL,  6, 1)
+        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST);
+    grid[6][2] = new TileDTO(TileType.WORKER,  6, 2)
+        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.EAST);
+    grid[6][3] = new TileDTO(TileType.WORKER,  6, 3)
+        .setRivers(Direction.WEST, Direction.SOUTH_EAST);
     grid[6][4] = new TileDTO(TileType.OIL,  6, 4)
-        .markAsTunnel();
-    grid[6][5] = new TileDTO(TileType.WOOD,  6, 5);
+        .markAsTunnel()
+        .setRivers(Direction.SOUTH_EAST, Direction.SOUTH_WEST);
+    grid[6][5] = new TileDTO(TileType.WOOD,  6, 5)
+        .setRivers(Direction.SOUTH_WEST);
     grid[6][6] = new TileDTO(TileType.METAL,  6, 6);
     grid[6][7] = new TileDTO(TileType.OIL,  6, 7);
 
+    //TODO: set rivers in grid rows 7 to 8
     grid[7][0] = new TileDTO(TileType.HOME,  7, 0);
     grid[7][1] = new TileDTO(TileType.OIL,  7, 1);
     grid[7][2] = new TileDTO(TileType.WATER,  7, 2);
