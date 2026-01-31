@@ -99,13 +99,15 @@ public class Board {
     grid[6][6] = new TileDTO(TileType.METAL,  6, 6);
     grid[6][7] = new TileDTO(TileType.OIL,  6, 7);
 
-    //TODO: set rivers in grid rows 7 to 8
     grid[7][0] = new TileDTO(TileType.HOME,  7, 0);
     grid[7][1] = new TileDTO(TileType.OIL,  7, 1);
     grid[7][2] = new TileDTO(TileType.WATER,  7, 2);
-    grid[7][3] = new TileDTO(TileType.FOOD,  7, 3);
-    grid[7][4] = new TileDTO(TileType.METAL,  7, 4);
-    grid[7][5] = new TileDTO(TileType.WORKER,  7, 5);
+    grid[7][3] = new TileDTO(TileType.FOOD,  7, 3)
+        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST);
+    grid[7][4] = new TileDTO(TileType.METAL,  7, 4)
+        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.EAST);
+    grid[7][5] = new TileDTO(TileType.WORKER,  7, 5)
+        .setRivers(Direction.WEST);
     grid[7][6] = new TileDTO(TileType.FOOD,  7, 6);
     grid[7][6] = new TileDTO(TileType.FOOD,  7, 6);
     grid[7][7] = new TileDTO(TileType.HOME,  7, 7);
