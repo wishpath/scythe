@@ -24,6 +24,7 @@ public class PlayerDTO {
   //List<RobotDTO> //initially empty list
   public List<WorkerDTO> workers;
 
+  public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
   public PlayerDTO(Faction faction) { //should provide ElistCard
     this.faction = faction;

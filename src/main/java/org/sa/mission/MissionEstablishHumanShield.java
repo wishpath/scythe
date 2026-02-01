@@ -12,6 +12,7 @@ public class MissionEstablishHumanShield implements Mission{
      adjacent to Factory
      at the end of your turn
      */
+    if (player.isEndOfTurn == false) return false;
     if (player.workers.size() < 5) return false;
     int factoryAdjacentWorkersCount = 0;
 

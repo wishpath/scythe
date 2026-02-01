@@ -1,5 +1,4 @@
 TASKS:
-  - add one more mission
   - test:
     - if grid index matches DTO index!!!,
     - no tiles match for in exact grid coordinates,
