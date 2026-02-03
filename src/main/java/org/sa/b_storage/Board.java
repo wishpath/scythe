@@ -14,7 +14,6 @@ public class Board {
   static {
     //TODO: test rivers,
     //    - no tiles match for in exact grid coordinates,
-    //    - has at least 2 neighbours
     // neighbour should have another half of the same river (or is null)
     // rivers should not neighbor lakes
     grid[0][5] = new TileDTO(TileType.HOME, 0, 5);
