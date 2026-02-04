@@ -12,10 +12,10 @@ public class Board {
   public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 4, 5);
 
   static {
-    //TODO: test rivers,
-    //    - no tiles match for in exact grid coordinates,
+    //TODO: test
     // neighbour should have another half of the same river (or is null)
     // lakes should not have rivers
+    // the number of tiles is constant 54, i think...
     grid[0][5] = new TileDTO(TileType.HOME, 0, 5);
     grid[0][8] = new TileDTO(TileType.METAL, 0, 8);
 
@@ -109,7 +109,6 @@ public class Board {
         .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.EAST);
     grid[7][5] = new TileDTO(TileType.WORKER,  7, 5)
         .setRivers(Direction.WEST);
-    grid[7][6] = new TileDTO(TileType.FOOD,  7, 6);
     grid[7][6] = new TileDTO(TileType.FOOD,  7, 6);
     grid[7][7] = new TileDTO(TileType.HOME,  7, 7);
 
