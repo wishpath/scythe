@@ -1,8 +1,7 @@
 TASKS:
   - test:
     - test Board;
-    - no tiles match for in exact grid coordinates,
-  - mark rivers in Board.gird for each TileDTO
+    - no tiles match for in exact grid coordinates, ???
   - create Enlist card and place in playerDTO constructor:
       - enlistCard interface + concreted classes implementing just like Missions
   - enter playerDTO details

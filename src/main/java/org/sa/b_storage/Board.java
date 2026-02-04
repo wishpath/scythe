@@ -15,7 +15,7 @@ public class Board {
     //TODO: test rivers,
     //    - no tiles match for in exact grid coordinates,
     // neighbour should have another half of the same river (or is null)
-    // rivers should not neighbor lakes
+    // lakes should not have rivers
     grid[0][5] = new TileDTO(TileType.HOME, 0, 5);
     grid[0][8] = new TileDTO(TileType.METAL, 0, 8);
 
@@ -147,6 +147,10 @@ public class Board {
       if (neighbor != null && !neighbor.equals(tile)) neighbors.add(neighbor);
     }
     return neighbors;
+  }
+
+  public static TileDTO getNeighbor(TileDTO tile, Direction direction) {
+    return grid[tile.row + direction.deltaRow][tile.column + direction.deltaColumn];
   }
 }
 
