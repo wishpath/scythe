@@ -36,21 +36,6 @@ class BoardTest {
   }
 
 
-//  @Test
-//  void riversDoNotBorderLakes() {
-//    for (int row = 0; row < Board.grid.length; row++)
-//      for (int column = 0; column < Board.grid[0].length; column++) {
-//        TileDTO tile = Board.grid[row][column];
-//        if (tile == null) continue;
-//        EnumSet<Direction> riverDirections = tile.rivers;
-//        for (Direction riverDirection : riverDirections) {
-//          TileDTO riverNeighbor = Board.getNeighbor(tile, riverDirection);
-//          assertTrue(!riverNeighbor.tileType.equals(TileType.WATER),
-//              "Tile at [" + row + "," + column + "] borders lake at direction of " + riverDirection);
-//        }
-//      }
-//  }
-
   @Test
   void riversDoNotBorderLakes() {
     for (int row = 0; row < Board.grid.length; row++)
@@ -63,11 +48,26 @@ class BoardTest {
           if (neighbor == null) continue;
 
           assertNotEquals(
-              TileType.WATER,
+              TileType.LAKE,
               neighbor.tileType,
               "Tile at [" + row + "," + column + "] borders lake in direction " + riverDirection
           );
         }
+      }
+  }
+
+  @Test
+  void lakesShouldNotHaveRivers() {
+    for (int row = 0; row < Board.grid.length; row++)
+      for (int column = 0; column < Board.grid[0].length; column++) {
+        TileDTO tile = Board.grid[row][column];
+        if (tile == null || tile.tileType != TileType.LAKE) continue;
+
+        assertEquals(
+            0,
+            tile.rivers.size(),
+            "Tile at [" + row + "," + column + "] is lake but has rivers"
+        );
       }
   }
 }

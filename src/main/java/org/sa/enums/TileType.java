@@ -8,7 +8,7 @@ public enum TileType {
   FOOD("Plains"),
   OIL("Tundra"),
   WORKER("Village"),
-  WATER("Lake"),
+  LAKE("Lake"),
   CENTER("Factory"),
   HOME("Home Base");
 

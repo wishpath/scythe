@@ -14,7 +14,6 @@ public class Board {
   static {
     //TODO: test
     // neighbour should have another half of the same river (or is null)
-    // lakes should not have rivers
     // the number of tiles is constant 54, i think...
     grid[0][5] = new TileDTO(TileType.HOME, 0, 5);
     grid[0][8] = new TileDTO(TileType.METAL, 0, 8);
@@ -30,10 +29,10 @@ public class Board {
     grid[1][9] = new TileDTO(TileType.WORKER, 1, 9)
         .setRivers(Direction.WEST);
 
-    grid[2][3] = new TileDTO(TileType.WATER, 2, 3);
+    grid[2][3] = new TileDTO(TileType.LAKE, 2, 3);
     grid[2][4] = new TileDTO(TileType.OIL, 2, 4)
         .setRivers(Direction.SOUTH_WEST);
-    grid[2][5] = new TileDTO(TileType.WATER, 2, 5);
+    grid[2][5] = new TileDTO(TileType.LAKE, 2, 5);
     grid[2][6] = new TileDTO(TileType.OIL, 2, 6)
         .markAsTunnel()
         .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.EAST);
@@ -51,7 +50,7 @@ public class Board {
         .markAsTunnel()
         .setRivers(Direction.WEST, Direction.SOUTH_WEST);
     grid[3][5] = new TileDTO(TileType.WOOD, 3, 5);
-    grid[3][6] = new TileDTO(TileType.WATER, 3, 6);
+    grid[3][6] = new TileDTO(TileType.LAKE, 3, 6);
     grid[3][7] = new TileDTO(TileType.WOOD, 3, 7)
         .markAsTunnel()
         .setRivers(Direction.NORTH_WEST, Direction.EAST, Direction.SOUTH_EAST);
@@ -64,7 +63,7 @@ public class Board {
         .setRivers(Direction.SOUTH_WEST, Direction.SOUTH_EAST);
     grid[4][3] = new TileDTO(TileType.WORKER, 4, 3)
         .setRivers(Direction.SOUTH_WEST, Direction.SOUTH_EAST, Direction.NORTH_EAST);
-    grid[4][4] = new TileDTO(TileType.WATER, 4, 4);
+    grid[4][4] = new TileDTO(TileType.LAKE, 4, 4);
     grid[4][5] = CENTER_FACTORY;
     grid[4][6] = new TileDTO(TileType.METAL, 4, 6)
         .setRivers(Direction.EAST);
@@ -80,11 +79,11 @@ public class Board {
         .markAsTunnel()
         .setRivers(Direction.NORTH_WEST, Direction.SOUTH_WEST);
     grid[5][4] = new TileDTO(TileType.OIL,  5, 4);
-    grid[5][5] = new TileDTO(TileType.WATER,  5, 5);
+    grid[5][5] = new TileDTO(TileType.LAKE,  5, 5);
     grid[5][6] = new TileDTO(TileType.WORKER,  5, 6)
         .markAsTunnel()
         .setRivers(Direction.NORTH_EAST);
-    grid[5][7] = new TileDTO(TileType.WATER,  5, 7);
+    grid[5][7] = new TileDTO(TileType.LAKE,  5, 7);
 
     grid[6][1] = new TileDTO(TileType.METAL,  6, 1)
         .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST);
@@ -102,7 +101,7 @@ public class Board {
 
     grid[7][0] = new TileDTO(TileType.HOME,  7, 0);
     grid[7][1] = new TileDTO(TileType.OIL,  7, 1);
-    grid[7][2] = new TileDTO(TileType.WATER,  7, 2);
+    grid[7][2] = new TileDTO(TileType.LAKE,  7, 2);
     grid[7][3] = new TileDTO(TileType.FOOD,  7, 3)
         .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST);
     grid[7][4] = new TileDTO(TileType.METAL,  7, 4)
