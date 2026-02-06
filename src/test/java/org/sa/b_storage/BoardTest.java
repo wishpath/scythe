@@ -76,16 +76,17 @@ class BoardTest {
     for (int row = 0; row < Board.grid.length; row++)
       for (int column = 0; column < Board.grid[0].length; column++) {
         TileDTO tile = Board.grid[row][column];
-        if (tile == null || tile.tileType == TileType.LAKE || tile.tileType == TileType.HOME) continue;
+        if (tile == null || tile.tileType == TileType.LAKE) continue;
         for (Direction riverDirection : tile.rivers) {
           TileDTO neighbor = Board.getNeighbor(tile, riverDirection);
+          if (neighbor == null) continue;
+          Direction neededRiver = riverDirection.opposite();
+          assertTrue(
+              neighbor.rivers.contains(neededRiver),
+              "Tile [" + row + "," + column + "] river " + riverDirection +
+                  " not matched by neighbor [" + neighbor.row + "," + neighbor.column + "]"
+          );
         }
-
-        assertEquals(
-            0,
-            tile.rivers.size(),
-            "Tile at [" + row + "," + column + "] is lake but has rivers"
-        );
       }
   }
 

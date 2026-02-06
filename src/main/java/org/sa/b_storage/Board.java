@@ -13,7 +13,6 @@ public class Board {
 
   static {
     //TODO: test
-    // neighbour should have another half of the same river (or is null)
     // the number of tiles is constant 54, i think...
     grid[0][5] = new TileDTO(TileType.HOME, 0, 5);
     grid[0][8] = new TileDTO(TileType.METAL, 0, 8);
