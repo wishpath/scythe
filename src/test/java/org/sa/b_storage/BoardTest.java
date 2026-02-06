@@ -70,4 +70,24 @@ class BoardTest {
         );
       }
   }
+
+  @Test
+  void neighborShouldHaveAnotherHalfOfTheSameRiver() {
+    for (int row = 0; row < Board.grid.length; row++)
+      for (int column = 0; column < Board.grid[0].length; column++) {
+        TileDTO tile = Board.grid[row][column];
+        if (tile == null || tile.tileType == TileType.LAKE || tile.tileType == TileType.HOME) continue;
+        for (Direction riverDirection : tile.rivers) {
+          TileDTO neighbor = Board.getNeighbor(tile, riverDirection);
+        }
+
+        assertEquals(
+            0,
+            tile.rivers.size(),
+            "Tile at [" + row + "," + column + "] is lake but has rivers"
+        );
+      }
+  }
+
+
 }

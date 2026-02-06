@@ -16,4 +16,11 @@ public enum Direction {
     this.deltaRow = deltaRow;
     this.deltaColumn = deltaColumn;
   }
+
+  public Direction opposite() {
+    for (Direction d : values())
+      if (d.deltaRow == -deltaRow && d.deltaColumn == -deltaColumn)
+        return d;
+    throw new IllegalStateException("No opposite direction for " + this);
+  }
 }
