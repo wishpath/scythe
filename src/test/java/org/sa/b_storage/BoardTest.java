@@ -90,5 +90,14 @@ class BoardTest {
       }
   }
 
+  @Test
+  void boardShouldContain54NonNullTiles() {
+    int count = 0;
 
+    for (int row = 0; row < Board.grid.length; row++)
+      for (int column = 0; column < Board.grid[0].length; column++)
+        if (Board.grid[row][column] != null) count++;
+
+    assertEquals(54, count, "Unexpected number of non-null tiles on the board");
+  }
 }

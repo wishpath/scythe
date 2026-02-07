@@ -1,6 +1,4 @@
 TASKS:
-  - test:
-    - test Board; commented there what to test
   - create Enlist card and place in playerDTO constructor:
       - enlistCard interface + concreted classes implementing just like Missions
   - enter playerDTO details

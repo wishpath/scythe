@@ -12,8 +12,6 @@ public class Board {
   public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 4, 5);
 
   static {
-    //TODO: test
-    // the number of tiles is constant 54, i think...
     grid[0][5] = new TileDTO(TileType.HOME, 0, 5);
     grid[0][8] = new TileDTO(TileType.METAL, 0, 8);
 
