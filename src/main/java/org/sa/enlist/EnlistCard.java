@@ -7,9 +7,9 @@ public enum EnlistCard {
   //TODO: finish CONOR_AND_MAX_CLAN_ALBION enlist card
   CONOR_AND_MAX_CLAN_ALBION(
       List.of(new AbilityExample()),
-      List.of(new RewardExample(), new RewardExample()),
+      List.of(new RewardAttack(), new RewardAttack()),
       List.of(new AbilityExample(), new AbilityExample(), new AbilityExample(), new AbilityExample()),
-      List.of(new RewardExample(), new RewardExample(), new RewardExample(), new RewardExample())
+      List.of(new RewardAttack(), new RewardAttack(), new RewardAttack(), new RewardAttack())
   );
 
   public final List<Ability> initialAbilities;
