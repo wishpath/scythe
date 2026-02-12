@@ -1,5 +1,7 @@
 package org.sa.enlist;
 
+import org.sa.b_storage.reward.Reward;
+
 import java.util.HashSet;
 import java.util.Set;
 

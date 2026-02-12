@@ -2,6 +2,7 @@ package org.sa.DTO;
 
 import org.sa.enums.Faction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerDTO {
@@ -17,7 +18,8 @@ public class PlayerDTO {
 
   //elist card part
   public int attack = 0;
-  public int attackCards = 0; //should be List<
+
+  public List<Integer> attackCards = new ArrayList<>();
 
   //player board state: each should have coordinate
   //HeroDTO //initially of board new HeroDTO(null);

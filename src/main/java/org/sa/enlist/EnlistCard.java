@@ -1,5 +1,7 @@
 package org.sa.enlist;
 
+import org.sa.b_storage.reward.*;
+
 import java.util.List;
 
 public enum EnlistCard {
@@ -7,9 +9,9 @@ public enum EnlistCard {
   //TODO: finish CONOR_AND_MAX_CLAN_ALBION enlist card
   CONOR_AND_MAX_CLAN_ALBION(
       List.of(new AbilityExample()),
-      List.of(new RewardAttack(), new RewardAttack()),
+      List.of(new Reward_Attack(3), new Reward_AttackCards(0)),
       List.of(new AbilityExample(), new AbilityExample(), new AbilityExample(), new AbilityExample()),
-      List.of(new RewardAttack(), new RewardAttack(), new RewardAttack(), new RewardAttack())
+      List.of(new Reward_Attack(2), new Reward_Coins(2), new Reward_Hearts(2), new Reward_AttackCards(2))
   );
 
   public final List<Ability> initialAbilities;
