@@ -7,20 +7,28 @@ import java.util.List;
 
 public class PlayerDTO {
 
-  //faction part
+  //main
   public Faction faction;
   public int score = 0;
   public int hearts = 0;
   public int coins = 0;
   public int missionCards = 0; //should be List<MissionDTO> or something mission should be enum
-
-  //List<MoveDTO>
-
-  //elist card part
   public int attack = 0;
-
   public List<Integer> attackCards = new ArrayList<>();
 
+
+
+  // Clan Albion — Exalt (additional to MOVE):
+  // 4 Flag Tokens total. After character movement,
+  // may place 1 on the territory where it ended.
+  public int flagTokenPool = 0; //Clan Albion / Exalt ability / fixed supply of 4 Flag tokens / 1 token — placed AFTER character moved on tile where he landed
+
+
+  //boardItems
+
+
+
+  //List<MoveDTO>
   //player board state: each should have coordinate
   //HeroDTO //initially of board new HeroDTO(null);
   //List<RobotDTO> //initially empty list
