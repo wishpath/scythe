@@ -22,6 +22,9 @@ public class PlayerDTO {
   // 4 Flag Tokens total. After character movement,
   // may place 1 on the territory where it ended.
   public int flagTokenPool = 0; //Clan Albion / Exalt ability / fixed supply of 4 Flag tokens / 1 token — placed AFTER character moved on tile where he landed
+  // Clan Albion — Burrow (additional to MOVE):
+  // move across rivers to or from an adjacent tunner territory
+  public boolean canCrossRiverToOrFromTunnel = false;
 
 
   //boardItems

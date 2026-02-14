@@ -10,12 +10,12 @@ public class PlayerEnlistState { //is owned by player
   //  while the pools of abilities and rewards should be here, for use during enlist action
 
   public final EnlistCard card;
-  public final Set<Ability> remainingAbilities;
+  public final Set<Reward> remainingAbilities;
   public final Set<Reward> remainingRewards;
 
   public PlayerEnlistState(EnlistCard card) {
     this.card = card;
-    this.remainingAbilities = new HashSet<>(card.abilityPool);
-    this.remainingRewards = new HashSet<>(card.enlistBonusPool);
+    this.remainingAbilities = new HashSet<>(card.abilityPoolToUnlock);
+    this.remainingRewards = new HashSet<>(card.bonusPoolToUnlock);
   }
 }
