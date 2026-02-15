@@ -25,6 +25,9 @@ public class PlayerDTO {
   // Clan Albion — Burrow (additional to MOVE):
   // move across rivers to or from an adjacent tunner territory
   public boolean canCrossRiverToOrFromTunnel = false;
+  // Clan Albion — Sword (additional to MOVE):
+  // before combat where you are attacking, opponent gets -2point
+  public boolean opponentGetsMinus2AttackBeforeYouAttackHim = false;
 
 
   //boardItems
