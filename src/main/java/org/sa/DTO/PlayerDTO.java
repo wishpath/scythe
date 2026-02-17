@@ -31,6 +31,9 @@ public class PlayerDTO {
   // Clan Albion — Shield (additional to MOVE):
   // before combat where you are defending, player gets 2 points of attack
   public boolean playerGets2AttackBeforeDefence = false;
+  // Clan Albion — Rally (additional to MOVE / Enlist card):
+  // allows character to move to any territory where you have a worker or Flag token
+  public boolean canMoveCharacterToControlledTerritory = false;
 
 
   //boardItems

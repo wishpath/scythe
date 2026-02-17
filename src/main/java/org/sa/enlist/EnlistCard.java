@@ -1,12 +1,11 @@
 package org.sa.enlist;
 
-import org.sa.b_storage.reward.*;
+import org.sa.reward.*;
 
 import java.util.List;
 
 public enum EnlistCard {
 
-  //TODO: finish CONOR_AND_MAX_CLAN_ALBION enlist card
   CONOR_AND_MAX_CLAN_ALBION(
       List.of(new Reward_FlagTokens_Exalt()),
       List.of(new Reward_Attack(3), new Reward_AttackCards(0)),
@@ -14,7 +13,7 @@ public enum EnlistCard {
           new Reward_RiverCrossingToOrFromTunnel_Burrow(),
           new Reward_MinusAttackForOpponent_Sword(),
           new Reward_PlusAttackBeforeDefence_Shield(),
-          new Reward_RiverCrossingToOrFromTunnel_Burrow()), //TODO: finish
+          new Reward_CanMoveToControlledTerritory_Rally()),
       List.of(new Reward_Attack(2), new Reward_Coins(2), new Reward_Hearts(2), new Reward_AttackCards(2))
   );
 

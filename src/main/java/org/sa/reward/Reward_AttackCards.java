@@ -1,4 +1,4 @@
-package org.sa.b_storage.reward;
+package org.sa.reward;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.b_storage.CardPool;
