@@ -2,6 +2,6 @@ package org.sa.mission;
 
 import org.sa.DTO.PlayerDTO;
 
-public interface Mission {
+public interface MissionCard {
   boolean isCompleted(PlayerDTO player);
 }

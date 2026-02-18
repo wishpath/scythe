@@ -4,7 +4,7 @@ import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.WorkerDTO;
 import org.sa.b_storage.Board;
 
-public class MissionEstablishHumanShield implements Mission{
+public class MissionEstablishHumanShield implements MissionCard {
   @Override
   public boolean isCompleted(PlayerDTO player) {
     /**

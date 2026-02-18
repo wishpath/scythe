@@ -6,7 +6,7 @@ import org.sa.enums.TileType;
 
 import java.util.EnumSet;
 
-public class MissionDiversifyProduction implements Mission{
+public class MissionDiversifyProduction implements MissionCard {
   @Override
   public boolean isCompleted(PlayerDTO player) {
     /**

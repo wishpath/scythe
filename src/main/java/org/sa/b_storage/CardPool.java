@@ -1,26 +1,38 @@
 package org.sa.b_storage;
 
-import org.sa.mission.Mission;
+import org.sa.enlist.EnlistCard;
+import org.sa.mission.MissionCard;
 import org.sa.mission.MissionDiversifyProduction;
 import org.sa.mission.MissionEstablishHumanShield;
 
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Random;
 
 public class CardPool {
-  //here all kinds of cards should be stored
-  // begin with 1 enlist card
-  //List<EnlistCard>
-  // begin with 2 mission cards to reach certain state of the game, board state?
-  List<Mission> missionCards = new ArrayList<>(List.of(new MissionEstablishHumanShield(), new MissionDiversifyProduction()));
-  // yellow attack cards: 16x+2, 12x+3, 8x+4, 6x+5
-  private static List<Integer> attackCardsPool = getNewAttackCardsPool() ;
+
+  EnumSet<EnlistCard> enlistCardPool = EnumSet.allOf(EnlistCard.class);
+  List<MissionCard> missionCardPool = new ArrayList<>(List.of(new MissionEstablishHumanShield(), new MissionDiversifyProduction())); //TODO: add more missions later
+  private static List<Integer> attackCardsPool = getNewAttackCardsPool(); // yellow attack cards: 16x+2, 12x+3, 8x+4, 6x+5
   private static final Random random = new Random();
 
   public static Integer drawAttackCard() {
     if (attackCardsPool.isEmpty()) attackCardsPool = getNewAttackCardsPool();
     return attackCardsPool.remove(random.nextInt(attackCardsPool.size()));
+  }
+
+  public EnlistCard drawEnlistCard() {
+    if (enlistCardPool.isEmpty()) throw new IllegalStateException("Enlist card pool should not be empty");
+    int index = random.nextInt(enlistCardPool.size());
+    EnlistCard drawn = enlistCardPool.toArray(new EnlistCard[0])[index];
+    enlistCardPool.remove(drawn);
+    return drawn;
+  }
+
+  public MissionCard drawMissionCard() {
+    if (missionCardPool.isEmpty()) throw new IllegalStateException("Mission card pool should not be empty");
+    return missionCardPool.remove(random.nextInt(missionCardPool.size()));
   }
 
   private static List<Integer> getNewAttackCardsPool() {
