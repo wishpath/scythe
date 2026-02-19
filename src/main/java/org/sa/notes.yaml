@@ -1,4 +1,5 @@
 TASKS:
+  - change Faction details using Reward
   - create Enlist card and place in playerDTO constructor:
       - enlistCard interface + concreted classes implementing just like Missions
   - enter playerDTO details

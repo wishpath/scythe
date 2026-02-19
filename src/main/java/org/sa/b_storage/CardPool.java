@@ -1,6 +1,7 @@
 package org.sa.b_storage;
 
 import org.sa.enlist.EnlistCard;
+import org.sa.enums.FactionBoard;
 import org.sa.mission.MissionCard;
 import org.sa.mission.MissionDiversifyProduction;
 import org.sa.mission.MissionEstablishHumanShield;
@@ -12,8 +13,9 @@ import java.util.Random;
 
 public class CardPool {
 
-  EnumSet<EnlistCard> enlistCardPool = EnumSet.allOf(EnlistCard.class);
-  List<MissionCard> missionCardPool = new ArrayList<>(List.of(new MissionEstablishHumanShield(), new MissionDiversifyProduction())); //TODO: add more missions later
+  private static EnumSet<EnlistCard> enlistCardPool = EnumSet.allOf(EnlistCard.class);
+  private static EnumSet<FactionBoard> factionBoardPool = EnumSet.allOf(FactionBoard.class);
+  private static List<MissionCard> missionCardPool = new ArrayList<>(List.of(new MissionEstablishHumanShield(), new MissionDiversifyProduction())); //TODO: add more missions later
   private static List<Integer> attackCardsPool = getNewAttackCardsPool(); // yellow attack cards: 16x+2, 12x+3, 8x+4, 6x+5
   private static final Random random = new Random();
 
@@ -22,7 +24,7 @@ public class CardPool {
     return attackCardsPool.remove(random.nextInt(attackCardsPool.size()));
   }
 
-  public EnlistCard drawEnlistCard() {
+  public static EnlistCard drawEnlistCard() {
     if (enlistCardPool.isEmpty()) throw new IllegalStateException("Enlist card pool should not be empty");
     int index = random.nextInt(enlistCardPool.size());
     EnlistCard drawn = enlistCardPool.toArray(new EnlistCard[0])[index];
@@ -30,7 +32,15 @@ public class CardPool {
     return drawn;
   }
 
-  public MissionCard drawMissionCard() {
+  public static  FactionBoard drawFactionBoard() {
+    if (factionBoardPool.isEmpty()) throw new IllegalStateException("Faction board pool should not be empty");
+    int index = random.nextInt(factionBoardPool.size());
+    FactionBoard drawn = factionBoardPool.toArray(new FactionBoard[0])[index];
+    factionBoardPool.remove(drawn);
+    return drawn;
+  }
+
+  public static MissionCard drawMissionCard() {
     if (missionCardPool.isEmpty()) throw new IllegalStateException("Mission card pool should not be empty");
     return missionCardPool.remove(random.nextInt(missionCardPool.size()));
   }

@@ -1,6 +1,6 @@
 package org.sa.DTO;
 
-import org.sa.enums.Faction;
+import org.sa.enums.FactionBoard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class PlayerDTO {
 
   //main
-  public Faction faction;
+  public FactionBoard faction;
   public int score = 0;
   public int hearts = 0;
   public int coins = 0;
@@ -48,7 +48,7 @@ public class PlayerDTO {
 
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
-  public PlayerDTO(Faction faction) { //should provide ElistCard
+  public PlayerDTO(FactionBoard faction) { //should provide ElistCard
     this.faction = faction;
     this.hearts = faction.initialHearts;
     this.coins = faction.initialCoins;

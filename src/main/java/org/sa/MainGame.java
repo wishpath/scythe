@@ -4,7 +4,7 @@ import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
 import org.sa.DTO.WorkerDTO;
 import org.sa.b_storage.Board;
-import org.sa.enums.Faction;
+import org.sa.enums.FactionBoard;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class MainGame {
   public static void main(String[] args) {
     //player draws Faction card and Enlist card
     //TODO: create Enlist card and place in playerDTO constructor
-    PlayerDTO player = new PlayerDTO(Faction.GREEN);
+    PlayerDTO player = new PlayerDTO(FactionBoard.GREEN);
 
     //player picks where to place workers
     List<WorkerDTO> workers = new ArrayList<>();

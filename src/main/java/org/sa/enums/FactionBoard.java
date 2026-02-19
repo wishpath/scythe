@@ -4,7 +4,7 @@ import org.sa.DTO.TileDTO;
 
 import static org.sa.b_storage.Board.grid;
 
-public enum Faction {
+public enum FactionBoard {
 
   //TODO: finish up entering faction details
   RED("Rusviet Union", -1, -1, -1, 2,  grid[3][9]),
@@ -23,7 +23,7 @@ public enum Faction {
   public final int initialWorkersCount;
   public final TileDTO home;
 
-  Faction(String name, int initialHearts, int initialCoins, int initialMissionCards, int initialWorkers, TileDTO home) {
+  FactionBoard(String name, int initialHearts, int initialCoins, int initialMissionCards, int initialWorkers, TileDTO home) {
     this.name = name;
     this.initialHearts = initialHearts;
     this.initialCoins = initialCoins;
