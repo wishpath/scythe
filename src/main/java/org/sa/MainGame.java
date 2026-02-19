@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Main {
+public class MainGame {
   public static void main(String[] args) {
-    //player gets Faction card and Enlist card
+    //player draws Faction card and Enlist card
     //TODO: create Enlist card and place in playerDTO constructor
     PlayerDTO player = new PlayerDTO(Faction.GREEN);
 
