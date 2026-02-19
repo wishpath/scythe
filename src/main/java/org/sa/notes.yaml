@@ -1,18 +1,17 @@
 TASKS:
-  - change Faction details using Reward
-  - create Enlist card and place in playerDTO constructor:
-      - enlistCard interface + concreted classes implementing just like Missions
-  - enter playerDTO details
-  - generate random attack card when dealing (not pull from the pool)
-  - display board visually
-  - make CardPool:
-    - should contain all types of cards Faction:
-        - enlistCards
-        - missionCards
+  - initial turn:
+      - player chooses where to place workers in PlayerDecisions
+      - everything else is initialised in PlayerDTO constructor (automatically, no decisions)
+        - initialise straight from faction details to player state
+        - player should have enlist state
+          - initialise it using enlist card (enum)
 
 LATER:
-  - enter each faction details
-  - goodieCards can come later in the CardPool (after first working version)
+  - player should pick initial tile for worker but for now we take the first one in the set
+  - create turn type (enum) move / enlist / produce
+  - display board visually
+  - finish all the CardPool, so all the cards are entered
+  - goodieCards can come later in the CardPool (after first working version) (the ones that are spread all over the grid)
 
 LETS_NOT:
-  - have attack cards in the pool, since easier to simply generate random one
+  - change Faction details using Reward // maybe not because they are constant and doesn't require picking (decision)

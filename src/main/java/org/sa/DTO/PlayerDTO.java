@@ -1,5 +1,6 @@
 package org.sa.DTO;
 
+import org.sa.enlist.EnlistCard;
 import org.sa.enums.FactionBoard;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class PlayerDTO {
 
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
-  public PlayerDTO(FactionBoard faction) { //should provide ElistCard
+  public PlayerDTO(FactionBoard faction, EnlistCard enlistCard, List<WorkerDTO> workers) { //should provide ElistCard
     this.faction = faction;
     this.hearts = faction.initialHearts;
     this.coins = faction.initialCoins;
@@ -56,9 +57,5 @@ public class PlayerDTO {
     this.missionCards = faction.initialMissionCards;
     //here pick 2 random missionCards from the CardPool and populate new field List<MissionDTO> or anything that indicates concrete missions
 
-  }
-
-  public void initialiseWorkers(List<WorkerDTO> workers) {
-    this.workers = workers;
   }
 }
