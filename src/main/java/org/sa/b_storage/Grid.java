@@ -7,7 +7,7 @@ import org.sa.enums.TileType;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Board {
+public class Grid {
   public static TileDTO[][] grid = new TileDTO[9][10];
   public static final TileDTO CENTER_FACTORY = new TileDTO(TileType.CENTER, 4, 5);
 

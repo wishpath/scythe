@@ -1,10 +1,10 @@
 TASKS:
+  - deal enlistCard in the PlayerDTO constructor
   - initial turn:
-      - player chooses where to place workers in PlayerDecisions
-      - everything else is initialised in PlayerDTO constructor (automatically, no decisions)
-        - initialise straight from faction details to player state
-        - player should have enlist state
-          - initialise it using enlist card (enum)
+    - everything else is initialised in PlayerDTO constructor (automatically, no decisions)
+      - initialise straight from faction details to player state
+      - player should have enlist state
+        - initialise it using enlist card (enum)
 
 LATER:
   - player should pick initial tile for worker but for now we take the first one in the set
@@ -12,6 +12,7 @@ LATER:
   - display board visually
   - finish all the CardPool, so all the cards are entered
   - goodieCards can come later in the CardPool (after first working version) (the ones that are spread all over the grid)
+  - player chooses where to place workers in PlayerDecisions
 
 LETS_NOT:
   - change Faction details using Reward // maybe not because they are constant and doesn't require picking (decision)

@@ -1,23 +1,22 @@
 package org.sa.DTO;
 
+import org.sa.b_storage.CardPool;
 import org.sa.enlist.EnlistCard;
 import org.sa.enums.FactionBoard;
+import org.sa.mission.MissionCard;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerDTO {
 
-  //main
-  public FactionBoard faction;
+  public FactionBoard factionBoard; //contains: home, name (faction name)
   public int score = 0;
   public int hearts = 0;
   public int coins = 0;
-  public int missionCards = 0; //should be List<MissionDTO> or something mission should be enum
   public int attack = 0;
-  public List<Integer> attackCards = new ArrayList<>();
-
-
+  public List<Integer> attackCards = new ArrayList<>(); //yellow ones
+  public List<MissionCard> missionCards = new ArrayList<>();
 
   // Clan Albion — Exalt (additional to MOVE):
   // 4 Flag Tokens total. After character movement,
@@ -38,9 +37,6 @@ public class PlayerDTO {
 
 
   //boardItems
-
-
-
   //List<MoveDTO>
   //player board state: each should have coordinate
   //HeroDTO //initially of board new HeroDTO(null);
@@ -50,12 +46,17 @@ public class PlayerDTO {
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
   public PlayerDTO(FactionBoard faction, EnlistCard enlistCard, List<WorkerDTO> workers) { //should provide ElistCard
-    this.faction = faction;
-    this.hearts = faction.initialHearts;
-    this.coins = faction.initialCoins;
+    //faction board part
+    this.factionBoard = faction;
+    this.hearts += faction.initialHearts;
+    this.coins += faction.initialCoins;
+    for (int i = 0; i < faction.initialMissionCards; i++) {
+      missionCards.add(CardPool.drawMissionCard());
+    }
 
-    this.missionCards = faction.initialMissionCards;
-    //here pick 2 random missionCards from the CardPool and populate new field List<MissionDTO> or anything that indicates concrete missions
+    //TODO: enlistCard part
 
+    //workers part
+    this.workers = workers;
   }
 }

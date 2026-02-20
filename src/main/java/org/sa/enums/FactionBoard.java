@@ -2,7 +2,7 @@ package org.sa.enums;
 
 import org.sa.DTO.TileDTO;
 
-import static org.sa.b_storage.Board.grid;
+import static org.sa.b_storage.Grid.grid;
 
 public enum FactionBoard {
 

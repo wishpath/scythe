@@ -9,13 +9,13 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardTest {
+class GridTest {
 
   @Test
   void gridIndexMatchesDtoIndex() {
-    for (int row = 0; row < Board.grid.length; row++)
-      for (int column = 0; column < Board.grid[0].length; column++) {
-        TileDTO tile = Board.grid[row][column];
+    for (int row = 0; row < Grid.grid.length; row++)
+      for (int column = 0; column < Grid.grid[0].length; column++) {
+        TileDTO tile = Grid.grid[row][column];
         if (tile == null) continue;
         assertEquals(row, tile.row);
         assertEquals(column, tile.column);
@@ -24,12 +24,12 @@ class BoardTest {
 
   @Test
   void eachNonNullTileHasAtLeastTwoNeighbors() {
-    for (int row = 0; row < Board.grid.length; row++)
-      for (int column = 0; column < Board.grid[0].length; column++) {
-        TileDTO tile = Board.grid[row][column];
+    for (int row = 0; row < Grid.grid.length; row++)
+      for (int column = 0; column < Grid.grid[0].length; column++) {
+        TileDTO tile = Grid.grid[row][column];
         if (tile == null) continue;
 
-        Set<TileDTO> neighbors = Board.getNonNullNeighborsNotSelf(tile);
+        Set<TileDTO> neighbors = Grid.getNonNullNeighborsNotSelf(tile);
         assertTrue(neighbors.size() >= 2,
             "Tile at [" + row + "," + column + "] has only " + neighbors.size() + " neighbors");
       }
@@ -38,13 +38,13 @@ class BoardTest {
 
   @Test
   void riversDoNotBorderLakes() {
-    for (int row = 0; row < Board.grid.length; row++)
-      for (int column = 0; column < Board.grid[0].length; column++) {
-        TileDTO tile = Board.grid[row][column];
+    for (int row = 0; row < Grid.grid.length; row++)
+      for (int column = 0; column < Grid.grid[0].length; column++) {
+        TileDTO tile = Grid.grid[row][column];
         if (tile == null || tile.rivers.isEmpty()) continue;
 
         for (Direction riverDirection : tile.rivers) {
-          TileDTO neighbor = Board.getNeighbor(tile, riverDirection);
+          TileDTO neighbor = Grid.getNeighbor(tile, riverDirection);
           if (neighbor == null) continue;
 
           assertNotEquals(
@@ -58,9 +58,9 @@ class BoardTest {
 
   @Test
   void lakesShouldNotHaveRivers() {
-    for (int row = 0; row < Board.grid.length; row++)
-      for (int column = 0; column < Board.grid[0].length; column++) {
-        TileDTO tile = Board.grid[row][column];
+    for (int row = 0; row < Grid.grid.length; row++)
+      for (int column = 0; column < Grid.grid[0].length; column++) {
+        TileDTO tile = Grid.grid[row][column];
         if (tile == null || tile.tileType != TileType.LAKE) continue;
 
         assertEquals(
@@ -73,12 +73,12 @@ class BoardTest {
 
   @Test
   void neighborShouldHaveAnotherHalfOfTheSameRiver() {
-    for (int row = 0; row < Board.grid.length; row++)
-      for (int column = 0; column < Board.grid[0].length; column++) {
-        TileDTO tile = Board.grid[row][column];
+    for (int row = 0; row < Grid.grid.length; row++)
+      for (int column = 0; column < Grid.grid[0].length; column++) {
+        TileDTO tile = Grid.grid[row][column];
         if (tile == null || tile.tileType == TileType.LAKE) continue;
         for (Direction riverDirection : tile.rivers) {
-          TileDTO neighbor = Board.getNeighbor(tile, riverDirection);
+          TileDTO neighbor = Grid.getNeighbor(tile, riverDirection);
           if (neighbor == null) continue;
           Direction neededRiver = riverDirection.opposite();
           assertTrue(
@@ -94,9 +94,9 @@ class BoardTest {
   void boardShouldContain54NonNullTiles() {
     int count = 0;
 
-    for (int row = 0; row < Board.grid.length; row++)
-      for (int column = 0; column < Board.grid[0].length; column++)
-        if (Board.grid[row][column] != null) count++;
+    for (int row = 0; row < Grid.grid.length; row++)
+      for (int column = 0; column < Grid.grid[0].length; column++)
+        if (Grid.grid[row][column] != null) count++;
 
     assertEquals(54, count, "Unexpected number of non-null tiles on the board");
   }

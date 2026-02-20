@@ -3,7 +3,7 @@ package org.sa;
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
 import org.sa.DTO.WorkerDTO;
-import org.sa.b_storage.Board;
+import org.sa.b_storage.Grid;
 import org.sa.b_storage.CardPool;
 import org.sa.enlist.EnlistCard;
 import org.sa.enums.FactionBoard;
@@ -20,12 +20,12 @@ public class PlayerDecisions {
 
     //player draws Faction board (color)
     FactionBoard factionBoard = CardPool.drawFactionBoard();
-    //Faction board determines a number of workers and player decides where to place them
+
+    //player chooses where to place workers
     List<WorkerDTO> workers = new ArrayList<>(factionBoard.initialWorkersCount);
     for (int i = 0; i < factionBoard.initialWorkersCount; i++) {
-      Set<TileDTO> nearHomeTiles = Board.getNonNullNeighborsNotSelf(factionBoard.home);
-      //TODO: player should pick
-      workers.add(new WorkerDTO(nearHomeTiles.iterator().next()));
+      Set<TileDTO> nearHomeTiles = Grid.getNonNullNeighborsNotSelf(factionBoard.home);
+      workers.add(new WorkerDTO(nearHomeTiles.iterator().next())); //TODO: player should pick for each
     }
 
     PlayerDTO player = new PlayerDTO(factionBoard, enlistCard, workers);
