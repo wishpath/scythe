@@ -2,8 +2,10 @@ package org.sa.DTO;
 
 import org.sa.b_storage.CardPool;
 import org.sa.enlist.EnlistCard;
+import org.sa.enlist.PlayerEnlistState;
 import org.sa.enums.FactionBoard;
 import org.sa.mission.MissionCard;
+import org.sa.reward.Reward;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,7 @@ public class PlayerDTO {
   public int attack = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
+  public PlayerEnlistState playerEnlistState; //contains: ability and bonus pool, available for choosing during enlist action
 
   // Clan Albion — Exalt (additional to MOVE):
   // 4 Flag Tokens total. After character movement,
@@ -54,7 +57,10 @@ public class PlayerDTO {
       missionCards.add(CardPool.drawMissionCard());
     }
 
-    //TODO: enlistCard part
+    //enlistCard part
+    for (Reward reward : enlistCard.initialReward) reward.applyToPlayer(this);
+    for (Reward reward : enlistCard.initialBonusToApply) reward.applyToPlayer(this);
+    this.playerEnlistState = new PlayerEnlistState(enlistCard);
 
     //workers part
     this.workers = workers;

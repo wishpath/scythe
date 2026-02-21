@@ -1,10 +1,6 @@
 TASKS:
-  - deal enlistCard in the PlayerDTO constructor
-  - initial turn:
-    - everything else is initialised in PlayerDTO constructor (automatically, no decisions)
-      - initialise straight from faction details to player state
-      - player should have enlist state
-        - initialise it using enlist card (enum)
+  - create turn types (enums) move, enlist, build
+  - create faction board state. Initial state should be shown in  faction board enum
 
 LATER:
   - player should pick initial tile for worker but for now we take the first one in the set
