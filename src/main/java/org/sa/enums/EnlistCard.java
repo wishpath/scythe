@@ -1,4 +1,4 @@
-package org.sa.enlist;
+package org.sa.enums;
 
 import org.sa.reward.*;
 

@@ -1,6 +1,6 @@
 package org.sa.b_storage;
 
-import org.sa.enlist.EnlistCard;
+import org.sa.enums.EnlistCard;
 import org.sa.enums.FactionBoard;
 import org.sa.mission.MissionCard;
 import org.sa.mission.MissionDiversifyProduction;

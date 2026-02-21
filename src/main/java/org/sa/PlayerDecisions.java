@@ -5,7 +5,7 @@ import org.sa.DTO.TileDTO;
 import org.sa.DTO.WorkerDTO;
 import org.sa.b_storage.Grid;
 import org.sa.b_storage.CardPool;
-import org.sa.enlist.EnlistCard;
+import org.sa.enums.EnlistCard;
 import org.sa.enums.FactionBoard;
 
 import java.util.ArrayList;
