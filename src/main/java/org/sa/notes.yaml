@@ -1,5 +1,5 @@
 TASKS:
-  - create turn types (enums) move, enlist, build
+  - continue on ActionSpaceDTO its integration to faction board and its components: bottom and top actions
   - create faction board state. Initial state should be shown in  faction board enum
 
 LATER:

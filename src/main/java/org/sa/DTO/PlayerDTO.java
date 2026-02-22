@@ -1,6 +1,7 @@
 package org.sa.DTO;
 
 import org.sa.b_storage.CardPool;
+import org.sa.enums.ActionTop;
 import org.sa.enums.EnlistCard;
 import org.sa.enums.FactionBoard;
 import org.sa.mission.MissionCard;
@@ -19,6 +20,7 @@ public class PlayerDTO {
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
   public PlayerEnlistStateDTO playerEnlistState; //contains: ability and bonus pool, available for choosing during enlist action
+  public ActionTop previousAction = null;
 
   // Clan Albion — Exalt (additional to MOVE):
   // 4 Flag Tokens total. After character movement,

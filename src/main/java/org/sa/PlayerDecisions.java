@@ -29,5 +29,10 @@ public class PlayerDecisions {
     }
 
     PlayerDTO player = new PlayerDTO(factionBoard, enlistCard, workers);
+
+    //someone starts the game and there comes turn for the player
+    player.isEndOfTurn = false;
+
+
   }
 }
