@@ -5,6 +5,10 @@ import org.sa.enums.ActionTop;
 import org.sa.reward.Reward;
 
 public class ActionSpaceDTO {
+  public ActionSpaceDTO() {
+
+  }
+
   //TODO: each reward (pay or get) should have int amount (state) (upgradable) (initial) (max)
   ActionTop actionTop;
   Reward topCostAndBenefit1;
