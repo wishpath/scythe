@@ -20,6 +20,6 @@ public class MissionDiversifyProduction implements MissionCard {
     for (WorkerDTO worker : player.workers)
       controlledTerrainTypes.add(worker.location.tileType);
 
-    return controlledTerrainTypes.containsAll(TileType.PRIMARY_TERRAINS);
+    return controlledTerrainTypes.containsAll(TileType.PRIMARY_CONTROLLABLE_TERRAINS);
   }
 }

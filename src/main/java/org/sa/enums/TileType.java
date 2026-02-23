@@ -13,7 +13,7 @@ public enum TileType {
   HOME("Home Base");
 
   public final String officialTerrainName;
-  public static final EnumSet<TileType> PRIMARY_TERRAINS = EnumSet.of(WOOD, METAL, FOOD, OIL, WORKER);
+  public static final EnumSet<TileType> PRIMARY_CONTROLLABLE_TERRAINS = EnumSet.of(WOOD, METAL, FOOD, OIL, WORKER);
 
   TileType(String officialTerrainName) {
     this.officialTerrainName = officialTerrainName;

@@ -3,13 +3,12 @@ package org.sa.reward;
 import org.sa.DTO.PlayerDTO;
 
 /**
- * The player may move across rivers to or from tunnel territories.
+ * Before combat where the player is attacking,
+ * the opponent gets −2 attack power.
  */
-public class Reward_RiverCrossingToOrFromTunnel_Burrow implements Reward {
-
+public class Ability_MinusAttackForOpponent_Sword implements Reward {
   @Override
   public void applyToPlayer(PlayerDTO player) {
     player.opponentGetsMinus2AttackBeforeYouAttackHim = true;
   }
 }
-

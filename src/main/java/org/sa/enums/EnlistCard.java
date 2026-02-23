@@ -10,10 +10,10 @@ public enum EnlistCard {
       List.of(new Reward_FlagTokens_Exalt()),
       List.of(new Reward_Attack(3), new Reward_AttackCards(0)),
       List.of(
-          new Reward_RiverCrossingToOrFromTunnel_Burrow(),
-          new Reward_MinusAttackForOpponent_Sword(),
-          new Reward_PlusAttackBeforeDefence_Shield(),
-          new Reward_CanMoveToControlledTerritory_Rally()),
+          new Ability_RiverCrossingToOrFromTunnel_Burrow(),
+          new Ability_MinusAttackForOpponent_Sword(),
+          new Ability_PlusAttackBeforeDefence_Shield(),
+          new Ability_CanMoveToControlledTerritory_Rally()),
       List.of(new Reward_Attack(2), new Reward_Coins(2), new Reward_Hearts(2), new Reward_AttackCards(2))
   );
 
