@@ -1,4 +1,5 @@
 TASKS:
+  - continue on first ActionSpaceDTO in faction board
   - initialise first bottom action, use Cost_Upgradable_Reward
   - initialise all bottom actions
   - in FactionBoard initialise first ActionSpaceDTO, it should have initial state, but be upgradable

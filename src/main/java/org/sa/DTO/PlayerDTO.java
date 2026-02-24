@@ -17,6 +17,10 @@ public class PlayerDTO {
   public int hearts = 0;
   public int coins = 0;
   public int attack = 0;
+  public int oil = 0;
+  public int wood = 0;
+  public int food = 0;
+  public int metal = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
   public PlayerEnlistStateDTO playerEnlistState; //contains: ability and bonus pool, available for choosing during enlist action
