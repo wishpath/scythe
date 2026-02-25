@@ -1,4 +1,5 @@
 TASKS:
+  - in the example of UpgradableCost_Oil create one for metal, wood and food.
   - continue on first ActionSpaceDTO in faction board
   - initialise first bottom action, use Cost_Upgradable_Reward
   - initialise all bottom actions

@@ -2,7 +2,7 @@ package org.sa.enums;
 
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.DTO.TileDTO;
-import org.sa.reward.Cost_Upgradable_Oil;
+import org.sa.reward.UpgradableCost_Oil;
 
 import static org.sa.b_storage.Grid.grid;
 
@@ -24,7 +24,7 @@ public enum FactionBoard {
       2,
       grid[0][5],
       new ActionSpaceDTO[] {
-        new ActionSpaceDTO(ActionBottom.UPGRADE, new Cost_Upgradable_Oil(-2,-2), 1) //TODO: finish
+        new ActionSpaceDTO(ActionBottom.UPGRADE, new UpgradableCost_Oil(-2,-2), 1) //TODO: finish
 //        ,
 //          new ActionSpaceDTO(), //TODO: finish
 //        new ActionSpaceDTO(), //TODO: finish

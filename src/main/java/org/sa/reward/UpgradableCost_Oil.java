@@ -2,11 +2,11 @@ package org.sa.reward;
 
 import org.sa.DTO.PlayerDTO;
 
-public class Cost_Upgradable_Oil implements UpgradableReward {
+public class UpgradableCost_Oil implements UpgradableCost {
   private int currentDeltaOil;
   private int fullyUpgradedDeltaOilCost;
 
-  public Cost_Upgradable_Oil(int initialDeltaOilCost, int fullyUpgradedDeltaOilCost) {
+  public UpgradableCost_Oil(int initialDeltaOilCost, int fullyUpgradedDeltaOilCost) {
     if (initialDeltaOilCost > 0 || fullyUpgradedDeltaOilCost > 0)
       throw new IllegalArgumentException("Cost should be expressed in negative values");
     this.currentDeltaOil = initialDeltaOilCost;

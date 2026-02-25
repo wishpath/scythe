@@ -1,6 +1,6 @@
 package org.sa.reward;
 
-public interface UpgradableReward extends Reward {
+public interface UpgradableCost extends Reward {
 
   boolean canUpgrade();
 
