@@ -4,5 +4,5 @@ public interface UpgradableReward extends Reward {
 
   boolean canUpgrade();
 
-  void upgrade_lowerCost();
+  void upgrade_lowerTheCost();
 }

@@ -24,7 +24,7 @@ public enum FactionBoard {
       2,
       grid[0][5],
       new ActionSpaceDTO[] {
-        new ActionSpaceDTO(ActionBottom.UPGRADE, new Cost_Upgradable_Oil(2,2)) //TODO: finish
+        new ActionSpaceDTO(ActionBottom.UPGRADE, new Cost_Upgradable_Oil(-2,-2), 1) //TODO: finish
 //        ,
 //          new ActionSpaceDTO(), //TODO: finish
 //        new ActionSpaceDTO(), //TODO: finish

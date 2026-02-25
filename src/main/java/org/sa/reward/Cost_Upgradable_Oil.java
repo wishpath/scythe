@@ -4,13 +4,13 @@ import org.sa.DTO.PlayerDTO;
 
 public class Cost_Upgradable_Oil implements UpgradableReward {
   private int currentDeltaOil;
-  private int minDeltaOil;
+  private int fullyUpgradedDeltaOilCost;
 
-  public Cost_Upgradable_Oil(int initialDeltaOilCost, int minDeltaOilCost) {
-    if (initialDeltaOilCost > 0 || minDeltaOilCost > 0)
+  public Cost_Upgradable_Oil(int initialDeltaOilCost, int fullyUpgradedDeltaOilCost) {
+    if (initialDeltaOilCost > 0 || fullyUpgradedDeltaOilCost > 0)
       throw new IllegalArgumentException("Cost should be expressed in negative values");
     this.currentDeltaOil = initialDeltaOilCost;
-    this.minDeltaOil = minDeltaOilCost;
+    this.fullyUpgradedDeltaOilCost = fullyUpgradedDeltaOilCost;
   }
 
   @Override
@@ -20,11 +20,11 @@ public class Cost_Upgradable_Oil implements UpgradableReward {
 
   @Override
   public boolean canUpgrade() {
-    return currentDeltaOil < minDeltaOil;
+    return currentDeltaOil < fullyUpgradedDeltaOilCost; //because negative numbers
   }
 
   @Override
-  public void upgrade_lowerCost() {
-    currentDeltaOil++;
+  public void upgrade_lowerTheCost() {
+    currentDeltaOil++; //because negative numbers
   }
 }
