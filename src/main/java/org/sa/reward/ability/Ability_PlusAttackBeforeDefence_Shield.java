@@ -1,6 +1,7 @@
-package org.sa.reward;
+package org.sa.reward.ability;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.reward.Reward;
 
 /**
  * Before combat where the player is defending,

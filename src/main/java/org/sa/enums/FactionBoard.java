@@ -2,7 +2,7 @@ package org.sa.enums;
 
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.DTO.TileDTO;
-import org.sa.reward.UpgradableCost_Oil;
+import org.sa.reward.upgradable_cost.UpgradableCost_Oil;
 
 import static org.sa.b_storage.Grid.grid;
 

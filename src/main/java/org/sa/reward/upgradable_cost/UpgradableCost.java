@@ -1,4 +1,6 @@
-package org.sa.reward;
+package org.sa.reward.upgradable_cost;
+
+import org.sa.reward.Reward;
 
 public interface UpgradableCost extends Reward {
 

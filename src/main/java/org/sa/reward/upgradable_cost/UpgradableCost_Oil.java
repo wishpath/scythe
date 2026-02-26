@@ -1,4 +1,4 @@
-package org.sa.reward;
+package org.sa.reward.upgradable_cost;
 
 import org.sa.DTO.PlayerDTO;
 

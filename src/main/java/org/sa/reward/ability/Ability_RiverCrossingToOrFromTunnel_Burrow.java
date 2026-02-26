@@ -1,6 +1,7 @@
-package org.sa.reward;
+package org.sa.reward.ability;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.reward.Reward;
 
 /**
  * The player may move across rivers to or from tunnel territories.

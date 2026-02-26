@@ -1,6 +1,10 @@
 package org.sa.enums;
 
 import org.sa.reward.*;
+import org.sa.reward.ability.Ability_CanMoveToControlledTerritory_Rally;
+import org.sa.reward.ability.Ability_MinusAttackForOpponent_Sword;
+import org.sa.reward.ability.Ability_PlusAttackBeforeDefence_Shield;
+import org.sa.reward.ability.Ability_RiverCrossingToOrFromTunnel_Burrow;
 
 import java.util.List;
 

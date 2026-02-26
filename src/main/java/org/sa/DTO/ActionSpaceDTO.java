@@ -4,7 +4,7 @@ import org.sa.enums.ActionBottom;
 import org.sa.enums.ActionTop;
 import org.sa.reward.Reward;
 import org.sa.reward.Reward_Coins;
-import org.sa.reward.UpgradableCost;
+import org.sa.reward.upgradable_cost.UpgradableCost;
 
 //contains state, upgradable, through the game
 public class ActionSpaceDTO {
