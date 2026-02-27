@@ -2,7 +2,10 @@ package org.sa.enums;
 
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.DTO.TileDTO;
+import org.sa.reward.upgradable_cost.UpgradableCost_Food;
+import org.sa.reward.upgradable_cost.UpgradableCost_Metal;
 import org.sa.reward.upgradable_cost.UpgradableCost_Oil;
+import org.sa.reward.upgradable_cost.UpgradableCost_Wood;
 
 import static org.sa.b_storage.Grid.grid;
 
@@ -23,12 +26,11 @@ public enum FactionBoard {
       2,
       2,
       grid[0][5],
-      new ActionSpaceDTO[] {
-        new ActionSpaceDTO(ActionBottom.UPGRADE, new UpgradableCost_Oil(-2,-2), 1) //TODO: finish
-//        ,
-//          new ActionSpaceDTO(), //TODO: finish
-//        new ActionSpaceDTO(), //TODO: finish
-//        new ActionSpaceDTO() //TODO: finish
+      new ActionSpaceDTO[] {  //TODO: finish
+        new ActionSpaceDTO(ActionBottom.UPGRADE, new UpgradableCost_Oil(-2,-2), 1),
+        new ActionSpaceDTO(ActionBottom.DEPLOY, new UpgradableCost_Metal(-4,-2), 1),
+        new ActionSpaceDTO(ActionBottom.BUILD, new UpgradableCost_Wood(-4,-2), 1),
+        new ActionSpaceDTO(ActionBottom.ENLIST, new UpgradableCost_Food(-3,-1), 1),
       }
   ),
 
