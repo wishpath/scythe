@@ -1,10 +1,7 @@
 TASKS:
-  - initialise all bottom actions for GREEN faction:
-      - oil
-      - wood
-      - food
-      - metal
-  - continue on first ActionSpaceDTO in faction board
+  - create 4 enlistable rewards (hearts, attack, coins, card)
+    - contain action type (to determine if applicable)
+    -
   - in FactionBoard initialise first ActionSpaceDTO, it should have initial state, but be upgradable
   - initialise all action space dto (at this point should have bottom actions)
   - create top actions and enhance ActionSpaceDTOs with them

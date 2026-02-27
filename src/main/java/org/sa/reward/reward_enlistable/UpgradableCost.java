@@ -1,4 +1,4 @@
-package org.sa.reward.upgradable_cost;
+package org.sa.reward.reward_enlistable;
 
 import org.sa.reward.Reward;
 

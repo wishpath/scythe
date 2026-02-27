@@ -2,10 +2,10 @@ package org.sa.enums;
 
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.DTO.TileDTO;
-import org.sa.reward.upgradable_cost.UpgradableCost_Food;
-import org.sa.reward.upgradable_cost.UpgradableCost_Metal;
-import org.sa.reward.upgradable_cost.UpgradableCost_Oil;
-import org.sa.reward.upgradable_cost.UpgradableCost_Wood;
+import org.sa.reward.reward_enlistable.UpgradableCost_Food;
+import org.sa.reward.reward_enlistable.UpgradableCost_Metal;
+import org.sa.reward.reward_enlistable.UpgradableCost_Oil;
+import org.sa.reward.reward_enlistable.UpgradableCost_Wood;
 
 import static org.sa.b_storage.Grid.grid;
 
