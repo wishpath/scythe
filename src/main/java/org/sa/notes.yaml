@@ -1,7 +1,5 @@
 TASKS:
-  - create 4 enlistable rewards (hearts, attack, coins, card)
-    - contain action type (to determine if applicable)
-    -
+  - move ongoingBonuses_EnlistableRewards from player to player.factionBoardState, when created
   - in FactionBoard initialise first ActionSpaceDTO, it should have initial state, but be upgradable
   - initialise all action space dto (at this point should have bottom actions)
   - create top actions and enhance ActionSpaceDTOs with them

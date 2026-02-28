@@ -45,6 +45,7 @@ public enum FactionBoard {
   public final TileDTO home;
   public ActionSpaceDTO[] initialActionSpaces;
 
+
   FactionBoard(
       String name,
       int initialHearts,

@@ -6,6 +6,7 @@ import org.sa.enums.EnlistCard;
 import org.sa.enums.FactionBoard;
 import org.sa.mission.MissionCard;
 import org.sa.reward.Reward;
+import org.sa.reward.enlistable_reward.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,11 @@ public class PlayerDTO {
   public List<MissionCard> missionCards = new ArrayList<>();
   public PlayerEnlistStateDTO playerEnlistState; //contains: ability and bonus pool, available for choosing during enlist action
   public ActionTop previousAction = null;
+  public EnlistableReward[] ongoingBonuses_EnlistableRewards = new EnlistableReward[] { //TODO: move to faction board state when created
+      new EnlistableReward_AttackPlusOne(this),
+      new EnlistableReward_CoinPlusOne(this),
+      new EnlistableReward_HeartsPlusOne(this),
+      new EnlistableReward_AttackCardPlusOne(this)};
 
   // Clan Albion — Exalt (additional to MOVE):
   // 4 Flag Tokens total. After character movement,
