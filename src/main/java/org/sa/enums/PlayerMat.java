@@ -9,7 +9,7 @@ import org.sa.reward.cost_upgradable.UpgradableCost_Wood;
 
 import static org.sa.b_storage.Grid.grid;
 
-public enum FactionBoard {
+public enum PlayerMat {
 
   //TODO: finish up entering faction details
   //TODO: finish up entering initialActionSpaces[]
@@ -46,7 +46,7 @@ public enum FactionBoard {
   public ActionSpaceDTO[] initialActionSpaces;
 
 
-  FactionBoard(
+  PlayerMat(
       String name,
       int initialHearts,
       int initialCoins,

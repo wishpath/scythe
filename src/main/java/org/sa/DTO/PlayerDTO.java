@@ -2,8 +2,8 @@ package org.sa.DTO;
 
 import org.sa.b_storage.CardPool;
 import org.sa.enums.ActionTop;
-import org.sa.enums.EnlistCard;
-import org.sa.enums.FactionBoard;
+import org.sa.enums.FactionMat_EnlistCard;
+import org.sa.enums.PlayerMat;
 import org.sa.mission.MissionCard;
 import org.sa.reward.Reward;
 import org.sa.reward.enlistable_reward.*;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PlayerDTO {
 
-  public FactionBoard factionBoard; //contains: home, name (faction name)
+  public PlayerMat factionBoard; //contains: home, name (faction name)
   public int score = 0;
   public int hearts = 0;
   public int coins = 0;
@@ -59,7 +59,7 @@ public class PlayerDTO {
 
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
-  public PlayerDTO(FactionBoard faction, EnlistCard enlistCard, List<WorkerDTO> workers) { //should provide ElistCard
+  public PlayerDTO(PlayerMat faction, FactionMat_EnlistCard enlistCard, List<WorkerDTO> workers) { //should provide ElistCard
     //faction board part
     this.factionBoard = faction;
     this.hearts += faction.initialHearts;

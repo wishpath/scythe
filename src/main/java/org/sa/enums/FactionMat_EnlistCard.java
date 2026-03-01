@@ -8,7 +8,7 @@ import org.sa.reward.ability.Ability_RiverCrossingToOrFromTunnel_Burrow;
 
 import java.util.List;
 
-public enum EnlistCard {
+public enum FactionMat_EnlistCard {
 
   CONOR_AND_MAX_CLAN_ALBION(
       List.of(new Reward_FlagTokens_Exalt()),
@@ -26,7 +26,7 @@ public enum EnlistCard {
   public final List<Reward> abilityPoolToUnlock; //right side
   public final List<Reward> bonusPoolToUnlock; //left side
 
-  EnlistCard(
+  FactionMat_EnlistCard(
       List<Reward> initialReward,
       List<Reward> initialBonusToApply,
       List<Reward> abilityPoolToUnlock,

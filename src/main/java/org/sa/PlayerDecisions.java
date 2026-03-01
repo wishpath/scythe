@@ -5,8 +5,8 @@ import org.sa.DTO.TileDTO;
 import org.sa.DTO.WorkerDTO;
 import org.sa.b_storage.Grid;
 import org.sa.b_storage.CardPool;
-import org.sa.enums.EnlistCard;
-import org.sa.enums.FactionBoard;
+import org.sa.enums.FactionMat_EnlistCard;
+import org.sa.enums.PlayerMat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +16,10 @@ public class PlayerDecisions {
   public static void main(String[] args) {
 
     //player draws Enlist card
-    EnlistCard enlistCard = CardPool.drawEnlistCard();
+    FactionMat_EnlistCard enlistCard = CardPool.drawEnlistCard();
 
     //player draws Faction board (color)
-    FactionBoard factionBoard = CardPool.drawFactionBoard();
+    PlayerMat factionBoard = CardPool.drawFactionBoard();
 
     //player chooses where to place workers
     List<WorkerDTO> workers = new ArrayList<>(factionBoard.initialWorkersCount);
