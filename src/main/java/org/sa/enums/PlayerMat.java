@@ -9,15 +9,15 @@ import org.sa.reward.cost_upgradable.UpgradableCost_Wood;
 
 import static org.sa.b_storage.Grid.grid;
 
-public enum PlayerMat {
+public enum PlayerMat { // does not belong to faction
 
   //TODO: finish up entering faction details
   //TODO: finish up entering initialActionSpaces[]
-  RED("Rusviet Union", -1, -1, -1, 2,  grid[3][9], new ActionSpaceDTO[4]),
-  BLACK("Saxony Empire", -1, -1, -1, 2, grid[7][0], new ActionSpaceDTO[4]),
-  YELLOW("Crimean Khanate",  -1, -1, -1, 2, grid[8][2], new ActionSpaceDTO[4]),
-  WHITE("Republic of Polania", -1, -1, -1, 2, grid[3][2], new ActionSpaceDTO[4]),
-  BLUE("Nordic Kingdoms",  -1, -1, -1, 2, grid[0][8], new ActionSpaceDTO[4]),
+  RED("Rusviet Union", -1, -1, -1, 2,  grid[3][9], new ActionSpaceDTO[4]), //TODO: finish
+  BLACK("Saxony Empire", -1, -1, -1, 2, grid[7][0], new ActionSpaceDTO[4]), //TODO: finish
+  YELLOW("Crimean Khanate",  -1, -1, -1, 2, grid[8][2], new ActionSpaceDTO[4]), //TODO: finish
+  WHITE("Republic of Polania", -1, -1, -1, 2, grid[3][2], new ActionSpaceDTO[4]), //TODO: finish
+  BLUE("Nordic Kingdoms",  -1, -1, -1, 2, grid[0][8], new ActionSpaceDTO[4]), //TODO: finish
 
   GREEN(
       "Clan Albion",

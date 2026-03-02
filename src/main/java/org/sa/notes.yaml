@@ -1,9 +1,14 @@
 TASKS:
+  - clean up faction info from player mat
+  - fix player initialisation regarding faction changes
+    - faction mat
+    - player mat
   - fix confusion between what belongs to faction mat and player mat
     - player mat does not belong to faction
     - faction mat does
     - move home to faction mat
     - rename factionMat to faction?
+  - download player mat pictures
   - initialise all action space dtos:
       - create top actions
       - enhance ActionSpaceDTOs with them
