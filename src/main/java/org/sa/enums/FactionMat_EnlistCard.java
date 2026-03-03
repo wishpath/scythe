@@ -52,6 +52,7 @@ public enum FactionMat_EnlistCard {
   public final List<Reward> abilityPoolToUnlock; //right side
   public final List<Reward> bonusPoolToUnlock; //left side
   public final TileDTO home;
+  public final int initialWorkersCount = 2;
 
   FactionMat_EnlistCard(
       String name,

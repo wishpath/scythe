@@ -13,7 +13,7 @@ import java.util.List;
 
 public class PlayerDTO {
 
-  public PlayerMat factionBoard; //contains: home, name (faction name)
+  public PlayerMat playerMat; //contains: home, name (faction name)
   public int score = 0;
   public int hearts = 0;
   public int coins = 0;
@@ -59,19 +59,19 @@ public class PlayerDTO {
 
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
-  public PlayerDTO(PlayerMat faction, FactionMat_EnlistCard enlistCard, List<WorkerDTO> workers) { //should provide ElistCard
+  public PlayerDTO(PlayerMat playerMat, FactionMat_EnlistCard factionMat, List<WorkerDTO> workers) {
     //faction board part
-    this.factionBoard = faction;
-    this.hearts += faction.initialHearts;
-    this.coins += faction.initialCoins;
-    for (int i = 0; i < faction.initialMissionCards; i++) {
+    this.playerMat = playerMat;
+    this.hearts += playerMat.initialHearts;
+    this.coins += playerMat.initialCoins;
+    for (int i = 0; i < playerMat.initialMissionCards; i++) {
       missionCards.add(CardPool.drawMissionCard());
     }
 
-    //enlistCard part
-    for (Reward reward : enlistCard.initialReward) reward.applyToPlayer(this);
-    for (Reward reward : enlistCard.initialBonusToApply) reward.applyToPlayer(this);
-    this.playerEnlistState = new PlayerEnlistStateDTO(enlistCard);
+    //factionMat part
+    for (Reward reward : factionMat.initialReward) reward.applyToPlayer(this);
+    for (Reward reward : factionMat.initialBonusToApply) reward.applyToPlayer(this);
+    this.playerEnlistState = new PlayerEnlistStateDTO(factionMat);
 
     //workers part
     this.workers = workers;

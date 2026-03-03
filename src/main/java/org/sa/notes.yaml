@@ -1,4 +1,6 @@
 TASKS:
+  - get pictures of faction mats
+  - list correct names of faction mats
   - clean up faction info from player mat
   - fix player initialisation regarding faction changes
     - faction mat
@@ -14,7 +16,6 @@ TASKS:
       - enhance ActionSpaceDTOs with them
   - create faction board state. Initial state should be shown in  faction board enum
     - move ongoingBonuses_EnlistableRewards from player to player.factionBoardState, when created
-
 
 LATER:
   - player should pick initial tile for worker but for now we take the first one in the set

@@ -15,20 +15,20 @@ import java.util.Set;
 public class PlayerDecisions {
   public static void main(String[] args) {
 
-    //player draws Enlist card
-    FactionMat_EnlistCard enlistCard = CardPool.drawEnlistCard();
+    //player draws Faction Mat (color)
+    FactionMat_EnlistCard factionMat = CardPool.drawEnlistCard();
 
-    //player draws Faction board (color)
-    PlayerMat factionBoard = CardPool.drawFactionBoard();
+    //player draws Player Mat (not connected to faction)
+    PlayerMat playerMat = CardPool.drawFactionBoard();
 
     //player chooses where to place workers
-    List<WorkerDTO> workers = new ArrayList<>(factionBoard.initialWorkersCount);
-    for (int i = 0; i < factionBoard.initialWorkersCount; i++) {
-      Set<TileDTO> nearHomeTiles = Grid.getNonNullNeighborsNotSelf(factionBoard.home);
+    List<WorkerDTO> workers = new ArrayList<>(factionMat.initialWorkersCount);
+    for (int i = 0; i < factionMat.initialWorkersCount; i++) {
+      Set<TileDTO> nearHomeTiles = Grid.getNonNullNeighborsNotSelf(factionMat.home);
       workers.add(new WorkerDTO(nearHomeTiles.iterator().next())); //TODO: player should pick for each
     }
 
-    PlayerDTO player = new PlayerDTO(factionBoard, enlistCard, workers);
+    PlayerDTO player = new PlayerDTO(playerMat, factionMat, workers);
 
     //someone starts the game and there comes turn for the player
     player.isEndOfTurn = false;
