@@ -8,14 +8,6 @@ import org.sa.reward.cost_upgradable.UpgradableCost_Wood;
 
 public enum PlayerMat { // does not belong to faction
 
-  //TODO: finish up entering faction details
-  //TODO: finish up entering initialActionSpaces[]
-  RED( -1, -1, -1, 2,  new ActionSpaceDTO[4]), //TODO: finish
-  BLACK( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
-  YELLOW( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
-  WHITE( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
-  BLUE( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
-
   AGRICULTURAL(
       4,
       7,
@@ -29,7 +21,14 @@ public enum PlayerMat { // does not belong to faction
       }
   ),
 
-  PURPLE(-1, -1, -1, 2, new ActionSpaceDTO[4]);
+  //TODO: finish up entering faction details
+  //TODO: finish up entering initialActionSpaces[]
+  ENGINEERING(-1, -1, -1, 2, new ActionSpaceDTO[4]),
+  INDUSTRIAL( -1, -1, -1, 2,  new ActionSpaceDTO[4]), //TODO: finish
+  INNOVATIVE( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
+  MECHANICAL( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
+  MILITANT( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
+  PATRIOTIC( -1, -1, -1, 2, new ActionSpaceDTO[4]); //TODO: finish
 
 
 

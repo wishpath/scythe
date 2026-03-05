@@ -14,7 +14,6 @@ import java.util.Set;
 
 public class PlayerDecisions {
   public static void main(String[] args) {
-
     //player draws Faction Mat (color)
     FactionMat_EnlistCard factionMat = CardPool.drawEnlistCard();
 
@@ -32,7 +31,5 @@ public class PlayerDecisions {
 
     //someone starts the game and there comes turn for the player
     player.isEndOfTurn = false;
-
-
   }
 }

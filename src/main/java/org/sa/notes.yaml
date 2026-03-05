@@ -1,5 +1,4 @@
 TASKS:
-  - list correct names of faction mats
   - clean up faction info from player mat
   - fix player initialisation regarding faction changes
     - faction mat
