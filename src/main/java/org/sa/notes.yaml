@@ -1,5 +1,5 @@
 TASKS:
-  - clean up faction info from player mat
+  - continue working on top actions and their Reward[] (cost and reward) mostly in player mat but also in action space
   - fix player initialisation regarding faction changes
     - faction mat
     - player mat
