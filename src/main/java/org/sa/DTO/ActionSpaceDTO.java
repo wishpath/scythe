@@ -8,19 +8,31 @@ import org.sa.reward.cost_upgradable.UpgradableCost;
 
 //contains state, upgradable, through the game
 public class ActionSpaceDTO {
+
   //TODO: each reward (pay or get) should have int amount (state) (upgradable) (initial) (max)
   public ActionTop actionTop;
-  public Reward[] topRewards;
+  public UpgradableCost actionTopCost;
+  public Reward[] actionTopRewards;
 
   ActionBottom actionBottom;
-  public UpgradableCost upgradableCost;
-  public Reward_Coins bottomActionCoinReward;
+  public UpgradableCost actionBottomUpgradableCost;
+  public Reward_Coins actionBottomCoinReward;
 
-  public ActionSpaceDTO(ActionTop actionTop, Reward[] topRewards, ActionBottom actionBottom, UpgradableCost upgradableCost, int bottomActionCoinRewardDeltaCoins) {
+  public ActionSpaceDTO(
+      ActionTop actionTop,
+      UpgradableCost actionTopCost,
+      Reward[] actionTopRewards,
+
+      ActionBottom actionBottom,
+      UpgradableCost actionBottomUpgradableCost,
+      int actionBottomCoinRewardDeltaCoins) {
+
     this.actionTop = actionTop;
-    this.topRewards = topRewards;
+    this.actionTopCost = actionTopCost;
+    this.actionTopRewards = actionTopRewards;
+
     this.actionBottom = actionBottom;
-    this.upgradableCost = upgradableCost;
-    this.bottomActionCoinReward = new Reward_Coins(bottomActionCoinRewardDeltaCoins);
+    this.actionBottomUpgradableCost = actionBottomUpgradableCost;
+    this.actionBottomCoinReward = new Reward_Coins(actionBottomCoinRewardDeltaCoins);
   }
 }

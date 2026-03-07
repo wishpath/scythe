@@ -2,10 +2,7 @@ package org.sa.enums;
 
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.reward.Reward;
-import org.sa.reward.cost_upgradable.UpgradableCost_Food;
-import org.sa.reward.cost_upgradable.UpgradableCost_Metal;
-import org.sa.reward.cost_upgradable.UpgradableCost_Oil;
-import org.sa.reward.cost_upgradable.UpgradableCost_Wood;
+import org.sa.reward.cost_upgradable.*;
 
 public enum PlayerMat {
   AGRICULTURAL(
@@ -16,24 +13,32 @@ public enum PlayerMat {
       new ActionSpaceDTO[] {  //TODO: finish: top action,
         new ActionSpaceDTO(
             ActionTop.MOVE_GAIN,
+            new UpgradableCost_Coins(0, 0),
             new Reward[]{},
             ActionBottom.UPGRADE,
-            new UpgradableCost_Oil(-2,-2), 1), //TODO: finish
+            new UpgradableCost_Oil(-2,-2),
+            1), //TODO: finish
         new ActionSpaceDTO(
             ActionTop.TRADE,
+            new UpgradableCost_Coins(1, 1),
             new Reward[]{},
             ActionBottom.DEPLOY,
-            new UpgradableCost_Metal(-4,-2), 1), //TODO: finish
+            new UpgradableCost_Metal(-4,-2),
+            1), //TODO: finish
         new ActionSpaceDTO(
             ActionTop.PRODUCE,
+            new UpgradableCost_Produce(),
             new Reward[]{},
             ActionBottom.BUILD,
-            new UpgradableCost_Wood(-4,-2), 1), //TODO: finish
+            new UpgradableCost_Wood(-4,-2),
+            1), //TODO: finish
         new ActionSpaceDTO(
             ActionTop.BOLSTER,
+            new UpgradableCost_Coins(1, 1),
             new Reward[]{},
             ActionBottom.ENLIST,
-            new UpgradableCost_Food(-3,-1), 1), //TODO: finish
+            new UpgradableCost_Food(-3,-1),
+            1), //TODO: finish
       }
   ),
 
