@@ -58,7 +58,6 @@ public enum PlayerMat {
   public final int initialWorkersCount;
   public ActionSpaceDTO[] initialActionSpaces;
 
-
   PlayerMat(
       int initialHearts,
       int initialCoins,
