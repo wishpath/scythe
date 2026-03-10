@@ -1,5 +1,5 @@
 TASKS:
-  - create all upgradable rewards for top actions in agricultural player mat
+  - create all upgradable rewards for top actions in agricultural player mat.
   - continue working on top actions and their Reward[] (cost and reward) mostly in player mat but also in action space
   - fix player initialisation regarding faction changes
     - faction mat
