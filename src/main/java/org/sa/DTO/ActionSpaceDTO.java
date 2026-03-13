@@ -12,7 +12,7 @@ public class ActionSpaceDTO {
   //TODO: each reward (pay or get) should have int amount (state) (upgradable) (initial) (max)
   public ActionTop actionTop;
   public UpgradableCost actionTopCost;
-  public Reward[] actionTopRewards;
+  public Reward[] actionTop_Rewards_toChoose_upgradable;
 
   ActionBottom actionBottom;
   public UpgradableCost actionBottomUpgradableCost;
@@ -29,7 +29,7 @@ public class ActionSpaceDTO {
 
     this.actionTop = actionTop;
     this.actionTopCost = actionTopCost;
-    this.actionTopRewards = actionTopRewards;
+    this.actionTop_Rewards_toChoose_upgradable = actionTopRewards;
 
     this.actionBottom = actionBottom;
     this.actionBottomUpgradableCost = actionBottomUpgradableCost;

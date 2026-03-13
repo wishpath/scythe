@@ -3,6 +3,8 @@ package org.sa.enums;
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.reward.Reward;
 import org.sa.reward.cost_upgradable.*;
+import org.sa.reward.upgradable_reward.UpgradableReward_Coins;
+import org.sa.reward.upgradable_reward.UpgradableReward_Hearts;
 
 public enum PlayerMat {
   AGRICULTURAL(
@@ -14,31 +16,39 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.MOVE_GAIN,
             new UpgradableCost_Coins(0, 0),
-            new Reward[]{},
+            new Reward[]{
+                new UpgradableReward_Coins(1, 2)
+            }, //TODO: finish
             ActionBottom.UPGRADE,
             new UpgradableCost_Oil(-2,-2),
-            1), //TODO: finish
+            1),
         new ActionSpaceDTO(
             ActionTop.TRADE,
             new UpgradableCost_Coins(1, 1),
-            new Reward[]{},
+            new Reward[]{
+              new UpgradableReward_Hearts(1, 2)
+            }, //TODO: finish
             ActionBottom.DEPLOY,
             new UpgradableCost_Metal(-4,-2),
-            1), //TODO: finish
+            1),
         new ActionSpaceDTO(
             ActionTop.PRODUCE,
             new UpgradableCost_Produce(),
-            new Reward[]{},
+            new Reward[]{
+
+            }, //TODO: finish
             ActionBottom.BUILD,
             new UpgradableCost_Wood(-4,-2),
-            1), //TODO: finish
+            1),
         new ActionSpaceDTO(
             ActionTop.BOLSTER,
             new UpgradableCost_Coins(1, 1),
-            new Reward[]{},
+            new Reward[]{
+
+            }, //TODO: finish
             ActionBottom.ENLIST,
             new UpgradableCost_Food(-3,-1),
-            1), //TODO: finish
+            1),
       }
   ),
 
