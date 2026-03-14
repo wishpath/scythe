@@ -3,6 +3,8 @@ package org.sa.enums;
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.reward.Reward;
 import org.sa.reward.cost_upgradable.*;
+import org.sa.reward.upgradable_reward.UpgradableReward_Attack;
+import org.sa.reward.upgradable_reward.UpgradableReward_AttackCards;
 import org.sa.reward.upgradable_reward.UpgradableReward_Coins;
 import org.sa.reward.upgradable_reward.UpgradableReward_Hearts;
 
@@ -44,8 +46,9 @@ public enum PlayerMat {
             ActionTop.BOLSTER,
             new UpgradableCost_Coins(1, 1),
             new Reward[]{
-
-            }, //TODO: finish
+              new UpgradableReward_Attack(2,3),
+              new UpgradableReward_AttackCards(1, 2)
+            },
             ActionBottom.ENLIST,
             new UpgradableCost_Food(-3,-1),
             1),
