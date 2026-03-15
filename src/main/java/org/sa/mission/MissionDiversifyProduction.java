@@ -1,7 +1,7 @@
 package org.sa.mission;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.DTO.WorkerDTO;
+import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.enums.TileType;
 
 import java.util.EnumSet;

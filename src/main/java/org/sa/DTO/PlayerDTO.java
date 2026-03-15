@@ -1,5 +1,7 @@
 package org.sa.DTO;
 
+import org.sa.DTO.placeable.BuildingDTO;
+import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.ActionTop;
 import org.sa.enums.Building;

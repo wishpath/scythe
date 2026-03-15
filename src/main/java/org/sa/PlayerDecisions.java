@@ -2,7 +2,7 @@ package org.sa;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
-import org.sa.DTO.WorkerDTO;
+import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.Grid;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.FactionMat_EnlistCard;
