@@ -1,6 +1,8 @@
 package org.sa.DTO;
 
 import org.sa.DTO.placeable.BuildingDTO;
+import org.sa.DTO.placeable.Locatable;
+import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.ActionTop;
@@ -66,6 +68,8 @@ public class PlayerDTO {
   //HeroDTO //initially of board new HeroDTO(null);
   //List<RobotDTO> //initially empty list
   public List<WorkerDTO> workers;
+  public List<Locatable> locatables = new ArrayList<>();
+  public List<Movable> movables = new ArrayList<>();
 
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
@@ -85,5 +89,7 @@ public class PlayerDTO {
 
     //workers part
     this.workers = workers;
+    this.locatables.addAll(workers);
+    this.movables.addAll(workers);
   }
 }
