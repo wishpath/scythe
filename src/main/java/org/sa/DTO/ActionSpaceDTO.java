@@ -21,7 +21,7 @@ public class ActionSpaceDTO {
   public ActionSpaceDTO(
       ActionTop actionTop,
       UpgradableCost actionTopCost,
-      Reward[] actionTopRewards,
+      Reward[] actionTopRewards_toPickFrom,
 
       ActionBottom actionBottom,
       UpgradableCost actionBottomUpgradableCost,
@@ -29,7 +29,7 @@ public class ActionSpaceDTO {
 
     this.actionTop = actionTop;
     this.actionTopCost = actionTopCost;
-    this.actionTop_Rewards_toChoose_upgradable = actionTopRewards;
+    this.actionTop_Rewards_toChoose_upgradable = actionTopRewards_toPickFrom;
 
     this.actionBottom = actionBottom;
     this.actionBottomUpgradableCost = actionBottomUpgradableCost;

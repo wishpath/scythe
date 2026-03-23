@@ -1,4 +1,5 @@
 TASKS:
+  - finish "decide move" method in PlayerDecisions
   - create upgradableChange_Move (commented how it should work in the PlayerDecissions class)
   - create all upgradable rewards for top actions in agricultural player mat.
   - continue working on top actions and their Reward[] (cost and reward) mostly in player mat but also in action space

@@ -1,12 +1,13 @@
-package org.sa.reward.upgradable_reward;
+package org.sa.reward.upgradable_state_change;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.enums.TopStateChangeDecisionType;
 
-public class UpgradableReward_Coins implements UpgradableReward {
+public class UpgradableStateChange_Top_Reward_Coins implements UpgradableStateChange_Top {
   private int currentDeltaCoins;
   private int fullyUpgradedDeltaCoinsReward;
 
-  public UpgradableReward_Coins(int initialDeltaCoinsReward, int fullyUpgradedDeltaCoinsReward) {
+  public UpgradableStateChange_Top_Reward_Coins(int initialDeltaCoinsReward, int fullyUpgradedDeltaCoinsReward) {
     if (initialDeltaCoinsReward < 0 || fullyUpgradedDeltaCoinsReward < 0)
       throw new IllegalArgumentException("Reward should be expressed in positive values");
     this.currentDeltaCoins = initialDeltaCoinsReward;
@@ -26,5 +27,10 @@ public class UpgradableReward_Coins implements UpgradableReward {
   @Override
   public void upgrade_increaseTheReward() {
     currentDeltaCoins++;
+  }
+
+  @Override
+  public TopStateChangeDecisionType getDecisionType() {
+    return TopStateChangeDecisionType.NONE;
   }
 }

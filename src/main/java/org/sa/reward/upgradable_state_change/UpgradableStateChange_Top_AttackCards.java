@@ -1,13 +1,14 @@
-package org.sa.reward.upgradable_reward;
+package org.sa.reward.upgradable_state_change;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.b_storage.CardPool;
+import org.sa.enums.TopStateChangeDecisionType;
 
-public class UpgradableReward_AttackCards implements UpgradableReward {
+public class UpgradableStateChange_Top_AttackCards implements UpgradableStateChange_Top {
   private int currentDeltaCards;
   private int fullyUpgradedDeltaCardsReward;
 
-  public UpgradableReward_AttackCards(int initialDeltaCardsReward, int fullyUpgradedDeltaCardsReward) {
+  public UpgradableStateChange_Top_AttackCards(int initialDeltaCardsReward, int fullyUpgradedDeltaCardsReward) {
     if (initialDeltaCardsReward < 0 || fullyUpgradedDeltaCardsReward < 0)
       throw new IllegalArgumentException("Reward should be expressed in positive values");
     this.currentDeltaCards = initialDeltaCardsReward;
@@ -28,5 +29,10 @@ public class UpgradableReward_AttackCards implements UpgradableReward {
   @Override
   public void upgrade_increaseTheReward() {
     currentDeltaCards++;
+  }
+
+  @Override
+  public TopStateChangeDecisionType getDecisionType() {
+    return TopStateChangeDecisionType.NONE;
   }
 }

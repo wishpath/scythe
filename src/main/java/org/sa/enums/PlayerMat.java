@@ -3,10 +3,10 @@ package org.sa.enums;
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.reward.Reward;
 import org.sa.reward.cost_upgradable.*;
-import org.sa.reward.upgradable_reward.UpgradableReward_Attack;
-import org.sa.reward.upgradable_reward.UpgradableReward_AttackCards;
-import org.sa.reward.upgradable_reward.UpgradableReward_Coins;
-import org.sa.reward.upgradable_reward.UpgradableReward_Hearts;
+import org.sa.reward.upgradable_state_change.UpgradableStateChange_Top_Attack;
+import org.sa.reward.upgradable_state_change.UpgradableStateChange_Top_AttackCards;
+import org.sa.reward.upgradable_state_change.UpgradableStateChange_Top_Reward_Coins;
+import org.sa.reward.upgradable_state_change.UpgradableStateChange_Top_Hearts;
 
 public enum PlayerMat {
   AGRICULTURAL(
@@ -16,10 +16,10 @@ public enum PlayerMat {
       2,
       new ActionSpaceDTO[] {  //TODO: finish: top action,
         new ActionSpaceDTO(
-            ActionTop.MOVE_GAIN,
-            new UpgradableCost_Coins(0, 0),
+            ActionTop.MOVE_GAIN, //Action top type
+            new UpgradableCost_Coins(0, 0), //Action top cost
             new Reward[]{
-                new UpgradableReward_Coins(1, 2)
+                new UpgradableStateChange_Top_Reward_Coins(1, 2) //Action top choosable reward
             }, //TODO: finish
             ActionBottom.UPGRADE,
             new UpgradableCost_Oil(-2,-2),
@@ -28,7 +28,7 @@ public enum PlayerMat {
             ActionTop.TRADE,
             new UpgradableCost_Coins(1, 1),
             new Reward[]{
-              new UpgradableReward_Hearts(1, 2)
+              new UpgradableStateChange_Top_Hearts(1, 2)
             }, //TODO: finish
             ActionBottom.DEPLOY,
             new UpgradableCost_Metal(-4,-2),
@@ -46,8 +46,8 @@ public enum PlayerMat {
             ActionTop.BOLSTER,
             new UpgradableCost_Coins(1, 1),
             new Reward[]{
-              new UpgradableReward_Attack(2,3),
-              new UpgradableReward_AttackCards(1, 2)
+              new UpgradableStateChange_Top_Attack(2,3),
+              new UpgradableStateChange_Top_AttackCards(1, 2)
             },
             ActionBottom.ENLIST,
             new UpgradableCost_Food(-3,-1),
@@ -62,7 +62,6 @@ public enum PlayerMat {
   MECHANICAL( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
   MILITANT( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
   PATRIOTIC( -1, -1, -1, 2, new ActionSpaceDTO[4]); //TODO: finish
-
 
 
   public final int initialHearts;
