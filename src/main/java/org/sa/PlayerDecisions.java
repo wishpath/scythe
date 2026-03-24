@@ -10,10 +10,10 @@ import org.sa.DTO.top_state_change_decision.TopStateChangeDecision;
 import org.sa.b_storage.Grid;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.ActionTop;
-import org.sa.enums.FactionMat_EnlistCard;
+import org.sa.enums.FactionMat;
 import org.sa.enums.PlayerMat;
 import org.sa.enums.TopStateChangeDecisionType;
-import org.sa.reward.Reward;
+import org.sa.reward.StateChange;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class PlayerDecisions {
 
   public static void main(String[] args) {
     //player draws Faction Mat (color)
-    FactionMat_EnlistCard factionMat = CardPool.drawEnlistCard();
+    FactionMat factionMat = CardPool.drawEnlistCard();
 
     //player draws Player Mat (not connected to faction)
     PlayerMat playerMat = CardPool.drawFactionBoard();
@@ -59,7 +59,7 @@ public class PlayerDecisions {
     if (playerDecidedToUseTopAction) {
       pickedActionSpaceDTO.actionTopCost.applyToPlayer(player);
       int picked_reward_index_move = 1; //TODO: player should pick
-      Reward pickedReward = pickedActionSpaceDTO.actionTop_Rewards_toChoose_upgradable[picked_reward_index_move];
+      StateChange pickedReward = pickedActionSpaceDTO.actionTop_Rewards_toChoose_upgradable[picked_reward_index_move];
       //TODO:
       // should get number of movable groups
       //int numberOfMovables =

@@ -1,4 +1,4 @@
-package org.sa.reward.upgradable_state_change;
+package org.sa.reward.upgradable_state_change_top;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.b_storage.CardPool;

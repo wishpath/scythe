@@ -1,13 +1,13 @@
-package org.sa.reward.ability;
+package org.sa.reward.get_ability;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.reward.Reward;
+import org.sa.reward.StateChange;
 
 /**
  * Before combat where the player is defending,
  * the player gets +2 attack power.
  */
-public class Ability_PlusAttackBeforeDefence_Shield implements Reward {
+public class GetAbility_PlusAttackBeforeDefence_Shield implements StateChange {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {

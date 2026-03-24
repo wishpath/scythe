@@ -1,12 +1,13 @@
-package org.sa.reward;
+package org.sa.reward.reward_basic;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.b_storage.CardPool;
+import org.sa.reward.StateChange;
 
-public class Reward_AttackCards implements Reward {
+public class RewardBasic_AttackCards implements StateChange {
   private int deltaAttackCardAmount;
 
-  public Reward_AttackCards(int deltaAttackCardAmount) {
+  public RewardBasic_AttackCards(int deltaAttackCardAmount) {
     this.deltaAttackCardAmount = deltaAttackCardAmount;
   }
 

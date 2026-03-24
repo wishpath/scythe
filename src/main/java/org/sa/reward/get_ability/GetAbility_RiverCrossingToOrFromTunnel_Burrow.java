@@ -1,12 +1,12 @@
-package org.sa.reward.ability;
+package org.sa.reward.get_ability;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.reward.Reward;
+import org.sa.reward.StateChange;
 
 /**
  * The player may move across rivers to or from tunnel territories.
  */
-public class Ability_RiverCrossingToOrFromTunnel_Burrow implements Reward {
+public class GetAbility_RiverCrossingToOrFromTunnel_Burrow implements StateChange {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {

@@ -7,10 +7,10 @@ import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.ActionTop;
 import org.sa.enums.Building;
-import org.sa.enums.FactionMat_EnlistCard;
+import org.sa.enums.FactionMat;
 import org.sa.enums.PlayerMat;
 import org.sa.mission.MissionCard;
-import org.sa.reward.Reward;
+import org.sa.reward.StateChange;
 import org.sa.reward.enlistable_reward.*;
 
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class PlayerDTO {
 
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
-  public PlayerDTO(PlayerMat playerMat, FactionMat_EnlistCard factionMat, List<WorkerDTO> workers) {
+  public PlayerDTO(PlayerMat playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //faction board part
     this.playerMat = playerMat;
     this.hearts += playerMat.initialHearts;
@@ -83,8 +83,8 @@ public class PlayerDTO {
     }
 
     //factionMat part
-    for (Reward reward : factionMat.initialReward) reward.applyToPlayer(this);
-    for (Reward reward : factionMat.initialBonusToApply) reward.applyToPlayer(this);
+    for (StateChange reward : factionMat.initialReward) reward.applyToPlayer(this);
+    for (StateChange reward : factionMat.initialBonusToApply) reward.applyToPlayer(this);
     this.playerEnlistState = new PlayerEnlistStateDTO(factionMat);
 
     //workers part

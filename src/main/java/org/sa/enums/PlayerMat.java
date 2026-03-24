@@ -1,12 +1,12 @@
 package org.sa.enums;
 
 import org.sa.DTO.ActionSpaceDTO;
-import org.sa.reward.Reward;
+import org.sa.reward.StateChange;
 import org.sa.reward.cost_upgradable.*;
-import org.sa.reward.upgradable_state_change.UpgradableStateChange_Top_Attack;
-import org.sa.reward.upgradable_state_change.UpgradableStateChange_Top_AttackCards;
-import org.sa.reward.upgradable_state_change.UpgradableStateChange_Top_Reward_Coins;
-import org.sa.reward.upgradable_state_change.UpgradableStateChange_Top_Hearts;
+import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Attack;
+import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_AttackCards;
+import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Reward_Coins;
+import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Hearts;
 
 public enum PlayerMat {
   AGRICULTURAL(
@@ -18,7 +18,7 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.MOVE_GAIN, //Action top type
             new UpgradableCost_Coins(0, 0), //Action top cost
-            new Reward[]{
+            new StateChange[]{
                 new UpgradableStateChange_Top_Reward_Coins(1, 2) //Action top choosable reward
             }, //TODO: finish
             ActionBottom.UPGRADE,
@@ -27,7 +27,7 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.TRADE,
             new UpgradableCost_Coins(1, 1),
-            new Reward[]{
+            new StateChange[]{
               new UpgradableStateChange_Top_Hearts(1, 2)
             }, //TODO: finish
             ActionBottom.DEPLOY,
@@ -36,7 +36,7 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.PRODUCE,
             new UpgradableCost_Produce(),
-            new Reward[]{
+            new StateChange[]{
 
             }, //TODO: finish
             ActionBottom.BUILD,
@@ -45,7 +45,7 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.BOLSTER,
             new UpgradableCost_Coins(1, 1),
-            new Reward[]{
+            new StateChange[]{
               new UpgradableStateChange_Top_Attack(2,3),
               new UpgradableStateChange_Top_AttackCards(1, 2)
             },

@@ -1,8 +1,8 @@
 package org.sa.reward.cost_upgradable;
 
-import org.sa.reward.Reward;
+import org.sa.reward.StateChange;
 
-public interface UpgradableCost extends Reward {
+public interface UpgradableCost extends StateChange {
 
   boolean canUpgrade();
 

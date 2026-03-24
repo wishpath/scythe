@@ -1,11 +1,12 @@
-package org.sa.reward;
+package org.sa.reward.reward_basic;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.reward.StateChange;
 
-public class Reward_Coins implements Reward {
+public class RewardBasic_Coins implements StateChange {
   private int deltaCoins;
 
-  public Reward_Coins(int deltaCoins) {
+  public RewardBasic_Coins(int deltaCoins) {
     this.deltaCoins = deltaCoins;
   }
 

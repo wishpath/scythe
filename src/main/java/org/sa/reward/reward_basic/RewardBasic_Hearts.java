@@ -1,11 +1,12 @@
-package org.sa.reward;
+package org.sa.reward.reward_basic;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.reward.StateChange;
 
-public class Reward_Hearts implements Reward {
+public class RewardBasic_Hearts implements StateChange {
   private int deltaHearts;
 
-  public Reward_Hearts(int deltaHearts) {
+  public RewardBasic_Hearts(int deltaHearts) {
     this.deltaHearts = deltaHearts;
   }
 

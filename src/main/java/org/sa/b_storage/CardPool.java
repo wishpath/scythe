@@ -1,6 +1,6 @@
 package org.sa.b_storage;
 
-import org.sa.enums.FactionMat_EnlistCard;
+import org.sa.enums.FactionMat;
 import org.sa.enums.PlayerMat;
 import org.sa.mission.MissionCard;
 import org.sa.mission.MissionDiversifyProduction;
@@ -13,8 +13,8 @@ import java.util.Random;
 
 public class CardPool {
 
-  private static EnumSet<FactionMat_EnlistCard> enlistCardPool = EnumSet.allOf(FactionMat_EnlistCard.class);
-  private static EnumSet<PlayerMat> factionBoardPool = EnumSet.allOf(PlayerMat.class);
+  private static EnumSet<FactionMat> factionMapPool = EnumSet.allOf(FactionMat.class);
+  private static EnumSet<PlayerMat> playerMatPool = EnumSet.allOf(PlayerMat.class);
   private static List<MissionCard> missionCardPool = new ArrayList<>(List.of(new MissionEstablishHumanShield(), new MissionDiversifyProduction())); //TODO: add more missions later
   private static List<Integer> attackCardsPool = getNewAttackCardsPool(); // yellow attack cards: 16x+2, 12x+3, 8x+4, 6x+5
   private static final Random random = new Random();
@@ -24,19 +24,19 @@ public class CardPool {
     return attackCardsPool.remove(random.nextInt(attackCardsPool.size()));
   }
 
-  public static FactionMat_EnlistCard drawEnlistCard() {
-    if (enlistCardPool.isEmpty()) throw new IllegalStateException("Enlist card pool should not be empty");
-    int index = random.nextInt(enlistCardPool.size());
-    FactionMat_EnlistCard drawn = enlistCardPool.toArray(new FactionMat_EnlistCard[0])[index];
-    enlistCardPool.remove(drawn);
+  public static FactionMat drawEnlistCard() {
+    if (factionMapPool.isEmpty()) throw new IllegalStateException("Enlist card pool should not be empty");
+    int index = random.nextInt(factionMapPool.size());
+    FactionMat drawn = factionMapPool.toArray(new FactionMat[0])[index];
+    factionMapPool.remove(drawn);
     return drawn;
   }
 
   public static PlayerMat drawFactionBoard() {
-    if (factionBoardPool.isEmpty()) throw new IllegalStateException("Faction board pool should not be empty");
-    int index = random.nextInt(factionBoardPool.size());
-    PlayerMat drawn = factionBoardPool.toArray(new PlayerMat[0])[index];
-    factionBoardPool.remove(drawn);
+    if (playerMatPool.isEmpty()) throw new IllegalStateException("Faction board pool should not be empty");
+    int index = random.nextInt(playerMatPool.size());
+    PlayerMat drawn = playerMatPool.toArray(new PlayerMat[0])[index];
+    playerMatPool.remove(drawn);
     return drawn;
   }
 

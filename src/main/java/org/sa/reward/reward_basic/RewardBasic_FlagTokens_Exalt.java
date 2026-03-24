@@ -1,8 +1,9 @@
-package org.sa.reward;
+package org.sa.reward.reward_basic;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.reward.StateChange;
 
-public class Reward_FlagTokens_Exalt implements Reward {
+public class RewardBasic_FlagTokens_Exalt implements StateChange {
 
   private static final int DELTA_FLAG_TOKEN_AMOUNT = 4;
 

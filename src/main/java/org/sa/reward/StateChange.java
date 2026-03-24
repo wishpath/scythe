@@ -2,6 +2,6 @@ package org.sa.reward;
 
 import org.sa.DTO.PlayerDTO;
 
-public interface Reward {
+public interface StateChange {
   public abstract void applyToPlayer(PlayerDTO player);
 }

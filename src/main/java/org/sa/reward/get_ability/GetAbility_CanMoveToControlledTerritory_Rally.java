@@ -1,13 +1,13 @@
-package org.sa.reward.ability;
+package org.sa.reward.get_ability;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.reward.Reward;
+import org.sa.reward.StateChange;
 
 /**
  * Allows moving a character to a territory,
  * where player has a worker or Flag token.
  */
-public class Ability_CanMoveToControlledTerritory_Rally implements Reward {
+public class GetAbility_CanMoveToControlledTerritory_Rally implements StateChange {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
