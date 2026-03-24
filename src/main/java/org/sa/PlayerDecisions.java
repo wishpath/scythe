@@ -9,13 +9,11 @@ import org.sa.DTO.top_state_change_decision.MoveDecision;
 import org.sa.DTO.top_state_change_decision.TopStateChangeDecision;
 import org.sa.b_storage.Grid;
 import org.sa.b_storage.CardPool;
-import org.sa.enums.ActionTop;
-import org.sa.enums.FactionMat;
-import org.sa.enums.PlayerMat;
-import org.sa.enums.TopStateChangeDecisionType;
+import org.sa.enums.*;
 import org.sa.reward.StateChange;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -85,10 +83,26 @@ public class PlayerDecisions {
 
   private TopStateChangeDecision decideMove(PlayerDTO player, int capacity) {
     //TODO: implement
+    Set<Integer> pickedMovableIndexes = new HashSet<>();
     List<MoveDecision.Group> groups = new ArrayList<>();
 
-    for (int i = 0; i < capacity; i++) {
-      //pick Movable
+    for (int i = 0; i < capacity && pickedMovableIndexes.size() < player.movables.size(); i++) {
+
+      int userPickedIndexOfMovables = hereUserShouldPickAFreeMovable(player.movables, pickedMovableIndexes); //TODO: user should pick
+      pickedMovableIndexes.add(userPickedIndexOfMovables);
+      Movable pickedMovable = player.movables.get(userPickedIndexOfMovables);
+      List<Movable> movableGroup = new ArrayList<>();
+      movableGroup.add(pickedMovable);
+      if (pickedMovable.getMovableType() == MovableType.MECH) {
+        //TODO: pick workers to carry together
+      }
+      //TODO: get list of available Tiles to go to
+
+
+
+
+      //MoveDecision.Group group = new MoveDecision.Group()
+      //pick Movable index
       //if Movable is Robot and ability is there: decide which workers to take together
       //formulate this Group
       //Add groups to MoveDecision
@@ -96,5 +110,11 @@ public class PlayerDecisions {
     }
 
     return new MoveDecision(groups);
+  }
+
+  private static int hereUserShouldPickAFreeMovable(List<Movable> movables, Set<Integer> pickedMovableIndexes) {
+    int index = new java.util.Random().nextInt(movables.size());
+    while (pickedMovableIndexes.contains(index)) new java.util.Random().nextInt(movables.size());
+    return index;
   }
 }
