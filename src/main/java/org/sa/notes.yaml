@@ -1,5 +1,6 @@
 TASKS:
   - //TODO: get list of available Tiles to go to
+      - use method getTilesToMoveTo
   - when moving Movable, if MovalbeType == CHARACTER || ROBOT, and destination tile contains enemy, then COMBAT
   - completeDecision in PlayerDecisions, send it to "move state change" and execute that decision there.
   - finish "decide move" method in PlayerDecisions

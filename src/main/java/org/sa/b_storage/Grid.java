@@ -147,6 +147,38 @@ public class Grid {
   public static TileDTO getNeighbor(TileDTO tile, Direction direction) {
     return grid[tile.row + direction.deltaRow][tile.column + direction.deltaColumn];
   }
+
+  public static Set<TileDTO> getTilesToMoveTo(TileDTO tileFrom, boolean canCrossRiver) {
+    Set<TileDTO> tilesTo = new HashSet<>();
+    for (Direction direction : Direction.values()) { //includes direction Direction.THIS
+      if (!canCrossRiver && tileFrom.rivers.contains(direction)) continue;
+
+      int row = tileFrom.row + direction.deltaRow;
+      if (row < 0 || row >= grid.length) continue;
+
+      int column = tileFrom.column + direction.deltaColumn;
+      if (column < 0 || column >= grid[0].length) continue;
+
+      TileDTO tileTo = grid[row][column];
+      if (null == tileTo) continue;
+      if (tileTo.tileType == TileType.LAKE) continue;
+      if (!canCrossRiver && tileTo.rivers.contains(direction.opposite())) continue;
+
+      tilesTo.add(tileTo); // possibly tileTo == tileFrom, which means not moving
+
+    }
+
+    if (tileFrom.isTunnel)
+      for (TileDTO[] gridRow : grid)
+        for (TileDTO t : gridRow)
+          if (t != null && t.isTunnel && !t.equals(tileFrom))
+            tilesTo.add(t);
+
+    // TODO: implement mines that act like tunnels
+    // TODO: if moving 2 tiles allowed, simply run this method twice
+
+    return tilesTo;
+  }
 }
 
 
