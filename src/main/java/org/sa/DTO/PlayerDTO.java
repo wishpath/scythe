@@ -33,10 +33,10 @@ public class PlayerDTO {
   public PlayerEnlistStateDTO playerEnlistState; //contains: ability and bonus pool, available for choosing during enlist action
   public ActionTop previousAction = null;
   public EnlistableReward[] ongoingBonuses_EnlistableRewards = new EnlistableReward[] { //TODO: move to player board state when created
-      new EnlistableReward_AttackPlusOne(this),
-      new EnlistableReward_CoinPlusOne(this),
-      new EnlistableReward_HeartsPlusOne(this),
-      new EnlistableReward_AttackCardPlusOne(this)};
+      new EnlistableReward_AttackPlusOne(),
+      new EnlistableReward_CoinPlusOne(),
+      new EnlistableReward_HeartsPlusOne(),
+      new EnlistableReward_AttackCardPlusOne()};
   public Map<Building, BuildingDTO> buildings = Map.of( //TODO: consider moving to player board state when created
       Building.MILL, new BuildingDTO(Building.MILL),
       Building.MONUMENT, new BuildingDTO(Building.MONUMENT),

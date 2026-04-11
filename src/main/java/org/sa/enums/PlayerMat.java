@@ -3,10 +3,7 @@ package org.sa.enums;
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.reward.StateChange;
 import org.sa.reward.cost_upgradable.*;
-import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Attack;
-import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_AttackCards;
-import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Reward_Coins;
-import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Hearts;
+import org.sa.reward.upgradable_state_change_top.*;
 
 public enum PlayerMat {
   AGRICULTURAL(
@@ -17,8 +14,9 @@ public enum PlayerMat {
       new ActionSpaceDTO[] {  //TODO: finish: top action,
         new ActionSpaceDTO(
             ActionTop.MOVE_GAIN, //Action top type
-            new UpgradableCost_Coins(0, 0), //Action top cost
+            new UpgradableCost_Coins(0, 0), //Action top cost: THIS ONE IS FOR FREE
             new StateChange[]{
+                new UpgradableStateChange_Top_Move(2, 3), //Action top choosable reward
                 new UpgradableStateChange_Top_Reward_Coins(1, 2) //Action top choosable reward
             }, //TODO: finish
             ActionBottom.UPGRADE,

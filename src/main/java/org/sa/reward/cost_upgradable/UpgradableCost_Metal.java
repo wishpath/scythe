@@ -19,6 +19,11 @@ public class UpgradableCost_Metal implements UpgradableCost {
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaMetal;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaMetal < fullyUpgradedDeltaMetalCost; //because negative numbers
   }

@@ -6,13 +6,9 @@ import org.sa.enums.ActionBottom;
 
 public class EnlistableReward_AttackCardPlusOne implements EnlistableReward {
 
-  private final PlayerDTO player;
   private final ActionBottom triggeringAction = ActionBottom.ENLIST;
   private boolean enlisted;
-
-  public EnlistableReward_AttackCardPlusOne(PlayerDTO player) {
-    this.player = player;
-  }
+  private int currentDeltaCards = 1;
 
   @Override
   public void enlist_turnOn() {
@@ -29,10 +25,16 @@ public class EnlistableReward_AttackCardPlusOne implements EnlistableReward {
     return enlisted && action == triggeringAction;
   }
 
-  public void apply() {
+  public void applyToPlayer(PlayerDTO player) {
     if (!enlisted) throw new IllegalStateException(
         "Should only apply when enlisted and after trigger check."
     );
-    player.attackCards.add(CardPool.drawAttackCard());
+    for (int i = 0; i < this.currentDeltaCards; i++)
+      player.attackCards.add(CardPool.drawAttackCard());
+  }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaCards; // one card is added
   }
 }

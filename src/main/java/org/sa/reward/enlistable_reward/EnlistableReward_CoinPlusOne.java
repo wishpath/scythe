@@ -5,13 +5,9 @@ import org.sa.enums.ActionBottom;
 
 public class EnlistableReward_CoinPlusOne implements EnlistableReward {
 
-  private final PlayerDTO player;
   private final ActionBottom triggeringAction = ActionBottom.DEPLOY;
   private boolean enlisted;
-
-  public EnlistableReward_CoinPlusOne(PlayerDTO player) {
-    this.player = player;
-  }
+  private int currentDeltaCoins = 1;
 
   @Override
   public void enlist_turnOn() {
@@ -28,10 +24,17 @@ public class EnlistableReward_CoinPlusOne implements EnlistableReward {
     return enlisted && action == triggeringAction;
   }
 
-  public void apply() {
+  @Override
+  public void applyToPlayer(PlayerDTO player) {
     if (!enlisted) throw new IllegalStateException(
         "Should only apply when enlisted and after trigger check."
     );
-    player.coins++;
+    for (int i = 0; i < this.currentDeltaCoins; i++)
+      player.coins++;
+  }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaCoins; //one coin is added
   }
 }

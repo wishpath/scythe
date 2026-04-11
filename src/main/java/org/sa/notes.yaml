@@ -1,4 +1,6 @@
 TASKS:
+  - in order to get movable groups capacity //int numberOfMovables = pickedReward_MOVE.getCurrentChangeDelta();
+    - finish implementing .getCurrentChangeDelta() to all State changes
   - //TODO: get list of available Tiles to go to
       - use method getTilesToMoveTo
   - when moving Movable, if MovalbeType == CHARACTER || ROBOT, and destination tile contains enemy, then COMBAT
@@ -32,3 +34,7 @@ LATER:
 
 LETS_NOT:
   - change Faction details using Reward // maybe not because they are constant and doesn't require picking (decision)
+
+QUESTIONS/ANSWERS:
+  - why applyToPlayer is used 20 times but StateChange is used 22 times?:
+      - StateChange is extended to interfaces that do not have explicit applyToPlayer methods

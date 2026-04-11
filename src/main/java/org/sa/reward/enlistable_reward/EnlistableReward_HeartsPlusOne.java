@@ -5,13 +5,9 @@ import org.sa.enums.ActionBottom;
 
 public class EnlistableReward_HeartsPlusOne implements EnlistableReward {
 
-  private final PlayerDTO player;
   private final ActionBottom triggeringAction = ActionBottom.BUILD;
   private boolean enlisted;
-
-  public EnlistableReward_HeartsPlusOne(PlayerDTO player) {
-    this.player = player;
-  }
+  private int currentDeltaHearts = 1;
 
   @Override
   public void enlist_turnOn() {
@@ -28,8 +24,15 @@ public class EnlistableReward_HeartsPlusOne implements EnlistableReward {
     return enlisted && action == triggeringAction;
   }
 
-  public void apply() {
+  @Override
+  public void applyToPlayer(PlayerDTO player) {
     if (!enlisted) throw new IllegalStateException("Should only apply when enlisted and after trigger check.");
-    player.hearts++;
+    for (int i = 0; i < this.currentDeltaHearts; i++)
+      player.hearts++;
+  }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaHearts;
   }
 }

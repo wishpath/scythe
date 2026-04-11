@@ -15,6 +15,11 @@ public class UpgradableCost_Produce implements UpgradableCost {
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return this.currentWorkerCount;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentWorkerCount < MAX_WORKER_COUNT;
   }

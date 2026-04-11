@@ -19,6 +19,11 @@ public class UpgradableCost_Wood implements UpgradableCost {
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaWood;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaWood < fullyUpgradedDeltaWoodCost; //because negative numbers
   }

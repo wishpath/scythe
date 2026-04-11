@@ -19,6 +19,11 @@ public class UpgradableCost_Oil implements UpgradableCost {
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaOil;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaOil < fullyUpgradedDeltaOilCost; //because negative numbers
   }

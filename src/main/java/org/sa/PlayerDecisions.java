@@ -56,15 +56,16 @@ public class PlayerDecisions {
     boolean playerDecidedToUseTopAction = true; //TODO: player should decide
     if (playerDecidedToUseTopAction) {
       pickedActionSpaceDTO.actionTopCost.applyToPlayer(player);
-      int picked_reward_index_move = 1; //TODO: player should pick
-      StateChange pickedReward = pickedActionSpaceDTO.actionTop_Rewards_toChoose_upgradable[picked_reward_index_move];
+      int picked_reward_index__representing_MOVE = 0; //TODO: player should pick (0 for move and 1 for gain coins)
+      StateChange pickedReward_MOVE = pickedActionSpaceDTO.actionTop_Rewards_toChoose_upgradable[picked_reward_index__representing_MOVE];
       //TODO:
       // should get number of movable groups
-      //int numberOfMovables =
+      //int numberOfMovables = pickedReward_MOVE.getCurrentChangeDelta();
       List<Movable> movables = player.movables; //TODO: group them
       //TODO: should pick and group from "movables"
       // for each:
         //TODO: should get availabe tiles to move to
+        // decide if MOVE or skip this move.
         // should pick concrete tiles to move to
         // should send Movable group and locations to move to Reward
         // applyToPlayer would actually apply location directly to Movable group (not player as usual)

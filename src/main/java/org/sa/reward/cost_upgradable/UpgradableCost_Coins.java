@@ -19,6 +19,11 @@ public class UpgradableCost_Coins implements UpgradableCost {
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaCoins;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaCoins < fullyUpgradedDeltaCoinsCost; // because negative numbers
   }

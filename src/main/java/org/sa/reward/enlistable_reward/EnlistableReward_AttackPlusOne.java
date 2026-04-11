@@ -5,13 +5,10 @@ import org.sa.enums.ActionBottom;
 
 public class EnlistableReward_AttackPlusOne implements EnlistableReward {
 
-  private final PlayerDTO player;
   private final ActionBottom triggeringAction = ActionBottom.UPGRADE;
   private boolean enlisted;
+  private int currentDeltaAttack = 1;
 
-  public EnlistableReward_AttackPlusOne(PlayerDTO player) {
-    this.player = player;
-  }
 
   @Override
   public void enlist_turnOn() {
@@ -28,10 +25,17 @@ public class EnlistableReward_AttackPlusOne implements EnlistableReward {
     return enlisted && action == triggeringAction;
   }
 
-  public void apply() {
+  @Override
+  public void applyToPlayer(PlayerDTO player) {
     if (!enlisted) throw new IllegalStateException(
         "Should only apply when enlisted and after trigger check."
     );
-    player.attack++;
+    for (int i = 0; i < this.currentDeltaAttack; i++)
+      player.attack++;
+  }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaAttack; // one attack is added
   }
 }

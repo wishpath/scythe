@@ -19,6 +19,11 @@ public class UpgradableCost_Food implements UpgradableCost {
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return this.currentDeltaFood;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaFood < fullyUpgradedDeltaFoodCost; //because negative numbers
   }
