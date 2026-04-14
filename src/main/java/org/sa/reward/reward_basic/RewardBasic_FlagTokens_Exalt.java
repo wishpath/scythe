@@ -11,4 +11,9 @@ public class RewardBasic_FlagTokens_Exalt implements StateChange {
   public void applyToPlayer(PlayerDTO player) {
     player.flagTokenPool = DELTA_FLAG_TOKEN_AMOUNT;
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return DELTA_FLAG_TOKEN_AMOUNT;
+  }
 }

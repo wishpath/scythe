@@ -20,6 +20,11 @@ public class UpgradableStateChange_Top_Move implements UpgradableStateChange_Top
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return currentDeltaMove_groupCapacity;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaMove_groupCapacity < fullyUpgradedDeltaMove_groupCapacity;
   }

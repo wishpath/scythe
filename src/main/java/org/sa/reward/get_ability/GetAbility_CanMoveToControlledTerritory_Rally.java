@@ -13,4 +13,9 @@ public class GetAbility_CanMoveToControlledTerritory_Rally implements StateChang
   public void applyToPlayer(PlayerDTO player) {
     player.canMoveCharacterToControlledTerritory = true;
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    throw new IllegalStateException("This ability does have quantifiable delta value");
+  }
 }

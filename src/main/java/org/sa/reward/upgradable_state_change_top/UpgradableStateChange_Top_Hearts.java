@@ -20,6 +20,11 @@ public class UpgradableStateChange_Top_Hearts implements UpgradableStateChange_T
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return currentDeltaHearts;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaHearts < fullyUpgradedDeltaHeartsReward;
   }

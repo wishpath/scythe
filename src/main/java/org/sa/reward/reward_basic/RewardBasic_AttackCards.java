@@ -17,4 +17,9 @@ public class RewardBasic_AttackCards implements StateChange {
       player.attackCards.add(CardPool.drawAttackCard());
     }
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return deltaAttackCardAmount;
+  }
 }

@@ -20,6 +20,11 @@ public class UpgradableStateChange_Top_Reward_Coins implements UpgradableStateCh
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return currentDeltaCoins;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaCoins < fullyUpgradedDeltaCoinsReward;
   }

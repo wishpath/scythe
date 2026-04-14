@@ -14,4 +14,9 @@ public class RewardBasic_Coins implements StateChange {
   public void applyToPlayer(PlayerDTO player) {
     player.coins += deltaCoins;
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return deltaCoins;
+  }
 }

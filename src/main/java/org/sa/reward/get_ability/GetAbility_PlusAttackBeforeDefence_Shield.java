@@ -13,4 +13,9 @@ public class GetAbility_PlusAttackBeforeDefence_Shield implements StateChange {
   public void applyToPlayer(PlayerDTO player) {
     player.playerGets2AttackBeforeDefence = true;
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    throw new IllegalStateException("This ability does have quantifiable delta value");
+  }
 }

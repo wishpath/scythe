@@ -22,6 +22,11 @@ public class UpgradableStateChange_Top_AttackCards implements UpgradableStateCha
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return currentDeltaCards;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaCards < fullyUpgradedDeltaCardsReward;
   }

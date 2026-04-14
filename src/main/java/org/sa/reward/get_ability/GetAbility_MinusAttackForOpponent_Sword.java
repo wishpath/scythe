@@ -12,4 +12,9 @@ public class GetAbility_MinusAttackForOpponent_Sword implements StateChange {
   public void applyToPlayer(PlayerDTO player) {
     player.opponentGetsMinus2AttackBeforeYouAttackHim = true;
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    throw new IllegalStateException("This ability does have quantifiable delta value");
+  }
 }

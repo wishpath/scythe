@@ -20,6 +20,11 @@ public class UpgradableStateChange_Top_Attack implements UpgradableStateChange_T
   }
 
   @Override
+  public int getCurrentChangeDelta() {
+    return currentDeltaAttack;
+  }
+
+  @Override
   public boolean canUpgrade() {
     return currentDeltaAttack < fullyUpgradedDeltaAttackReward;
   }

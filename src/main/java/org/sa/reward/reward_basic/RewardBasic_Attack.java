@@ -14,4 +14,9 @@ public class RewardBasic_Attack implements StateChange {
   public void applyToPlayer(PlayerDTO player) {
     player.attack += deltaAttack;
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return deltaAttack;
+  }
 }

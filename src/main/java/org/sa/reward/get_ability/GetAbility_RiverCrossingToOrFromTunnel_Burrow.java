@@ -12,5 +12,10 @@ public class GetAbility_RiverCrossingToOrFromTunnel_Burrow implements StateChang
   public void applyToPlayer(PlayerDTO player) {
     player.opponentGetsMinus2AttackBeforeYouAttackHim = true;
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    throw new IllegalStateException("This ability does have quantifiable delta value");
+  }
 }
 

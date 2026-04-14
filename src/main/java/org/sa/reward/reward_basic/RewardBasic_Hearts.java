@@ -14,4 +14,9 @@ public class RewardBasic_Hearts implements StateChange {
   public void applyToPlayer(PlayerDTO player) {
     player.hearts += deltaHearts;
   }
+
+  @Override
+  public int getCurrentChangeDelta() {
+    return deltaHearts;
+  }
 }
