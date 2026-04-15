@@ -5,8 +5,8 @@ import org.sa.DTO.placeable.movable.Movable;
 
 import java.util.List;
 
-public record MoveDecision(List<Group> groups) implements TopStateChangeDecision {
+public record MoveDecision(List<GroupAndTarget> groups) implements TopStateChangeDecision {
 
-  public record Group(List<Movable> movables, TileDTO targetTile) {
+  public record GroupAndTarget(List<Movable> movables, TileDTO targetTile) {
   }
 }

@@ -1,4 +1,6 @@
 TASKS:
+  - //MOVE Reward move should have field requiredDecisionType so we can call method decide(requiredDecisionType)
+    - so maybe all rewards should have this field, - implement this,force using interface
   - in order to get movable groups capacity //int numberOfMovables = pickedReward_MOVE.getCurrentChangeDelta();
     - finish implementing .getCurrentChangeDelta() to all State changes
   - //TODO: get list of available Tiles to go to
