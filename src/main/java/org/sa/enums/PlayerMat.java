@@ -1,7 +1,6 @@
 package org.sa.enums;
 
 import org.sa.DTO.ActionSpaceDTO;
-import org.sa.reward.StateChange;
 import org.sa.reward.cost_upgradable.*;
 import org.sa.reward.upgradable_state_change_top.*;
 
@@ -15,7 +14,7 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.MOVE_GAIN, //Action top type
             new UpgradableCost_Coins(0, 0), //Action top cost: THIS ONE IS FOR FREE
-            new StateChange[]{
+            new UpgradableStateChange_Top[]{
                 new UpgradableStateChange_Top_Move(2, 3), //Action top choosable reward
                 new UpgradableStateChange_Top_Reward_Coins(1, 2) //Action top choosable reward
             }, //TODO: finish
@@ -25,7 +24,7 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.TRADE,
             new UpgradableCost_Coins(1, 1),
-            new StateChange[]{
+            new UpgradableStateChange_Top[]{
               new UpgradableStateChange_Top_Hearts(1, 2)
             }, //TODO: finish
             ActionBottom.DEPLOY,
@@ -34,7 +33,7 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.PRODUCE,
             new UpgradableCost_Produce(),
-            new StateChange[]{
+            new UpgradableStateChange_Top[]{
 
             }, //TODO: finish
             ActionBottom.BUILD,
@@ -43,7 +42,7 @@ public enum PlayerMat {
         new ActionSpaceDTO(
             ActionTop.BOLSTER,
             new UpgradableCost_Coins(1, 1),
-            new StateChange[]{
+            new UpgradableStateChange_Top[]{
               new UpgradableStateChange_Top_Attack(2,3),
               new UpgradableStateChange_Top_AttackCards(1, 2)
             },

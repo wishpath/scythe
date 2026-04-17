@@ -7,10 +7,11 @@ import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.DTO.top_state_change_decision.MoveDecision;
 import org.sa.DTO.top_state_change_decision.TopStateChangeDecision;
-import org.sa.b_storage.Grid;
 import org.sa.b_storage.CardPool;
+import org.sa.b_storage.Grid;
 import org.sa.enums.*;
 import org.sa.reward.StateChange;
+import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,11 +58,10 @@ public class PlayerDecisions {
     if (playerDecidedToUseTopAction) {
       pickedActionSpaceDTO__MOVE_GAIN.actionTopCost.applyToPlayer(player);
       int picked_reward_index__representing_MOVE = 0; //TODO: player should pick (0 for move and 1 for gain coins)
-      StateChange pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.actionTop_Rewards_toChoose_upgradable[picked_reward_index__representing_MOVE];
-      //MOVE Reward move should have field requiredDecisionType so we can call method decide(requiredDecisionType)
-      //TODO:
-      // should get number of movable groups
-      int numberOfMovables = pickedReward_MOVE.getCurrentChangeDelta();
+      UpgradableStateChange_Top pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.actionTop_Rewards_toChoose_upgradable[picked_reward_index__representing_MOVE];
+      TopStateChangeDecisionType decisionType_ofPickedRewardMOVE = pickedReward_MOVE.getDecisionType();
+      int rewardDelta__MOVE_GROUP_COUNT = pickedReward_MOVE.getCurrentChangeDelta();
+      List<TopStateChangeDecision> decisions = decide(decisionType_ofPickedRewardMOVE, player, rewardDelta__MOVE_GROUP_COUNT); //so each decision in the list is a separate movable group and target
       List<Movable> movables = player.movables; //TODO: group them
       //TODO: should pick and group from "movables"
       // for each:
@@ -74,7 +74,7 @@ public class PlayerDecisions {
     }
   }
 
-  private List<TopStateChangeDecision> decide(TopStateChangeDecisionType type, PlayerDTO player, int capacity) {
+  private static List<TopStateChangeDecision> decide(TopStateChangeDecisionType type, PlayerDTO player, int capacity) {
     return switch (type) {
       case TopStateChangeDecisionType.MOVE -> decideMove(player, capacity);
       case TopStateChangeDecisionType.PRODUCE -> null; //TODO: create
@@ -83,7 +83,7 @@ public class PlayerDecisions {
     };
   }
 
-  private List<TopStateChangeDecision> decideMove(PlayerDTO player, int capacity) {
+  private static List<TopStateChangeDecision> decideMove(PlayerDTO player, int capacity) {
     //TODO: implement
     Set<Integer> pickedMovableIndexes = new HashSet<>();
     List<MoveDecision.GroupAndTarget> groups = new ArrayList<>();
