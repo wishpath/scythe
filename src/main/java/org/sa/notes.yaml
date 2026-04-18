@@ -1,4 +1,8 @@
 TASKS:
+  - decide and implement how to implement MOVE decisions:
+      - for (TopStateChangeDecisionOutcome decisionOutcome : decisionOutcomes) {
+          - probably should be implemented in StateChange, by applying to player
+            - then applyDecision method might accept (player, list<decisions>) or apply(player)
   - finish regarding decision Move, that contains all groups or should it simply be List<decision Move>
   - in the apply to player, use receive decision and the use switch by decision type
   - in order to get movable groups capacity //int numberOfMovables = pickedReward_MOVE.getCurrentChangeDelta();

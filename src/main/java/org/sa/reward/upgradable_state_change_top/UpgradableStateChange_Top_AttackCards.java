@@ -2,7 +2,7 @@ package org.sa.reward.upgradable_state_change_top;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.b_storage.CardPool;
-import org.sa.enums.TopStateChangeDecisionType;
+import org.sa.enums.TopStateChangeDecision_TYPE_ENUM;
 
 public class UpgradableStateChange_Top_AttackCards implements UpgradableStateChange_Top {
   private int currentDeltaCards;
@@ -37,7 +37,7 @@ public class UpgradableStateChange_Top_AttackCards implements UpgradableStateCha
   }
 
   @Override
-  public TopStateChangeDecisionType getDecisionType() {
-    return TopStateChangeDecisionType.NONE;
+  public TopStateChangeDecision_TYPE_ENUM getDecisionType() {
+    return TopStateChangeDecision_TYPE_ENUM.NONE;
   }
 }

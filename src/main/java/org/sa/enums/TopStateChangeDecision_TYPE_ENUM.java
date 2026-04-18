@@ -1,6 +1,6 @@
 package org.sa.enums;
 
-public enum TopStateChangeDecisionType {
+public enum TopStateChangeDecision_TYPE_ENUM {
   NONE,
   MOVE,
   PRODUCE,

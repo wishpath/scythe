@@ -72,6 +72,7 @@ public class PlayerDTO {
   public List<Movable> movables = new ArrayList<>();
 
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
+  public boolean canMechBringWorkers = false; //TODO: figure out when this turns on
 
   public PlayerDTO(PlayerMat playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //faction board part

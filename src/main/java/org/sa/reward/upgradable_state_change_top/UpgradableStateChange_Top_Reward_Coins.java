@@ -1,7 +1,7 @@
 package org.sa.reward.upgradable_state_change_top;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.enums.TopStateChangeDecisionType;
+import org.sa.enums.TopStateChangeDecision_TYPE_ENUM;
 
 public class UpgradableStateChange_Top_Reward_Coins implements UpgradableStateChange_Top {
   private int currentDeltaCoins;
@@ -35,7 +35,7 @@ public class UpgradableStateChange_Top_Reward_Coins implements UpgradableStateCh
   }
 
   @Override
-  public TopStateChangeDecisionType getDecisionType() {
-    return TopStateChangeDecisionType.NONE;
+  public TopStateChangeDecision_TYPE_ENUM getDecisionType() {
+    return TopStateChangeDecision_TYPE_ENUM.NONE;
   }
 }
