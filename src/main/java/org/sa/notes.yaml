@@ -21,7 +21,7 @@ TASKS:
       - enhance ActionSpaceDTOs with them
   - create faction board state. Initial state should be shown in  faction board enum
     - move ongoingBonuses_EnlistableRewards from player to player.factionBoardState, when created
-    - //todo: if there's an enemy in the target tile then implement war
+  - //todo: if there's an enemy in the target tile then implement war
 
 LATER:
   - player should pick initial tile for worker but for now we take the first one in the set
