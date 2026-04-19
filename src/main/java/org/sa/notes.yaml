@@ -1,27 +1,24 @@
 TASKS:
   - //TODO: get list of available Tiles to go to
       - use method player.getTilesToMoveTo(Movable main movable) (depends on what abilities the player has enabled, like moving 2 tiles, jumping water, stepping on water, etc)
-  - when moving Movable, if MovalbeType == CHARACTER || ROBOT, and destination tile contains enemy, then COMBAT
   - completeDecision in PlayerDecisions, send it to "move state change" and execute that decision there.
-  - finish "decide move" method in PlayerDecisions
-  - create upgradableChange_Move (commented how it should work in the PlayerDecisions class)
-  - create all upgradable rewards for top actions in agricultural player mat.
+  - implement other player decisions regarding top actions:
+      - produce
+      - trade
   - continue working on top actions and their Reward[] (cost and reward) mostly in player mat but also in action space
   - fix player initialisation regarding faction changes
     - faction mat
     - player mat
-  - fix confusion between what belongs to faction mat and player mat
-    - player mat does not belong to faction
-    - faction mat does
-    - move home to faction mat
-    - rename factionMat to faction?
-  - download player mat pictures
   - initialise all action space dtos:
       - create top actions
       - enhance ActionSpaceDTOs with them
   - create faction board state. Initial state should be shown in  faction board enum
     - move ongoingBonuses_EnlistableRewards from player to player.factionBoardState, when created
-  - //todo: if there's an enemy in the target tile then implement war
+  - move interaction logic
+    - if movable type is worker -> it cannot move to enemy?
+    - if movable type is character or mech
+      - if meets mech or character -> war
+      - if meets worker -> sends home
 
 LATER:
   - player should pick initial tile for worker but for now we take the first one in the set
