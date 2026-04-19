@@ -5,12 +5,11 @@ import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
 import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
-import org.sa.DTO.top_state_change_decision.SingleMoveDecisionOutcome;
-import org.sa.DTO.top_state_change_decision.TopStateChangeDecisionOutcome;
 import org.sa.b_storage.CardPool;
 import org.sa.b_storage.Grid;
 import org.sa.enums.*;
 import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top;
+import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Move;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,49 +66,43 @@ public class PlayerDecisions {
       int picked_reward_index__representing_MOVE = 0; //TODO: player should pick (0 for move and 1 for gain coins)
       UpgradableStateChange_Top pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.actionTop_Rewards_toChoose_upgradable[picked_reward_index__representing_MOVE];
 
-
       //player decides what and where to MOVE
-      List<TopStateChangeDecisionOutcome> decisionOutcomes = decideTopAction(pickedReward_MOVE, player); //so each decision in the list is a separate movable group and target
+      applyTopAction(pickedReward_MOVE, player); //so each decision in the list is a separate movable group and target
 
-      for (TopStateChangeDecisionOutcome decisionOutcome : decisionOutcomes) {
-        //todo: decisionOutcomes only knows what is needed to be done: outcome type. out of this type there comes knowledge how to apply the change: in case of MOVE type, logic knows there should be movableGroup and target where they go
-      }
     }
   }
 
-  private static List<TopStateChangeDecisionOutcome> decideTopAction(UpgradableStateChange_Top pickedReward_MOVE, PlayerDTO player) {
-    return switch (pickedReward_MOVE.getDecisionType()) {
-      case TopStateChangeDecision_TYPE_ENUM.MOVE -> createDecisionList_specificFor_TopAction_MOVE(pickedReward_MOVE, player);
-      case TopStateChangeDecision_TYPE_ENUM.PRODUCE -> null; //TODO: create
-      case TopStateChangeDecision_TYPE_ENUM.TRADE -> null; //TODO: create
-      case TopStateChangeDecision_TYPE_ENUM.NONE -> null;
+  private static void applyTopAction(UpgradableStateChange_Top pickedReward_MOVE, PlayerDTO player) {
+
+    //case when decision is not needed, simply apply
+    if (pickedReward_MOVE.getDecisionType() == TopStateChangeDecision_TYPE_ENUM.NONE)
+      pickedReward_MOVE.applyToPlayer(player);
+
+    //cases with decision (top reward)
+    switch (pickedReward_MOVE.getDecisionType()) {
+      case TopStateChangeDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((UpgradableStateChange_Top_Move) pickedReward_MOVE, player); //cast to MOVE class
+      case TopStateChangeDecision_TYPE_ENUM.PRODUCE -> {} //TODO: create
+      case TopStateChangeDecision_TYPE_ENUM.TRADE -> {} //TODO: create
+      default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedReward_MOVE.getDecisionType());
     };
   }
 
-  private static List<TopStateChangeDecisionOutcome> createDecisionList_specificFor_TopAction_MOVE(UpgradableStateChange_Top pickedReward_MOVE, PlayerDTO player) {
+  private static void DECIDE_andApply_TopAction_MOVE(UpgradableStateChange_Top_Move pickedReward_MOVE, PlayerDTO player) {
     int rewardDelta__MOVE_GROUP_COUNT = pickedReward_MOVE.getCurrentChangeDelta();
-    List<TopStateChangeDecisionOutcome> result_moveDecisions = new ArrayList<>(rewardDelta__MOVE_GROUP_COUNT); //todo: MoveDecisionOutcome records to be added here
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 
-
-    //TODO: implement
-    List<TopStateChangeDecisionOutcome> allMovesDecisionOutcomes = new ArrayList<>();
-
-    for (int i = 0; i < rewardDelta__MOVE_GROUP_COUNT; i++) { //todo: make sure we have enough movables in the pool
-
-      List<Movable> userPickedGroupOfMovables = hereUserShouldPickAFreeMovableAndGroupMovablesIfPossible(movablesPool, player); //TODO: user should pick a movable group (considered as one move)
-      TileDTO targetTile = null; //TODO: get list of available Tiles to go to
-      allMovesDecisionOutcomes.add(new SingleMoveDecisionOutcome(userPickedGroupOfMovables, targetTile));
+    for (int i = 0; i < rewardDelta__MOVE_GROUP_COUNT && movablesPool.size() > 0; i++) {
+      List<Movable> userPickedGroupOfMovablesForSingleMove = userPicksGroupOfMovablesForSingleMove(movablesPool, player); // DECISION included!
+      TileDTO targetTile = null; //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
+      for (Movable movable : userPickedGroupOfMovablesForSingleMove) movable.moveTo(targetTile);
     }
-
-    return allMovesDecisionOutcomes;
   }
 
-  private static List<Movable> hereUserShouldPickAFreeMovableAndGroupMovablesIfPossible(List<Movable> movablesPool, PlayerDTO playerDTO) {
-    int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo:  PLAYER DECIDES, also ensure pool is not empty
+  private static List<Movable> userPicksGroupOfMovablesForSingleMove(List<Movable> movablesPool, PlayerDTO playerDTO) {
+    int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo:  PLAYER DECIDES
     Movable userPicked_mainMovable = movablesPool.remove(userPicked_mainMovableIndex);
 
-    List<Movable> movablesGroupDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable));
+    List<Movable> movablesGroupDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //main movable index should allways be/stay 0
 
     if (userPicked_mainMovable.getMovableType() == MovableType.MECH && playerDTO.canMechBringWorkers) { //if the movable is robot, group together - another decision for player
       //TODO: pick workers to carry together and append to movablesGroup -

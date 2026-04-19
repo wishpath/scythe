@@ -12,8 +12,9 @@ public class WorkerDTO implements Movable {
   }
 
   @Override
-  public void moveTo(TileDTO newTileDTO) {
-    location = newTileDTO;
+  public void moveTo(TileDTO targetTile) {
+    location = targetTile;
+    //todo: if there's an enemy in the target tile then implement war
   }
 
   @Override

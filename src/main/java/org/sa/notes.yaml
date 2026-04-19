@@ -1,14 +1,6 @@
 TASKS:
-  - decide and implement how to implement MOVE decisions:
-      - for (TopStateChangeDecisionOutcome decisionOutcome : decisionOutcomes) {
-          - probably should be implemented in StateChange, by applying to player
-            - then applyDecision method might accept (player, list<decisions>) or apply(player)
-  - finish regarding decision Move, that contains all groups or should it simply be List<decision Move>
-  - in the apply to player, use receive decision and the use switch by decision type
-  - in order to get movable groups capacity //int numberOfMovables = pickedReward_MOVE.getCurrentChangeDelta();
-    - finish implementing .getCurrentChangeDelta() to all State changes
   - //TODO: get list of available Tiles to go to
-      - use method getTilesToMoveTo
+      - use method player.getTilesToMoveTo(Movable main movable) (depends on what abilities the player has enabled, like moving 2 tiles, jumping water, stepping on water, etc)
   - when moving Movable, if MovalbeType == CHARACTER || ROBOT, and destination tile contains enemy, then COMBAT
   - completeDecision in PlayerDecisions, send it to "move state change" and execute that decision there.
   - finish "decide move" method in PlayerDecisions
@@ -29,6 +21,7 @@ TASKS:
       - enhance ActionSpaceDTOs with them
   - create faction board state. Initial state should be shown in  faction board enum
     - move ongoingBonuses_EnlistableRewards from player to player.factionBoardState, when created
+  //todo: if there's an enemy in the target tile then implement war
 
 LATER:
   - player should pick initial tile for worker but for now we take the first one in the set

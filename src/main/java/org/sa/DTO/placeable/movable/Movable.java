@@ -5,6 +5,6 @@ import org.sa.DTO.placeable.Locatable;
 import org.sa.enums.MovableType;
 
 public interface Movable extends Locatable {
-  void moveTo(TileDTO newTileDTO);
+  void moveTo(TileDTO targetTile);
   MovableType getMovableType();
 }
