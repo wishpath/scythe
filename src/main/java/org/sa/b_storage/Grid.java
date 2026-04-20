@@ -1,6 +1,8 @@
 package org.sa.b_storage;
 
+import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
+import org.sa.DTO.placeable.movable.Movable;
 import org.sa.enums.Direction;
 import org.sa.enums.TileType;
 
@@ -148,7 +150,10 @@ public class Grid {
     return grid[tile.row + direction.deltaRow][tile.column + direction.deltaColumn];
   }
 
-  public static Set<TileDTO> getTilesToMoveTo(TileDTO tileFrom, boolean canCrossRiver) {
+  public static Set<TileDTO> getTilesToMoveTo(Movable movable, PlayerDTO player) {
+    TileDTO tileFrom = movable.getLocation();
+    boolean canCrossRiverToOrFromTunnel = player.canCrossRiverToOrFromTunnel; //TODO: use
+    boolean canCrossRiver = false; //TODO:
     Set<TileDTO> tilesTo = new HashSet<>();
     for (Direction direction : Direction.values()) { //includes direction Direction.THIS
       if (!canCrossRiver && tileFrom.rivers.contains(direction)) continue;

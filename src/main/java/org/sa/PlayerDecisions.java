@@ -92,9 +92,16 @@ public class PlayerDecisions {
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 
     for (int i = 0; i < rewardDelta__MOVE_GROUP_COUNT && movablesPool.size() > 0; i++) {
+      //TODO: Movable mainMovable should be defined before hand, then should only be adding workers group to it
       List<Movable> userPickedGroupOfMovablesForSingleMove = userPicksGroupOfMovablesForSingleMove(movablesPool, player); // DECISION included!
-      TileDTO targetTile = null; //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
-      for (Movable movable : userPickedGroupOfMovablesForSingleMove) movable.moveTo(targetTile);
+      Movable mainMovable = userPickedGroupOfMovablesForSingleMove.get(0); //TODO: should be defined before
+      Set<TileDTO> possibleTargets = Grid.getTilesToMoveTo(mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
+      if (possibleTargets.size() == 0) {
+        //TODO: then what?
+      }
+      TileDTO targetTile = possibleTargets.iterator().next(); //TODO: player picks target tile
+      for (Movable movable : userPickedGroupOfMovablesForSingleMove)
+        movable.moveTo(targetTile, player);
     }
   }
 

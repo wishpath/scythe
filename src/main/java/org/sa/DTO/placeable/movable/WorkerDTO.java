@@ -1,5 +1,6 @@
 package org.sa.DTO.placeable.movable;
 
+import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
 import org.sa.enums.MovableType;
 
@@ -12,7 +13,7 @@ public class WorkerDTO implements Movable {
   }
 
   @Override
-  public void moveTo(TileDTO targetTile) {
+  public void moveTo(TileDTO targetTile, PlayerDTO player) {
     location = targetTile;
     //todo: if there's an enemy in the target tile then implement war
   }
