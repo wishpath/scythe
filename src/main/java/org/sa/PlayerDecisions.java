@@ -92,30 +92,35 @@ public class PlayerDecisions {
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 
     for (int i = 0; i < rewardDelta__MOVE_GROUP_COUNT && movablesPool.size() > 0; i++) {
-      //TODO: Movable mainMovable should be defined before hand, then should only be adding workers group to it
-      List<Movable> userPickedGroupOfMovablesForSingleMove = userPicksGroupOfMovablesForSingleMove(movablesPool, player); // DECISION included!
-      Movable mainMovable = userPickedGroupOfMovablesForSingleMove.get(0); //TODO: should be defined before
-      Set<TileDTO> possibleTargets = Grid.getTilesToMoveTo(mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
+
+      //decide who move
+      int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo:  PLAYER should DECIDE main movable
+      Movable userPicked_mainMovable = movablesPool.remove(userPicked_mainMovableIndex);
+      List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable));
+      if (userPicked_mainMovable.getMovableType() == MovableType.MECH && player.canMechBringWorkers) {
+        //TODO: pick workers to carry together and append to movablesGroup -
+        // todo:  PLAYER DECIDES
+      }
+
+      //decide where to move
+      Set<TileDTO> possibleTargets = Grid.getTilesToMoveTo(userPicked_mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
       if (possibleTargets.size() == 0) {
-        //TODO: then what?
+        //main movable has nowhere to go
+        i--; // let's not count this as a move
+        //lets return them to the pool, but only if they have chance to be moved
+        for (Movable movable : groupOfMovablesDecidedToMove)
+          if (hasChanceToBeMoved(movable)) //careful to not produce infinite loops
+            movablesPool.add(movable);
+        continue;
       }
       TileDTO targetTile = possibleTargets.iterator().next(); //TODO: player picks target tile
-      for (Movable movable : userPickedGroupOfMovablesForSingleMove)
-        movable.moveTo(targetTile, player);
+
+      //execute move
+      for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move
     }
   }
 
-  private static List<Movable> userPicksGroupOfMovablesForSingleMove(List<Movable> movablesPool, PlayerDTO playerDTO) {
-    int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo:  PLAYER DECIDES
-    Movable userPicked_mainMovable = movablesPool.remove(userPicked_mainMovableIndex);
-
-    List<Movable> movablesGroupDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //main movable index should allways be/stay 0
-
-    if (userPicked_mainMovable.getMovableType() == MovableType.MECH && playerDTO.canMechBringWorkers) { //if the movable is robot, group together - another decision for player
-      //TODO: pick workers to carry together and append to movablesGroup -
-      // todo:  PLAYER DECIDES
-    }
-
-    return movablesGroupDecidedToMove;
+  private static boolean hasChanceToBeMoved(Movable movable) {
+    return true; //TODO: implement
   }
 }
