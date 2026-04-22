@@ -87,19 +87,25 @@ public class PlayerDecisions {
     };
   }
 
-  private static void DECIDE_andApply_TopAction_MOVE(UpgradableStateChange_Top_Move pickedReward_MOVE, PlayerDTO player) {
-    int rewardDelta__MOVE_GROUP_COUNT = pickedReward_MOVE.getCurrentChangeDelta();
+  private static void DECIDE_andApply_TopAction_MOVE(UpgradableStateChange_Top_Move moveStateChange, PlayerDTO player) {
+    int moveCount = moveStateChange.getCurrentChangeDelta();
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 
-    for (int i = 0; i < rewardDelta__MOVE_GROUP_COUNT && movablesPool.size() > 0; i++) {
+    for (int i = 0; i < moveCount && movablesPool.size() > 0; i++) {
 
       //decide who move
-      int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo:  PLAYER should DECIDE main movable
+      int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo: PLAYER DECIDES main movable
       Movable userPicked_mainMovable = movablesPool.remove(userPicked_mainMovableIndex);
-      List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable));
-      if (userPicked_mainMovable.getMovableType() == MovableType.MECH && player.canMechBringWorkers) {
-        //TODO: pick workers to carry together and append to movablesGroup -
-        // todo:  PLAYER DECIDES
+      List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //includes main movable
+      if (userPicked_mainMovable.isMech() && player.canMechBringWorkers) {
+        TileDTO mechLocation = userPicked_mainMovable.getLocation();
+        List<Movable> workersInMechLocation = movablesPool.stream().filter(Movable::isWorker).filter(worker -> worker.getLocation() == mechLocation).toList(); //creates different list, but objects reference matching references
+        int playerPicked_workersCountToMoveTogether = workersInMechLocation.size();//todo: PLAYER DECIDES how many workers go together
+        for (int j = 0; j < playerPicked_workersCountToMoveTogether; j++) {
+          Movable worker = workersInMechLocation.get(j);
+          groupOfMovablesDecidedToMove.add(worker);
+          movablesPool.remove(worker);
+        }
       }
 
       //decide where to move

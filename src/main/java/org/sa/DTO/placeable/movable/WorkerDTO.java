@@ -24,6 +24,21 @@ public class WorkerDTO implements Movable {
   }
 
   @Override
+  public boolean isMech() {
+    return false;
+  }
+
+  @Override
+  public boolean isWorker() {
+    return true;
+  }
+
+  @Override
+  public boolean isCharacter() {
+    return false;
+  }
+
+  @Override
   public TileDTO getLocation() {
     return location;
   }

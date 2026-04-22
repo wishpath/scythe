@@ -8,4 +8,7 @@ import org.sa.enums.MovableType;
 public interface Movable extends Locatable {
   void moveTo(TileDTO targetTile, PlayerDTO player);
   MovableType getMovableType();
+  boolean isMech();
+  boolean isWorker();
+  boolean isCharacter();
 }
