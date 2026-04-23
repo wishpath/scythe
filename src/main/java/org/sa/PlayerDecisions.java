@@ -112,6 +112,42 @@ public class PlayerDecisions {
       Set<TileDTO> possibleTargets = Grid.getTilesToMoveTo(userPicked_mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
       if (possibleTargets.size() == 0) {
         //main movable has nowhere to go
+        if (groupOfMovablesDecidedToMove.size() == 1) {
+          // so it's main movable only in the group
+          if (userPicked_mainMovable.isWorker()) {
+            // worker might get picked by mech, but mech has to be in the same tile
+            if (containsTileMech(userPicked_mainMovable.getLocation())) {
+              //maybe mech will bring the worker so lets return worker to the pool
+              movablesPool.add(userPicked_mainMovable);
+              i--; // not counting that move
+              continue;
+            }
+            else {
+              //worker cannot move or get carried, so let's not return it to the pool;
+              i--; // not counting that move
+              continue;
+            }
+          }
+          else {
+            // non-worker cannot move, so let's not return it to the pool
+            i--; // not counting that move
+            continue;
+          }
+        }
+        else {
+          //there are many movables so we can assume main movable is mech?
+          if (!userPicked_mainMovable.isMech()) throw new IllegalStateException("mech is expected");
+          // mech does not come back to the pool, but then is it possible that workers might have where to go on their own
+          if (haveWorkersMoves(groupOfMovablesDecidedToMove)) { //care!! check first movable that is .isWorker only
+            for (Movable movable : groupOfMovablesDecidedToMove) {
+              if (movable.isWorker())
+                movablesPool.add(movable);
+            }
+
+            i--; // not counting that move
+            continue;
+          }
+        }
         i--; // let's not count this as a move
         //lets return them to the pool, but only if they have chance to be moved
         for (Movable movable : groupOfMovablesDecidedToMove)

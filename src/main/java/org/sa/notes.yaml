@@ -1,5 +1,5 @@
 TASKS:
-  - continue on DECIDE_andApply_TopAction_MOVE
+  - continue on DECIDE_andApply_TopAction_MOVE: implement missing methods
   - improve getTilesToMoveTo
   - //TODO: get list of available Tiles to go to
       - use method player.getTilesToMoveTo(Movable main movable) (depends on what abilities the player has enabled, like moving 2 tiles, jumping water, stepping on water, etc)
