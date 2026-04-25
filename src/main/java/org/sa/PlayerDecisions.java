@@ -116,7 +116,7 @@ public class PlayerDecisions {
           // so it's main movable only in the group
           if (userPicked_mainMovable.isWorker()) {
             // worker might get picked by mech, but mech has to be in the same tile
-            if (containsTileMech(userPicked_mainMovable.getLocation())) {
+            if (containsTileMech(userPicked_mainMovable.getLocation(), movablesPool)) {
               //maybe mech will bring the worker so lets return worker to the pool
               movablesPool.add(userPicked_mainMovable);
               i--; // not counting that move
@@ -160,6 +160,13 @@ public class PlayerDecisions {
       //execute move
       for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move
     }
+  }
+
+  private static boolean containsTileMech(TileDTO location, List<Movable> movablesPool) {
+    for (Movable movable : movablesPool)
+      if (movable.isMech() && movable.getLocation() == location)
+        return true;
+    return false;
   }
 
   private static boolean hasChanceToBeMoved(Movable movable) {
