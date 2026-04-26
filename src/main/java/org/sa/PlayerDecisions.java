@@ -138,7 +138,7 @@ public class PlayerDecisions {
           //there are many movables so we can assume main movable is mech?
           if (!userPicked_mainMovable.isMech()) throw new IllegalStateException("mech is expected");
           // mech does not come back to the pool, but then is it possible that workers might have where to go on their own
-          if (haveWorkersMoves(groupOfMovablesDecidedToMove)) { //care!! check first movable that is .isWorker only
+          if (haveWorkersMoves(groupOfMovablesDecidedToMove, player)) { //care!! check first movable that is .isWorker only
             for (Movable movable : groupOfMovablesDecidedToMove) {
               if (movable.isWorker())
                 movablesPool.add(movable);
@@ -160,6 +160,21 @@ public class PlayerDecisions {
       //execute move
       for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move
     }
+  }
+
+  private static boolean haveWorkersMoves(List<Movable> groupOfMovablesDecidedToMove, PlayerDTO player) {
+    Movable worker = null;
+
+    for (Movable movable : groupOfMovablesDecidedToMove)
+      if (movable.isWorker()) {
+        worker = movable;
+        break;
+      }
+
+    if (worker == null) throw new IllegalArgumentException("AT THIS STAGE A GROUP IS EXPECTED TO CONTAIN A WORKER");
+    Set<TileDTO> targetPossibilities = Grid.getTilesToMoveTo(worker, player);
+
+    return targetPossibilities.size() > 0;
   }
 
   private static boolean containsTileMech(TileDTO location, List<Movable> movablesPool) {
