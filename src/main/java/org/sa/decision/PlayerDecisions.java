@@ -1,4 +1,4 @@
-package org.sa;
+package org.sa.decision;
 
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.DTO.PlayerDTO;
@@ -7,6 +7,7 @@ import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.b_storage.Grid;
+import org.sa.decision.helper.MoveDecisionHelper;
 import org.sa.enums.*;
 import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top;
 import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Move;
@@ -88,10 +89,10 @@ public class PlayerDecisions {
   }
 
   private static void DECIDE_andApply_TopAction_MOVE(UpgradableStateChange_Top_Move moveStateChange, PlayerDTO player) {
-    int moveCount = moveStateChange.getCurrentChangeDelta();
+    int moveCountTotal = moveStateChange.getCurrentChangeDelta();
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 
-    for (int i = 0; i < moveCount && movablesPool.size() > 0; i++) {
+    for (int moveCount = 0; moveCount < moveCountTotal && movablesPool.size() > 0; moveCount++) {
 
       //decide who move
       int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo: PLAYER DECIDES main movable
@@ -110,81 +111,15 @@ public class PlayerDecisions {
 
       //decide where to move
       Set<TileDTO> possibleTargets = Grid.getTilesToMoveTo(userPicked_mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
-      if (possibleTargets.size() == 0) {
-        //main movable has nowhere to go
-        if (groupOfMovablesDecidedToMove.size() == 1) {
-          // so it's main movable only in the group
-          if (userPicked_mainMovable.isWorker()) {
-            // worker might get picked by mech, but mech has to be in the same tile
-            if (containsTileMech(userPicked_mainMovable.getLocation(), movablesPool)) {
-              //maybe mech will bring the worker so lets return worker to the pool
-              movablesPool.add(userPicked_mainMovable);
-              i--; // not counting that move
-              continue;
-            }
-            else {
-              //worker cannot move or get carried, so let's not return it to the pool;
-              i--; // not counting that move
-              continue;
-            }
-          }
-          else {
-            // non-worker cannot move, so let's not return it to the pool
-            i--; // not counting that move
-            continue;
-          }
-        }
-        else {
-          //there are many movables so we can assume main movable is mech?
-          if (!userPicked_mainMovable.isMech()) throw new IllegalStateException("mech is expected");
-          // mech does not come back to the pool, but then is it possible that workers might have where to go on their own
-          if (haveWorkersMoves(groupOfMovablesDecidedToMove, player)) { //care!! check first movable that is .isWorker only
-            for (Movable movable : groupOfMovablesDecidedToMove) {
-              if (movable.isWorker())
-                movablesPool.add(movable);
-            }
-
-            i--; // not counting that move
-            continue;
-          }
-        }
-        i--; // let's not count this as a move
-        //lets return them to the pool, but only if they have chance to be moved
-        for (Movable movable : groupOfMovablesDecidedToMove)
-          if (hasChanceToBeMoved(movable)) //careful to not produce infinite loops
-            movablesPool.add(movable);
-        continue;
+      if (possibleTargets.size() == 0) { //main movable has nowhere to go
+        MoveDecisionHelper.returnOrForgetMovables(player, groupOfMovablesDecidedToMove, userPicked_mainMovable, movablesPool);
+        moveCount--; // not counting this iteration as move;
+        continue; // no need/ impossible to pick targetTile and complete move
       }
-      TileDTO targetTile = possibleTargets.iterator().next(); //TODO: player picks target tile
 
-      //execute move
+      //move
+      TileDTO targetTile = possibleTargets.iterator().next(); //TODO: player picks target tile
       for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move
     }
-  }
-
-  private static boolean haveWorkersMoves(List<Movable> groupOfMovablesDecidedToMove, PlayerDTO player) {
-    Movable worker = null;
-
-    for (Movable movable : groupOfMovablesDecidedToMove)
-      if (movable.isWorker()) {
-        worker = movable;
-        break;
-      }
-
-    if (worker == null) throw new IllegalArgumentException("AT THIS STAGE A GROUP IS EXPECTED TO CONTAIN A WORKER");
-    Set<TileDTO> targetPossibilities = Grid.getTilesToMoveTo(worker, player);
-
-    return targetPossibilities.size() > 0;
-  }
-
-  private static boolean containsTileMech(TileDTO location, List<Movable> movablesPool) {
-    for (Movable movable : movablesPool)
-      if (movable.isMech() && movable.getLocation() == location)
-        return true;
-    return false;
-  }
-
-  private static boolean hasChanceToBeMoved(Movable movable) {
-    return true; //TODO: implement
   }
 }
