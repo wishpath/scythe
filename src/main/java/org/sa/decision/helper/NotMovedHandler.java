@@ -8,7 +8,7 @@ import org.sa.b_storage.Grid;
 import java.util.List;
 import java.util.Set;
 
-public class MoveDecisionHelper {
+public class NotMovedHandler {
 
   public static void returnOrForgetMovables(PlayerDTO player, List<Movable> groupOfMovablesDecidedToMove, Movable userPicked_mainMovable, List<Movable> movablesPool) {
     if (groupOfMovablesDecidedToMove.size() == 1) { // so it's main movable only in the group

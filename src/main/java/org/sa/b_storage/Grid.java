@@ -170,7 +170,6 @@ public class Grid {
       if (!canCrossRiver && tileTo.rivers.contains(direction.opposite())) continue;
 
       tilesTo.add(tileTo); // possibly tileTo == tileFrom, which means not moving
-
     }
 
     if (tileFrom.isTunnel)

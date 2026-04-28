@@ -1,7 +1,169 @@
+move_improvements:
+  move_upgrade: DONE
+    - source: player mat top-row Upgrade action by upgrading Move
+    - effect: move 3 units instead of 2
+    - access_from: player mat
+
+  speed:
+    - source: faction mat mech ability unlocked by DEPLOY
+    - effect: character + mechs move +1 hex per Move action
+    - no_effect_for: workers
+    - access_from_ALL_faction_mats:
+      - SAXONY_BLACK
+      - RUSVIET_RED
+      - POLANIA_WHITE
+      - CRIMEA_YELLOW
+      - NORDIC_BLUE
+      - ALBION_GREEN
+      - TOGAWA_PURPLE
+
+
+  riverwalk:
+    - source: faction mat mech ability unlocked by DEPLOY
+    - effect: character + mechs cross rivers to faction-specific terrain
+    - no_effect_for: workers
+    - access_from_ALL_faction_mats:
+        - SAXONY_BLACK
+        - RUSVIET_RED
+        - POLANIA_WHITE
+        - CRIMEA_YELLOW
+        - NORDIC_BLUE
+        - ALBION_GREEN
+        - TOGAWA_PURPLE
+
+  township:
+    - source: faction mat mech ability unlocked by DEPLOY
+    - effect: villages + Factory count as adjacent for movement
+    - access_from_faction_mat: RUSVIET_RED
+    - not_applicable_for_these_factions:
+        - SAXONY_BLACK
+        - POLANIA_WHITE
+        - CRIMEA_YELLOW
+        - NORDIC_BLUE
+        - ALBION_GREEN
+        - TOGAWA_PURPLE
+    - no_effect_for: workers
+
+  underpass:
+    - source: faction mat mech ability unlocked by DEPLOY
+    - effect: controlled mountains + tunnels + Mine count as adjacent for movement
+    - access_from_faction_mat: SAXONY_BLACK
+    - not_applicable_for_these_factions:
+        - RUSVIET_RED
+        - POLANIA_WHITE
+        - CRIMEA_YELLOW
+        - NORDIC_BLUE
+        - ALBION_GREEN
+        - TOGAWA_PURPLE
+    - no_effect_for: workers
+
+  underpass:
+    - source: faction mat mech ability unlocked by DEPLOY
+    - effect_applies_to:
+        - character
+        - mechs
+    - effect: controlled mountains + tunnels + Mine count as adjacent for movement
+    - no_effect_for: workers
+    - access_from_faction_mat: SAXONY_BLACK
+    - not_applicable_for_these_factions:
+        - RUSVIET_RED
+        - POLANIA_WHITE
+        - CRIMEA_YELLOW
+        - NORDIC_BLUE
+        - ALBION_GREEN
+        - TOGAWA_PURPLE
+
+  seaworthy:
+    - source: faction mat mech ability unlocked by DEPLOY
+    - effect_applies_to:
+        - character
+        - mechs
+    - effect: move to/from lakes; retreat to lakes
+    - no_effect_for: workers
+    - access_from_faction_mat: NORDIC_BLUE
+    - not_applicable_for_these_factions:
+        - SAXONY_BLACK
+        - RUSVIET_RED
+        - POLANIA_WHITE
+        - CRIMEA_YELLOW
+        - ALBION_GREEN
+        - TOGAWA_PURPLE
+
+  submerge:
+    - source: faction mat mech ability unlocked by DEPLOY
+    - effect_applies_to:
+        - character
+        - mechs
+    - effect: move lake-to-lake and to/from lakes
+    - no_effect_for: workers
+    - access_from_faction_mat: POLANIA_WHITE
+    - not_applicable_for_these_factions:
+        - SAXONY_BLACK
+        - RUSVIET_RED
+        - CRIMEA_YELLOW
+        - NORDIC_BLUE
+        - ALBION_GREEN
+        - TOGAWA_PURPLE
+
+wayfare:
+  - source: faction mat mech ability unlocked by DEPLOY
+  - effect_applies_to:
+      - character
+      - mechs
+  - effect: move to inactive faction home bases
+  - no_effect_for: workers
+  - access_from_faction_mat: CRIMEA_YELLOW
+  - not_applicable_for_these_factions:
+      - SAXONY_BLACK
+      - RUSVIET_RED
+      - POLANIA_WHITE
+      - NORDIC_BLUE
+      - ALBION_GREEN
+      - TOGAWA_PURPLE
+
+  swim:
+    - source: faction mat faction ability available from game start
+    - effect: workers may move across rivers as normal movement (treat river borders as passable edges for workers only)
+    - effect_explicit_meaning:
+        - workers may cross river borders directly between adjacent land territories
+        - workers do NOT enter rivers or occupy river spaces
+        - workers simply ignore river restriction when moving between tiles
+    - effect_applies_to:
+        - workers
+    - no_effect_for:
+        - character
+        - mechs
+    - access_from_faction_mat: NORDIC_BLUE
+    - not_applicable_for_these_factions:
+        - SAXONY_BLACK
+        - RUSVIET_RED
+        - POLANIA_WHITE
+        - CRIMEA_YELLOW
+        - ALBION_GREEN
+        - TOGAWA_PURPLE
+
+factory_card:
+  - source: game map Factory structure (center tiles)
+  - how_to_obtain:
+      - move a character or mech onto a Factory tile
+      - that player immediately gains control of the Factory
+      - only the FIRST player to enter a specific Factory gains its card
+      - control is permanent for that player (unless house rules or special effects change it, which normally do not exist)
+  - trigger_on_acquisition:
+      - immediately take the Factory card corresponding to the number of players
+      - draw 1 Factory card and choose 1 of its two reward rows (top OR bottom)
+      - place chosen reward into your player mat (replacing an upgrade slot or action enhancement depending on rules version)
+  - effect_access:
+      - Factory card bottom row includes special actions such as Factory Move Action
+      - Factory card top row usually provides powerful one-time or ongoing benefits depending on chosen option
+  - important_rule:
+      - each Factory tile can only be claimed once per game
+      - multiple players cannot gain the same Factory card
+
+
+
 TASKS:
-  - continue on DECIDE_andApply_TopAction_MOVE
-  - improve getTilesToMoveTo
-  - //TODO: get list of available Tiles to go to
+  - coninue on getTilesToMoveTo, maybe export to MoveTargetUtil (create class)
       - use method player.getTilesToMoveTo(Movable main movable) (depends on what abilities the player has enabled, like moving 2 tiles, jumping water, stepping on water, etc)
   - completeDecision in PlayerDecisions, send it to "move state change" and execute that decision there.
   - implement other player decisions regarding top actions:

@@ -7,7 +7,7 @@ import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.b_storage.Grid;
-import org.sa.decision.helper.MoveDecisionHelper;
+import org.sa.decision.helper.NotMovedHandler;
 import org.sa.enums.*;
 import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top;
 import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Move;
@@ -112,7 +112,7 @@ public class PlayerDecisions {
       //decide where to move
       Set<TileDTO> possibleTargets = Grid.getTilesToMoveTo(userPicked_mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
       if (possibleTargets.size() == 0) { //main movable has nowhere to go
-        MoveDecisionHelper.returnOrForgetMovables(player, groupOfMovablesDecidedToMove, userPicked_mainMovable, movablesPool);
+        NotMovedHandler.returnOrForgetMovables(player, groupOfMovablesDecidedToMove, userPicked_mainMovable, movablesPool);
         moveCount--; // not counting this iteration as move;
         continue; // no need/ impossible to pick targetTile and complete move
       }
