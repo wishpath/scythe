@@ -10,7 +10,7 @@ public class GetAbility_RiverCrossingToOrFromTunnel_Burrow implements StateChang
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.opponentGetsMinus2AttackBeforeYouAttackHim = true;
+    player.ALBION_opponentGetsMinus2AttackBeforeYouAttackHim = true;
   }
 
   @Override

@@ -152,8 +152,15 @@ public class Grid {
 
   public static Set<TileDTO> getTilesToMoveTo(Movable movable, PlayerDTO player) {
     TileDTO tileFrom = movable.getLocation();
-    boolean canCrossRiverToOrFromTunnel = player.canCrossRiverToOrFromTunnel; //TODO: use
-    boolean canCrossRiver = false; //TODO:
+
+    //move improvements
+    boolean ALBION_canCrossRiverToOrFromTunnel_burrow = player.ALBION_canCrossRiverToOrFromTunnel_burrow; //TODO: use
+    boolean SPEED_mechAndCharacterCanMove2Tiles = player.SPEED_mechAndCharacterCanMove2Tiles; //TODO: use
+
+
+    //??
+    boolean canCrossRiver = false; //TODO: use
+
     Set<TileDTO> tilesTo = new HashSet<>();
     for (Direction direction : Direction.values()) { //includes direction Direction.THIS
       if (!canCrossRiver && tileFrom.rivers.contains(direction)) continue;

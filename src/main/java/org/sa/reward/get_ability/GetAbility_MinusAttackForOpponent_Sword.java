@@ -10,7 +10,7 @@ import org.sa.reward.StateChange;
 public class GetAbility_MinusAttackForOpponent_Sword implements StateChange {
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.opponentGetsMinus2AttackBeforeYouAttackHim = true;
+    player.ALBION_opponentGetsMinus2AttackBeforeYouAttackHim_sword = true;
   }
 
   @Override

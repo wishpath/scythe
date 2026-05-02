@@ -1,22 +1,4 @@
 move_improvements:
-  move_upgrade: DONE
-    - source: player mat top-row Upgrade action by upgrading Move
-    - effect: move 3 units instead of 2
-    - access_from: player mat
-
-  speed:
-    - source: faction mat mech ability unlocked by DEPLOY
-    - effect: character + mechs move +1 hex per Move action
-    - no_effect_for: workers
-    - access_from_ALL_faction_mats:
-      - SAXONY_BLACK
-      - RUSVIET_RED
-      - POLANIA_WHITE
-      - CRIMEA_YELLOW
-      - NORDIC_BLUE
-      - ALBION_GREEN
-      - TOGAWA_PURPLE
-
 
   riverwalk:
     - source: faction mat mech ability unlocked by DEPLOY

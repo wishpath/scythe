@@ -11,7 +11,7 @@ public class GetAbility_CanMoveToControlledTerritory_Rally implements StateChang
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.canMoveCharacterToControlledTerritory = true;
+    player.ALBION_canMoveCharacterToControlledTerritory_rally = true;
   }
 
   @Override

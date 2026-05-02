@@ -44,22 +44,18 @@ public class PlayerDTO {
       Building.MINE, new BuildingDTO(Building.MINE)
   );
 
-  // Clan Albion — Exalt (additional to MOVE):
-  // 4 Flag Tokens total. After character movement,
-  // may place 1 on the territory where it ended.
-  public int flagTokenPool = 0; //Clan Albion / Exalt ability / fixed supply of 4 Flag tokens / 1 token — placed AFTER character moved on tile where he landed //TODO: apply to character (Movable) method moveTo
-  // Clan Albion — Burrow (additional to MOVE):
-  // move across rivers to or from an adjacent tunner territory
-  public boolean canCrossRiverToOrFromTunnel = false; //TODO: apply to each Movable method moveTo
-  // Clan Albion — Sword (additional to MOVE):
-  // before combat where player is attacking, opponent gets -2 points of attack
-  public boolean opponentGetsMinus2AttackBeforeYouAttackHim = false; //TODO: apply to attack functionality
-  // Clan Albion — Shield (additional to MOVE):
-  // before combat where you are defending, player gets 2 points of attack
-  public boolean playerGets2AttackBeforeDefence = false; //TODO: apply to defence functionality
-  // Clan Albion — Rally (additional to MOVE / Enlist card):
-  // allows character to move to any territory where you have a worker or Flag token
-  public boolean canMoveCharacterToControlledTerritory = false; //TODO: apply to character (Movable) method moveTo
+
+  public int      ALBION_flagTokenPool_exalt = 0; //Clan Albion gets 4 / placed AFTER character moved on tile where he landed //TODO: apply to character (Movable) method moveTo
+  public boolean  ALBION_canCrossRiverToOrFromTunnel_burrow = false;
+  public boolean  ALBION_opponentGetsMinus2AttackBeforeYouAttackHim_sword = false; // before combat where player is attacking, opponent gets -2 points of attack
+  public boolean  ALBION_playerGets2AttackBeforeDefence_shield = false; //before combat where you are defending, player gets 2 points of attack
+  public boolean  ALBION_canMoveCharacterToControlledTerritory_rally = false; // allows character to move to any territory where you have a worker or Flag token
+
+
+
+  //MOVE IMPROVEMENTS
+  //character + mechs move +1 hex per Move action, all faction mats, no effect for workers, get from faction mat by deploying
+  public boolean SPEED_mechAndCharacterCanMove2Tiles = false; //TODO: enable turning on; use
 
 
   //boardItems
@@ -75,7 +71,7 @@ public class PlayerDTO {
   public boolean canMechBringWorkers = false; //TODO: figure out when this turns on
 
   public PlayerDTO(PlayerMat playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
-    //faction board part
+    //player mat part
     this.playerMat = playerMat;
     this.hearts += playerMat.initialHearts;
     this.coins += playerMat.initialCoins;
