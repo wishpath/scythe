@@ -9,7 +9,7 @@ public class RewardBasic_FlagTokens_Exalt implements StateChange {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.ALBION_flagTokenPool_exalt = DELTA_FLAG_TOKEN_AMOUNT;
+    player.GREEN_ALBION_flagTokenPool_exalt = DELTA_FLAG_TOKEN_AMOUNT;
   }
 
   @Override

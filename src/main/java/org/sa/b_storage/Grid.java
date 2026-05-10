@@ -154,7 +154,7 @@ public class Grid {
     TileDTO tileFrom = movable.getLocation();
 
     //move improvements
-    boolean ALBION_canCrossRiverToOrFromTunnel_burrow = player.ALBION_canCrossRiverToOrFromTunnel_burrow; //TODO: use
+    boolean ALBION_canCrossRiverToOrFromTunnel_burrow = player.GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow; //TODO: use
     boolean SPEED_mechAndCharacterCanMove2Tiles = player.SPEED_mechAndCharacterCanMove2Tiles; //TODO: use
 
 

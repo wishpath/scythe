@@ -11,7 +11,7 @@ public class GetAbility_PlusAttackBeforeDefence_Shield implements StateChange {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.ALBION_playerGets2AttackBeforeDefence_shield = true;
+    player.GREEN_ALBION_playerGets2AttackBeforeDefence_shield = true;
   }
 
   @Override
