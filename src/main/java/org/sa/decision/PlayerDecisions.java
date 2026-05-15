@@ -9,8 +9,8 @@ import org.sa.b_storage.CardPool;
 import org.sa.b_storage.Grid;
 import org.sa.decision.helper.NotMovedHandler;
 import org.sa.enums.*;
-import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top;
-import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top_Move;
+import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.UpgradableStateChange_Top;
+import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.UpgradableStateChange_Top_Move;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class PlayerDecisions {
     //player chooses where to place workers
     List<WorkerDTO> workers = new ArrayList<>(factionMat.initialWorkersCount);
     for (int i = 0; i < factionMat.initialWorkersCount; i++) {
-      Set<TileDTO> nearHomeTiles = Grid.getNonNullNeighborsNotSelf(factionMat.home);
+      Set<TileDTO> nearHomeTiles = Grid.getNonNullNeighborsNotSelf(factionMat.homeTile);
       workers.add(new WorkerDTO(nearHomeTiles.iterator().next())); //TODO: player should pick for each
     }
 
@@ -57,7 +57,7 @@ public class PlayerDecisions {
         break;
       }
 
-    //player decides to actually use MOVE_GAIN and pays for it
+    //player decides to actually use (and not skip) MOVE_GAIN and pays for it
     boolean playerDecidedToUseTopAction = true; //TODO: player should decide
     if (playerDecidedToUseTopAction) {
       pickedActionSpaceDTO__MOVE_GAIN.actionTopCost.applyToPlayer(player);
@@ -68,22 +68,17 @@ public class PlayerDecisions {
       UpgradableStateChange_Top pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.actionTop_Rewards_toChoose_upgradable[picked_reward_index__representing_MOVE];
 
       //player decides what and where to MOVE
-      applyTopAction(pickedReward_MOVE, player); //so each decision in the list is a separate movable group and target
+      applyTopAction(pickedReward_MOVE, player);
 
     }
   }
 
   private static void applyTopAction(UpgradableStateChange_Top pickedReward_MOVE, PlayerDTO player) {
-
-    //case when decision is not needed, simply apply
-    if (pickedReward_MOVE.getDecisionType() == TopStateChangeDecision_TYPE_ENUM.NONE)
-      pickedReward_MOVE.applyToPlayer(player);
-
-    //cases with decision (top reward)
     switch (pickedReward_MOVE.getDecisionType()) {
       case TopStateChangeDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((UpgradableStateChange_Top_Move) pickedReward_MOVE, player); //cast to MOVE class
       case TopStateChangeDecision_TYPE_ENUM.PRODUCE -> {} //TODO: create
       case TopStateChangeDecision_TYPE_ENUM.TRADE -> {} //TODO: create
+      case TopStateChangeDecision_TYPE_ENUM.NONE -> pickedReward_MOVE.applyToPlayer(player); //case when decision is not needed, simply apply
       default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedReward_MOVE.getDecisionType());
     };
   }
@@ -98,7 +93,7 @@ public class PlayerDecisions {
       int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo: PLAYER DECIDES main movable
       Movable userPicked_mainMovable = movablesPool.remove(userPicked_mainMovableIndex);
       List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //includes main movable
-      if (userPicked_mainMovable.isMech() && player.canMechBringWorkers) {
+      if (userPicked_mainMovable.isMech()) { //mechs can always carry workers
         TileDTO mechLocation = userPicked_mainMovable.getLocation();
         List<Movable> workersInMechLocation = movablesPool.stream().filter(Movable::isWorker).filter(worker -> worker.getLocation() == mechLocation).toList(); //creates different list, but objects reference matching references
         int playerPicked_workersCountToMoveTogether = workersInMechLocation.size();//todo: PLAYER DECIDES how many workers go together

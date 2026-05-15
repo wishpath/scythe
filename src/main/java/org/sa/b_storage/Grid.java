@@ -155,7 +155,8 @@ public class Grid {
 
     //move improvements
     boolean ALBION_canCrossRiverToOrFromTunnel_burrow = player.GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow; //TODO: use
-    boolean SPEED_mechAndCharacterCanMove2Tiles = player.SPEED_mechAndCharacterCanMove2Tiles; //TODO: use
+
+    //TODO: use other faction/deploy abilities than GREEN_ALBION as well
 
 
     //??

@@ -1,8 +1,8 @@
 package org.sa.enums;
 
 import org.sa.DTO.ActionSpaceDTO;
-import org.sa.reward.cost_upgradable.*;
-import org.sa.reward.upgradable_state_change_top.*;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.*;
+import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.*;
 
 public enum PlayerMat {
   AGRICULTURAL(

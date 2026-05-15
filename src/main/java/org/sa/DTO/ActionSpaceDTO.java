@@ -2,9 +2,9 @@ package org.sa.DTO;
 
 import org.sa.enums.ActionBottom;
 import org.sa.enums.ActionTop;
-import org.sa.reward.cost_upgradable.UpgradableCost;
-import org.sa.reward.reward_basic.RewardBasic_Coins;
-import org.sa.reward.upgradable_state_change_top.UpgradableStateChange_Top;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost;
+import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Coins;
+import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.UpgradableStateChange_Top;
 
 //contains state, upgradable, through the game
 public class ActionSpaceDTO {
@@ -16,7 +16,7 @@ public class ActionSpaceDTO {
 
   ActionBottom actionBottom;
   public UpgradableCost actionBottomUpgradableCost;
-  public RewardBasic_Coins actionBottomCoinReward;
+  public ElistActionOneTimeReward_FromFactionMat_Coins actionBottomCoinReward;
 
   public ActionSpaceDTO(
       ActionTop actionTop,
@@ -33,6 +33,6 @@ public class ActionSpaceDTO {
 
     this.actionBottom = actionBottom;
     this.actionBottomUpgradableCost = actionBottomUpgradableCost;
-    this.actionBottomCoinReward = new RewardBasic_Coins(actionBottomCoinRewardDeltaCoins);
+    this.actionBottomCoinReward = new ElistActionOneTimeReward_FromFactionMat_Coins(actionBottomCoinRewardDeltaCoins);
   }
 }
