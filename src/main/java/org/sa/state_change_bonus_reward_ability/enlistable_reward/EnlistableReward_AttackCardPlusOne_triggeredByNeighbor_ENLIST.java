@@ -1,14 +1,14 @@
 package org.sa.state_change_bonus_reward_ability.enlistable_reward;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.b_storage.CardPool;
 import org.sa.enums.ActionBottom;
 
-public class EnlistableReward_AttackPlusOne implements EnlistableReward {
+public class EnlistableReward_AttackCardPlusOne_triggeredByNeighbor_ENLIST implements EnlistableReward {
 
-  private final ActionBottom triggeringAction = ActionBottom.UPGRADE;
+  private final ActionBottom triggeringAction = ActionBottom.ENLIST;
   private boolean enlisted;
-  private int currentDeltaAttack = 1;
-
+  private int currentDeltaCards = 1;
 
   @Override
   public void enlist_turnOn() {
@@ -25,17 +25,16 @@ public class EnlistableReward_AttackPlusOne implements EnlistableReward {
     return enlisted && action == triggeringAction;
   }
 
-  @Override
   public void applyToPlayer(PlayerDTO player) {
     if (!enlisted) throw new IllegalStateException(
         "Should only apply when enlisted and after trigger check."
     );
-    for (int i = 0; i < this.currentDeltaAttack; i++)
-      player.attack++;
+    for (int i = 0; i < this.currentDeltaCards; i++)
+      player.attackCards.add(CardPool.drawAttackCard());
   }
 
   @Override
   public int getCurrentChangeDelta() {
-    return this.currentDeltaAttack; // one attack is added
+    return this.currentDeltaCards; // one card is added
   }
 }

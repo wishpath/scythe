@@ -1,5 +1,5 @@
 TASKS:
-  - reduce playerEnlistState to a few fields in playerDTO
+  - continue on player mat state implementation in PlayerDTO
   - coninue on getTilesToMoveTo, maybe export to MoveTargetUtil (create class)
       - use method player.getTilesToMoveTo(Movable main movable) (depends on what abilities the player has enabled, like moving 2 tiles, jumping water, stepping on water, etc)
   - completeDecision in PlayerDecisions, send it to "move state change" and execute that decision there.

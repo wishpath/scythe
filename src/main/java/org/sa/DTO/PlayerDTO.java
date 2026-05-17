@@ -31,19 +31,28 @@ public class PlayerDTO {
 
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
-  public PlayerEnlistStateDTO playerEnlistState; //contains: ability and bonus pool, available for choosing during enlist action
+
   public ActionTop previousAction = null; //TODO use
-  public EnlistableReward[] ongoingBonuses_EnlistableRewards_triggeredByNeighbor = new EnlistableReward[] { //TODO: move to player board state when created // maybe player dto can have both pools and state
-      new EnlistableReward_AttackPlusOne(),
-      new EnlistableReward_CoinPlusOne(),
-      new EnlistableReward_HeartsPlusOne(),
-      new EnlistableReward_AttackCardPlusOne()};
+
   public Map<Building, BuildingDTO> buildings = Map.of( //TODO: consider moving to player board state when created
       Building.MILL, new BuildingDTO(Building.MILL),
       Building.MONUMENT, new BuildingDTO(Building.MONUMENT),
       Building.ARMORY, new BuildingDTO(Building.ARMORY),
       Building.MINE, new BuildingDTO(Building.MINE)
   );
+
+  //PLAYER MAT PART (ongoing) (state if enabled or not) //TODO: map to what
+  public boolean getsRewardedByNeighborAction_UPGRADE_getsAttack = false;
+  public boolean getsRewardedByNeighborAction_DEPLOY_getsCoin = false;
+  public boolean getsRewardedByNeighborAction_BUILD_getsHeart = false;
+  public boolean getsRewardedByNeighborAction_ENLIST_getsAttackCard = false;
+
+  //PLAYER MAT triggers to enable
+  public EnlistableReward[] ongoingBonuses_EnlistableRewards_triggeredByNeighbor = new EnlistableReward[] {
+      new EnlistableReward_AttackPlusOne_triggeredByNeighbor_UPGRADE(),
+      new EnlistableReward_CoinPlusOne_triggeredByNeighbor_DEPLOY(),
+      new EnlistableReward_HeartsPlusOne_triggeredByNeighbor_BUILD(),
+      new EnlistableReward_AttackCardPlusOne_triggeredByNeighbor_ENLIST()};
 
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)
   public int GREEN_ALBION_flagTokenPool_exalt = 0; //Clan Albion gets 4 / placed AFTER character moved on tile where he landed //TODO: apply to character (Movable) method moveTo
@@ -82,7 +91,10 @@ public class PlayerDTO {
   public boolean YELLOW_CRIMEA_beforeCombatSteal1OpponentsCombatCard_scout = false;
   public boolean YELLOW_CRIMEA_characterAndMechsGetPlus1Move_speed = false; // character and mechs may move 1 additional territory per Move action
 
-
+  //(MECH DEPLOY) ABILITIES FOR CONCRETE FACTION
+  public List<StateChange> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner //unused remaining ones //please remove when using
+  public TileDTO homeTile;
+  public final List<StateChange> unlockableByEnlistAction_factionMat_oneTimeRewardPool; //left-bottom corner //TODO also implement the related ongoing rewards related to player mat and neighbor actions
 
   //boardItems
   //List<MoveDTO>
@@ -107,7 +119,9 @@ public class PlayerDTO {
     //factionMat part
     for (StateChange reward : factionMat.initialReward_factionAbility_ongoing) reward.applyToPlayer(this);
     for (StateChange reward : factionMat.initialBonusToApply_oneTime) reward.applyToPlayer(this);
-    this.playerEnlistState = new PlayerEnlistStateDTO(factionMat);
+    this.unlockableByMechDeploy_ongoingAbilitiesPool = factionMat.unlockableByMechDeploy_ongoingAbilitiesPool;
+    this.unlockableByEnlistAction_factionMat_oneTimeRewardPool = factionMat.unlockableByEnlistAction_oneTimeRewardPool;
+    this.homeTile = factionMat.homeTile;
 
     //workers part
     this.workers = workers;

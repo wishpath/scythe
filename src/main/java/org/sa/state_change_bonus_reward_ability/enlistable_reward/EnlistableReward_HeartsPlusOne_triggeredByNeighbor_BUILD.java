@@ -3,7 +3,7 @@ package org.sa.state_change_bonus_reward_ability.enlistable_reward;
 import org.sa.DTO.PlayerDTO;
 import org.sa.enums.ActionBottom;
 
-public class EnlistableReward_HeartsPlusOne implements EnlistableReward {
+public class EnlistableReward_HeartsPlusOne_triggeredByNeighbor_BUILD implements EnlistableReward {
 
   private final ActionBottom triggeringAction = ActionBottom.BUILD;
   private boolean enlisted;
