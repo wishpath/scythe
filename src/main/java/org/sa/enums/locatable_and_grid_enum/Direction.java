@@ -1,4 +1,4 @@
-package org.sa.enums;
+package org.sa.enums.locatable_and_grid_enum;
 
 public enum Direction {
         THIS( 0,  0),

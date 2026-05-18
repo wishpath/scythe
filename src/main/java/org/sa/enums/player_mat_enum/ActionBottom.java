@@ -1,4 +1,4 @@
-package org.sa.enums;
+package org.sa.enums.player_mat_enum;
 
 public enum ActionBottom {
   UPGRADE,   // Upgrade actions (improve top row / reduce bottom costs)

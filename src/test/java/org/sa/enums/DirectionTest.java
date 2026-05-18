@@ -1,6 +1,7 @@
 package org.sa.enums;
 
 import org.junit.jupiter.api.Test;
+import org.sa.enums.locatable_and_grid_enum.Direction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

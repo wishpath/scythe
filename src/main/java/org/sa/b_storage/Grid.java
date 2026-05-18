@@ -3,8 +3,8 @@ package org.sa.b_storage;
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
 import org.sa.DTO.placeable.movable.Movable;
-import org.sa.enums.Direction;
-import org.sa.enums.TileType;
+import org.sa.enums.locatable_and_grid_enum.Direction;
+import org.sa.enums.locatable_and_grid_enum.TileType;
 
 import java.util.HashSet;
 import java.util.Set;

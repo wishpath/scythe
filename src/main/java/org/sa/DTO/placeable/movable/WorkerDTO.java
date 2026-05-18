@@ -2,7 +2,7 @@ package org.sa.DTO.placeable.movable;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
-import org.sa.enums.MovableType;
+import org.sa.enums.locatable_and_grid_enum.MovableType;
 
 public class WorkerDTO implements Movable {
   public TileDTO location;

@@ -1,7 +1,7 @@
 package org.sa.DTO;
 
-import org.sa.enums.ActionBottom;
-import org.sa.enums.ActionTop;
+import org.sa.enums.player_mat_enum.ActionBottom;
+import org.sa.enums.player_mat_enum.ActionTop;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost;
 import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Coins;
 import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.UpgradableStateChange_Top;

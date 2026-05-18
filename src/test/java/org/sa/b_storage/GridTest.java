@@ -2,8 +2,8 @@ package org.sa.b_storage;
 
 import org.junit.jupiter.api.Test;
 import org.sa.DTO.TileDTO;
-import org.sa.enums.Direction;
-import org.sa.enums.TileType;
+import org.sa.enums.locatable_and_grid_enum.Direction;
+import org.sa.enums.locatable_and_grid_enum.TileType;
 
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package org.sa.enums;
+package org.sa.enums.locatable_and_grid_enum;
 import java.util.EnumSet;
 
 public enum TileType {

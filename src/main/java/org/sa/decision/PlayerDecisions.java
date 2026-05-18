@@ -9,6 +9,9 @@ import org.sa.b_storage.CardPool;
 import org.sa.b_storage.Grid;
 import org.sa.decision.helper.NotMovedHandler;
 import org.sa.enums.*;
+import org.sa.enums.player_mat_enum.ActionTop;
+import org.sa.enums.player_mat_enum.PlayerMat;
+import org.sa.enums.player_mat_enum.TopStateChangeDecision_TYPE_ENUM;
 import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.UpgradableStateChange_Top;
 import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.UpgradableStateChange_Top_Move;
 
@@ -49,7 +52,9 @@ public class PlayerDecisions {
 
 
     //player picks MOVE_GAIN
-    ActionTop pickedActionSpaceType = ActionTop.MOVE_GAIN; //TODO: player should pick
+    ActionTop pickedActionSpaceType = ActionTop.MOVE_GAIN; //TODO: player should pick (should not be previous actionSpace(except rusviet)
+
+
     ActionSpaceDTO pickedActionSpaceDTO__MOVE_GAIN = null;
     for (ActionSpaceDTO actionSpace : actionSpaces)
       if (actionSpace.actionTop == pickedActionSpaceType) {
@@ -71,6 +76,11 @@ public class PlayerDecisions {
       applyTopAction(pickedReward_MOVE, player);
 
     }
+
+    //Then player deals with bottom action
+    //then turn finishes:
+    player.isEndOfTurn = true;
+    player.previousActionSpace = pickedActionSpaceType;
   }
 
   private static void applyTopAction(UpgradableStateChange_Top pickedReward_MOVE, PlayerDTO player) {

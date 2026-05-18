@@ -1,4 +1,4 @@
-package org.sa.enums;
+package org.sa.enums.player_mat_enum;
 
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.*;
@@ -60,20 +60,19 @@ public enum PlayerMat {
   MILITANT( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
   PATRIOTIC( -1, -1, -1, 2, new ActionSpaceDTO[4]); //TODO: finish
 
-
   public final int initialHearts;
   public final int initialCoins;
   public final int initialMissionCards;
   public final int initialWorkersCount;
-  public ActionSpaceDTO[] initialActionSpaces;
+  public ActionSpaceDTO[] initialActionSpaces; // those 4 sections //TODO: how does it work when additional is added from the center tile
 
   PlayerMat(
       int initialHearts,
       int initialCoins,
       int initialMissionCards,
       int initialWorkers,
-      ActionSpaceDTO[] initialActionSpaces) {
-
+      ActionSpaceDTO[] initialActionSpaces
+  ) {
     this.initialHearts = initialHearts;
     this.initialCoins = initialCoins;
     this.initialMissionCards = initialMissionCards;

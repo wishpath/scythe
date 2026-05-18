@@ -1,7 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.enlistable_reward;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.enums.ActionBottom;
+import org.sa.enums.player_mat_enum.ActionBottom;
 
 public class EnlistableReward_CoinPlusOne_triggeredByNeighbor_DEPLOY implements EnlistableReward {
 

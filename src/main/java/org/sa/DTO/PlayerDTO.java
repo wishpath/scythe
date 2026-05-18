@@ -5,10 +5,10 @@ import org.sa.DTO.placeable.Locatable;
 import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
-import org.sa.enums.ActionTop;
-import org.sa.enums.Building;
+import org.sa.enums.player_mat_enum.ActionTop;
+import org.sa.enums.player_mat_enum.Building;
 import org.sa.enums.FactionMat;
-import org.sa.enums.PlayerMat;
+import org.sa.enums.player_mat_enum.PlayerMat;
 import org.sa.mission.MissionCard;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 import org.sa.state_change_bonus_reward_ability.enlistable_reward.*;
@@ -28,19 +28,17 @@ public class PlayerDTO {
   public int wood = 0;
   public int food = 0;
   public int metal = 0;
-
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
-
-  public ActionTop previousAction = null; //TODO use
-
+  public ActionTop previousActionSpace = null; // defined by top action //TODO use
+  public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
   public Map<Building, BuildingDTO> buildings = Map.of( //TODO: consider moving to player board state when created
       Building.MILL, new BuildingDTO(Building.MILL),
       Building.MONUMENT, new BuildingDTO(Building.MONUMENT),
       Building.ARMORY, new BuildingDTO(Building.ARMORY),
       Building.MINE, new BuildingDTO(Building.MINE)
   );
-
+  /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
   //PLAYER MAT PART (ongoing) (state if enabled or not) //TODO: map to what
   public boolean getsRewardedByNeighborAction_UPGRADE_getsAttack = false;
   public boolean getsRewardedByNeighborAction_DEPLOY_getsCoin = false;
@@ -54,6 +52,7 @@ public class PlayerDTO {
       new EnlistableReward_HeartsPlusOne_triggeredByNeighbor_BUILD(),
       new EnlistableReward_AttackCardPlusOne_triggeredByNeighbor_ENLIST()};
 
+  /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)
   public int GREEN_ALBION_flagTokenPool_exalt = 0; //Clan Albion gets 4 / placed AFTER character moved on tile where he landed //TODO: apply to character (Movable) method moveTo
   public boolean GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow = false;
@@ -92,21 +91,22 @@ public class PlayerDTO {
   public boolean YELLOW_CRIMEA_characterAndMechsGetPlus1Move_speed = false; // character and mechs may move 1 additional territory per Move action
 
   //(MECH DEPLOY) ABILITIES FOR CONCRETE FACTION
-  public List<StateChange> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner //unused remaining ones //please remove when using
+  public List<StateChange> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner //unused remaining ones //please remove when implemented
   public TileDTO homeTile;
-  public final List<StateChange> unlockableByEnlistAction_factionMat_oneTimeRewardPool; //left-bottom corner //TODO also implement the related ongoing rewards related to player mat and neighbor actions
+  public final List<StateChange> unlockableByEnlistAction_factionMat_oneTimeRewardPool; //left-bottom corner //unused remaining ones //please remove when implemented //TODO also implement the related ongoing rewards related to player mat and neighbor actions
 
-  //boardItems
+
+  /**-------------- BOARD ITEMS --------------------------------------------------------------------------------------*/
   //List<MoveDTO>
   //player board state: each should have coordinate
   //HeroDTO //initially of board new HeroDTO(null);
   //List<RobotDTO> //initially empty list //mechs can always carry workers
   public List<WorkerDTO> workers;
-  public List<Locatable> locatables = new ArrayList<>();
+  public List<Locatable> locatables = new ArrayList<>(); //TODO: idea locatables could be a TRUE list, but all other items — virtual
   public List<Movable> movables = new ArrayList<>();
 
-  public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
 
+  /**-------------- CONSTRUCTOR --------------------------------------------------------------------------------------*/
   public PlayerDTO(PlayerMat playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //player mat part
     this.playerMat = playerMat;

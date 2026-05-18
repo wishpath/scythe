@@ -1,7 +1,7 @@
 package org.sa.DTO.placeable;
 
 import org.sa.DTO.TileDTO;
-import org.sa.enums.Building;
+import org.sa.enums.player_mat_enum.Building;
 
 public class BuildingDTO implements Locatable {
 
