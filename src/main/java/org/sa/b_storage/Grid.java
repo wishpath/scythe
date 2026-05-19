@@ -154,6 +154,8 @@ public class Grid {
 
   public static Set<TileDTO> getTilesToMoveTo(Movable movable, PlayerDTO player) {
     TileDTO tileFrom = movable.getLocation();
+
+    // move
     boolean isTunnel = tileFrom.isTunnel; //TODO: use
     boolean hasMine = hasTileMine(tileFrom, player.buildingsBuilt_presentOnGrid.get(BuildingType.MINE)); //TODO: use
 
@@ -161,10 +163,6 @@ public class Grid {
     boolean ALBION_canCrossRiverToOrFromTunnel_burrow = player.GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow; //TODO: use
 
     //TODO: use other faction/deploy abilities than GREEN_ALBION as well
-
-
-    //??
-    boolean canCrossRiver = false; //TODO: use
 
     Set<TileDTO> tilesTo = new HashSet<>();
     for (Direction direction : Direction.values()) { //includes direction Direction.THIS
@@ -191,7 +189,7 @@ public class Grid {
             tilesTo.add(t);
 
     // TODO: implement mines that act like tunnels
-    // TODO: if moving 2 tiles allowed, both should be completed at once, since attack on moving first tile would prevent from going second tile
+    // TODO: if moving 2 tiles allowed, both should be completed at once, since attack on moving first tile would prevent from going second tile (additional info: first tile cannot be skipped from action)
 
     return tilesTo;
   }
