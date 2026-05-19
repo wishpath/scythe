@@ -2,9 +2,11 @@ package org.sa.b_storage;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
+import org.sa.DTO.placeable.BuildingDTO;
 import org.sa.DTO.placeable.movable.Movable;
 import org.sa.enums.locatable_and_grid_enum.Direction;
 import org.sa.enums.locatable_and_grid_enum.TileType;
+import org.sa.enums.player_mat_enum.BuildingType;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -152,6 +154,8 @@ public class Grid {
 
   public static Set<TileDTO> getTilesToMoveTo(Movable movable, PlayerDTO player) {
     TileDTO tileFrom = movable.getLocation();
+    boolean isTunnel = tileFrom.isTunnel; //TODO: use
+    boolean hasMine = hasTileMine(tileFrom, player.buildingsBuilt_presentOnGrid.get(BuildingType.MINE)); //TODO: use
 
     //move improvements
     boolean ALBION_canCrossRiverToOrFromTunnel_burrow = player.GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow; //TODO: use
@@ -187,9 +191,14 @@ public class Grid {
             tilesTo.add(t);
 
     // TODO: implement mines that act like tunnels
-    // TODO: if moving 2 tiles allowed, simply run this method twice
+    // TODO: if moving 2 tiles allowed, both should be completed at once, since attack on moving first tile would prevent from going second tile
 
     return tilesTo;
+  }
+
+  private static boolean hasTileMine(TileDTO tile, BuildingDTO playerMine) {
+    if (playerMine == null) return false;
+    return playerMine.getLocation() == tile;
   }
 }
 

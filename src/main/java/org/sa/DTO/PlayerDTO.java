@@ -5,17 +5,15 @@ import org.sa.DTO.placeable.Locatable;
 import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
-import org.sa.enums.player_mat_enum.ActionTop;
-import org.sa.enums.player_mat_enum.Building;
 import org.sa.enums.FactionMat;
+import org.sa.enums.player_mat_enum.ActionTop;
+import org.sa.enums.player_mat_enum.BuildingType;
 import org.sa.enums.player_mat_enum.PlayerMat;
 import org.sa.mission.MissionCard;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 import org.sa.state_change_bonus_reward_ability.enlistable_reward.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PlayerDTO {
 
@@ -32,12 +30,7 @@ public class PlayerDTO {
   public List<MissionCard> missionCards = new ArrayList<>();
   public ActionTop previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
-  public Map<Building, BuildingDTO> buildings = Map.of( //TODO: consider moving to player board state when created
-      Building.MILL, new BuildingDTO(Building.MILL),
-      Building.MONUMENT, new BuildingDTO(Building.MONUMENT),
-      Building.ARMORY, new BuildingDTO(Building.ARMORY),
-      Building.MINE, new BuildingDTO(Building.MINE)
-  );
+
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
   //PLAYER MAT PART (ongoing) (state if enabled or not) //TODO: map to what
   public boolean getsRewardedByNeighborAction_UPGRADE_getsAttack = false;
@@ -104,6 +97,8 @@ public class PlayerDTO {
   public List<WorkerDTO> workers;
   public List<Locatable> locatables = new ArrayList<>(); //TODO: idea locatables could be a TRUE list, but all other items — virtual
   public List<Movable> movables = new ArrayList<>();
+  public Set<BuildingType> buildingsPool_notBuilt = EnumSet.allOf(BuildingType.class); // to be built and removed from this pool
+  public Map<BuildingType, BuildingDTO> buildingsBuilt_presentOnGrid = new HashMap<>(); // presence in this map means presence on grid
 
 
   /**-------------- CONSTRUCTOR --------------------------------------------------------------------------------------*/

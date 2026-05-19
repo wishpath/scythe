@@ -1,15 +1,15 @@
 package org.sa.DTO.placeable;
 
 import org.sa.DTO.TileDTO;
-import org.sa.enums.player_mat_enum.Building;
+import org.sa.enums.player_mat_enum.BuildingType;
 
 public class BuildingDTO implements Locatable {
 
-  public Building buildingType;
+  public BuildingType buildingType;
   public TileDTO location;     // where the building is placed
   public boolean isBuilt;  // is built on the board
 
-  public BuildingDTO(Building buildingType) {
+  public BuildingDTO(BuildingType buildingType) {
     this.buildingType = buildingType;
   }
 

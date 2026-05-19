@@ -1,6 +1,4 @@
 TASKS:
-  - move:
-      - apply arch building (sort of custom tunnel)
   - continue on player mat state implementation in PlayerDTO
     - all factions start with exactly 2 workers. no need for such field in PlayerMat
     - refactor player mat similarly like faction mat
