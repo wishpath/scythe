@@ -1,5 +1,5 @@
 TASKS:
-  - replace "canCrossRiver" with "ALBION_canCrossRiverToOrFromTunnel_burrow" and additional logic in getTilesToMoveTo
+  - recheck getTilesToMoveTo vs green/albion faction mech abilities and faction ability
   - continue on player mat state implementation in PlayerDTO
     - all factions start with exactly 2 workers. no need for such field in PlayerMat
     - refactor player mat similarly like faction mat
@@ -25,6 +25,7 @@ TASKS:
       - if meets worker -> sends home
 
 LATER:
+  - use other faction/deploy abilities regarding MOVE, other than GREEN_ALBION as well. LATER
   - player should pick initial tile for worker but for now we take the first one in the set
   - create turn type (enum) move / enlist / produce
   - display board visually

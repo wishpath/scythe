@@ -44,7 +44,7 @@ class GridTest {
         if (tile == null || tile.rivers.isEmpty()) continue;
 
         for (Direction riverDirection : tile.rivers) {
-          TileDTO neighbor = Grid.getNeighbor(tile, riverDirection);
+          TileDTO neighbor = Grid.getNeighbor_possiblyNull(tile, riverDirection);
           if (neighbor == null) continue;
 
           assertNotEquals(
@@ -78,7 +78,7 @@ class GridTest {
         TileDTO tile = Grid.grid[row][column];
         if (tile == null || tile.tileType == TileType.LAKE) continue;
         for (Direction riverDirection : tile.rivers) {
-          TileDTO neighbor = Grid.getNeighbor(tile, riverDirection);
+          TileDTO neighbor = Grid.getNeighbor_possiblyNull(tile, riverDirection);
           if (neighbor == null) continue;
           Direction neededRiver = riverDirection.opposite();
           assertTrue(

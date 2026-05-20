@@ -8,8 +8,8 @@ import org.sa.enums.locatable_and_grid_enum.Direction;
 import org.sa.enums.locatable_and_grid_enum.TileType;
 import org.sa.enums.player_mat_enum.BuildingType;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Grid {
   public static TileDTO[][] grid = new TileDTO[9][10];
@@ -116,6 +116,8 @@ public class Grid {
     grid[8][3] = new TileDTO(TileType.WORKER,  8, 3);
   }
 
+  private static final Set<TileDTO> tunnels = Arrays.stream(grid).flatMap(Arrays::stream).filter(Objects::nonNull).filter(t -> t.isTunnel).collect(Collectors.toSet());
+
   public static boolean isItemAdjacent(TileDTO tile, TileDTO itemLocation) {
     for (Direction direction : Direction.values())
       if (isAdjacentToDirection(tile, direction, itemLocation))
@@ -148,55 +150,66 @@ public class Grid {
     return neighbors;
   }
 
-  public static TileDTO getNeighbor(TileDTO tile, Direction direction) {
-    return grid[tile.row + direction.deltaRow][tile.column + direction.deltaColumn];
+  public static TileDTO getNeighbor_possiblyNull(TileDTO tile, Direction direction) {
+    int row = tile.row + direction.deltaRow;
+    int col = tile.column + direction.deltaColumn;
+    if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) return null;
+    return grid[row][col];
   }
 
   public static Set<TileDTO> getTilesToMoveTo(Movable movable, PlayerDTO player) {
     TileDTO tileFrom = movable.getLocation();
 
-    // move
-    boolean isTunnel = tileFrom.isTunnel; //TODO: use
-    boolean hasMine = hasTileMine(tileFrom, player.buildingsBuilt_presentOnGrid.get(BuildingType.MINE)); //TODO: use
-
     //move improvements
     boolean ALBION_canCrossRiverToOrFromTunnel_burrow = player.GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow; //TODO: use
 
-    //TODO: use other faction/deploy abilities than GREEN_ALBION as well
 
-    Set<TileDTO> tilesTo = new HashSet<>();
+
+    Set<TileDTO> validDestinationTiles = new HashSet<>();
+
+    //deal neighboring tiles
     for (Direction direction : Direction.values()) { //includes direction Direction.THIS
-      if (!canCrossRiver && tileFrom.rivers.contains(direction)) continue;
+      TileDTO tileTo = getNeighbor_possiblyNull(tileFrom, direction);
+      if (tileTo == null) continue;
+      if (tileTo.tileType.equals(TileType.LAKE)) continue;
+      //Deal river
+      if (tileFrom.rivers.contains(direction)) {
+        if (ALBION_canCrossRiverToOrFromTunnel_burrow) {
+          if (tileFrom.isTunnel || tileTo.isTunnel) validDestinationTiles.add(tileTo);
+          else continue;
+        }
+        else continue;
+      }
 
-      int row = tileFrom.row + direction.deltaRow;
-      if (row < 0 || row >= grid.length) continue;
-
-      int column = tileFrom.column + direction.deltaColumn;
-      if (column < 0 || column >= grid[0].length) continue;
-
-      TileDTO tileTo = grid[row][column];
-      if (null == tileTo) continue;
-      if (tileTo.tileType == TileType.LAKE) continue;
-      if (!canCrossRiver && tileTo.rivers.contains(direction.opposite())) continue;
-
-      tilesTo.add(tileTo); // possibly tileTo == tileFrom, which means not moving
+      //deal tunnels
+      if (tileFrom.isTunnel || hasTileMine(tileFrom, player)) {
+        validDestinationTiles.addAll(getAllTunnelsAndMine_notSelf(tileFrom, player));
+      }
     }
 
     if (tileFrom.isTunnel)
       for (TileDTO[] gridRow : grid)
         for (TileDTO t : gridRow)
           if (t != null && t.isTunnel && !t.equals(tileFrom))
-            tilesTo.add(t);
+            validDestinationTiles.add(t);
 
-    // TODO: implement mines that act like tunnels
     // TODO: if moving 2 tiles allowed, both should be completed at once, since attack on moving first tile would prevent from going second tile (additional info: first tile cannot be skipped from action)
 
-    return tilesTo;
+    return validDestinationTiles;
   }
 
-  private static boolean hasTileMine(TileDTO tile, BuildingDTO playerMine) {
+  private static Set<TileDTO> getAllTunnelsAndMine_notSelf(TileDTO self, PlayerDTO player) {
+    Set<TileDTO> result = new HashSet<>(tunnels); //separate list but same references to items
+    TileDTO mineTile = player.buildingsBuilt_presentOnGrid.get(BuildingType.MINE).location;
+    if (mineTile != null) result.add(mineTile);
+    result.remove(self);
+    return result;
+  }
+
+  private static boolean hasTileMine(TileDTO questionedTile, PlayerDTO player) {
+    BuildingDTO playerMine = player.buildingsBuilt_presentOnGrid.get(BuildingType.MINE);
     if (playerMine == null) return false;
-    return playerMine.getLocation() == tile;
+    return playerMine.getLocation() == questionedTile;
   }
 }
 
