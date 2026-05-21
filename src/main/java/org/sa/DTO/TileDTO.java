@@ -27,4 +27,8 @@ public class TileDTO {
     for (Direction d : directions) rivers.add(d);
     return this;
   }
+
+  public boolean hasRiverInTheDirection(Direction direction) {
+    return rivers.contains(direction);
+  }
 }

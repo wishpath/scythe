@@ -11,7 +11,7 @@ public class MechDeployAbility_CanMoveToWorkerOrFlagTokenTerritory_Rally impleme
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.GREEN_ALBION_canMoveCharacterToWorkerOrFlagTokenTerritory_rally = true;
+    player.GREEN_ALBION_mechAndCharacter_canMoveToWorkerOrFlagTokenTerritory_rally = true;
   }
 
   @Override

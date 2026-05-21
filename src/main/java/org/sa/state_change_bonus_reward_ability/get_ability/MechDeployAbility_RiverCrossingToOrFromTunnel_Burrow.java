@@ -10,7 +10,7 @@ public class MechDeployAbility_RiverCrossingToOrFromTunnel_Burrow implements Sta
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow = true;
+    player.GREEN_ALBION_mechAndCharacter_canCrossRiverToOrFromTunnel_burrow = true;
   }
 
   @Override

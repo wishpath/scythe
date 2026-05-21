@@ -48,10 +48,10 @@ public class PlayerDTO {
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)
   public int GREEN_ALBION_flagTokenPool_exalt = 0; //Clan Albion gets 4 / placed AFTER character moved on tile where he landed //TODO: apply to character (Movable) method moveTo
-  public boolean GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow = false;
+  public boolean GREEN_ALBION_mechAndCharacter_canCrossRiverToOrFromTunnel_burrow = false;
   public boolean GREEN_ALBION_opponentGetsMinus2AttackBeforeYouAttackHim_sword = false; // before combat where player is attacking, opponent gets -2 points of attack
   public boolean GREEN_ALBION_playerGets2AttackBeforeDefence_shield = false; //before combat where you are defending, player gets 2 points of attack
-  public boolean GREEN_ALBION_canMoveCharacterToWorkerOrFlagTokenTerritory_rally = false; // allows character to move to any territory where you have a worker or Flag token
+  public boolean GREEN_ALBION_mechAndCharacter_canMoveToWorkerOrFlagTokenTerritory_rally = false; // allows character or mech to move to any territory where you have a worker or Flag token
   public boolean BLACK_SAXONY_unlimitedCombatStars_dominate = false; // no limit on combat victory stars; may complete both objective cards
   public boolean BLACK_SAXONY_canCrossRiverOntoForestOrMountain_riverwalk = false; // character and mechs can move across rivers onto Forests and Mountains
   public boolean BLACK_SAXONY_mountainsAndTunnelsAreAdjacent_underpass = false; // for character and mech movement, controlled Mountains and all Tunnels (including Mine) are considered adjacent

@@ -159,22 +159,17 @@ public class Grid {
 
   public static Set<TileDTO> getTilesToMoveTo(Movable movable, PlayerDTO player) {
     TileDTO tileFrom = movable.getLocation();
-
-    //move improvements
-    boolean ALBION_canCrossRiverToOrFromTunnel_burrow = player.GREEN_ALBION_canCrossRiverToOrFromTunnel_burrow; //TODO: use
-
-
-
     Set<TileDTO> validDestinationTiles = new HashSet<>();
 
     //deal neighboring tiles
     for (Direction direction : Direction.values()) { //includes direction Direction.THIS
-      TileDTO tileTo = getNeighbor_possiblyNull(tileFrom, direction);
+      TileDTO tileTo = getNeighbor_possiblyNull(tileFrom, direction); //possibly self
       if (tileTo == null) continue;
       if (tileTo.tileType.equals(TileType.LAKE)) continue;
-      //Deal river
-      if (tileFrom.rivers.contains(direction)) {
-        if (ALBION_canCrossRiverToOrFromTunnel_burrow) {
+
+      //deal river
+      if (tileFrom.hasRiverInTheDirection(direction)) {
+        if (player.GREEN_ALBION_mechAndCharacter_canCrossRiverToOrFromTunnel_burrow && (movable.isCharacter() || movable.isMech())) {
           if (tileFrom.isTunnel || tileTo.isTunnel) validDestinationTiles.add(tileTo);
           else continue;
         }
@@ -184,6 +179,11 @@ public class Grid {
       //deal tunnels
       if (tileFrom.isTunnel || hasTileMine(tileFrom, player)) {
         validDestinationTiles.addAll(getAllTunnelsAndMine_notSelf(tileFrom, player));
+      }
+
+      //deal GREEN_ALBION rally
+      if (player.GREEN_ALBION_mechAndCharacter_canMoveToWorkerOrFlagTokenTerritory_rally && (movable.isCharacter() || movable.isMech())) {
+        validDestinationTiles.addAll((getAllWorkerAndTokenTiles_possiblySelf(player)));
       }
     }
 
@@ -196,6 +196,12 @@ public class Grid {
     // TODO: if moving 2 tiles allowed, both should be completed at once, since attack on moving first tile would prevent from going second tile (additional info: first tile cannot be skipped from action)
 
     return validDestinationTiles;
+  }
+
+  private static Set<TileDTO> getAllWorkerAndTokenTiles_possiblySelf(PlayerDTO player) {
+    Set<TileDTO> tilesWithWorkerOrToken = new HashSet<>();
+    //TODO: implement
+    return tilesWithWorkerOrToken;
   }
 
   private static Set<TileDTO> getAllTunnelsAndMine_notSelf(TileDTO self, PlayerDTO player) {
