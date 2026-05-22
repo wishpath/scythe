@@ -3,12 +3,17 @@ package org.sa.b_storage;
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
 import org.sa.DTO.placeable.BuildingDTO;
+import org.sa.DTO.placeable.TokenDTO;
 import org.sa.DTO.placeable.movable.Movable;
+import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.enums.locatable_and_grid_enum.Direction;
 import org.sa.enums.locatable_and_grid_enum.TileType;
 import org.sa.enums.player_mat_enum.BuildingType;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Grid {
@@ -181,7 +186,7 @@ public class Grid {
         validDestinationTiles.addAll(getAllTunnelsAndMine_notSelf(tileFrom, player));
       }
 
-      //deal GREEN_ALBION rally
+      //deal GREEN_ALBION rally (mech and char move to worker or token)
       if (player.GREEN_ALBION_mechAndCharacter_canMoveToWorkerOrFlagTokenTerritory_rally && (movable.isCharacter() || movable.isMech())) {
         validDestinationTiles.addAll((getAllWorkerAndTokenTiles_possiblySelf(player)));
       }
@@ -200,7 +205,8 @@ public class Grid {
 
   private static Set<TileDTO> getAllWorkerAndTokenTiles_possiblySelf(PlayerDTO player) {
     Set<TileDTO> tilesWithWorkerOrToken = new HashSet<>();
-    //TODO: implement
+    for (TokenDTO token : player.placed_tokens) tilesWithWorkerOrToken.add(token.getLocation());
+    for (WorkerDTO worker : player.placed_workers) tilesWithWorkerOrToken.add(worker.getLocation());
     return tilesWithWorkerOrToken;
   }
 

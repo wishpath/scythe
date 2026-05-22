@@ -74,6 +74,11 @@ public class PlayerDecisions {
 
       //player decides what and where to MOVE
       applyTopAction(pickedReward_MOVE, player);
+      if (pickedReward_MOVE.getDecisionType() == TopStateChangeDecision_TYPE_ENUM.MOVE) { // otherwise if pick was GAIN, decision type would be NONE
+        player.isRightAfterMove = true;
+        //TODO: place tokens and do checks if needed
+        player.isRightAfterMove = false;
+      }
 
     }
 

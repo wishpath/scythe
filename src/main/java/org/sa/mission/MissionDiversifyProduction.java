@@ -14,10 +14,10 @@ public class MissionDiversifyProduction implements MissionCard {
      * with at least 1 worker on each
      * at the end of your turn
     */
-    if (player.isEndOfTurn == false || player.workers.size() < 5) return false;
+    if (player.isEndOfTurn == false || player.placed_workers.size() < 5) return false;
     EnumSet<TileType> controlledTerrainTypes = EnumSet.noneOf(TileType.class);
 
-    for (WorkerDTO worker : player.workers)
+    for (WorkerDTO worker : player.placed_workers)
       controlledTerrainTypes.add(worker.location.tileType);
 
     return controlledTerrainTypes.containsAll(TileType.PRIMARY_CONTROLLABLE_TERRAINS);

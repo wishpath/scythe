@@ -2,6 +2,7 @@ package org.sa.DTO;
 
 import org.sa.DTO.placeable.BuildingDTO;
 import org.sa.DTO.placeable.Locatable;
+import org.sa.DTO.placeable.TokenDTO;
 import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
@@ -18,6 +19,7 @@ import java.util.*;
 public class PlayerDTO {
 
   public PlayerMat playerMat; //contains: home, name (faction name)
+  public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
   public int hearts = 0;
   public int coins = 0;
@@ -29,7 +31,8 @@ public class PlayerDTO {
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
   public ActionTop previousActionSpace = null; // defined by top action //TODO use
-  public boolean isEndOfTurn = true; //TODO: when turn starts, make false temporarily
+  public boolean isEndOfTurn = true; //should be false during turn
+  public boolean isRightAfterMove = false; //should be a short period when the top action was move
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
   //PLAYER MAT PART (ongoing) (state if enabled or not) //TODO: map to what
@@ -47,7 +50,8 @@ public class PlayerDTO {
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)
-  public int GREEN_ALBION_flagTokenPool_exalt = 0; //Clan Albion gets 4 / placed AFTER character moved on tile where he landed //TODO: apply to character (Movable) method moveTo
+  public int GREEN_ALBION_flagTokenPool_exalt = 0; //Clan Albion gets 4 / placed AFTER character moved on tile where he landed // decrease this pool after a token is place//TODO: apply to character (Movable) method moveTo
+  public List<TokenDTO> placed_tokens = new ArrayList<>();
   public boolean GREEN_ALBION_mechAndCharacter_canCrossRiverToOrFromTunnel_burrow = false;
   public boolean GREEN_ALBION_opponentGetsMinus2AttackBeforeYouAttackHim_sword = false; // before combat where player is attacking, opponent gets -2 points of attack
   public boolean GREEN_ALBION_playerGets2AttackBeforeDefence_shield = false; //before combat where you are defending, player gets 2 points of attack
@@ -94,7 +98,7 @@ public class PlayerDTO {
   //player board state: each should have coordinate
   //HeroDTO //initially of board new HeroDTO(null);
   //List<RobotDTO> //initially empty list //mechs can always carry workers
-  public List<WorkerDTO> workers;
+  public List<WorkerDTO> placed_workers;
   public List<Locatable> locatables = new ArrayList<>(); //TODO: idea locatables could be a TRUE list, but all other items — virtual
   public List<Movable> movables = new ArrayList<>();
   public Set<BuildingType> buildingsPool_notBuilt = EnumSet.allOf(BuildingType.class); // to be built and removed from this pool
@@ -105,6 +109,7 @@ public class PlayerDTO {
   public PlayerDTO(PlayerMat playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //player mat part
     this.playerMat = playerMat;
+    this.factionMat = factionMat;
     this.hearts += playerMat.initialHearts;
     this.coins += playerMat.initialCoins;
     for (int i = 0; i < playerMat.initialMissionCards; i++) {
@@ -119,7 +124,7 @@ public class PlayerDTO {
     this.homeTile = factionMat.homeTile;
 
     //workers part
-    this.workers = workers;
+    this.placed_workers = workers;
     this.locatables.addAll(workers);
     this.movables.addAll(workers);
   }
