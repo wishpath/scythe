@@ -3,6 +3,7 @@ package org.sa.decision;
 import org.sa.DTO.ActionSpaceDTO;
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
+import org.sa.DTO.placeable.TokenDTO;
 import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
@@ -74,12 +75,6 @@ public class PlayerDecisions {
 
       //player decides what and where to MOVE
       applyTopAction(pickedReward_MOVE, player);
-      if (pickedReward_MOVE.getDecisionType() == TopStateChangeDecision_TYPE_ENUM.MOVE) { // otherwise if pick was GAIN, decision type would be NONE
-        player.isRightAfterMove = true;
-        //TODO: place tokens and do checks if needed
-        player.isRightAfterMove = false;
-      }
-
     }
 
     //Then player deals with bottom action
@@ -103,8 +98,7 @@ public class PlayerDecisions {
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 
     for (int moveCount = 0; moveCount < moveCountTotal && movablesPool.size() > 0; moveCount++) {
-
-      //decide who move
+      //decide who moves
       int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo: PLAYER DECIDES main movable
       Movable userPicked_mainMovable = movablesPool.remove(userPicked_mainMovableIndex);
       List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //includes main movable
@@ -129,7 +123,22 @@ public class PlayerDecisions {
 
       //move
       TileDTO targetTile = possibleTargets.iterator().next(); //TODO: player picks target tile
-      for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move
+      for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move (considered as one move)
+
+      //after move effects
+      player.isRightAfterMove = true;
+      if (player.GREEN_ALBION_flagTokenPool_exalt > 0 && player.isRightAfterMove && userPicked_mainMovable.isCharacter() && !player.hasTileAToken(targetTile)) {
+        boolean decidedPlayerToPlaceToken = true; //TODO: player decides
+        if (decidedPlayerToPlaceToken) {
+          player.placed_tokens.add(new TokenDTO(player, userPicked_mainMovable));
+          player.GREEN_ALBION_flagTokenPool_exalt--;
+        }
+      }
+      player.isRightAfterMove = false;
+
+      //fight
+      //TODO: fight
     }
+
   }
 }

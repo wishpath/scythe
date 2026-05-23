@@ -128,4 +128,11 @@ public class PlayerDTO {
     this.locatables.addAll(workers);
     this.movables.addAll(workers);
   }
+
+  public boolean hasTileAToken(TileDTO targetTile) {
+    for (TokenDTO tokenDTO : placed_tokens)
+      if (tokenDTO.getLocation() == targetTile)
+        return true;
+    return false;
+  }
 }
