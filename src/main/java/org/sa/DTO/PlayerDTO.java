@@ -109,7 +109,6 @@ public class PlayerDTO {
   public PlayerDTO(PlayerMat playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //player mat part
     this.playerMat = playerMat;
-    this.factionMat = factionMat;
     this.hearts += playerMat.initialHearts;
     this.coins += playerMat.initialCoins;
     for (int i = 0; i < playerMat.initialMissionCards; i++) {
@@ -117,6 +116,7 @@ public class PlayerDTO {
     }
 
     //factionMat part
+    this.factionMat = factionMat;
     for (StateChange reward : factionMat.initialReward_factionAbility_ongoing) reward.applyToPlayer(this);
     for (StateChange reward : factionMat.initialBonusToApply_oneTime) reward.applyToPlayer(this);
     this.unlockableByMechDeploy_ongoingAbilitiesPool = factionMat.unlockableByMechDeploy_ongoingAbilitiesPool;

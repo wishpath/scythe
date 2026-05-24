@@ -2,6 +2,15 @@ TASKS:
   - continue on player mat state implementation in PlayerDTO
     - all factions start with exactly 2 workers. no need for such field in PlayerMat
     - refactor player mat similarly like faction mat
+    - what player mat also has to be implemented:
+      - action spaces (4) - do recheck:
+          - top (action1, action2, payment (all upgradable) - in progress
+      - buildings (make a pool in the player dto and then make state of built ones), when they are built, additional bonus/reward is unlocked:
+          - mine: no reward, enables movement between mine and tunnels
+          - armory: gain extra power when resolving the second action of the top action
+          - mill: gain extra resource matching tile type each time Produce action is performed
+          - monument: gain popularity each time Bolster action is completed
+
   - coninue on getTilesToMoveTo, maybe export to MoveTargetUtil (create class)
       - use method player.getTilesToMoveTo(Movable main movable) (depends on what abilities the player has enabled, like moving 2 tiles, jumping water, stepping on water, etc)
   - completeDecision in PlayerDecisions, send it to "move state change" and execute that decision there.
