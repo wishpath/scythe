@@ -9,7 +9,6 @@ public enum PlayerMat {
       4,
       7,
       2,
-      2,
       new ActionSpaceDTO[] {  //TODO: finish: top action,
         new ActionSpaceDTO(
             ActionTop.MOVE_GAIN, //Action top type
@@ -53,30 +52,27 @@ public enum PlayerMat {
   ),
 
   //TODO: finish up entering initialActionSpaces[]
-  ENGINEERING(-1, -1, -1, 2, new ActionSpaceDTO[4]),
-  INDUSTRIAL( -1, -1, -1, 2,  new ActionSpaceDTO[4]), //TODO: finish
-  INNOVATIVE( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
-  MECHANICAL( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
-  MILITANT( -1, -1, -1, 2, new ActionSpaceDTO[4]), //TODO: finish
-  PATRIOTIC( -1, -1, -1, 2, new ActionSpaceDTO[4]); //TODO: finish
+  ENGINEERING(-1, -1, -1,  new ActionSpaceDTO[4]),
+  INDUSTRIAL( -1, -1, -1,   new ActionSpaceDTO[4]), //TODO: finish
+  INNOVATIVE( -1, -1, -1,  new ActionSpaceDTO[4]), //TODO: finish
+  MECHANICAL( -1, -1, -1,  new ActionSpaceDTO[4]), //TODO: finish
+  MILITANT( -1, -1, -1,  new ActionSpaceDTO[4]), //TODO: finish
+  PATRIOTIC( -1, -1, -1,  new ActionSpaceDTO[4]); //TODO: finish
 
   public final int initialHearts;
   public final int initialCoins;
   public final int initialMissionCards;
-  public final int initialWorkersCount;
   public ActionSpaceDTO[] initialActionSpaces; // those 4 sections //TODO: how does it work when additional is added from the center tile
 
   PlayerMat(
       int initialHearts,
       int initialCoins,
       int initialMissionCards,
-      int initialWorkers,
       ActionSpaceDTO[] initialActionSpaces
   ) {
     this.initialHearts = initialHearts;
     this.initialCoins = initialCoins;
     this.initialMissionCards = initialMissionCards;
-    this.initialWorkersCount = initialWorkers;
     this.initialActionSpaces = initialActionSpaces;
   }
 }

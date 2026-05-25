@@ -31,8 +31,9 @@ public class PlayerDecisions {
     PlayerMat playerMat = CardPool.drawFactionBoard();
 
     //player chooses where to place workers
-    List<WorkerDTO> workers = new ArrayList<>(factionMat.initialWorkersCount);
-    for (int i = 0; i < factionMat.initialWorkersCount; i++) {
+    final int INITIAL_WORKERS_COUNT = 2;
+    List<WorkerDTO> workers = new ArrayList<>(INITIAL_WORKERS_COUNT);
+    for (int i = 0; i < INITIAL_WORKERS_COUNT; i++) {
       Set<TileDTO> nearHomeTiles = Grid.getNonNullNeighborsNotSelf(factionMat.homeTile);
       workers.add(new WorkerDTO(nearHomeTiles.iterator().next())); //TODO: player should pick for each
     }
