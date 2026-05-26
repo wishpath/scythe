@@ -9,7 +9,10 @@ public enum PlayerMat {
       4,
       7,
       2,
-      new ActionSpaceDTO[] {  //TODO: finish: top action,
+      new ActionSpaceDTO[] {
+
+
+        // left action space
         new ActionSpaceDTO(
             ActionTop.MOVE_GAIN, //Action top type
             new UpgradableCost_Coins(0, 0), //Action top cost: THIS ONE IS FOR FREE
@@ -20,6 +23,9 @@ public enum PlayerMat {
             ActionBottom.UPGRADE,
             new UpgradableCost_Oil(-2,-2),
             1),
+
+
+        // mid-left action space
         new ActionSpaceDTO(
             ActionTop.TRADE,
             new UpgradableCost_Coins(1, 1),
@@ -29,6 +35,9 @@ public enum PlayerMat {
             ActionBottom.DEPLOY,
             new UpgradableCost_Metal(-4,-2),
             1),
+
+
+        // mid-right action space
         new ActionSpaceDTO(
             ActionTop.PRODUCE,
             new UpgradableCost_Produce(),
@@ -38,6 +47,9 @@ public enum PlayerMat {
             ActionBottom.BUILD,
             new UpgradableCost_Wood(-4,-2),
             1),
+
+
+        // right action space
         new ActionSpaceDTO(
             ActionTop.BOLSTER,
             new UpgradableCost_Coins(1, 1),
