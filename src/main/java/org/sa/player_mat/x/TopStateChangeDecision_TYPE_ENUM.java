@@ -1,4 +1,4 @@
-package org.sa.enums.player_mat_enum;
+package org.sa.player_mat.x;
 
 public enum TopStateChangeDecision_TYPE_ENUM {
   NONE,

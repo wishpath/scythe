@@ -1,6 +1,6 @@
 package org.sa.decision;
 
-import org.sa.DTO.ActionSpaceDTO;
+import org.sa.player_mat.c_action_spaces_BIG_4.ActionSpaceDTO;
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
 import org.sa.DTO.placeable.TokenDTO;
@@ -10,11 +10,11 @@ import org.sa.b_storage.CardPool;
 import org.sa.b_storage.Grid;
 import org.sa.decision.helper.NotMovedHandler;
 import org.sa.enums.*;
-import org.sa.enums.player_mat_enum.ActionTop;
-import org.sa.enums.player_mat_enum.PlayerMat;
-import org.sa.enums.player_mat_enum.TopStateChangeDecision_TYPE_ENUM;
-import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.UpgradableStateChange_Top;
-import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.UpgradableStateChange_Top_Move;
+import org.sa.player_mat.a_action_space_TOP.ActionTopType_ActionSpaceType;
+import org.sa.player_mat.PlayerMat_type_and_structure;
+import org.sa.player_mat.x.TopStateChangeDecision_TYPE_ENUM;
+import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.UpgradableStateChange_Top;
+import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.UpgradableStateChange_Top_Move;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class PlayerDecisions {
     FactionMat factionMat = CardPool.drawEnlistCard();
 
     //player draws Player Mat (not connected to faction)
-    PlayerMat playerMat = CardPool.drawFactionBoard();
+    PlayerMat_type_and_structure playerMat = CardPool.drawFactionBoard();
 
     //player chooses where to place workers
     final int INITIAL_WORKERS_COUNT = 2;
@@ -54,7 +54,7 @@ public class PlayerDecisions {
 
 
     //player picks MOVE_GAIN
-    ActionTop pickedActionSpaceType = ActionTop.MOVE_GAIN; //TODO: player should pick (should not be previous actionSpace(except rusviet)
+    ActionTopType_ActionSpaceType pickedActionSpaceType = ActionTopType_ActionSpaceType.CHOOSE__MOVE__GAIN_COIN; //TODO: player should pick (should not be previous actionSpace(except rusviet)
 
 
     ActionSpaceDTO pickedActionSpaceDTO__MOVE_GAIN = null;

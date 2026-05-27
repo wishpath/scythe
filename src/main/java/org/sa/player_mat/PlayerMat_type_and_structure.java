@@ -1,10 +1,12 @@
-package org.sa.enums.player_mat_enum;
+package org.sa.player_mat;
 
-import org.sa.DTO.ActionSpaceDTO;
+import org.sa.player_mat.a_action_space_TOP.ActionTopType_ActionSpaceType;
+import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.*;
+import org.sa.player_mat.c_action_spaces_BIG_4.ActionSpaceDTO;
+import org.sa.player_mat.player_mat_enum.ActionBottom;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.*;
-import org.sa.state_change_bonus_reward_ability.upgradable_state_change_top.*;
 
-public enum PlayerMat {
+public enum PlayerMat_type_and_structure {
   AGRICULTURAL(
       4,
       7,
@@ -14,12 +16,12 @@ public enum PlayerMat {
 
         // left action space
         new ActionSpaceDTO(
-            ActionTop.MOVE_GAIN, //Action top type
+            ActionTopType_ActionSpaceType.CHOOSE__MOVE__GAIN_COIN, //Action top type
             new UpgradableCost_Coins(0, 0), //Action top cost: THIS ONE IS FOR FREE
             new UpgradableStateChange_Top[]{
                 new UpgradableStateChange_Top_Move(2, 3), //Action top choosable reward
                 new UpgradableStateChange_Top_Reward_Coins(1, 2) //Action top choosable reward
-            }, //TODO: finish
+            },
             ActionBottom.UPGRADE,
             new UpgradableCost_Oil(-2,-2),
             1),
@@ -27,7 +29,7 @@ public enum PlayerMat {
 
         // mid-left action space
         new ActionSpaceDTO(
-            ActionTop.TRADE,
+            ActionTopType_ActionSpaceType.TRADE,
             new UpgradableCost_Coins(1, 1),
             new UpgradableStateChange_Top[]{
               new UpgradableStateChange_Top_Hearts(1, 2)
@@ -39,7 +41,7 @@ public enum PlayerMat {
 
         // mid-right action space
         new ActionSpaceDTO(
-            ActionTop.PRODUCE,
+            ActionTopType_ActionSpaceType.PRODUCE,
             new UpgradableCost_Produce(),
             new UpgradableStateChange_Top[]{
 
@@ -51,7 +53,7 @@ public enum PlayerMat {
 
         // right action space
         new ActionSpaceDTO(
-            ActionTop.BOLSTER,
+            ActionTopType_ActionSpaceType.BOLSTER,
             new UpgradableCost_Coins(1, 1),
             new UpgradableStateChange_Top[]{
               new UpgradableStateChange_Top_Attack(2,3),
@@ -76,7 +78,7 @@ public enum PlayerMat {
   public final int initialMissionCards;
   public ActionSpaceDTO[] initialActionSpaces; // those 4 sections //TODO: how does it work when additional is added from the center tile
 
-  PlayerMat(
+  PlayerMat_type_and_structure(
       int initialHearts,
       int initialCoins,
       int initialMissionCards,

@@ -1,8 +1,8 @@
-package org.sa.state_change_bonus_reward_ability.upgradable_state_change_top;
+package org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.b_storage.CardPool;
-import org.sa.enums.player_mat_enum.TopStateChangeDecision_TYPE_ENUM;
+import org.sa.player_mat.x.TopStateChangeDecision_TYPE_ENUM;
 
 public class UpgradableStateChange_Top_AttackCards implements UpgradableStateChange_Top {
   private int currentDeltaCards;

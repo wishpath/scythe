@@ -7,10 +7,10 @@ import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.FactionMat;
-import org.sa.enums.player_mat_enum.ActionTop;
-import org.sa.enums.player_mat_enum.BuildingType;
-import org.sa.enums.player_mat_enum.PlayerMat;
+import org.sa.player_mat.a_action_space_TOP.ActionTopType_ActionSpaceType;
+import org.sa.player_mat.PlayerMat_type_and_structure;
 import org.sa.mission.MissionCard;
+import org.sa.player_mat.x.BuildingType;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 import org.sa.state_change_bonus_reward_ability.enlistable_reward.*;
 
@@ -18,7 +18,7 @@ import java.util.*;
 
 public class PlayerDTO {
 
-  public PlayerMat playerMat; //contains: home, name (faction name)
+  public PlayerMat_type_and_structure playerMat; //contains: home, name (faction name)
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
   public int hearts = 0;
@@ -30,7 +30,7 @@ public class PlayerDTO {
   public int metal = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
-  public ActionTop previousActionSpace = null; // defined by top action //TODO use
+  public ActionTopType_ActionSpaceType previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 
@@ -106,7 +106,7 @@ public class PlayerDTO {
 
 
   /**-------------- CONSTRUCTOR --------------------------------------------------------------------------------------*/
-  public PlayerDTO(PlayerMat playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
+  public PlayerDTO(PlayerMat_type_and_structure playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //player mat part
     this.playerMat = playerMat;
     this.hearts += playerMat.initialHearts;
