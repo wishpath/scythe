@@ -10,7 +10,7 @@ import org.sa.b_storage.CardPool;
 import org.sa.b_storage.Grid;
 import org.sa.decision.helper.NotMovedHandler;
 import org.sa.enums.*;
-import org.sa.player_mat.a_action_space_TOP.ActionTopType_ActionSpaceType;
+import org.sa.player_mat.a_action_space_TOP.TYPE_TopPart_TopActionChooseArray_ActionSpace;
 import org.sa.player_mat.PlayerMat_type_and_structure;
 import org.sa.player_mat.x.TopStateChangeDecision_TYPE_ENUM;
 import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.UpgradableStateChange_Top;
@@ -54,7 +54,7 @@ public class PlayerDecisions {
 
 
     //player picks MOVE_GAIN
-    ActionTopType_ActionSpaceType pickedActionSpaceType = ActionTopType_ActionSpaceType.CHOOSE__MOVE__GAIN_COIN; //TODO: player should pick (should not be previous actionSpace(except rusviet)
+    TYPE_TopPart_TopActionChooseArray_ActionSpace pickedActionSpaceType = TYPE_TopPart_TopActionChooseArray_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick (should not be previous actionSpace(except rusviet)
 
 
     ActionSpaceDTO pickedActionSpaceDTO__MOVE_GAIN = null;

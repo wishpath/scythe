@@ -6,7 +6,7 @@ import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.Upgradab
 
 public interface TopPart {
   public UpgradableCost getCost();
-  public ActionTopType_ActionSpaceType getTopPartType();
+  public TYPE_TopPart_TopActionChooseArray_ActionSpace getTopPartType();
   public BuildingType getBuildingType();
   public UpgradableStateChange_Top[] getTopPartChoosableActions();
 }

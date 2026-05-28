@@ -1,6 +1,6 @@
 package org.sa.player_mat.c_action_spaces_BIG_4;
 
-import org.sa.player_mat.a_action_space_TOP.ActionTopType_ActionSpaceType;
+import org.sa.player_mat.a_action_space_TOP.TYPE_TopPart_TopActionChooseArray_ActionSpace;
 import org.sa.player_mat.player_mat_enum.ActionBottom;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost;
 import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Coins;
@@ -10,7 +10,7 @@ import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.Upgradab
 public class ActionSpaceDTO {
 
   //TODO: each reward (pay or get) should have int amount (state) (upgradable) (initial) (max)
-  public ActionTopType_ActionSpaceType actionTop;
+  public TYPE_TopPart_TopActionChooseArray_ActionSpace actionTop;
   public UpgradableCost actionTopCost;
   public UpgradableStateChange_Top[] actionTop_Rewards_toChoose_upgradable;
 
@@ -19,7 +19,7 @@ public class ActionSpaceDTO {
   public ElistActionOneTimeReward_FromFactionMat_Coins actionBottomCoinReward;
 
   public ActionSpaceDTO(
-      ActionTopType_ActionSpaceType actionTop,
+      TYPE_TopPart_TopActionChooseArray_ActionSpace actionTop,
       UpgradableCost actionTopCost,
       UpgradableStateChange_Top[] actionTopRewards_toPickFrom,
 

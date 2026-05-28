@@ -7,7 +7,7 @@ import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.FactionMat;
-import org.sa.player_mat.a_action_space_TOP.ActionTopType_ActionSpaceType;
+import org.sa.player_mat.a_action_space_TOP.TYPE_TopPart_TopActionChooseArray_ActionSpace;
 import org.sa.player_mat.PlayerMat_type_and_structure;
 import org.sa.mission.MissionCard;
 import org.sa.player_mat.x.BuildingType;
@@ -30,7 +30,7 @@ public class PlayerDTO {
   public int metal = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
-  public ActionTopType_ActionSpaceType previousActionSpace = null; // defined by top action //TODO use
+  public TYPE_TopPart_TopActionChooseArray_ActionSpace previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 

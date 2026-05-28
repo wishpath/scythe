@@ -8,13 +8,13 @@ import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.Upgradab
 import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.UpgradableStateChange_Top_Reward_Coins;
 
 public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
-  private ActionTopType_ActionSpaceType TOP_PART_TYPE = ActionTopType_ActionSpaceType.CHOOSE__MOVE__GAIN_COIN;
+  private TYPE_TopPart_TopActionChooseArray_ActionSpace TOP_PART_TYPE = TYPE_TopPart_TopActionChooseArray_ActionSpace.CHOOSE__MOVE__GAIN_COINS;
   private UpgradableCost FREE = new UpgradableCost_Coins(0, 0);
   private UpgradableStateChange_Top[] TOP_PART_CHOOSABLE_ACTIONS = new UpgradableStateChange_Top[] {
       new UpgradableStateChange_Top_Move(2, 3),
       new UpgradableStateChange_Top_Reward_Coins(1, 2)
   };
-  private BuildingType BUILDING_TYPE = BuildingType.MINE;
+  private BuildingType MINE = BuildingType.MINE;
 
   @Override
   public UpgradableCost getCost() {
@@ -22,13 +22,13 @@ public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
   }
 
   @Override
-  public ActionTopType_ActionSpaceType getTopPartType() {
+  public TYPE_TopPart_TopActionChooseArray_ActionSpace getTopPartType() {
     return this.TOP_PART_TYPE;
   }
 
   @Override
   public BuildingType getBuildingType() {
-    return this.BUILDING_TYPE;
+    return this.MINE;
   }
 
   @Override
