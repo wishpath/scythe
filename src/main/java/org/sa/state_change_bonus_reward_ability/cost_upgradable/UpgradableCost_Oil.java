@@ -1,6 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.cost_upgradable;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.enums.TradeableResourceType;
 
 public class UpgradableCost_Oil implements UpgradableCost {
   private int currentDeltaOil;
@@ -15,7 +16,7 @@ public class UpgradableCost_Oil implements UpgradableCost {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.oil += currentDeltaOil;
+    player.tradeableResourceInventory.merge(TradeableResourceType.OIL, currentDeltaOil, Integer::sum);
   }
 
   @Override

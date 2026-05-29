@@ -1,4 +1,4 @@
-package org.sa.player_mat.x;
+package org.sa.enums;
 
 public enum BuildingType {
   MILL,        // Produces resources on its territory during Produce

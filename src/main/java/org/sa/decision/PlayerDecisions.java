@@ -1,6 +1,5 @@
 package org.sa.decision;
 
-import org.sa.player_mat.c_action_spaces_BIG_4.ActionSpaceDTO;
 import org.sa.DTO.PlayerDTO;
 import org.sa.DTO.TileDTO;
 import org.sa.DTO.placeable.TokenDTO;
@@ -9,12 +8,14 @@ import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.b_storage.Grid;
 import org.sa.decision.helper.NotMovedHandler;
-import org.sa.enums.*;
-import org.sa.player_mat.a_action_space_TOP.TYPE_TopPart_TopActionChooseArray_ActionSpace;
-import org.sa.player_mat.PlayerMat_type_and_structure;
-import org.sa.player_mat.x.TopStateChangeDecision_TYPE_ENUM;
-import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.UpgradableStateChange_Top;
-import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.UpgradableStateChange_Top_Move;
+import org.sa.enums.FactionMat;
+import org.sa.player_mat.ActionSpaceDTO;
+import org.sa.player_mat.PlayerMat__type_and_structure;
+import org.sa.player_mat.a_TOPS.enums_and_interfaces.TYPE_TopPart_TopActionChooseArray_ActionSpace;
+import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopStateChangeDecision_TYPE_ENUM;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.UpgradableStateChange_Top_Move;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_ConcreteDeltaType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class PlayerDecisions {
     FactionMat factionMat = CardPool.drawEnlistCard();
 
     //player draws Player Mat (not connected to faction)
-    PlayerMat_type_and_structure playerMat = CardPool.drawFactionBoard();
+    PlayerMat__type_and_structure playerMat = CardPool.drawFactionBoard();
 
     //player chooses where to place workers
     final int INITIAL_WORKERS_COUNT = 2;
@@ -89,7 +90,7 @@ public class PlayerDecisions {
       case TopStateChangeDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((UpgradableStateChange_Top_Move) pickedReward_MOVE, player); //cast to MOVE class
       case TopStateChangeDecision_TYPE_ENUM.PRODUCE -> {} //TODO: create
       case TopStateChangeDecision_TYPE_ENUM.TRADE -> {} //TODO: create
-      case TopStateChangeDecision_TYPE_ENUM.NONE -> pickedReward_MOVE.applyToPlayer(player); //case when decision is not needed, simply apply
+      case TopStateChangeDecision_TYPE_ENUM.NONE -> ((UpgradableStateChange_Top_ConcreteDeltaType) pickedReward_MOVE).applyToPlayer(player); //case when decision is not needed, simply apply
       default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedReward_MOVE.getDecisionType());
     };
   }

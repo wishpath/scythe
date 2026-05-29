@@ -1,9 +1,9 @@
-package org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top;
+package org.sa.player_mat.a_TOPS.upgradable_state_change_top;
 
-import org.sa.DTO.PlayerDTO;
-import org.sa.player_mat.x.TopStateChangeDecision_TYPE_ENUM;
+import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopStateChangeDecision_TYPE_ENUM;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_AppliedByDecision;
 
-public class UpgradableStateChange_Top_Move implements UpgradableStateChange_Top {
+public class UpgradableStateChange_Top_Move implements UpgradableStateChange_Top_AppliedByDecision {
   private int currentDeltaMove_groupCapacity;
   private int fullyUpgradedDeltaMove_groupCapacity;
 
@@ -12,11 +12,6 @@ public class UpgradableStateChange_Top_Move implements UpgradableStateChange_Top
       throw new IllegalArgumentException("Reward should be expressed in positive values");
     this.currentDeltaMove_groupCapacity = initialDeltaMove_groupCapacity;
     this.fullyUpgradedDeltaMove_groupCapacity = fullyUpgradedDeltaMove_groupCapacity;
-  }
-
-  @Override
-  public void applyToPlayer(PlayerDTO player) {
-    // TODO: implement move reward logic: player class should have knowledge, what has to be moved and where
   }
 
   @Override

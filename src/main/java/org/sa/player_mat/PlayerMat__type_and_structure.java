@@ -1,12 +1,13 @@
 package org.sa.player_mat;
 
-import org.sa.player_mat.a_action_space_TOP.TYPE_TopPart_TopActionChooseArray_ActionSpace;
-import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.*;
-import org.sa.player_mat.c_action_spaces_BIG_4.ActionSpaceDTO;
-import org.sa.player_mat.player_mat_enum.ActionBottom;
+import org.sa.player_mat.a_TOPS.enums_and_interfaces.TYPE_TopPart_TopActionChooseArray_ActionSpace;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.*;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_ConcreteDeltaType;
+import org.sa.player_mat.b_BOTTOM.ActionBottom;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.*;
 
-public enum PlayerMat_type_and_structure {
+public enum PlayerMat__type_and_structure {
   AGRICULTURAL(
       4,
       7,
@@ -23,7 +24,8 @@ public enum PlayerMat_type_and_structure {
             },
             ActionBottom.UPGRADE,
             new UpgradableCost_Oil(-2,-2),
-            1),
+            1
+        ),
 
 
         // mid-left action space
@@ -31,36 +33,40 @@ public enum PlayerMat_type_and_structure {
             TYPE_TopPart_TopActionChooseArray_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS,
             new UpgradableCost_Coins(1, 1),
             new UpgradableStateChange_Top[]{
-              new UpgradableStateChange_Top_Hearts(1, 2)
+              new UpgradableStateChange_Top_Hearts(1, 2),
+              new UpgradableStateChange_Top_Trade(2, 2)
             }, //TODO: finish
             ActionBottom.DEPLOY,
             new UpgradableCost_Metal(-4,-2),
-            1),
+            1
+        ),
 
 
         // mid-right action space
         new ActionSpaceDTO(
             TYPE_TopPart_TopActionChooseArray_ActionSpace.PRODUCE,
             new UpgradableCost_Produce(),
-            new UpgradableStateChange_Top[]{
+            new UpgradableStateChange_Top_ConcreteDeltaType[]{
 
             }, //TODO: finish
             ActionBottom.BUILD,
             new UpgradableCost_Wood(-4,-2),
-            1),
+            1
+        ),
 
 
         // right action space
         new ActionSpaceDTO(
             TYPE_TopPart_TopActionChooseArray_ActionSpace.BOLSTER,
             new UpgradableCost_Coins(1, 1),
-            new UpgradableStateChange_Top[]{
+            new UpgradableStateChange_Top_ConcreteDeltaType[]{
               new UpgradableStateChange_Top_Attack(2,3),
               new UpgradableStateChange_Top_AttackCards(1, 2)
             },
             ActionBottom.ENLIST,
             new UpgradableCost_Food(-3,-1),
-            1),
+            1
+        ),
       }
   ),
 
@@ -77,7 +83,7 @@ public enum PlayerMat_type_and_structure {
   public final int initialMissionCards;
   public ActionSpaceDTO[] initialActionSpaces; // those 4 sections //TODO: how does it work when additional is added from the center tile
 
-  PlayerMat_type_and_structure(
+  PlayerMat__type_and_structure(
       int initialHearts,
       int initialCoins,
       int initialMissionCards,

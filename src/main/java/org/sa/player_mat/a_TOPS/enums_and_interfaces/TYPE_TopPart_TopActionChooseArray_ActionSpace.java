@@ -1,4 +1,4 @@
-package org.sa.player_mat.a_action_space_TOP;
+package org.sa.player_mat.a_TOPS.enums_and_interfaces;
 
 public enum TYPE_TopPart_TopActionChooseArray_ActionSpace {
   CHOOSE__MOVE__GAIN_COINS, // Move units on the board and possibly engage in combat

@@ -7,10 +7,11 @@ import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.FactionMat;
-import org.sa.player_mat.a_action_space_TOP.TYPE_TopPart_TopActionChooseArray_ActionSpace;
-import org.sa.player_mat.PlayerMat_type_and_structure;
+import org.sa.enums.TradeableResourceType;
 import org.sa.mission.MissionCard;
-import org.sa.player_mat.x.BuildingType;
+import org.sa.player_mat.PlayerMat__type_and_structure;
+import org.sa.player_mat.a_TOPS.enums_and_interfaces.TYPE_TopPart_TopActionChooseArray_ActionSpace;
+import org.sa.enums.BuildingType;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 import org.sa.state_change_bonus_reward_ability.enlistable_reward.*;
 
@@ -18,16 +19,20 @@ import java.util.*;
 
 public class PlayerDTO {
 
-  public PlayerMat_type_and_structure playerMat; //contains: home, name (faction name)
+  public PlayerMat__type_and_structure playerMat; //contains: home, name (faction name)
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
+  public Map<TradeableResourceType, Integer> tradeableResourceInventory = new EnumMap<>(
+      Map.of(
+          TradeableResourceType.FOOD, 0,
+          TradeableResourceType.METAL, 0,
+          TradeableResourceType.OIL, 0,
+          TradeableResourceType.WOOD, 0
+      )
+  );
   public int hearts = 0;
   public int coins = 0;
   public int attack = 0;
-  public int oil = 0;
-  public int wood = 0;
-  public int food = 0;
-  public int metal = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
   public TYPE_TopPart_TopActionChooseArray_ActionSpace previousActionSpace = null; // defined by top action //TODO use
@@ -106,7 +111,7 @@ public class PlayerDTO {
 
 
   /**-------------- CONSTRUCTOR --------------------------------------------------------------------------------------*/
-  public PlayerDTO(PlayerMat_type_and_structure playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
+  public PlayerDTO(PlayerMat__type_and_structure playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //player mat part
     this.playerMat = playerMat;
     this.hearts += playerMat.initialHearts;

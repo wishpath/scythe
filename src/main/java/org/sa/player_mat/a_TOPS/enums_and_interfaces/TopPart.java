@@ -1,8 +1,8 @@
-package org.sa.player_mat.a_action_space_TOP;
+package org.sa.player_mat.a_TOPS.enums_and_interfaces;
 
-import org.sa.player_mat.x.BuildingType;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top;
+import org.sa.enums.BuildingType;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost;
-import org.sa.player_mat.a_action_space_TOP.upgradable_state_change_top.UpgradableStateChange_Top;
 
 public interface TopPart {
   public UpgradableCost getCost();

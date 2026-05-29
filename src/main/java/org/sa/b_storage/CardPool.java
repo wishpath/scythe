@@ -1,7 +1,7 @@
 package org.sa.b_storage;
 
 import org.sa.enums.FactionMat;
-import org.sa.player_mat.PlayerMat_type_and_structure;
+import org.sa.player_mat.PlayerMat__type_and_structure;
 import org.sa.mission.MissionCard;
 import org.sa.mission.MissionDiversifyProduction;
 import org.sa.mission.MissionEstablishHumanShield;
@@ -14,7 +14,7 @@ import java.util.Random;
 public class CardPool {
 
   private static EnumSet<FactionMat> factionMapPool = EnumSet.allOf(FactionMat.class);
-  private static EnumSet<PlayerMat_type_and_structure> playerMatPool = EnumSet.allOf(PlayerMat_type_and_structure.class);
+  private static EnumSet<PlayerMat__type_and_structure> playerMatPool = EnumSet.allOf(PlayerMat__type_and_structure.class);
   private static List<MissionCard> missionCardPool = new ArrayList<>(List.of(new MissionEstablishHumanShield(), new MissionDiversifyProduction())); //TODO: add more missions later
   private static List<Integer> attackCardsPool = getNewAttackCardsPool(); // yellow attack cards: 16x+2, 12x+3, 8x+4, 6x+5
   private static final Random random = new Random();
@@ -32,10 +32,10 @@ public class CardPool {
     return drawn;
   }
 
-  public static PlayerMat_type_and_structure drawFactionBoard() {
+  public static PlayerMat__type_and_structure drawFactionBoard() {
     if (playerMatPool.isEmpty()) throw new IllegalStateException("Faction board pool should not be empty");
     int index = random.nextInt(playerMatPool.size());
-    PlayerMat_type_and_structure drawn = playerMatPool.toArray(new PlayerMat_type_and_structure[0])[index];
+    PlayerMat__type_and_structure drawn = playerMatPool.toArray(new PlayerMat__type_and_structure[0])[index];
     playerMatPool.remove(drawn);
     return drawn;
   }
