@@ -44,7 +44,7 @@ public enum PlayerMat__type_and_structure {
 
         // mid-right action space
         new ActionSpaceDTO(
-            TYPE_TopPart_TopActionChooseArray_ActionSpace.PRODUCE,
+            TYPE_TopPart_TopActionChooseArray_ActionSpace.NO_CHOOSE__PRODUCE,
             new UpgradableCost_Produce(),
             new UpgradableStateChange_Top_ConcreteDeltaType[]{
 

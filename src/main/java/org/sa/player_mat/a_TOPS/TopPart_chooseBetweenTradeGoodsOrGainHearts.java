@@ -11,7 +11,7 @@ import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_C
 
 public class TopPart_chooseBetweenTradeGoodsOrGainHearts implements TopPart {
   private TYPE_TopPart_TopActionChooseArray_ActionSpace TOP_PART_TYPE = TYPE_TopPart_TopActionChooseArray_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS;
-  private UpgradableCost ONE_COIN = new UpgradableCost_Coins(1, 1);
+  private UpgradableCost ONE_COIN = new UpgradableCost_Coins(-1, -1);
   private UpgradableStateChange_Top[] CHOOSE_BETWEEN_TRADE_OR_GAIN_HEARTS = new UpgradableStateChange_Top[] {
       new UpgradableStateChange_Top_Hearts(1, 2),
       new UpgradableStateChange_Top_Trade(2, 2)

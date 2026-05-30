@@ -1,5 +1,5 @@
 TASKS:
-  - implement: new UpgradableStateChange_Top_Trade(2, 2)
+  - continue on TopPart_noChoosing_Produce
   - finish all ACTION SPACE TOP PARTS, so they can be used to upgrade action space (it will look way more concise)
     - progress 2/4
   - disattach non-player-mat interfaces — only keep specific playermat ones.
