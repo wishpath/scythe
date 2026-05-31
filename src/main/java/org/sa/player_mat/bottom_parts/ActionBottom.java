@@ -1,4 +1,4 @@
-package org.sa.player_mat.b_BOTTOM;
+package org.sa.player_mat.bottom_parts;
 
 public enum ActionBottom {
   UPGRADE,   // Upgrade actions (improve top row / reduce bottom costs)

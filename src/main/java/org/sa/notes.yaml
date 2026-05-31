@@ -1,7 +1,6 @@
 TASKS:
-  - continue on TopPart_noChoosing_Produce
   - finish all ACTION SPACE TOP PARTS, so they can be used to upgrade action space (it will look way more concise)
-    - progress 2/4
+    - progress 3/4
   - disattach non-player-mat interfaces — only keep specific playermat ones.
   - implement in PlayerDecisions example of Choosing trade
   - for example move_gain_Top_action is exactly the same for all the Player mats, so can be created ones in an uncustomised way in the constructor, should accept type/enum in the constructor for the control

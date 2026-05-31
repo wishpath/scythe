@@ -1,13 +1,13 @@
-package org.sa.player_mat.a_TOPS.upgradable_state_change_top;
+package org.sa.player_mat.a_top_parts.top_part_upgradable_action;
 
-import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopStateChangeDecision_TYPE_ENUM;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_AppliedByDecision;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_AppliedByDecision;
 
-public class UpgradableStateChange_Top_Produce_Decideable implements UpgradableStateChange_Top_AppliedByDecision {
+public class TopPartUpgradableAction_Produce_Decideable implements TopPartUpgradableAction_AppliedByDecision {
   private int currentLimit_amountOfTilesThatCanProduce;
   private int fullyUpgradedLimit_amountOfTilesThatCanProduce;
 
-  public UpgradableStateChange_Top_Produce_Decideable(int currentLimit_amountOfTilesThatCanProduce, int fullyUpgradedLimit_amountOfTilesThatCanProduce) {
+  public TopPartUpgradableAction_Produce_Decideable(int currentLimit_amountOfTilesThatCanProduce, int fullyUpgradedLimit_amountOfTilesThatCanProduce) {
     if (currentLimit_amountOfTilesThatCanProduce < 0 || fullyUpgradedLimit_amountOfTilesThatCanProduce < 0)
       throw new IllegalArgumentException("Produce tiles limit should be expressed in positive values");
     this.currentLimit_amountOfTilesThatCanProduce = currentLimit_amountOfTilesThatCanProduce;
@@ -30,7 +30,7 @@ public class UpgradableStateChange_Top_Produce_Decideable implements UpgradableS
   }
 
   @Override
-  public TopStateChangeDecision_TYPE_ENUM getDecisionType() {
-    return TopStateChangeDecision_TYPE_ENUM.PRODUCE;
+  public TopPartDecision_TYPE_ENUM getDecisionType() {
+    return TopPartDecision_TYPE_ENUM.PRODUCE;
   }
 }

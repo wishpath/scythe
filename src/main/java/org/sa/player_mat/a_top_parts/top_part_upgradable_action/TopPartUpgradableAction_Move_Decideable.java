@@ -1,13 +1,13 @@
-package org.sa.player_mat.a_TOPS.upgradable_state_change_top;
+package org.sa.player_mat.a_top_parts.top_part_upgradable_action;
 
-import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopStateChangeDecision_TYPE_ENUM;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_AppliedByDecision;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_AppliedByDecision;
 
-public class UpgradableStateChange_Top_Move_Decideable implements UpgradableStateChange_Top_AppliedByDecision {
+public class TopPartUpgradableAction_Move_Decideable implements TopPartUpgradableAction_AppliedByDecision {
   private int currentDeltaMove_groupCapacity;
   private int fullyUpgradedDeltaMove_groupCapacity;
 
-  public UpgradableStateChange_Top_Move_Decideable(int initialDeltaMove_groupCapacity, int fullyUpgradedDeltaMove_groupCapacity) {
+  public TopPartUpgradableAction_Move_Decideable(int initialDeltaMove_groupCapacity, int fullyUpgradedDeltaMove_groupCapacity) {
     if (initialDeltaMove_groupCapacity < 0 || fullyUpgradedDeltaMove_groupCapacity < 0)
       throw new IllegalArgumentException("Move groups should be expressed in positive values");
     this.currentDeltaMove_groupCapacity = initialDeltaMove_groupCapacity;
@@ -30,7 +30,7 @@ public class UpgradableStateChange_Top_Move_Decideable implements UpgradableStat
   }
 
   @Override
-  public TopStateChangeDecision_TYPE_ENUM getDecisionType() {
-    return TopStateChangeDecision_TYPE_ENUM.MOVE;
+  public TopPartDecision_TYPE_ENUM getDecisionType() {
+    return TopPartDecision_TYPE_ENUM.MOVE;
   }
 }

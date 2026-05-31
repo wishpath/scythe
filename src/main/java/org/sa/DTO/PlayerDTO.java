@@ -10,7 +10,7 @@ import org.sa.enums.FactionMat;
 import org.sa.enums.TradeableResourceType;
 import org.sa.mission.MissionCard;
 import org.sa.player_mat.PlayerMat__type_and_structure;
-import org.sa.player_mat.a_TOPS.enums_and_interfaces.TYPE_TopPart_TopActionChooseArray_ActionSpace;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
 import org.sa.enums.BuildingType;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 import org.sa.state_change_bonus_reward_ability.enlistable_reward.*;
@@ -35,7 +35,7 @@ public class PlayerDTO {
   public int attack = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
-  public TYPE_TopPart_TopActionChooseArray_ActionSpace previousActionSpace = null; // defined by top action //TODO use
+  public TYPE__TopPart__TopPartChooseActionArray__ActionSpace previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 

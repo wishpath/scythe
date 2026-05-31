@@ -11,11 +11,11 @@ import org.sa.decision.helper.NotMovedHandler;
 import org.sa.enums.FactionMat;
 import org.sa.player_mat.ActionSpaceDTO;
 import org.sa.player_mat.PlayerMat__type_and_structure;
-import org.sa.player_mat.a_TOPS.enums_and_interfaces.TYPE_TopPart_TopActionChooseArray_ActionSpace;
-import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopStateChangeDecision_TYPE_ENUM;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.UpgradableStateChange_Top_Move_Decideable;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_ConcreteDeltaType;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Move_Decideable;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +55,7 @@ public class PlayerDecisions {
 
 
     //player picks MOVE_GAIN
-    TYPE_TopPart_TopActionChooseArray_ActionSpace pickedActionSpaceType = TYPE_TopPart_TopActionChooseArray_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick (should not be previous actionSpace(except rusviet)
+    TYPE__TopPart__TopPartChooseActionArray__ActionSpace pickedActionSpaceType = TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick (should not be previous actionSpace(except rusviet)
 
 
     ActionSpaceDTO pickedActionSpaceDTO__MOVE_GAIN = null;
@@ -73,7 +73,7 @@ public class PlayerDecisions {
 
       //player picks MOVE from MOVE_GAIN
       int picked_reward_index__representing_MOVE = 0; //TODO: player should pick (0 for move and 1 for gain coins)
-      UpgradableStateChange_Top pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.actionTop_Rewards_toChoose_upgradable[picked_reward_index__representing_MOVE];
+      TopPartUpgradableAction pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.actionTop_Rewards_toChoose_upgradable[picked_reward_index__representing_MOVE];
 
       //player decides what and where to MOVE
       applyTopAction(pickedReward_MOVE, player);
@@ -85,17 +85,17 @@ public class PlayerDecisions {
     player.previousActionSpace = pickedActionSpaceType;
   }
 
-  private static void applyTopAction(UpgradableStateChange_Top pickedReward_MOVE, PlayerDTO player) {
+  private static void applyTopAction(TopPartUpgradableAction pickedReward_MOVE, PlayerDTO player) {
     switch (pickedReward_MOVE.getDecisionType()) {
-      case TopStateChangeDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((UpgradableStateChange_Top_Move_Decideable) pickedReward_MOVE, player); //cast to MOVE class
-      case TopStateChangeDecision_TYPE_ENUM.PRODUCE -> {} //TODO: create
-      case TopStateChangeDecision_TYPE_ENUM.TRADE -> {} //TODO: create
-      case TopStateChangeDecision_TYPE_ENUM.NONE -> ((UpgradableStateChange_Top_ConcreteDeltaType) pickedReward_MOVE).applyToPlayer(player); //case when decision is not needed, simply apply
+      case TopPartDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((TopPartUpgradableAction_Move_Decideable) pickedReward_MOVE, player); //cast to MOVE class
+      case TopPartDecision_TYPE_ENUM.PRODUCE -> {} //TODO: create
+      case TopPartDecision_TYPE_ENUM.TRADE -> {} //TODO: create
+      case TopPartDecision_TYPE_ENUM.NONE -> ((TopPartUpgradableAction_ConcreteDeltaType) pickedReward_MOVE).applyToPlayer(player); //case when decision is not needed, simply apply
       default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedReward_MOVE.getDecisionType());
     };
   }
 
-  private static void DECIDE_andApply_TopAction_MOVE(UpgradableStateChange_Top_Move_Decideable moveStateChange, PlayerDTO player) {
+  private static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveStateChange, PlayerDTO player) {
     int moveCountTotal = moveStateChange.getCurrentChangeDelta();
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 

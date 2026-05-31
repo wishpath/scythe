@@ -1,8 +1,9 @@
 package org.sa.player_mat;
 
-import org.sa.player_mat.a_TOPS.enums_and_interfaces.TYPE_TopPart_TopActionChooseArray_ActionSpace;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top;
-import org.sa.player_mat.b_BOTTOM.ActionBottom;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
+import org.sa.player_mat.bottom_parts.ActionBottom;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost;
 import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Coins;
 
@@ -10,18 +11,18 @@ import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeR
 public class ActionSpaceDTO {
 
   //TODO: each reward (pay or get) should have int amount (state) (upgradable) (initial) (max)
-  public TYPE_TopPart_TopActionChooseArray_ActionSpace actionTop;
-  public UpgradableCost actionTopCost;
-  public UpgradableStateChange_Top[] actionTop_Rewards_toChoose_upgradable;
+  public TYPE__TopPart__TopPartChooseActionArray__ActionSpace actionTop;
+  public TopPartCost actionTopCost;
+  public TopPartUpgradableAction[] actionTop_Rewards_toChoose_upgradable;
 
   ActionBottom actionBottom;
   public UpgradableCost actionBottomUpgradableCost;
   public ElistActionOneTimeReward_FromFactionMat_Coins actionBottomCoinReward;
 
   public ActionSpaceDTO(
-      TYPE_TopPart_TopActionChooseArray_ActionSpace actionTop,
-      UpgradableCost actionTopCost,
-      UpgradableStateChange_Top[] actionTopRewards_toPickFrom,
+      TYPE__TopPart__TopPartChooseActionArray__ActionSpace actionTop,
+      TopPartCost actionTopCost,
+      TopPartUpgradableAction[] actionTopRewards_toPickFrom,
 
       ActionBottom actionBottom,
       UpgradableCost actionBottomUpgradableCost,

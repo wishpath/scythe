@@ -1,13 +1,13 @@
-package org.sa.player_mat.a_TOPS.upgradable_state_change_top;
+package org.sa.player_mat.a_top_parts.top_part_upgradable_action;
 
-import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopStateChangeDecision_TYPE_ENUM;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_AppliedByDecision;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_AppliedByDecision;
 
-public class UpgradableStateChange_Top_Trade_Decideable implements UpgradableStateChange_Top_AppliedByDecision {
+public class TopPartUpgradableAction_Trade_Decideable implements TopPartUpgradableAction_AppliedByDecision {
   private int currentDeltaChosenResource;
   private int fullyUpgradedDeltaChosenResult;
 
-  public UpgradableStateChange_Top_Trade_Decideable(int initialDeltaChosenResourceReward, int fullyUpgradedDeltaChosenResult) {
+  public TopPartUpgradableAction_Trade_Decideable(int initialDeltaChosenResourceReward, int fullyUpgradedDeltaChosenResult) {
     if (initialDeltaChosenResourceReward < 0 || fullyUpgradedDeltaChosenResult < 0)
       throw new IllegalArgumentException("Reward should be expressed in positive values");
     this.currentDeltaChosenResource = initialDeltaChosenResourceReward;
@@ -30,7 +30,7 @@ public class UpgradableStateChange_Top_Trade_Decideable implements UpgradableSta
   }
 
   @Override
-  public TopStateChangeDecision_TYPE_ENUM getDecisionType() {
-    return TopStateChangeDecision_TYPE_ENUM.TRADE;
+  public TopPartDecision_TYPE_ENUM getDecisionType() {
+    return TopPartDecision_TYPE_ENUM.TRADE;
   }
 }

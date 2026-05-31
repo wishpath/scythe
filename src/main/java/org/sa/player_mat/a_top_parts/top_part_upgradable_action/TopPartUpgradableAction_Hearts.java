@@ -1,14 +1,14 @@
-package org.sa.player_mat.a_TOPS.upgradable_state_change_top;
+package org.sa.player_mat.a_top_parts.top_part_upgradable_action;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_ConcreteDeltaType;
-import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopStateChangeDecision_TYPE_ENUM;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
 
-public class UpgradableStateChange_Top_Hearts implements UpgradableStateChange_Top_ConcreteDeltaType {
+public class TopPartUpgradableAction_Hearts implements TopPartUpgradableAction_ConcreteDeltaType {
   private int currentDeltaHearts;
   private int fullyUpgradedDeltaHeartsReward;
 
-  public UpgradableStateChange_Top_Hearts(int initialDeltaHeartsReward, int fullyUpgradedDeltaHeartsReward) {
+  public TopPartUpgradableAction_Hearts(int initialDeltaHeartsReward, int fullyUpgradedDeltaHeartsReward) {
     if (initialDeltaHeartsReward < 0 || fullyUpgradedDeltaHeartsReward < 0)
       throw new IllegalArgumentException("Reward should be expressed in positive values");
     this.currentDeltaHearts = initialDeltaHeartsReward;
@@ -36,7 +36,7 @@ public class UpgradableStateChange_Top_Hearts implements UpgradableStateChange_T
   }
 
   @Override
-  public TopStateChangeDecision_TYPE_ENUM getDecisionType() {
-    return TopStateChangeDecision_TYPE_ENUM.NONE;
+  public TopPartDecision_TYPE_ENUM getDecisionType() {
+    return TopPartDecision_TYPE_ENUM.NONE;
   }
 }
