@@ -3,7 +3,7 @@ package org.sa.player_mat.a_TOPS;
 import org.sa.player_mat.a_TOPS.enums_and_interfaces.TYPE_TopPart_TopActionChooseArray_ActionSpace;
 import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopPart;
 import org.sa.player_mat.a_TOPS.upgradable_state_change_top.UpgradableStateChange_Top_Hearts;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.UpgradableStateChange_Top_Trade;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.UpgradableStateChange_Top_Trade_Decideable;
 import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top;
 import org.sa.enums.BuildingType;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost;
@@ -14,7 +14,7 @@ public class TopPart_chooseBetweenTradeGoodsOrGainHearts implements TopPart {
   private UpgradableCost ONE_COIN = new UpgradableCost_Coins(-1, -1);
   private UpgradableStateChange_Top[] CHOOSE_BETWEEN_TRADE_OR_GAIN_HEARTS = new UpgradableStateChange_Top[] {
       new UpgradableStateChange_Top_Hearts(1, 2),
-      new UpgradableStateChange_Top_Trade(2, 2)
+      new UpgradableStateChange_Top_Trade_Decideable(2, 2)
   };
   private BuildingType ARMORY = BuildingType.ARMORY;
 

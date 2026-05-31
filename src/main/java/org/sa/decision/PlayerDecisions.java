@@ -13,7 +13,7 @@ import org.sa.player_mat.ActionSpaceDTO;
 import org.sa.player_mat.PlayerMat__type_and_structure;
 import org.sa.player_mat.a_TOPS.enums_and_interfaces.TYPE_TopPart_TopActionChooseArray_ActionSpace;
 import org.sa.player_mat.a_TOPS.enums_and_interfaces.TopStateChangeDecision_TYPE_ENUM;
-import org.sa.player_mat.a_TOPS.upgradable_state_change_top.UpgradableStateChange_Top_Move;
+import org.sa.player_mat.a_TOPS.upgradable_state_change_top.UpgradableStateChange_Top_Move_Decideable;
 import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top;
 import org.sa.player_mat.a_TOPS.upgradable_state_change_top.interfaces.UpgradableStateChange_Top_ConcreteDeltaType;
 
@@ -87,7 +87,7 @@ public class PlayerDecisions {
 
   private static void applyTopAction(UpgradableStateChange_Top pickedReward_MOVE, PlayerDTO player) {
     switch (pickedReward_MOVE.getDecisionType()) {
-      case TopStateChangeDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((UpgradableStateChange_Top_Move) pickedReward_MOVE, player); //cast to MOVE class
+      case TopStateChangeDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((UpgradableStateChange_Top_Move_Decideable) pickedReward_MOVE, player); //cast to MOVE class
       case TopStateChangeDecision_TYPE_ENUM.PRODUCE -> {} //TODO: create
       case TopStateChangeDecision_TYPE_ENUM.TRADE -> {} //TODO: create
       case TopStateChangeDecision_TYPE_ENUM.NONE -> ((UpgradableStateChange_Top_ConcreteDeltaType) pickedReward_MOVE).applyToPlayer(player); //case when decision is not needed, simply apply
@@ -95,7 +95,7 @@ public class PlayerDecisions {
     };
   }
 
-  private static void DECIDE_andApply_TopAction_MOVE(UpgradableStateChange_Top_Move moveStateChange, PlayerDTO player) {
+  private static void DECIDE_andApply_TopAction_MOVE(UpgradableStateChange_Top_Move_Decideable moveStateChange, PlayerDTO player) {
     int moveCountTotal = moveStateChange.getCurrentChangeDelta();
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 

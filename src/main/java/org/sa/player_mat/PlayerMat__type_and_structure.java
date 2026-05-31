@@ -19,7 +19,7 @@ public enum PlayerMat__type_and_structure {
             TYPE_TopPart_TopActionChooseArray_ActionSpace.CHOOSE__MOVE__GAIN_COINS, //Action top type
             new UpgradableCost_Coins(0, 0), //Action top cost: THIS ONE IS FOR FREE
             new UpgradableStateChange_Top[]{
-                new UpgradableStateChange_Top_Move(2, 3), //Action top choosable reward
+                new UpgradableStateChange_Top_Move_Decideable(2, 3), //Action top choosable reward
                 new UpgradableStateChange_Top_Reward_Coins(1, 2) //Action top choosable reward
             },
             ActionBottom.UPGRADE,
@@ -34,7 +34,7 @@ public enum PlayerMat__type_and_structure {
             new UpgradableCost_Coins(1, 1),
             new UpgradableStateChange_Top[]{
               new UpgradableStateChange_Top_Hearts(1, 2),
-              new UpgradableStateChange_Top_Trade(2, 2)
+              new UpgradableStateChange_Top_Trade_Decideable(2, 2)
             }, //TODO: finish
             ActionBottom.DEPLOY,
             new UpgradableCost_Metal(-4,-2),
