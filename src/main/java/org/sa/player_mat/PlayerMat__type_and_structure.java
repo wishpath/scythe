@@ -2,7 +2,7 @@ package org.sa.player_mat;
 
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
 import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_0_free;
-import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_1Coin;
+import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_Minus1Coin;
 import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_Produce;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.*;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
@@ -34,7 +34,7 @@ public enum PlayerMat__type_and_structure {
         // mid-left action space
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__TRADE__GAIN_HEARTS,
-            new TopPartCost_1Coin(),
+            new TopPartCost_Minus1Coin(),
             new TopPartUpgradableAction[]{
               new TopPartUpgradableAction_Hearts(1, 2),
               new TopPartUpgradableAction_Trade_Decideable(2, 2)
@@ -60,8 +60,8 @@ public enum PlayerMat__type_and_structure {
 
         // right action space
         new ActionSpaceDTO(
-            TYPE__TopPart__TopPartChooseActionArray__ActionSpace.BOLSTER,
-            new TopPartCost_1Coin(),
+            TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__POWER__COMBAT_CARDS,
+            new TopPartCost_Minus1Coin(),
             new TopPartUpgradableAction_ConcreteDeltaType[]{
               new TopPartUpgradableAction_Attack(2,3),
               new TopPartUpgradableAction_AttackCards(1, 2)
