@@ -60,7 +60,7 @@ public class PlayerDecisions {
 
     ActionSpaceDTO pickedActionSpaceDTO__MOVE_GAIN = null;
     for (ActionSpaceDTO actionSpace : actionSpaces)
-      if (actionSpace.actionTop == pickedActionSpaceType) {
+      if (actionSpace.tYPE__TopPart__TopPartChooseActionArray__ActionSpace == pickedActionSpaceType) {
         pickedActionSpaceDTO__MOVE_GAIN = actionSpace;
         break;
       }

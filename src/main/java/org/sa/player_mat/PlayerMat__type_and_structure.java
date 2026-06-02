@@ -1,14 +1,15 @@
 package org.sa.player_mat;
 
+import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenAttack_PointsOrCards;
+import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenMoveOrGainCoins;
+import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenTradeGoodsOrGainHearts;
+import org.sa.player_mat.a_top_parts.TopPart_noChoosing_Produce;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
-import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_0_free;
-import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_Minus1Coin;
-import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_Produce;
-import org.sa.player_mat.a_top_parts.top_part_upgradable_action.*;
-import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
-import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 import org.sa.player_mat.bottom_parts.ActionBottom;
-import org.sa.state_change_bonus_reward_ability.cost_upgradable.*;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Food;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Metal;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Oil;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Wood;
 
 public enum PlayerMat__type_and_structure {
   AGRICULTURAL(
@@ -20,25 +21,16 @@ public enum PlayerMat__type_and_structure {
         // left action space
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS, //Action top type
-            new TopPartCost_0_free(), //Action top cost: THIS ONE IS FOR FREE
-            new TopPartUpgradableAction[]{
-                new TopPartUpgradableAction_Move_Decideable(2, 3), //Action top choosable reward
-                new TopPartUpgradableAction_Reward_Coins(1, 2) //Action top choosable reward
-            },
+            new TopPart_chooseBetweenMoveOrGainCoins(),
             ActionBottom.UPGRADE,
             new UpgradableCost_Oil(-2,-2),
             1
         ),
 
-
         // mid-left action space
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__TRADE__GAIN_HEARTS,
-            new TopPartCost_Minus1Coin(),
-            new TopPartUpgradableAction[]{
-              new TopPartUpgradableAction_Hearts(1, 2),
-              new TopPartUpgradableAction_Trade_Decideable(2, 2)
-            }, //TODO: finish
+            new TopPart_chooseBetweenTradeGoodsOrGainHearts(),
             ActionBottom.DEPLOY,
             new UpgradableCost_Metal(-4,-2),
             1
@@ -48,10 +40,7 @@ public enum PlayerMat__type_and_structure {
         // mid-right action space
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.NO_CHOOSE__PRODUCE,
-            new TopPartCost_Produce(),
-            new TopPartUpgradableAction_ConcreteDeltaType[]{
-
-            }, //TODO: finish
+            new TopPart_noChoosing_Produce(),
             ActionBottom.BUILD,
             new UpgradableCost_Wood(-4,-2),
             1
@@ -61,11 +50,7 @@ public enum PlayerMat__type_and_structure {
         // right action space
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__POWER__COMBAT_CARDS,
-            new TopPartCost_Minus1Coin(),
-            new TopPartUpgradableAction_ConcreteDeltaType[]{
-              new TopPartUpgradableAction_Attack(2,3),
-              new TopPartUpgradableAction_AttackCards(1, 2)
-            },
+            new TopPart_chooseBetweenAttack_PointsOrCards(),
             ActionBottom.ENLIST,
             new UpgradableCost_Food(-3,-1),
             1

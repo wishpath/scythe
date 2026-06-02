@@ -1,5 +1,5 @@
 TASKS:
-  - upgrade action space (it will look way more concise) using new TopPart objects
+  - Bottom part should be a separate object as well
   - disattach non-player-mat interfaces — only keep specific playermat ones.
   - implement in PlayerDecisions example of Choosing trade
   - for example move_gain_Top_action is exactly the same for all the Player mats, so can be created ones in an uncustomised way in the constructor, should accept type/enum in the constructor for the control
