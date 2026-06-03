@@ -5,7 +5,7 @@ import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenMoveOrGainCoins;
 import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenTradeGoodsOrGainHearts;
 import org.sa.player_mat.a_top_parts.TopPart_noChoosing_Produce;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
-import org.sa.player_mat.bottom_parts.ActionBottom;
+import org.sa.player_mat.bottom_parts.TYPE__BottomPart__BottomPartAction;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Food;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Metal;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Oil;
@@ -22,7 +22,7 @@ public enum PlayerMat__type_and_structure {
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS, //Action top type
             new TopPart_chooseBetweenMoveOrGainCoins(),
-            ActionBottom.UPGRADE,
+            TYPE__BottomPart__BottomPartAction.UPGRADE,
             new UpgradableCost_Oil(-2,-2),
             1
         ),
@@ -31,7 +31,7 @@ public enum PlayerMat__type_and_structure {
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__TRADE__GAIN_HEARTS,
             new TopPart_chooseBetweenTradeGoodsOrGainHearts(),
-            ActionBottom.DEPLOY,
+            TYPE__BottomPart__BottomPartAction.DEPLOY,
             new UpgradableCost_Metal(-4,-2),
             1
         ),
@@ -41,7 +41,7 @@ public enum PlayerMat__type_and_structure {
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.NO_CHOOSE__PRODUCE,
             new TopPart_noChoosing_Produce(),
-            ActionBottom.BUILD,
+            TYPE__BottomPart__BottomPartAction.BUILD,
             new UpgradableCost_Wood(-4,-2),
             1
         ),
@@ -51,7 +51,7 @@ public enum PlayerMat__type_and_structure {
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__POWER__COMBAT_CARDS,
             new TopPart_chooseBetweenAttack_PointsOrCards(),
-            ActionBottom.ENLIST,
+            TYPE__BottomPart__BottomPartAction.ENLIST,
             new UpgradableCost_Food(-3,-1),
             1
         ),

@@ -1,5 +1,9 @@
 TASKS:
   - Bottom part should be a separate object as well
+    - Implement first bottomPart_UPGRADE
+    - Standardize using Interface
+    - Create all bottom parts extending Interface
+    - Use interface in ActionSpace to simplifyIt
   - disattach non-player-mat interfaces — only keep specific playermat ones.
   - implement in PlayerDecisions example of Choosing trade
   - for example move_gain_Top_action is exactly the same for all the Player mats, so can be created ones in an uncustomised way in the constructor, should accept type/enum in the constructor for the control

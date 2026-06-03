@@ -1,6 +1,6 @@
 package org.sa.player_mat.bottom_parts;
 
-public enum ActionBottom {
+public enum TYPE__BottomPart__BottomPartAction {
   UPGRADE,   // Upgrade actions (improve top row / reduce bottom costs)
   DEPLOY,    // Deploy a Mech and unlock its ability
   BUILD,     // Build a structure
