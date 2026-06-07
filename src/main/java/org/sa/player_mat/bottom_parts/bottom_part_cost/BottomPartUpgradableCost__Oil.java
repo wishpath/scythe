@@ -2,6 +2,7 @@ package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.enums.ResourceType;
+import org.sa.player_mat.PlayerMat__type_and_structure;
 
 public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
   private int currentDeltaOil;
@@ -12,6 +13,12 @@ public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
       throw new IllegalArgumentException("Cost should be expressed in negative values");
     this.currentDeltaOil = initialDeltaOilCost;
     this.fullyUpgradedDeltaOilCost = fullyUpgradedDeltaOilCost;
+  }
+
+  public BottomPartUpgradableCost__Oil(PlayerMat__type_and_structure playerMatType) {
+    //TODO: create
+    this.currentDeltaOil = PLAYER_MAT__INITIAL_DELTA_OIL.get(playerMatType);
+    this.fullyUpgradedDeltaOilCost = PLAYER_MAP__FULLY_UPGREADED_OIL_DELTA.get(playerMatType);
   }
 
   @Override
