@@ -1,14 +1,14 @@
 package org.sa.enums;
 
 public enum ResourceType {
-  FOOD(false),
-  METAL(false),
-  OIL(false),
-  WOOD(false),
+  FOOD(true),
+  METAL(true),
+  OIL(true),
+  WOOD(true),
 
-  COINS(true),
-  HEARTS(true),
-  ATTACK(true);
+  COINS(false),
+  HEARTS(false),
+  ATTACK(false);
 
   public final boolean canGetThroughTradeAction;
 

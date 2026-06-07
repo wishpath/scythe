@@ -23,7 +23,8 @@ public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.getResourceMap().merge(ResourceType.OIL, currentDeltaOil, Integer::sum);
+    if (currentDeltaOil > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
+    player.getResourceMap().merge(ResourceType.OIL, currentDeltaOil, Integer::sum); //because negative numbers
   }
 
   @Override
