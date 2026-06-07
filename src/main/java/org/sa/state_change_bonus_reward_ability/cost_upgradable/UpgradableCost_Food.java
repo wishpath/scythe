@@ -1,7 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.cost_upgradable;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.enums.TradeableResourceType;
+import org.sa.enums.ResourceType;
 
 public class UpgradableCost_Food implements UpgradableCost {
   private int currentDeltaFood;
@@ -16,7 +16,7 @@ public class UpgradableCost_Food implements UpgradableCost {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.tradeableResourceInventory.merge(TradeableResourceType.FOOD, currentDeltaFood, Integer::sum);
+    player.getResourceMap().merge(ResourceType.FOOD, currentDeltaFood, Integer::sum);
   }
 
   @Override

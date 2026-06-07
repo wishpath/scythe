@@ -1,7 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.cost_upgradable;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.enums.TradeableResourceType;
+import org.sa.enums.ResourceType;
 
 public class UpgradableCost_Wood implements UpgradableCost {
   private int currentDeltaWood;
@@ -16,7 +16,7 @@ public class UpgradableCost_Wood implements UpgradableCost {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.tradeableResourceInventory.merge(TradeableResourceType.WOOD, currentDeltaWood, Integer::sum);
+    player.getResourceMap().merge(ResourceType.WOOD, currentDeltaWood, Integer::sum);
   }
 
   @Override

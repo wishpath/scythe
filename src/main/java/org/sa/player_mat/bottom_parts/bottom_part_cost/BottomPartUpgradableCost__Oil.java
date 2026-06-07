@@ -1,7 +1,7 @@
 package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.enums.TradeableResourceType;
+import org.sa.enums.ResourceType;
 
 public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
   private int currentDeltaOil;
@@ -16,7 +16,7 @@ public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.tradeableResourceInventory.merge(TradeableResourceType.OIL, currentDeltaOil, Integer::sum);
+    player.getResourceMap().merge(ResourceType.OIL, currentDeltaOil, Integer::sum);
   }
 
   @Override

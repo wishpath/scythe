@@ -7,7 +7,7 @@ import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.FactionMat;
-import org.sa.enums.TradeableResourceType;
+import org.sa.enums.ResourceType;
 import org.sa.mission.MissionCard;
 import org.sa.player_mat.PlayerMat__type_and_structure;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
@@ -22,14 +22,7 @@ public class PlayerDTO {
   public PlayerMat__type_and_structure playerMat; //contains: home, name (faction name)
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
-  public Map<TradeableResourceType, Integer> tradeableResourceInventory = new EnumMap<>(
-      Map.of(
-          TradeableResourceType.FOOD, 0,
-          TradeableResourceType.METAL, 0,
-          TradeableResourceType.OIL, 0,
-          TradeableResourceType.WOOD, 0
-      )
-  );
+
   public int hearts = 0;
   public int coins = 0;
   public int attack = 0;
@@ -38,6 +31,21 @@ public class PlayerDTO {
   public TYPE__TopPart__TopPartChooseActionArray__ActionSpace previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
+  /**-------------- INT RESOURCES ------------------------------------------------------------------------------------*/
+  private Map<ResourceType, Integer> resourceMap = new EnumMap<>(
+      Map.of(
+          ResourceType.FOOD, 0,
+          ResourceType.METAL, 0,
+          ResourceType.OIL, 0,
+          ResourceType.WOOD, 0,
+          ResourceType.HEARTS, 0,
+          ResourceType.COINS, 0,
+          ResourceType.ATTACK, 0
+      )
+  );
+  public Map<ResourceType, Integer> getResourceMap() {
+    return this.resourceMap;
+  }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
   //PLAYER MAT PART (ongoing) (state if enabled or not) //TODO: map to what
