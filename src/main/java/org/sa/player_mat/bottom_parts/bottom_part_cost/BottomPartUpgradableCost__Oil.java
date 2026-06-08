@@ -16,9 +16,24 @@ public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
   }
 
   public BottomPartUpgradableCost__Oil(PlayerMat__type_and_structure playerMatType) {
-    //TODO: create
-    this.currentDeltaOil = PLAYER_MAT__INITIAL_DELTA_OIL.get(playerMatType);
-    this.fullyUpgradedDeltaOilCost = PLAYER_MAP__FULLY_UPGREADED_OIL_DELTA.get(playerMatType);
+    this.currentDeltaOil = switch (playerMatType) {
+      case AGRICULTURAL -> -2;
+      case ENGINEERING -> -3;
+      case INNOVATIVE -> -3;
+      case INDUSTRIAL -> -3;
+      case MECHANICAL -> -3;
+      case MILITANT -> -3;
+      case PATRIOTIC -> -2;
+    };
+    this.fullyUpgradedDeltaOilCost = switch (playerMatType) {
+      case AGRICULTURAL -> -2;
+      case ENGINEERING -> -2;
+      case INNOVATIVE -> -3;
+      case INDUSTRIAL -> -2;
+      case MECHANICAL -> -2;
+      case MILITANT -> -1;
+      case PATRIOTIC -> -2;
+    };
   }
 
   @Override

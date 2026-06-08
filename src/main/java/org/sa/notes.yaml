@@ -1,5 +1,4 @@
 TASKS:
-  - BottomPartUpgradableCost__Oil -- finish constructor
   - Bottom part should be a separate object as well
     - Implement first bottomPart_UPGRADE
     - Standardize using Interface
