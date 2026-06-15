@@ -46,6 +46,9 @@ public class PlayerDTO {
   public Map<ResourceType, Integer> getResourceMap() {
     return this.resourceMap;
   }
+  public void addResource(ResourceType resourceType, int amount) {
+    resourceMap.merge(resourceType, amount, Integer::sum);
+  }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
   //PLAYER MAT PART (ongoing) (state if enabled or not) //TODO: map to what
@@ -122,8 +125,8 @@ public class PlayerDTO {
   public PlayerDTO(PlayerMat__type_and_structure playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //player mat part
     this.playerMat = playerMat;
-    this.hearts += playerMat.initialHearts;
-    this.coins += playerMat.initialCoins;
+    addResource(ResourceType.HEARTS, playerMat.initialHearts);
+    addResource(ResourceType.COINS, playerMat.initialCoins);
     for (int i = 0; i < playerMat.initialMissionCards; i++) {
       missionCards.add(CardPool.drawMissionCard());
     }
