@@ -23,7 +23,6 @@ public class PlayerDTO {
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
 
-  public int hearts = 0;
   public int coins = 0;
   public int attack = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
@@ -46,8 +45,8 @@ public class PlayerDTO {
   public Map<ResourceType, Integer> getResourceMap() {
     return this.resourceMap;
   }
-  public void addResource(ResourceType resourceType, int amount) {
-    resourceMap.merge(resourceType, amount, Integer::sum);
+  public void addResource(ResourceType resourceType, int amountDelta) {
+    resourceMap.merge(resourceType, amountDelta, Integer::sum);
   }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/

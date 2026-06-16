@@ -1,6 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.enlistable_reward;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.enums.ResourceType;
 import org.sa.enums.player_mat_enum.ActionBottom;
 
 public class EnlistableReward_HeartsPlusOne_triggeredByNeighbor_BUILD implements EnlistableReward {
@@ -28,7 +29,7 @@ public class EnlistableReward_HeartsPlusOne_triggeredByNeighbor_BUILD implements
   public void applyToPlayer(PlayerDTO player) {
     if (!enlisted) throw new IllegalStateException("Should only apply when enlisted and after trigger check.");
     for (int i = 0; i < this.currentDeltaHearts; i++)
-      player.hearts++;
+      player.addResource(ResourceType.HEARTS, 1);
   }
 
   @Override
