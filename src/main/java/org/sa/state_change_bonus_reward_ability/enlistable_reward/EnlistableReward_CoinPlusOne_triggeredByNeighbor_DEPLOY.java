@@ -1,6 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.enlistable_reward;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.enums.ResourceType;
 import org.sa.enums.player_mat_enum.ActionBottom;
 
 public class EnlistableReward_CoinPlusOne_triggeredByNeighbor_DEPLOY implements EnlistableReward {
@@ -26,11 +27,8 @@ public class EnlistableReward_CoinPlusOne_triggeredByNeighbor_DEPLOY implements 
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    if (!enlisted) throw new IllegalStateException(
-        "Should only apply when enlisted and after trigger check."
-    );
-    for (int i = 0; i < this.currentDeltaCoins; i++)
-      player.coins++;
+    if (!enlisted) throw new IllegalStateException("Should only apply when enlisted and after trigger check.");
+    player.addResource(ResourceType.COINS, currentDeltaCoins);
   }
 
   @Override

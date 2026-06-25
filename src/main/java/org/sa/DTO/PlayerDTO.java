@@ -23,7 +23,6 @@ public class PlayerDTO {
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
 
-  public int coins = 0;
   public int attack = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();

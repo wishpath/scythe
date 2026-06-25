@@ -1,6 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.cost_upgradable;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.enums.ResourceType;
 
 public class UpgradableCost_Coins implements UpgradableCost {
   private int currentDeltaCoins;
@@ -15,7 +16,7 @@ public class UpgradableCost_Coins implements UpgradableCost {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.coins += currentDeltaCoins;
+    player.addResource(ResourceType.COINS, currentDeltaCoins);
   }
 
   @Override
