@@ -1,7 +1,4 @@
 TASKS:
-  - Remove resource fields in playerDTO, and use resourceMap instead:
-      - coins,
-      - attack
   - Bottom part should be a separate object as well
     - Implement first bottomPart_UPGRADE
     - Standardize using Interface

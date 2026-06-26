@@ -1,6 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.reward_basic;
 
 import org.sa.DTO.PlayerDTO;
+import org.sa.enums.ResourceType;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 
 public class ElistActionOneTimeReward_FromFactionMat_Attack implements StateChange {
@@ -12,7 +13,7 @@ public class ElistActionOneTimeReward_FromFactionMat_Attack implements StateChan
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.attack += deltaAttack;
+    player.addResource(ResourceType.ATTACK, deltaAttack);
   }
 
   @Override

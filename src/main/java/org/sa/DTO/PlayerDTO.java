@@ -22,13 +22,12 @@ public class PlayerDTO {
   public PlayerMat__type_and_structure playerMat; //contains: home, name (faction name)
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
-
-  public int attack = 0;
   public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
   public TYPE__TopPart__TopPartChooseActionArray__ActionSpace previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
+
   /**-------------- INT RESOURCES ------------------------------------------------------------------------------------*/
   private Map<ResourceType, Integer> resourceMap = new EnumMap<>(
       Map.of(
