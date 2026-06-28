@@ -1,5 +1,6 @@
 package org.sa.player_mat.bottom_parts.bottom_part_coin_benefit;
 
+import org.sa.player_mat.PlayerMat__type_and_structure;
 import org.sa.player_mat.bottom_parts.TYPE__BottomPart__BottomPartAction;
 
 import java.util.Map;
@@ -8,7 +9,7 @@ import static org.sa.player_mat.PlayerMat__type_and_structure.*;
 import static org.sa.player_mat.PlayerMat__type_and_structure.MILITANT;
 
 public class BottomAction_CoinRewardMap {
-  public static final Map<Pair__BottomAction__PlayerMat, Integer> BOTTOM_ACTION_COIN_REWARD = Map.ofEntries(
+  private static final Map<Pair__BottomAction__PlayerMat, Integer> BOTTOM_ACTION_COIN_REWARD = Map.ofEntries(
 
       // AGRICULTURAL
       Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.UPGRADE, AGRICULTURAL), 1),
@@ -52,4 +53,14 @@ public class BottomAction_CoinRewardMap {
       Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.BUILD,   MILITANT), 1),
       Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.ENLIST,  MILITANT), 2)
   );
+
+  public static int pickBottomActionCoinReward(TYPE__BottomPart__BottomPartAction bottomPartType__upgrade, PlayerMat__type_and_structure playerMatType) {
+    Pair__BottomAction__PlayerMat pickByThisPair = new Pair__BottomAction__PlayerMat(bottomPartType__upgrade, playerMatType);
+    return BOTTOM_ACTION_COIN_REWARD.get(pickByThisPair);
+  }
+
+  private record Pair__BottomAction__PlayerMat(
+      TYPE__BottomPart__BottomPartAction bottomAction,
+      PlayerMat__type_and_structure playerMat
+  ) {}
 }

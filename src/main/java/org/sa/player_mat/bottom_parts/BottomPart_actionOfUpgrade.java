@@ -8,7 +8,7 @@ import org.sa.player_mat.bottom_parts.bottom_part_cost.BottomPartUpgradableCost_
 public class BottomPart_actionOfUpgrade {
 
   //types
-  public PlayerMat__type_and_structure playerMatType;
+  public PlayerMat__type_and_structure playerMatType; //example AGRICULTURAL
   public TYPE__BottomPart__BottomPartAction BOTTOM_PART_TYPE__UPGRADE = TYPE__BottomPart__BottomPartAction.UPGRADE;
 
   // state changes
@@ -24,7 +24,7 @@ public class BottomPart_actionOfUpgrade {
   /** constructor */
   public BottomPart_actionOfUpgrade(PlayerMat__type_and_structure playerMatType) {
     this.playerMatType = playerMatType;
-    this.bottomPartCoinBenefit = new BottomPartCoinBenefit(BOTTOM_PART_TYPE__UPGRADE, playerMatType);
+    this.bottomPartCoinBenefit = new BottomPartCoinBenefit(this.BOTTOM_PART_TYPE__UPGRADE, playerMatType);
     this.bottomPartUpgradableCost__oil = new BottomPartUpgradableCost__Oil(playerMatType); //TODO create constructor
   }
 }
