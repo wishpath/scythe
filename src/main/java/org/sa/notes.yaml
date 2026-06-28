@@ -1,8 +1,9 @@
 TASKS:
   - Bottom part should be a separate object as well
-    - Implement first bottomPart_UPGRADE
-    - Standardize using Interface
-    - Create all bottom parts extending Interface
+    - Create all bottom parts extending Interface 'BottomPart' (in the example of UPGRADE)
+      - deploy
+      - build
+      - enlist
     - Use interface in ActionSpace to simplifyIt
   - disattach non-player-mat interfaces — only keep specific playermat ones.
   - implement in PlayerDecisions example of Choosing trade
