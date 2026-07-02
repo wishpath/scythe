@@ -5,10 +5,10 @@ import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenMoveOrGainCoins;
 import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenTradeGoodsOrGainHearts;
 import org.sa.player_mat.a_top_parts.TopPart_noChoosing_Produce;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.bottom_parts.BottomPart_actionOfUpgrade;
 import org.sa.player_mat.bottom_parts.TYPE__BottomPart__BottomPartAction;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Food;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Metal;
-import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Oil;
 import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Wood;
 
 public enum PlayerMat__type_and_structure {
@@ -22,9 +22,7 @@ public enum PlayerMat__type_and_structure {
         new ActionSpaceDTO(
             TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS, //Action top type
             new TopPart_chooseBetweenMoveOrGainCoins(),
-            TYPE__BottomPart__BottomPartAction.UPGRADE,
-            new UpgradableCost_Oil(-2,-2),
-            1
+            new BottomPart_actionOfUpgrade(AGRICULTURAL)
         ),
 
         // mid-left action space

@@ -1,4 +1,6 @@
 TASKS:
+  - Player mat type and structure should be separated
+    - put player mats to player mat registry
   - Bottom part should be a separate object as well
     - Create all bottom parts extending Interface 'BottomPart' (in the example of UPGRADE)
       - deploy
