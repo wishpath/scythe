@@ -1,29 +1,31 @@
 package org.sa.player_mat.bottom_parts;
 
 import org.sa.enums.ResourceType;
-import org.sa.player_mat.PlayerMat__type_and_structure;
+import org.sa.player_mat.PlayerMatType;
 import org.sa.player_mat.bottom_parts.bottom_part_coin_benefit.BottomPartCoinBenefit;
 import org.sa.player_mat.bottom_parts.bottom_part_cost.BottomPartUpgradableCost;
 import org.sa.player_mat.bottom_parts.bottom_part_cost.BottomPartUpgradableCost__Oil;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPart;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 
 public class BottomPart_actionOfUpgrade implements BottomPart {
 
   //types
-  public PlayerMat__type_and_structure playerMatType; //example AGRICULTURAL
-  public TYPE__BottomPart__BottomPartAction BOTTOM_PART_TYPE__UPGRADE = TYPE__BottomPart__BottomPartAction.UPGRADE;
+  public PlayerMatType playerMatType; //example AGRICULTURAL
+  public BottomPartType BOTTOM_PART_TYPE__UPGRADE = BottomPartType.UPGRADE;
 
   // state changes
   public BottomPartUpgradableCost__Oil bottomPartUpgradableCost__oil;
   public BottomPartCoinBenefit bottomPartCoinBenefit;
 
   // neighbor bonus
-  public TYPE__BottomPart__BottomPartAction BOTTOM_PART_NEIGHBOR_TRIGGER__UPGRADE = TYPE__BottomPart__BottomPartAction.UPGRADE; // what neighbour bottom action triggers neighbor benefit
+  public BottomPartType BOTTOM_PART_NEIGHBOR_TRIGGER__UPGRADE = BottomPartType.UPGRADE; // what neighbour bottom action triggers neighbor benefit
   public ResourceType BOTTOM_PART_NEIGHBOR_BENEFIT_TYPE__ATTACK = ResourceType.ATTACK; //common for all player mat UPGRADE actions
   public int BOTTOM_PART_NEIGHBOR_BENEFIT_DELTA__ONE = 1; //absolutely common in all cases (all player mats, all actions)
 
 
   /** constructor */
-  public BottomPart_actionOfUpgrade(PlayerMat__type_and_structure playerMatType) {
+  public BottomPart_actionOfUpgrade(PlayerMatType playerMatType) {
     this.playerMatType = playerMatType;
     this.bottomPartCoinBenefit = new BottomPartCoinBenefit(this.BOTTOM_PART_TYPE__UPGRADE, playerMatType);
     this.bottomPartUpgradableCost__oil = new BottomPartUpgradableCost__Oil(playerMatType);
@@ -31,11 +33,11 @@ public class BottomPart_actionOfUpgrade implements BottomPart {
 
   //types
   @Override
-  public PlayerMat__type_and_structure getPlayerMatType() {
+  public PlayerMatType getPlayerMatType() {
     return this.playerMatType;
   }
   @Override
-  public TYPE__BottomPart__BottomPartAction getBottomPartType() {
+  public BottomPartType getBottomPartType() {
     return this.BOTTOM_PART_TYPE__UPGRADE;
   }
 
@@ -51,7 +53,7 @@ public class BottomPart_actionOfUpgrade implements BottomPart {
 
   // neighbor bonus
   @Override
-  public TYPE__BottomPart__BottomPartAction getType_NeighborTrigger() {
+  public BottomPartType getType_NeighborTrigger() {
     return this.BOTTOM_PART_NEIGHBOR_TRIGGER__UPGRADE;
   }
   @Override

@@ -1,5 +1,16 @@
 package org.sa.player_mat;
 
+import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenAttack_PointsOrCards;
+import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenMoveOrGainCoins;
+import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenTradeGoodsOrGainHearts;
+import org.sa.player_mat.a_top_parts.TopPart_noChoosing_Produce;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.bottom_parts.BottomPart_actionOfUpgrade;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Food;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Metal;
+import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Wood;
+
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -17,7 +28,44 @@ public final class PlayerMatRegistry {
         4,
         7,
         2,
-        new ActionSpaceDTO[4]
+          new ActionSpaceDTO[] {
+
+              // left action space
+              new ActionSpaceDTO(
+                  TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS, //Action top type
+                  new TopPart_chooseBetweenMoveOrGainCoins(),
+                  new BottomPart_actionOfUpgrade(AGRICULTURAL)
+              ),
+
+              // mid-left action space
+              new ActionSpaceDTO(
+                  TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__TRADE__GAIN_HEARTS,
+                  new TopPart_chooseBetweenTradeGoodsOrGainHearts(),
+                  BottomPartType.DEPLOY,
+                  new UpgradableCost_Metal(-4,-2),
+                  1
+              ),
+
+
+              // mid-right action space
+              new ActionSpaceDTO(
+                  TYPE__TopPart__TopPartChooseActionArray__ActionSpace.NO_CHOOSE__PRODUCE,
+                  new TopPart_noChoosing_Produce(),
+                  BottomPartType.BUILD,
+                  new UpgradableCost_Wood(-4,-2),
+                  1
+              ),
+
+
+              // right action space
+              new ActionSpaceDTO(
+                  TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__POWER__COMBAT_CARDS,
+                  new TopPart_chooseBetweenAttack_PointsOrCards(),
+                  BottomPartType.ENLIST,
+                  new UpgradableCost_Food(-3,-1),
+                  1
+              ),
+          }
       )
     );
 

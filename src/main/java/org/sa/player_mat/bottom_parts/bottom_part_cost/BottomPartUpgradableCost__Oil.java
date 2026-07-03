@@ -2,13 +2,13 @@ package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.enums.ResourceType;
-import org.sa.player_mat.PlayerMat__type_and_structure;
+import org.sa.player_mat.PlayerMatType;
 
 public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
   private int currentDeltaOil;
   private int fullyUpgradedDeltaOilCost;
 
-  public BottomPartUpgradableCost__Oil(PlayerMat__type_and_structure playerMatType) {
+  public BottomPartUpgradableCost__Oil(PlayerMatType playerMatType) {
     this.currentDeltaOil = switch (playerMatType) {
       case AGRICULTURAL, PATRIOTIC -> -2;
       case ENGINEERING, INNOVATIVE, INDUSTRIAL, MECHANICAL, MILITANT -> -3;

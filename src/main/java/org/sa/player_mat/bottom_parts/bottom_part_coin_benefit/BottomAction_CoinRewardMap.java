@@ -1,66 +1,65 @@
 package org.sa.player_mat.bottom_parts.bottom_part_coin_benefit;
 
-import org.sa.player_mat.PlayerMat__type_and_structure;
-import org.sa.player_mat.bottom_parts.TYPE__BottomPart__BottomPartAction;
+import org.sa.player_mat.PlayerMatType;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 
 import java.util.Map;
 
-import static org.sa.player_mat.PlayerMat__type_and_structure.*;
-import static org.sa.player_mat.PlayerMat__type_and_structure.MILITANT;
+import static org.sa.player_mat.PlayerMatType.*;
 
 public class BottomAction_CoinRewardMap {
   private static final Map<Pair__BottomAction__PlayerMat, Integer> BOTTOM_ACTION_COIN_REWARD = Map.ofEntries(
 
       // AGRICULTURAL
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.UPGRADE, AGRICULTURAL), 1),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.DEPLOY,  AGRICULTURAL), 0),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.BUILD,   AGRICULTURAL), 2),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.ENLIST,  AGRICULTURAL), 3),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.UPGRADE, AGRICULTURAL), 1),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.DEPLOY,  AGRICULTURAL), 0),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.BUILD,   AGRICULTURAL), 2),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.ENLIST,  AGRICULTURAL), 3),
 
       // ENGINEERING
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.UPGRADE, ENGINEERING), 2),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.DEPLOY,  ENGINEERING), 0),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.BUILD,   ENGINEERING), 3),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.ENLIST,  ENGINEERING), 1),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.UPGRADE, ENGINEERING), 2),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.DEPLOY,  ENGINEERING), 0),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.BUILD,   ENGINEERING), 3),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.ENLIST,  ENGINEERING), 1),
 
       // INDUSTRIAL
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.UPGRADE, INDUSTRIAL), 3),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.DEPLOY,  INDUSTRIAL), 2),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.BUILD,   INDUSTRIAL), 1),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.ENLIST,  INDUSTRIAL), 0),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.UPGRADE, INDUSTRIAL), 3),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.DEPLOY,  INDUSTRIAL), 2),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.BUILD,   INDUSTRIAL), 1),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.ENLIST,  INDUSTRIAL), 0),
 
       // MECHANICAL
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.UPGRADE, MECHANICAL), 0),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.DEPLOY,  MECHANICAL), 2),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.BUILD,   MECHANICAL), 2),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.ENLIST,  MECHANICAL), 2),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.UPGRADE, MECHANICAL), 0),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.DEPLOY,  MECHANICAL), 2),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.BUILD,   MECHANICAL), 2),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.ENLIST,  MECHANICAL), 2),
 
       // PATRIOTIC
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.UPGRADE, PATRIOTIC), 1),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.DEPLOY,  PATRIOTIC), 3),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.BUILD,   PATRIOTIC), 0),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.ENLIST,  PATRIOTIC), 2),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.UPGRADE, PATRIOTIC), 1),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.DEPLOY,  PATRIOTIC), 3),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.BUILD,   PATRIOTIC), 0),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.ENLIST,  PATRIOTIC), 2),
 
       // INNOVATIVE
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.UPGRADE, INNOVATIVE), 3),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.DEPLOY,  INNOVATIVE), 1),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.BUILD,   INNOVATIVE), 2),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.ENLIST,  INNOVATIVE), 0),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.UPGRADE, INNOVATIVE), 3),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.DEPLOY,  INNOVATIVE), 1),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.BUILD,   INNOVATIVE), 2),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.ENLIST,  INNOVATIVE), 0),
 
       // MILITANT
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.UPGRADE, MILITANT), 0),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.DEPLOY,  MILITANT), 3),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.BUILD,   MILITANT), 1),
-      Map.entry(new Pair__BottomAction__PlayerMat(TYPE__BottomPart__BottomPartAction.ENLIST,  MILITANT), 2)
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.UPGRADE, MILITANT), 0),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.DEPLOY,  MILITANT), 3),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.BUILD,   MILITANT), 1),
+      Map.entry(new Pair__BottomAction__PlayerMat(BottomPartType.ENLIST,  MILITANT), 2)
   );
 
-  public static int pickBottomActionCoinReward(TYPE__BottomPart__BottomPartAction bottomPartType__upgrade, PlayerMat__type_and_structure playerMatType) {
+  public static int pickBottomActionCoinReward(BottomPartType bottomPartType__upgrade, PlayerMatType playerMatType) {
     Pair__BottomAction__PlayerMat pickByThisPair = new Pair__BottomAction__PlayerMat(bottomPartType__upgrade, playerMatType);
     return BOTTOM_ACTION_COIN_REWARD.get(pickByThisPair);
   }
 
   private record Pair__BottomAction__PlayerMat(
-      TYPE__BottomPart__BottomPartAction bottomAction,
-      PlayerMat__type_and_structure playerMat
+      BottomPartType bottomAction,
+      PlayerMatType playerMat
   ) {}
 }

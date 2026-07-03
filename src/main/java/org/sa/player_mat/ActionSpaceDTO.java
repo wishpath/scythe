@@ -2,7 +2,7 @@ package org.sa.player_mat;
 
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
-import org.sa.player_mat.bottom_parts.BottomPart;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPart;
 
 //contains state, upgradable, through the game
 public class ActionSpaceDTO {
