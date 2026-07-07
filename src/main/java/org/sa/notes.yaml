@@ -1,4 +1,9 @@
+COPY_GIT_DIFF_TO_CLIPBOARD:
+  git add -N .; git diff HEAD --unified=0 | Set-Clipboard
+
 TASKS:
+  - finish BottomPart_Deploy, use BottomPartUpgradableCost__Metal
+  - add BottomPart_Deploy to PlayerMatRegistry
   - put player mats to player mat registry
     - Bottom part should be a separate object as well
       - Create all bottom parts extending Interface 'BottomPart' (in the example of UPGRADE)
