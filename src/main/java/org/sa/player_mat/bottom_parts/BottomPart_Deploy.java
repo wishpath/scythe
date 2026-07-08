@@ -20,7 +20,7 @@ public class BottomPart_Deploy implements BottomPart {
 
   // neighbor bonus
   public BottomPartType BOTTOM_PART_NEIGHBOR_TRIGGER__DEPLOY = BottomPartType.DEPLOY; // what neighbour bottom action triggers neighbor benefit
-  public ResourceType BOTTOM_PART_NEIGHBOR_BENEFIT_TYPE__ATTACK = ResourceType.ATTACK;  //common for all player mat DEPLOY actions
+  public ResourceType BOTTOM_PART_NEIGHBOR_BENEFIT_TYPE__COINS = ResourceType.COINS;  //common for all player mat DEPLOY actions
   public int BOTTOM_PART_NEIGHBOR_BENEFIT_DELTA__ONE = 1; //absolutely common in all cases (all player mats, all actions)
 
   /** constructor */
@@ -57,7 +57,7 @@ public class BottomPart_Deploy implements BottomPart {
   }
   @Override
   public ResourceType getType_NeighborBenefit() {
-    return this.BOTTOM_PART_NEIGHBOR_BENEFIT_TYPE__ATTACK;
+    return this.BOTTOM_PART_NEIGHBOR_BENEFIT_TYPE__COINS;
   }
   @Override
   public int getDelta_NeighborBenefit_ONE() {
