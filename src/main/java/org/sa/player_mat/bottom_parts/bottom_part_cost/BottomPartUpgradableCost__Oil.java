@@ -4,6 +4,7 @@ import org.sa.DTO.PlayerDTO;
 import org.sa.enums.ResourceType;
 import org.sa.player_mat.PlayerMatType;
 
+// for the bottom part of UPGRADE
 public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
   private int currentDeltaOil;
   private int fullyUpgradedDeltaOilCost;

@@ -4,6 +4,7 @@ import org.sa.DTO.PlayerDTO;
 import org.sa.enums.ResourceType;
 import org.sa.player_mat.PlayerMatType;
 
+// for the bottom part of DEPLOY
 public class BottomPartUpgradableCost__Metal implements BottomPartUpgradableCost {
   private int currentDeltaMetal;
   private int fullyUpgradedDeltaMetalCost;
