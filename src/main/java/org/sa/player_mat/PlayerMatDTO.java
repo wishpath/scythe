@@ -6,19 +6,19 @@ public class PlayerMatDTO {
   public final int initialHearts;
   public final int initialCoins;
   public final int initialMissionCards;
-  public final ActionSpaceDTO[] actionSpaces;
+  public final ActionSpaceDTO[] actionSpaces_leftToRight;
 
   public PlayerMatDTO(
-      PlayerMatType type,
+      PlayerMatType playerMatType,
       int initialHearts,
       int initialCoins,
       int initialMissionCards,
-      ActionSpaceDTO[] actionSpaces
+      ActionSpaceDTO[] actionSpaces_leftToRight
   ) {
-    this.type = type;
+    this.type = playerMatType;
     this.initialHearts = initialHearts;
     this.initialCoins = initialCoins;
     this.initialMissionCards = initialMissionCards;
-    this.actionSpaces = actionSpaces;
+    this.actionSpaces_leftToRight = actionSpaces_leftToRight;
   }
 }
