@@ -22,14 +22,13 @@ public class PlayerDTO {
   public PlayerMat__type_and_structure playerMat; //contains: home, name (faction name)
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
-  public List<Integer> attackCards = new ArrayList<>(); //yellow ones
   public List<MissionCard> missionCards = new ArrayList<>();
   public TYPE__TopPart__TopPartChooseActionArray__ActionSpace previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 
   /**-------------- INT RESOURCES ------------------------------------------------------------------------------------*/
-  private Map<ResourceType, Integer> resourceMap = new EnumMap<>(
+  private Map<ResourceType, Object> resourceMap = new EnumMap<>(
       Map.of(
           ResourceType.FOOD, 0,
           ResourceType.METAL, 0,
@@ -37,14 +36,23 @@ public class PlayerDTO {
           ResourceType.WOOD, 0,
           ResourceType.HEARTS, 0,
           ResourceType.COINS, 0,
-          ResourceType.ATTACK, 0
+          ResourceType.ATTACK, 0,
+          ResourceType.COMBAT_CARDS, new ArrayList<Integer>()
       )
   );
-  public Map<ResourceType, Integer> getResourceMap() {
+  public Map<ResourceType, Object> getResourceMap() {
     return this.resourceMap;
   }
   public void addResource(ResourceType resourceType, int amountDelta) {
-    resourceMap.merge(resourceType, amountDelta, Integer::sum);
+    if (resourceType.isIntegerResource) {
+      Integer initialQuantity = (Integer) resourceMap.get(resourceType);
+      resourceMap.put(resourceType, initialQuantity + amountDelta);
+    }
+    else if (resourceType == ResourceType.COMBAT_CARDS) {
+      ArrayList<Integer> mutableAttackCardList = (ArrayList<Integer>) resourceMap.get(resourceType);
+      for (int i = 0; i < amountDelta; i++) mutableAttackCardList.add(CardPool.drawAttackCard());
+    }
+
   }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/

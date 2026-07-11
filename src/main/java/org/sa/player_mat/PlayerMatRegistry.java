@@ -31,31 +31,21 @@ public final class PlayerMatRegistry {
         7,
         2,
           new ActionSpaceDTO[] { //action-space — left-to-right
-
-              // left action space
               new ActionSpaceDTO(
                   TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS, //Action top type
                   new TopPart_chooseBetweenMoveOrGainCoins(),
                   new BottomPart_actionOfUpgrade(AGRICULTURAL)
               ),
-
-              // mid-left action space
               new ActionSpaceDTO(
                   TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__TRADE__GAIN_HEARTS, //Action top type
                   new TopPart_chooseBetweenTradeGoodsOrGainHearts(),
                   new BottomPart_Deploy(AGRICULTURAL)
               ),
-
-
-              // mid-right action space
               new ActionSpaceDTO(
                   TYPE__TopPart__TopPartChooseActionArray__ActionSpace.NO_CHOOSE__PRODUCE,
                   new TopPart_noChoosing_Produce(),
                   new BottomPart_Build(AGRICULTURAL)
               ),
-
-
-              // right action space
               new ActionSpaceDTO(
                   TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__POWER__COMBAT_CARDS,
                   new TopPart_chooseBetweenAttack_PointsOrCards(),

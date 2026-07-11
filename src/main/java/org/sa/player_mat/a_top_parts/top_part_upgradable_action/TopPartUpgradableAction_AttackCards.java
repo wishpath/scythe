@@ -1,9 +1,9 @@
 package org.sa.player_mat.a_top_parts.top_part_upgradable_action;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.b_storage.CardPool;
-import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
+import org.sa.enums.ResourceType;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 
 public class TopPartUpgradableAction_AttackCards implements TopPartUpgradableAction_ConcreteDeltaType {
   private int currentDeltaCards;
@@ -18,8 +18,7 @@ public class TopPartUpgradableAction_AttackCards implements TopPartUpgradableAct
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    for (int i = 0; i < currentDeltaCards; i++)
-      player.attackCards.add(CardPool.drawAttackCard());
+    player.addResource(ResourceType.COMBAT_CARDS, currentDeltaCards);
   }
 
   @Override

@@ -1,7 +1,7 @@
 package org.sa.state_change_bonus_reward_ability.reward_basic;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.b_storage.CardPool;
+import org.sa.enums.ResourceType;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 
 public class ElistActionOneTimeReward_FromFactionMat_AttackCards implements StateChange {
@@ -13,9 +13,7 @@ public class ElistActionOneTimeReward_FromFactionMat_AttackCards implements Stat
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    for (int i = 0; i < deltaAttackCardAmount; i++) {
-      player.attackCards.add(CardPool.drawAttackCard());
-    }
+    player.addResource(ResourceType.COMBAT_CARDS, deltaAttackCardAmount);
   }
 
   @Override
