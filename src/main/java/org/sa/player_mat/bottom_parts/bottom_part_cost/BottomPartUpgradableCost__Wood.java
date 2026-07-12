@@ -20,12 +20,16 @@ public class BottomPartUpgradableCost__Wood implements BottomPartUpgradableCost 
       case AGRICULTURAL, INDUSTRIAL, MECHANICAL, PATRIOTIC -> -2;
       case INNOVATIVE, ENGINEERING -> -1;
     };
+
+    if (this.currentDeltaWood > this.fullyUpgradedDeltaWoodCost) { //because expressed in negative numbers
+      throw new IllegalArgumentException("Upgraded price cannot be higher");
+    }
   }
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaWood > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.getResourceMap().merge(ResourceType.WOOD, currentDeltaWood, Integer::sum); //because negative numbers
+    player.addResource(ResourceType.WOOD, currentDeltaWood);
   }
 
   @Override
@@ -41,5 +45,9 @@ public class BottomPartUpgradableCost__Wood implements BottomPartUpgradableCost 
   @Override
   public void upgrade_lowerTheCost() {
     currentDeltaWood++; //because negative numbers
+
+    if (this.currentDeltaWood > this.fullyUpgradedDeltaWoodCost) { //because expressed in negative numbers
+      throw new IllegalArgumentException("Upgraded price cannot be higher");
+    }
   }
 }

@@ -38,6 +38,7 @@ public class PlayerDTO {
           ResourceType.COINS, 0,
           ResourceType.ATTACK, 0,
           ResourceType.COMBAT_CARDS, new ArrayList<Integer>()
+          //TODO: mission cards
       )
   );
   public Map<ResourceType, Object> getResourceMap() {
