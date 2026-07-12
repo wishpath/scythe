@@ -19,7 +19,7 @@ import java.util.*;
 
 public class PlayerDTO {
 
-  public PlayerMatDTO playerMat; //contains: home, name (faction name)
+
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
   public List<MissionCard> missionCards = new ArrayList<>();
@@ -27,7 +27,7 @@ public class PlayerDTO {
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 
-  /**-------------- INT RESOURCES ------------------------------------------------------------------------------------*/
+  /**-------------- RESOURCES ------------------------------------------------------------------------------------*/
   private Map<ResourceType, Object> resourceMap = new EnumMap<>(
       Map.of(
           ResourceType.FOOD, 0,
@@ -57,6 +57,12 @@ public class PlayerDTO {
   }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
+  public PlayerMatDTO playerMat;
+  // contains action spaces
+    //top
+    //bottom
+      //neighbor stuff
+
   //PLAYER MAT PART (ongoing) (state if enabled or not) //TODO: map to what
   public boolean getsRewardedByNeighborAction_UPGRADE_getsAttack = false;
   public boolean getsRewardedByNeighborAction_DEPLOY_getsCoin = false;

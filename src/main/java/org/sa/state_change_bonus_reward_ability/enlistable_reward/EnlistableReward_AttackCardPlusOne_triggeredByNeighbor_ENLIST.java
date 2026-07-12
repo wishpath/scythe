@@ -1,13 +1,12 @@
 package org.sa.state_change_bonus_reward_ability.enlistable_reward;
 
 import org.sa.DTO.PlayerDTO;
-import org.sa.b_storage.CardPool;
 import org.sa.enums.ResourceType;
-import org.sa.enums.player_mat_enum.ActionBottom;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 
 public class EnlistableReward_AttackCardPlusOne_triggeredByNeighbor_ENLIST implements EnlistableReward {
 
-  private final ActionBottom triggeringAction = ActionBottom.ENLIST;
+  private final BottomPartType triggeringAction = BottomPartType.ENLIST;
   private boolean enlisted;
   private int currentDeltaCards = 1;
 
@@ -22,7 +21,7 @@ public class EnlistableReward_AttackCardPlusOne_triggeredByNeighbor_ENLIST imple
   }
 
   @Override
-  public boolean isTriggeredByNeighborAction(ActionBottom action) {
+  public boolean isTriggeredByNeighborAction(BottomPartType action) {
     return enlisted && action == triggeringAction;
   }
 

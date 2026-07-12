@@ -2,11 +2,11 @@ package org.sa.state_change_bonus_reward_ability.enlistable_reward;
 
 import org.sa.DTO.PlayerDTO;
 import org.sa.enums.ResourceType;
-import org.sa.enums.player_mat_enum.ActionBottom;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 
 public class EnlistableReward_AttackPlusOne_triggeredByNeighbor_UPGRADE implements EnlistableReward {
 
-  private final ActionBottom triggeringAction = ActionBottom.UPGRADE;
+  private final BottomPartType triggeringAction = BottomPartType.UPGRADE;
   private boolean enlisted;
   private int currentDeltaAttack = 1;
 
@@ -22,7 +22,7 @@ public class EnlistableReward_AttackPlusOne_triggeredByNeighbor_UPGRADE implemen
   }
 
   @Override
-  public boolean isTriggeredByNeighborAction(ActionBottom action) {
+  public boolean isTriggeredByNeighborAction(BottomPartType action) {
     return enlisted && action == triggeringAction;
   }
 
