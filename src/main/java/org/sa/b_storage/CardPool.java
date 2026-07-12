@@ -1,10 +1,12 @@
 package org.sa.b_storage;
 
 import org.sa.enums.FactionMat;
-import org.sa.player_mat.PlayerMat__type_and_structure;
 import org.sa.mission.MissionCard;
 import org.sa.mission.MissionDiversifyProduction;
 import org.sa.mission.MissionEstablishHumanShield;
+import org.sa.player_mat.PlayerMatDTO;
+import org.sa.player_mat.PlayerMatRegistry;
+import org.sa.player_mat.PlayerMatType;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -14,7 +16,7 @@ import java.util.Random;
 public class CardPool {
 
   private static EnumSet<FactionMat> factionMapPool = EnumSet.allOf(FactionMat.class);
-  private static EnumSet<PlayerMat__type_and_structure> playerMatPool = EnumSet.allOf(PlayerMat__type_and_structure.class);
+  private static EnumSet<PlayerMatType> playerMatPool = EnumSet.allOf(PlayerMatType.class);
   private static List<MissionCard> missionCardPool = new ArrayList<>(List.of(new MissionEstablishHumanShield(), new MissionDiversifyProduction())); //TODO: add more missions later
   private static List<Integer> attackCardsPool = getNewAttackCardsPool(); // yellow attack cards: 16x+2, 12x+3, 8x+4, 6x+5
   private static final Random random = new Random();
@@ -32,12 +34,13 @@ public class CardPool {
     return drawn;
   }
 
-  public static PlayerMat__type_and_structure drawFactionBoard() {
-    if (playerMatPool.isEmpty()) throw new IllegalStateException("Faction board pool should not be empty");
-    int index = random.nextInt(playerMatPool.size());
-    PlayerMat__type_and_structure drawn = playerMatPool.toArray(new PlayerMat__type_and_structure[0])[index];
-    playerMatPool.remove(drawn);
-    return drawn;
+  public static PlayerMatDTO drawPlayerMat() {
+    if (playerMatPool.isEmpty()) throw new IllegalStateException("Player mat pool should not be empty");
+
+    PlayerMatType drawnType = playerMatPool.toArray(new PlayerMatType[0])[random.nextInt(playerMatPool.size())];
+    playerMatPool.remove(drawnType);
+
+    return PlayerMatRegistry.get(drawnType);
   }
 
   public static MissionCard drawMissionCard() {

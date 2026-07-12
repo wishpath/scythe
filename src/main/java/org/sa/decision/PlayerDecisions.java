@@ -10,7 +10,7 @@ import org.sa.b_storage.Grid;
 import org.sa.decision.helper.NotMovedHandler;
 import org.sa.enums.FactionMat;
 import org.sa.player_mat.ActionSpaceDTO;
-import org.sa.player_mat.PlayerMat__type_and_structure;
+import org.sa.player_mat.PlayerMatDTO;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Move_Decideable;
@@ -29,7 +29,7 @@ public class PlayerDecisions {
     FactionMat factionMat = CardPool.drawEnlistCard();
 
     //player draws Player Mat (not connected to faction)
-    PlayerMat__type_and_structure playerMat = CardPool.drawFactionBoard();
+    PlayerMatDTO playerMat = CardPool.drawPlayerMat();
 
     //player chooses where to place workers
     final int INITIAL_WORKERS_COUNT = 2;
@@ -51,7 +51,7 @@ public class PlayerDecisions {
 
 
     /**EXAMPLE of MOVE ACTION*****************************************************************************************/
-    ActionSpaceDTO[] actionSpaces = playerMat.initialActionSpaces; //TODO: action spaces should come from playerMat STATE
+    ActionSpaceDTO[] actionSpaces = playerMat.actionSpaces_leftToRight; //TODO: action spaces should come from playerMat STATE
 
 
     //player picks MOVE_GAIN
@@ -68,12 +68,12 @@ public class PlayerDecisions {
     //player decides to actually use (and not skip) MOVE_GAIN and pays for it
     boolean playerDecidedToUseTopAction = true; //TODO: player should decide
     if (playerDecidedToUseTopAction) {
-      pickedActionSpaceDTO__MOVE_GAIN.actionTopCost.applyToPlayer(player);
+      pickedActionSpaceDTO__MOVE_GAIN.topPartObject.getCost().applyToPlayer(player);
 
 
       //player picks MOVE from MOVE_GAIN
       int picked_reward_index__representing_MOVE = 0; //TODO: player should pick (0 for move and 1 for gain coins)
-      TopPartUpgradableAction pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.actionTop_Rewards_toChoose_upgradable[picked_reward_index__representing_MOVE];
+      TopPartUpgradableAction pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.topPartObject.getTopPartChoosableActions()[picked_reward_index__representing_MOVE];
 
       //player decides what and where to MOVE
       applyTopAction(pickedReward_MOVE, player);

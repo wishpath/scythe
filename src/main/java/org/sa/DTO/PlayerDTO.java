@@ -6,12 +6,12 @@ import org.sa.DTO.placeable.TokenDTO;
 import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
+import org.sa.enums.BuildingType;
 import org.sa.enums.FactionMat;
 import org.sa.enums.ResourceType;
 import org.sa.mission.MissionCard;
-import org.sa.player_mat.PlayerMat__type_and_structure;
+import org.sa.player_mat.PlayerMatDTO;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
-import org.sa.enums.BuildingType;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 import org.sa.state_change_bonus_reward_ability.enlistable_reward.*;
 
@@ -19,7 +19,7 @@ import java.util.*;
 
 public class PlayerDTO {
 
-  public PlayerMat__type_and_structure playerMat; //contains: home, name (faction name)
+  public PlayerMatDTO playerMat; //contains: home, name (faction name)
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
   public List<MissionCard> missionCards = new ArrayList<>();
@@ -128,7 +128,7 @@ public class PlayerDTO {
 
 
   /**-------------- CONSTRUCTOR --------------------------------------------------------------------------------------*/
-  public PlayerDTO(PlayerMat__type_and_structure playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
+  public PlayerDTO(PlayerMatDTO playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //player mat part
     this.playerMat = playerMat;
     addResource(ResourceType.HEARTS, playerMat.initialHearts);

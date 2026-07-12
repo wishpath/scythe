@@ -7,11 +7,8 @@ import org.sa.player_mat.a_top_parts.TopPart_noChoosing_Produce;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
 import org.sa.player_mat.bottom_parts.BottomPart_Build;
 import org.sa.player_mat.bottom_parts.BottomPart_Deploy;
+import org.sa.player_mat.bottom_parts.BottomPart_Enlist;
 import org.sa.player_mat.bottom_parts.BottomPart_actionOfUpgrade;
-import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
-import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Food;
-import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Metal;
-import org.sa.state_change_bonus_reward_ability.cost_upgradable.UpgradableCost_Wood;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -49,9 +46,7 @@ public final class PlayerMatRegistry {
               new ActionSpaceDTO(
                   TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__POWER__COMBAT_CARDS,
                   new TopPart_chooseBetweenAttack_PointsOrCards(),
-                  BottomPartType.ENLIST,
-                  new UpgradableCost_Food(-3,-1),
-                  1
+                  new BottomPart_Enlist(AGRICULTURAL)
               ),
           }
       )
