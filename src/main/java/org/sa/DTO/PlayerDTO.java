@@ -22,7 +22,6 @@ public class PlayerDTO {
 
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
-  public List<MissionCard> missionCards = new ArrayList<>();
   public TYPE__TopPart__TopPartChooseActionArray__ActionSpace previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
@@ -37,8 +36,8 @@ public class PlayerDTO {
           ResourceType.HEARTS, 0,
           ResourceType.COINS, 0,
           ResourceType.ATTACK, 0,
-          ResourceType.COMBAT_CARDS, new ArrayList<Integer>()
-          //TODO: mission cards
+          ResourceType.COMBAT_CARDS, new ArrayList<Integer>(),
+          ResourceType.MISSION_CARDS, new ArrayList<MissionCard>()
       )
   );
   public Map<ResourceType, Object> getResourceMap() {
@@ -52,6 +51,10 @@ public class PlayerDTO {
     else if (resourceType == ResourceType.COMBAT_CARDS) {
       ArrayList<Integer> mutableAttackCardList = (ArrayList<Integer>) resourceMap.get(resourceType);
       for (int i = 0; i < amountDelta; i++) mutableAttackCardList.add(CardPool.drawAttackCard());
+    }
+    else if (resourceType == ResourceType.MISSION_CARDS) {
+      ArrayList<MissionCard> mutableAttackCardList = (ArrayList<MissionCard>) resourceMap.get(resourceType);
+      for (int i = 0; i < amountDelta; i++) mutableAttackCardList.add(CardPool.drawMissionCard());
     }
 
   }
@@ -139,9 +142,7 @@ public class PlayerDTO {
     this.playerMat = playerMat;
     addResource(ResourceType.HEARTS, playerMat.initialHearts);
     addResource(ResourceType.COINS, playerMat.initialCoins);
-    for (int i = 0; i < playerMat.initialMissionCards; i++) {
-      missionCards.add(CardPool.drawMissionCard());
-    }
+    addResource(ResourceType.MISSION_CARDS, playerMat.initialMissionCards);
 
     //factionMat part
     this.factionMat = factionMat;

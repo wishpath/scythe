@@ -10,7 +10,8 @@ public enum ResourceType {
   HEARTS(false, true),
   ATTACK(false, true),
 
-  COMBAT_CARDS(false, false);
+  COMBAT_CARDS(false, false),
+  MISSION_CARDS(false, false);
 
   public final boolean canGetThroughTradeAction;
   public final boolean isIntegerResource;
