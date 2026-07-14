@@ -12,8 +12,9 @@ import org.sa.enums.ResourceType;
 import org.sa.mission.MissionCard;
 import org.sa.player_mat.PlayerMatDTO;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
+import org.sa.player_mat.enlistable_reward.*;
 import org.sa.state_change_bonus_reward_ability.StateChange;
-import org.sa.state_change_bonus_reward_ability.enlistable_reward.*;
 
 import java.util.*;
 
@@ -27,19 +28,17 @@ public class PlayerDTO {
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 
   /**-------------- RESOURCES ------------------------------------------------------------------------------------*/
-  private Map<ResourceType, Object> resourceMap = new EnumMap<>(
-      Map.of(
-          ResourceType.FOOD, 0,
-          ResourceType.METAL, 0,
-          ResourceType.OIL, 0,
-          ResourceType.WOOD, 0,
-          ResourceType.HEARTS, 0,
-          ResourceType.COINS, 0,
-          ResourceType.ATTACK, 0,
-          ResourceType.COMBAT_CARDS, new ArrayList<Integer>(),
-          ResourceType.MISSION_CARDS, new ArrayList<MissionCard>()
-      )
-  );
+  private Map<ResourceType, Object> resourceMap = new EnumMap<>(Map.of(
+    ResourceType.FOOD, 0,
+    ResourceType.METAL, 0,
+    ResourceType.OIL, 0,
+    ResourceType.WOOD, 0,
+    ResourceType.HEARTS, 0,
+    ResourceType.COINS, 0,
+    ResourceType.ATTACK, 0,
+    ResourceType.COMBAT_CARDS, new ArrayList<Integer>(),
+    ResourceType.MISSION_CARDS, new ArrayList<MissionCard>()
+  ));
   public Map<ResourceType, Object> getResourceMap() {
     return this.resourceMap;
   }
@@ -56,7 +55,6 @@ public class PlayerDTO {
       ArrayList<MissionCard> mutableAttackCardList = (ArrayList<MissionCard>) resourceMap.get(resourceType);
       for (int i = 0; i < amountDelta; i++) mutableAttackCardList.add(CardPool.drawMissionCard());
     }
-
   }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
@@ -66,18 +64,14 @@ public class PlayerDTO {
     //bottom
       //neighbor stuff
 
-  //PLAYER MAT PART (ongoing) (state if enabled or not) //TODO: map to what
-  public boolean getsRewardedByNeighborAction_UPGRADE_getsAttack = false;
-  public boolean getsRewardedByNeighborAction_DEPLOY_getsCoin = false;
-  public boolean getsRewardedByNeighborAction_BUILD_getsHeart = false;
-  public boolean getsRewardedByNeighborAction_ENLIST_getsAttackCard = false;
-
-  //PLAYER MAT triggers to enable
-  public EnlistableReward[] ongoingBonuses_EnlistableRewards_triggeredByNeighbor = new EnlistableReward[] {
-      new EnlistableReward_AttackPlusOne_triggeredByNeighbor_UPGRADE(),
-      new EnlistableReward_CoinPlusOne_triggeredByNeighbor_DEPLOY(),
-      new EnlistableReward_HeartsPlusOne_triggeredByNeighbor_BUILD(),
-      new EnlistableReward_AttackCardPlusOne_triggeredByNeighbor_ENLIST()};
+  /**-------------- NEIGHBOR BONUS -----------------------------------------------------------------------------------*/
+  //bonus gets enabled by users ENLIST //bonus gets triggered by any bottom action of a neighbor
+  public Map<BottomPartType, NeighborBonus> triggerBottomAction_neighborBonusChange = new EnumMap<>(Map.of(
+    BottomPartType.UPGRADE, new NeighborBonus__getAttack__UPGRADE(),
+    BottomPartType.DEPLOY,  new NeighborBonus__getCoin__DEPLOY(),
+    BottomPartType.BUILD,   new NeighborBonus__getHearts__BUILD(),
+    BottomPartType.ENLIST,  new NeighborBonus__getAttackCard__ENLIST()
+  ));
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)
