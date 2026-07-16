@@ -10,6 +10,7 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradabl
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
 
 public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
+
   private TYPE__TopPart__TopPartChooseActionArray__ActionSpace TOP_PART_TYPE__CHOOSE__MOVE__GAIN_COINS = TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS;
   private TopPartCost FREE = new TopPartCost_0_free();
   private TopPartUpgradableAction[] CHOOSE_BETWEEN_MOVE_OR_GAIN_COINS = new TopPartUpgradableAction[] {
@@ -18,6 +19,7 @@ public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
   };
   private BuildingType MINE = BuildingType.MINE;
 
+  /** There's no constructor because all player mats have exactly same structure for this top part */
   @Override
   public TopPartCost getCost() {
     return this.FREE;

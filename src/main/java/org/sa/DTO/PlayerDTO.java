@@ -13,7 +13,7 @@ import org.sa.mission.MissionCard;
 import org.sa.player_mat.PlayerMatDTO;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
-import org.sa.player_mat.enlistable_reward.*;
+import org.sa.player_mat.neighbor_bonus.*;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 
 import java.util.*;

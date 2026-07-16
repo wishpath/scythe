@@ -6,9 +6,9 @@ import org.sa.DTO.placeable.BuildingDTO;
 import org.sa.DTO.placeable.TokenDTO;
 import org.sa.DTO.placeable.movable.Movable;
 import org.sa.DTO.placeable.movable.WorkerDTO;
+import org.sa.enums.BuildingType;
 import org.sa.enums.locatable_and_grid_enum.Direction;
 import org.sa.enums.locatable_and_grid_enum.TileType;
-import org.sa.enums.player_mat_enum.BuildingType;
 
 import java.util.Arrays;
 import java.util.HashSet;

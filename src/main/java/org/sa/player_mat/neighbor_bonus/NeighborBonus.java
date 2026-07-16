@@ -1,4 +1,4 @@
-package org.sa.player_mat.enlistable_reward;
+package org.sa.player_mat.neighbor_bonus;
 
 import org.sa.DTO.PlayerDTO;
 

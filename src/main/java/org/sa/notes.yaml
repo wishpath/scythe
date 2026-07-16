@@ -2,13 +2,13 @@ COPY_GIT_DIFF_TO_CLIPBOARD:
   git add -N .; git diff HEAD --unified=0 | Set-Clipboard
 
 TASKS:
-  - implement in PlayerDecisions example of Choosing trade
-  - for example move_gain_Top_action is exactly the same for all the Player mats, so can be created ones in an uncustomised way in the constructor, should accept type/enum in the constructor for the control
+  - in playerDTO create EnumMap<BuildingType, Boolean> isBuilt
+    - in Top part, comment where the state is built is
+    - in palayer DTO, comment types is attached to TopPart
+  - implement in PlayerDecisions example of Choosing trade (top part of action space)
   - continue on player mat state implementation in PlayerDTO
     - refactor player mat similarly like faction mat
     - what player mat also has to be implemented:
-      - action spaces (4) - do recheck:
-          - top (action1, action2, payment (all upgradable) - in progress
       - buildings (make a pool in the player dto and then make state of built ones), when they are built, additional bonus/reward is unlocked:
           - mine: no reward, enables movement between mine and tunnels
           - armory: gain extra power when resolving the second action of the top action
