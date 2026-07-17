@@ -2,55 +2,48 @@ COPY_GIT_DIFF_TO_CLIPBOARD:
   git add -N .; git diff HEAD --unified=0 | Set-Clipboard
 
 TASKS:
-  - in playerDTO create EnumMap<BuildingType, Boolean> isBuilt
-    - in Top part, comment where the state is built is
-    - in palayer DTO, comment types is attached to TopPart
-  - implement in PlayerDecisions example of Choosing trade (top part of action space)
-  - continue on player mat state implementation in PlayerDTO
-    - refactor player mat similarly like faction mat
-    - what player mat also has to be implemented:
-      - buildings (make a pool in the player dto and then make state of built ones), when they are built, additional bonus/reward is unlocked:
-          - mine: no reward, enables movement between mine and tunnels
-          - armory: gain extra power when resolving the second action of the top action
-          - mill: gain extra resource matching tile type each time Produce action is performed
-          - monument: gain popularity each time Bolster action is completed
-
-  - continue on getTilesToMoveTo, maybe export to MoveTargetUtil (create class)
+  - TopPart_chooseBetweenMoveOrGainCoins > Move
+    - use MINE:
+      - no reward, enables movement between mine and tunnels
+      - use playerDTO.buildingType_isBuilt
+    - continue on getTilesToMoveTo, maybe export to MoveTargetUtil (create class)
       - use method player.getTilesToMoveTo(Movable main movable) (depends on what abilities the player has enabled, like moving 2 tiles, jumping water, stepping on water, etc)
-  - completeDecision in PlayerDecisions, send it to "move state change" and execute that decision there.
-  - implement other player decisions regarding top actions:
-      - produce
-      - trade
-  - continue working on top actions and their Reward[] (cost and reward) mostly in player mat but also in action space
-  - fix player initialisation regarding faction changes
-    - faction mat
-    - player mat
-  - initialise all action space dtos:
-      - create top actions
-      - enhance ActionSpaceDTOs with them
-  - create faction board state. Initial state should be shown in  faction board enum
-    - move ongoingBonuses_EnlistableRewards from player to player.factionBoardState, when created
-  - move interaction logic
-    - if movable type is worker -> it cannot move to enemy?
-    - if movable type is character or mech
+    - move interaction logic
+      - if movable type is worker -> it cannot move to enemy?
+      - if movable type is character or mech
       - if meets mech or character -> war
       - if meets worker -> sends home
 
+  - player mat 
+    - state implementation in PlayerDTO
+    - refactor player mat similarly like faction mat
+    - when player does top action use playerDTO.buildingType_isBuilt to implement these changes:
+      - armory: gain extra power when resolving the second action of the top action
+      - mill: gain extra resource matching tile type each time Produce action is performed
+      - monument: gain popularity each time Bolster action is completed
+
+  - implement other player decisions regarding top actions:
+      - produce
+      - trade
+        - implement in PlayerDecisions example of Choosing trade (top part of action space)
+
 LATER:
+  - BottomPart
+    - create bottom action mechanic
+      - each bottom action should know player's neighbors
+        - if each neighbor has enlisted that specific bottom action — neighbor gets a specific bonus
   - use other faction/deploy abilities regarding MOVE, other than GREEN_ALBION as well. LATER
   - player should pick initial tile for worker but for now we take the first one in the set
   - create turn type (enum) move / enlist / produce
   - display board visually
-  - finish all the CardPool, so all the cards are entered
   - goodieCards can come later in the CardPool (after first working version) (the ones that are spread all over the grid)
   - player chooses where to place workers in PlayerDecisions
 
 LETS_NOT:
-  - change Faction details using Reward // maybe not because they are constant and doesn't require picking (decision)
+  -
 
 QUESTIONS/ANSWERS:
-  - why applyToPlayer is used 20 times but StateChange is used 22 times?:
-      - StateChange is extended to interfaces that do not have explicit applyToPlayer methods
+  -
 
 MOVE_IMPROVEMENTS:
   - riverwalk:

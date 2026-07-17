@@ -16,7 +16,7 @@ public class TopPart_chooseBetweenAttack_PointsOrCards implements TopPart {
       new TopPartUpgradableAction_Attack(2,3),
       new TopPartUpgradableAction_AttackCards(1, 2)
   };
-  private BuildingType MONUMENT = BuildingType.MONUMENT;
+  private BuildingType MONUMENT = BuildingType.MONUMENT; // building state stored in PlayerDTO.buildingType_isBuilt
 
   @Override
   public TopPartCost getCost() {

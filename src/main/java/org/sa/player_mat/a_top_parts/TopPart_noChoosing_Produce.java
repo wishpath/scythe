@@ -14,7 +14,7 @@ public class TopPart_noChoosing_Produce implements TopPart {
   private TopPartUpgradableAction[] NO_CHOOSING_SIZE1ARRAY__PRODUCE = new TopPartUpgradableAction[] {
       new TopPartUpgradableAction_Produce_Decideable(2, 3)
   };
-  private BuildingType MILL = BuildingType.MILL;
+  private BuildingType MILL = BuildingType.MILL; // building state stored in PlayerDTO.buildingType_isBuilt
 
   @Override
   public TopPartCost getCost() {

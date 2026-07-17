@@ -64,13 +64,24 @@ public class PlayerDTO {
     //bottom
       //neighbor stuff
 
-  /**-------------- NEIGHBOR BONUS -----------------------------------------------------------------------------------*/
+  /**-------------- NEIGHBOR BONUS (PLAYER MAT) ----------------------------------------------------------------------*/
   //bonus gets enabled by users ENLIST //bonus gets triggered by any bottom action of a neighbor
   public Map<BottomPartType, NeighborBonus> triggerBottomAction_neighborBonusChange = new EnumMap<>(Map.of(
     BottomPartType.UPGRADE, new NeighborBonus__getAttack__UPGRADE(),
     BottomPartType.DEPLOY,  new NeighborBonus__getCoin__DEPLOY(),
     BottomPartType.BUILD,   new NeighborBonus__getHearts__BUILD(),
     BottomPartType.ENLIST,  new NeighborBonus__getAttackCard__ENLIST()
+  ));
+
+  /**-------------- BUILDINGS (PLAYER MAT) ---------------------------------------------------------------------------*/
+  //called when player chooses to do top action: if building is built, player gets some bonus
+  //this map is updated by BottomPart_Build
+  //building type is also attached in each TopPart
+  private Map<BuildingType, Boolean> buildingType_isBuilt = new EnumMap<>(Map.of(
+      BuildingType.MILL, false,       // produce extra resource from mill tile
+      BuildingType.MONUMENT, false,   // gain popularity
+      BuildingType.ARMORY, false,     // gain power
+      BuildingType.MINE, false            // move through mine to tunnels
   ));
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
