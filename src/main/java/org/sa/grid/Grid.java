@@ -1,11 +1,10 @@
-package org.sa.b_storage;
+package org.sa.grid;
 
-import org.sa.DTO.PlayerDTO;
-import org.sa.DTO.TileDTO;
-import org.sa.DTO.placeable.BuildingDTO;
-import org.sa.DTO.placeable.TokenDTO;
-import org.sa.DTO.placeable.movable.Movable;
-import org.sa.DTO.placeable.movable.WorkerDTO;
+import org.sa.PlayerDTO;
+import org.sa.grid.placeable.BuildingDTO;
+import org.sa.grid.placeable.TokenDTO;
+import org.sa.grid.placeable.movable.Movable;
+import org.sa.grid.placeable.movable.WorkerDTO;
 import org.sa.enums.BuildingType;
 import org.sa.enums.locatable_and_grid_enum.Direction;
 import org.sa.enums.locatable_and_grid_enum.TileType;
@@ -155,7 +154,7 @@ public class Grid {
     return neighbors;
   }
 
-  public static TileDTO getNeighbor_possiblyNull(TileDTO tile, Direction direction) {
+  public static TileDTO getNeighborTile_possiblyNull(TileDTO tile, Direction direction) {
     int row = tile.row + direction.deltaRow;
     int col = tile.column + direction.deltaColumn;
     if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) return null;
@@ -168,7 +167,7 @@ public class Grid {
 
     //deal neighboring tiles
     for (Direction direction : Direction.values()) { //includes direction Direction.THIS
-      TileDTO tileTo = getNeighbor_possiblyNull(tileFrom, direction); //possibly self
+      TileDTO tileTo = getNeighborTile_possiblyNull(tileFrom, direction); //possibly self
       if (tileTo == null) continue;
       if (tileTo.tileType.equals(TileType.LAKE)) continue;
 

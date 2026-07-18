@@ -1,14 +1,15 @@
-package org.sa.DTO;
+package org.sa;
 
-import org.sa.DTO.placeable.BuildingDTO;
-import org.sa.DTO.placeable.Locatable;
-import org.sa.DTO.placeable.TokenDTO;
-import org.sa.DTO.placeable.movable.Movable;
-import org.sa.DTO.placeable.movable.WorkerDTO;
+import org.sa.grid.placeable.BuildingDTO;
+import org.sa.grid.placeable.Locatable;
+import org.sa.grid.placeable.TokenDTO;
+import org.sa.grid.placeable.movable.Movable;
+import org.sa.grid.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.enums.BuildingType;
 import org.sa.enums.FactionMat;
 import org.sa.enums.ResourceType;
+import org.sa.grid.TileDTO;
 import org.sa.mission.MissionCard;
 import org.sa.player_mat.PlayerMatDTO;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
@@ -73,7 +74,7 @@ public class PlayerDTO {
     BottomPartType.ENLIST,  new NeighborBonus__getAttackCard__ENLIST()
   ));
 
-  /**-------------- BUILDINGS (PLAYER MAT) ---------------------------------------------------------------------------*/
+  /**-------------- BUILDINGS (PLAYER MAT, BOARD ITEMS) --------------------------------------------------------------*/
   //called when player chooses to do top action: if building is built, player gets some bonus
   //this map is updated by BottomPart_Build
   //building type is also attached in each TopPart
@@ -83,6 +84,17 @@ public class PlayerDTO {
       BuildingType.ARMORY, false,     // gain power
       BuildingType.MINE, false            // move through mine to tunnels
   ));
+
+  /**-------------- BOARD ITEMS --------------------------------------------------------------------------------------*/
+  //List<MoveDTO>
+  //player board state: each should have coordinate
+  //HeroDTO //initially of board new HeroDTO(null);
+  //List<RobotDTO> //initially empty list //mechs can always carry workers
+  public List<WorkerDTO> placed_workers;
+  public List<Locatable> locatables = new ArrayList<>(); //TODO: idea locatables could be a TRUE list, but all other items — virtual
+  public List<Movable> movables = new ArrayList<>();
+
+  public Map<BuildingType, BuildingDTO> buildingsBuilt_presentOnGrid = new HashMap<>(); // presence in this map means presence on grid
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)
@@ -127,19 +139,6 @@ public class PlayerDTO {
   public List<StateChange> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner //unused remaining ones //please remove when implemented
   public TileDTO homeTile;
   public final List<StateChange> unlockableByEnlistAction_factionMat_oneTimeRewardPool; //left-bottom corner //unused remaining ones //please remove when implemented //TODO also implement the related ongoing rewards related to player mat and neighbor actions
-
-
-  /**-------------- BOARD ITEMS --------------------------------------------------------------------------------------*/
-  //List<MoveDTO>
-  //player board state: each should have coordinate
-  //HeroDTO //initially of board new HeroDTO(null);
-  //List<RobotDTO> //initially empty list //mechs can always carry workers
-  public List<WorkerDTO> placed_workers;
-  public List<Locatable> locatables = new ArrayList<>(); //TODO: idea locatables could be a TRUE list, but all other items — virtual
-  public List<Movable> movables = new ArrayList<>();
-  public Set<BuildingType> buildingsPool_notBuilt = EnumSet.allOf(BuildingType.class); // to be built and removed from this pool
-  public Map<BuildingType, BuildingDTO> buildingsBuilt_presentOnGrid = new HashMap<>(); // presence in this map means presence on grid
-
 
   /**-------------- CONSTRUCTOR --------------------------------------------------------------------------------------*/
   public PlayerDTO(PlayerMatDTO playerMat, FactionMat factionMat, List<WorkerDTO> workers) {

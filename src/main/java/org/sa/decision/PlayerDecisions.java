@@ -1,12 +1,12 @@
 package org.sa.decision;
 
-import org.sa.DTO.PlayerDTO;
-import org.sa.DTO.TileDTO;
-import org.sa.DTO.placeable.TokenDTO;
-import org.sa.DTO.placeable.movable.Movable;
-import org.sa.DTO.placeable.movable.WorkerDTO;
+import org.sa.PlayerDTO;
+import org.sa.grid.TileDTO;
+import org.sa.grid.placeable.TokenDTO;
+import org.sa.grid.placeable.movable.Movable;
+import org.sa.grid.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
-import org.sa.b_storage.Grid;
+import org.sa.grid.Grid;
 import org.sa.decision.helper.NotMovedHandler;
 import org.sa.enums.FactionMat;
 import org.sa.player_mat.ActionSpaceDTO;

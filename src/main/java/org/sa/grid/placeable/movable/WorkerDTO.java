@@ -1,7 +1,7 @@
-package org.sa.DTO.placeable.movable;
+package org.sa.grid.placeable.movable;
 
-import org.sa.DTO.PlayerDTO;
-import org.sa.DTO.TileDTO;
+import org.sa.PlayerDTO;
+import org.sa.grid.TileDTO;
 import org.sa.enums.locatable_and_grid_enum.MovableType;
 
 public class WorkerDTO implements Movable {

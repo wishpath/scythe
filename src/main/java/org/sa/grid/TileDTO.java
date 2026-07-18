@@ -1,4 +1,4 @@
-package org.sa.DTO;
+package org.sa.grid;
 
 import org.sa.enums.locatable_and_grid_enum.Direction;
 import org.sa.enums.locatable_and_grid_enum.TileType;

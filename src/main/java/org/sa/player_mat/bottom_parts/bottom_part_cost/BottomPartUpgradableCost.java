@@ -1,6 +1,6 @@
 package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
-import org.sa.DTO.PlayerDTO;
+import org.sa.PlayerDTO;
 
 public interface BottomPartUpgradableCost {
   void applyToPlayer(PlayerDTO player);

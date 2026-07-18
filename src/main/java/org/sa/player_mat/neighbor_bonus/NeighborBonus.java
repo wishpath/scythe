@@ -1,6 +1,6 @@
 package org.sa.player_mat.neighbor_bonus;
 
-import org.sa.DTO.PlayerDTO;
+import org.sa.PlayerDTO;
 
 public interface NeighborBonus {  public
   void applyToPlayer(PlayerDTO player);

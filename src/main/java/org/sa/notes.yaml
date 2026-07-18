@@ -2,6 +2,18 @@ COPY_GIT_DIFF_TO_CLIPBOARD:
   git add -N .; git diff HEAD --unified=0 | Set-Clipboard
 
 TASKS:
+  - in the playerDTO only use paced_locatables (others should be filtered out from it)
+    - not 
+      - movables
+      - placed workers
+      - buildingType_isBuilt
+    - make other items from the main paced_locatables by filtering
+    - make separate class placedLocatables
+      - map locatable to tile
+      - map tile to list of locatables
+
+
+
   - TopPart_chooseBetweenMoveOrGainCoins > Move
     - use MINE:
       - no reward, enables movement between mine and tunnels

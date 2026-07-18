@@ -1,8 +1,8 @@
 package org.sa.mission;
 
-import org.sa.DTO.PlayerDTO;
-import org.sa.DTO.placeable.movable.WorkerDTO;
-import org.sa.b_storage.Grid;
+import org.sa.PlayerDTO;
+import org.sa.grid.placeable.movable.WorkerDTO;
+import org.sa.grid.Grid;
 
 public class MissionEstablishHumanShield implements MissionCard {
   @Override

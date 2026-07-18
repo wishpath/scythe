@@ -1,6 +1,6 @@
 package org.sa.state_change_bonus_reward_ability.get_ability;
 
-import org.sa.DTO.PlayerDTO;
+import org.sa.PlayerDTO;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 
 /**

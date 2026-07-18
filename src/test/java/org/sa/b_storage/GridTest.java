@@ -1,9 +1,10 @@
 package org.sa.b_storage;
 
 import org.junit.jupiter.api.Test;
-import org.sa.DTO.TileDTO;
+import org.sa.grid.TileDTO;
 import org.sa.enums.locatable_and_grid_enum.Direction;
 import org.sa.enums.locatable_and_grid_enum.TileType;
+import org.sa.grid.Grid;
 
 import java.util.Set;
 
@@ -44,7 +45,7 @@ class GridTest {
         if (tile == null || tile.rivers.isEmpty()) continue;
 
         for (Direction riverDirection : tile.rivers) {
-          TileDTO neighbor = Grid.getNeighbor_possiblyNull(tile, riverDirection);
+          TileDTO neighbor = Grid.getNeighborTile_possiblyNull(tile, riverDirection);
           if (neighbor == null) continue;
 
           assertNotEquals(
@@ -78,7 +79,7 @@ class GridTest {
         TileDTO tile = Grid.grid[row][column];
         if (tile == null || tile.tileType == TileType.LAKE) continue;
         for (Direction riverDirection : tile.rivers) {
-          TileDTO neighbor = Grid.getNeighbor_possiblyNull(tile, riverDirection);
+          TileDTO neighbor = Grid.getNeighborTile_possiblyNull(tile, riverDirection);
           if (neighbor == null) continue;
           Direction neededRiver = riverDirection.opposite();
           assertTrue(

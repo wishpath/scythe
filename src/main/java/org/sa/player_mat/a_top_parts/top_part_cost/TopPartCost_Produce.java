@@ -1,6 +1,6 @@
 package org.sa.player_mat.a_top_parts.top_part_cost;
 
-import org.sa.DTO.PlayerDTO;
+import org.sa.PlayerDTO;
 import org.sa.enums.ResourceType;
 
 public class TopPartCost_Produce implements TopPartCost {

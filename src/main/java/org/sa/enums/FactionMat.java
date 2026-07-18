@@ -1,6 +1,6 @@
 package org.sa.enums;
 
-import org.sa.DTO.TileDTO;
+import org.sa.grid.TileDTO;
 import org.sa.state_change_bonus_reward_ability.*;
 import org.sa.state_change_bonus_reward_ability.get_ability.MechDeployAbility_CanMoveToWorkerOrFlagTokenTerritory_Rally;
 import org.sa.state_change_bonus_reward_ability.get_ability.MechDeployAbility_MinusAttackForOpponent_Sword;
@@ -10,7 +10,7 @@ import org.sa.state_change_bonus_reward_ability.reward_basic.*;
 
 import java.util.List;
 
-import static org.sa.b_storage.Grid.grid;
+import static org.sa.grid.Grid.grid;
 
 public enum FactionMat {
   /*

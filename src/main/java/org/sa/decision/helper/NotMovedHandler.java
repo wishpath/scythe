@@ -1,9 +1,9 @@
 package org.sa.decision.helper;
 
-import org.sa.DTO.PlayerDTO;
-import org.sa.DTO.TileDTO;
-import org.sa.DTO.placeable.movable.Movable;
-import org.sa.b_storage.Grid;
+import org.sa.PlayerDTO;
+import org.sa.grid.TileDTO;
+import org.sa.grid.placeable.movable.Movable;
+import org.sa.grid.Grid;
 
 import java.util.List;
 import java.util.Set;
