@@ -1,8 +1,8 @@
-package org.sa.grid.placeable;
+package org.sa.placeable.locatable;
 
 import org.sa.PlayerDTO;
 import org.sa.grid.TileDTO;
-import org.sa.grid.placeable.movable.Movable;
+import org.sa.placeable.movable.Movable;
 import org.sa.enums.FactionMat;
 
 /** this can only belong to Albion faction (GREEN) */

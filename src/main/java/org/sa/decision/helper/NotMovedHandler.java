@@ -2,7 +2,7 @@ package org.sa.decision.helper;
 
 import org.sa.PlayerDTO;
 import org.sa.grid.TileDTO;
-import org.sa.grid.placeable.movable.Movable;
+import org.sa.placeable.movable.Movable;
 import org.sa.grid.Grid;
 
 import java.util.List;

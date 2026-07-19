@@ -1,12 +1,12 @@
 package org.sa;
 
-import org.sa.grid.placeable.BuildingDTO;
-import org.sa.grid.placeable.Locatable;
-import org.sa.grid.placeable.TokenDTO;
-import org.sa.grid.placeable.movable.Movable;
-import org.sa.grid.placeable.movable.WorkerDTO;
+import org.sa.placeable.locatable.BuildingDTO;
+import org.sa.placeable.locatable.Locatable;
+import org.sa.placeable.locatable.TokenDTO;
+import org.sa.placeable.movable.Movable;
+import org.sa.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
-import org.sa.enums.BuildingType;
+import org.sa.placeable.locatable.BuildingType;
 import org.sa.enums.FactionMat;
 import org.sa.enums.ResourceType;
 import org.sa.grid.TileDTO;
@@ -90,11 +90,15 @@ public class PlayerDTO {
   //player board state: each should have coordinate
   //HeroDTO //initially of board new HeroDTO(null);
   //List<RobotDTO> //initially empty list //mechs can always carry workers
+
+
   public List<WorkerDTO> placed_workers;
   public List<Locatable> locatables = new ArrayList<>(); //TODO: idea locatables could be a TRUE list, but all other items — virtual
   public List<Movable> movables = new ArrayList<>();
 
   public Map<BuildingType, BuildingDTO> buildingsBuilt_presentOnGrid = new HashMap<>(); // presence in this map means presence on grid
+
+
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)

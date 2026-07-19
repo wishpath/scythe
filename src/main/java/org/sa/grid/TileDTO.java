@@ -1,16 +1,18 @@
 package org.sa.grid;
 
-import org.sa.enums.locatable_and_grid_enum.Direction;
-import org.sa.enums.locatable_and_grid_enum.TileType;
+import org.sa.placeable.locatable.Locatable;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 
 public class TileDTO {
   public final TileType tileType;
   public boolean isTunnel = false;
-  public final EnumSet<Direction> rivers = EnumSet.noneOf(Direction.class);
+  public final EnumSet<DirectionType> rivers = EnumSet.noneOf(DirectionType.class);
   public final int row;
   public final int column; //diagonal direction like this: "\"
+  public List<Locatable> currentlyPresentLocatables = new ArrayList<>();
 
   public TileDTO(TileType resource, int row, int column) {
     this.tileType = resource;
@@ -23,12 +25,12 @@ public class TileDTO {
     return this;
   }
 
-  public TileDTO setRivers(Direction... directions) {
-    for (Direction d : directions) rivers.add(d);
+  public TileDTO setRivers(DirectionType... directions) {
+    for (DirectionType d : directions) rivers.add(d);
     return this;
   }
 
-  public boolean hasRiverInTheDirection(Direction direction) {
+  public boolean hasRiverInTheDirection(DirectionType direction) {
     return rivers.contains(direction);
   }
 }

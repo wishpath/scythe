@@ -1,7 +1,7 @@
 package org.sa.mission;
 
 import org.sa.PlayerDTO;
-import org.sa.grid.placeable.movable.WorkerDTO;
+import org.sa.placeable.movable.WorkerDTO;
 import org.sa.grid.Grid;
 
 public class MissionEstablishHumanShield implements MissionCard {

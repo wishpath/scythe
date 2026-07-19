@@ -1,6 +1,6 @@
-package org.sa.enums.locatable_and_grid_enum;
+package org.sa.grid;
 
-public enum Direction {
+public enum DirectionType {
         THIS( 0,  0),
   NORTH_EAST(-1,  1),
         EAST( 0,  1),
@@ -12,13 +12,13 @@ public enum Direction {
   public final int deltaRow;
   public final int deltaColumn;
 
-  Direction(int deltaRow, int deltaColumn) {
+  DirectionType(int deltaRow, int deltaColumn) {
     this.deltaRow = deltaRow;
     this.deltaColumn = deltaColumn;
   }
 
-  public Direction opposite() {
-    for (Direction d : values())
+  public DirectionType opposite() {
+    for (DirectionType d : values())
       if (d.deltaRow == -deltaRow && d.deltaColumn == -deltaColumn)
         return d;
     throw new IllegalStateException("No opposite direction for " + this);

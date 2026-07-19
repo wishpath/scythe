@@ -1,13 +1,11 @@
 package org.sa.grid;
 
 import org.sa.PlayerDTO;
-import org.sa.grid.placeable.BuildingDTO;
-import org.sa.grid.placeable.TokenDTO;
-import org.sa.grid.placeable.movable.Movable;
-import org.sa.grid.placeable.movable.WorkerDTO;
-import org.sa.enums.BuildingType;
-import org.sa.enums.locatable_and_grid_enum.Direction;
-import org.sa.enums.locatable_and_grid_enum.TileType;
+import org.sa.placeable.locatable.BuildingDTO;
+import org.sa.placeable.locatable.TokenDTO;
+import org.sa.placeable.movable.Movable;
+import org.sa.placeable.movable.WorkerDTO;
+import org.sa.placeable.locatable.BuildingType;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -26,81 +24,81 @@ public class Grid {
     grid[1][4] = new TileDTO(TileType.METAL, 1, 4);
     grid[1][5] = new TileDTO(TileType.FOOD, 1, 5);
     grid[1][6] = new TileDTO(TileType.WORKER, 1, 6)
-        .setRivers(Direction.EAST, Direction.SOUTH_EAST);
+        .setRivers(DirectionType.EAST, DirectionType.SOUTH_EAST);
     grid[1][7] = new TileDTO(TileType.WOOD, 1, 7)
-        .setRivers(Direction.SOUTH_WEST, Direction.WEST);
+        .setRivers(DirectionType.SOUTH_WEST, DirectionType.WEST);
     grid[1][8] = new TileDTO(TileType.OIL, 1, 8)
-        .setRivers(Direction.EAST, Direction.SOUTH_EAST);
+        .setRivers(DirectionType.EAST, DirectionType.SOUTH_EAST);
     grid[1][9] = new TileDTO(TileType.WORKER, 1, 9)
-        .setRivers(Direction.WEST);
+        .setRivers(DirectionType.WEST);
 
     grid[2][3] = new TileDTO(TileType.LAKE, 2, 3);
     grid[2][4] = new TileDTO(TileType.OIL, 2, 4)
-        .setRivers(Direction.SOUTH_WEST);
+        .setRivers(DirectionType.SOUTH_WEST);
     grid[2][5] = new TileDTO(TileType.LAKE, 2, 5);
     grid[2][6] = new TileDTO(TileType.OIL, 2, 6)
         .markAsTunnel()
-        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.EAST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.NORTH_EAST, DirectionType.EAST);
     grid[2][7] = new TileDTO(TileType.METAL, 2, 7)
-        .setRivers(Direction.WEST, Direction.EAST, Direction.SOUTH_EAST);
+        .setRivers(DirectionType.WEST, DirectionType.EAST, DirectionType.SOUTH_EAST);
     grid[2][8] = new TileDTO(TileType.FOOD, 2, 8)
-        .setRivers(Direction.WEST, Direction.NORTH_WEST, Direction.SOUTH_EAST);
+        .setRivers(DirectionType.WEST, DirectionType.NORTH_WEST, DirectionType.SOUTH_EAST);
     grid[2][9] = new TileDTO(TileType.FOOD, 2, 9)
-        .setRivers(Direction.SOUTH_EAST, Direction.SOUTH_WEST);
+        .setRivers(DirectionType.SOUTH_EAST, DirectionType.SOUTH_WEST);
 
     grid[3][2] = new TileDTO(TileType.HOME, 3, 2);
     grid[3][3] = new TileDTO(TileType.WOOD, 3, 3)
-        .setRivers(Direction.NORTH_EAST, Direction.EAST);
+        .setRivers(DirectionType.NORTH_EAST, DirectionType.EAST);
     grid[3][4] = new TileDTO(TileType.METAL, 3, 4)
         .markAsTunnel()
-        .setRivers(Direction.WEST, Direction.SOUTH_WEST);
+        .setRivers(DirectionType.WEST, DirectionType.SOUTH_WEST);
     grid[3][5] = new TileDTO(TileType.WOOD, 3, 5);
     grid[3][6] = new TileDTO(TileType.LAKE, 3, 6);
     grid[3][7] = new TileDTO(TileType.WOOD, 3, 7)
         .markAsTunnel()
-        .setRivers(Direction.NORTH_WEST, Direction.EAST, Direction.SOUTH_EAST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.EAST, DirectionType.SOUTH_EAST);
     grid[3][8] = new TileDTO(TileType.WORKER, 3, 8)
-        .setRivers(Direction.WEST, Direction.NORTH_WEST, Direction.NORTH_EAST);
+        .setRivers(DirectionType.WEST, DirectionType.NORTH_WEST, DirectionType.NORTH_EAST);
     grid[3][9] = new TileDTO(TileType.HOME, 3, 9)
-        .setRivers(Direction.NORTH_WEST);
+        .setRivers(DirectionType.NORTH_WEST);
 
     grid[4][2] = new TileDTO(TileType.FOOD, 4, 2)
-        .setRivers(Direction.SOUTH_WEST, Direction.SOUTH_EAST);
+        .setRivers(DirectionType.SOUTH_WEST, DirectionType.SOUTH_EAST);
     grid[4][3] = new TileDTO(TileType.WORKER, 4, 3)
-        .setRivers(Direction.SOUTH_WEST, Direction.SOUTH_EAST, Direction.NORTH_EAST);
+        .setRivers(DirectionType.SOUTH_WEST, DirectionType.SOUTH_EAST, DirectionType.NORTH_EAST);
     grid[4][4] = new TileDTO(TileType.LAKE, 4, 4);
     grid[4][5] = CENTER_FACTORY;
     grid[4][6] = new TileDTO(TileType.METAL, 4, 6)
-        .setRivers(Direction.EAST);
+        .setRivers(DirectionType.EAST);
     grid[4][7] = new TileDTO(TileType.OIL, 4, 7)
-        .setRivers(Direction.SOUTH_WEST, Direction.WEST, Direction.NORTH_WEST);
+        .setRivers(DirectionType.SOUTH_WEST, DirectionType.WEST, DirectionType.NORTH_WEST);
     grid[4][8] = new TileDTO(TileType.METAL, 4, 8);
 
     grid[5][1] = new TileDTO(TileType.WOOD,  5, 1)
-        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.SOUTH_EAST, Direction.SOUTH_WEST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.NORTH_EAST, DirectionType.SOUTH_EAST, DirectionType.SOUTH_WEST);
     grid[5][2] = new TileDTO(TileType.WOOD,  5, 2)
-        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.SOUTH_EAST, Direction.SOUTH_WEST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.NORTH_EAST, DirectionType.SOUTH_EAST, DirectionType.SOUTH_WEST);
     grid[5][3] = new TileDTO(TileType.FOOD,  5, 3)
         .markAsTunnel()
-        .setRivers(Direction.NORTH_WEST, Direction.SOUTH_WEST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.SOUTH_WEST);
     grid[5][4] = new TileDTO(TileType.OIL,  5, 4);
     grid[5][5] = new TileDTO(TileType.LAKE,  5, 5);
     grid[5][6] = new TileDTO(TileType.WORKER,  5, 6)
         .markAsTunnel()
-        .setRivers(Direction.NORTH_EAST);
+        .setRivers(DirectionType.NORTH_EAST);
     grid[5][7] = new TileDTO(TileType.LAKE,  5, 7);
 
     grid[6][1] = new TileDTO(TileType.METAL,  6, 1)
-        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.NORTH_EAST);
     grid[6][2] = new TileDTO(TileType.WORKER,  6, 2)
-        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.EAST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.NORTH_EAST, DirectionType.EAST);
     grid[6][3] = new TileDTO(TileType.WORKER,  6, 3)
-        .setRivers(Direction.WEST, Direction.SOUTH_EAST);
+        .setRivers(DirectionType.WEST, DirectionType.SOUTH_EAST);
     grid[6][4] = new TileDTO(TileType.OIL,  6, 4)
         .markAsTunnel()
-        .setRivers(Direction.SOUTH_EAST, Direction.SOUTH_WEST);
+        .setRivers(DirectionType.SOUTH_EAST, DirectionType.SOUTH_WEST);
     grid[6][5] = new TileDTO(TileType.WOOD,  6, 5)
-        .setRivers(Direction.SOUTH_WEST);
+        .setRivers(DirectionType.SOUTH_WEST);
     grid[6][6] = new TileDTO(TileType.METAL,  6, 6);
     grid[6][7] = new TileDTO(TileType.OIL,  6, 7);
 
@@ -108,11 +106,11 @@ public class Grid {
     grid[7][1] = new TileDTO(TileType.OIL,  7, 1);
     grid[7][2] = new TileDTO(TileType.LAKE,  7, 2);
     grid[7][3] = new TileDTO(TileType.FOOD,  7, 3)
-        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.NORTH_EAST);
     grid[7][4] = new TileDTO(TileType.METAL,  7, 4)
-        .setRivers(Direction.NORTH_WEST, Direction.NORTH_EAST, Direction.EAST);
+        .setRivers(DirectionType.NORTH_WEST, DirectionType.NORTH_EAST, DirectionType.EAST);
     grid[7][5] = new TileDTO(TileType.WORKER,  7, 5)
-        .setRivers(Direction.WEST);
+        .setRivers(DirectionType.WEST);
     grid[7][6] = new TileDTO(TileType.FOOD,  7, 6);
     grid[7][7] = new TileDTO(TileType.HOME,  7, 7);
 
@@ -123,13 +121,13 @@ public class Grid {
   private static final Set<TileDTO> tunnels = Arrays.stream(grid).flatMap(Arrays::stream).filter(Objects::nonNull).filter(t -> t.isTunnel).collect(Collectors.toSet());
 
   public static boolean isItemAdjacent(TileDTO tile, TileDTO itemLocation) {
-    for (Direction direction : Direction.values())
+    for (DirectionType direction : DirectionType.values())
       if (isAdjacentToDirection(tile, direction, itemLocation))
         return true;
     return false;
   }
 
-  public static boolean isAdjacentToDirection(TileDTO tile, Direction direction, TileDTO itemLocation) {
+  public static boolean isAdjacentToDirection(TileDTO tile, DirectionType direction, TileDTO itemLocation) {
     int row = tile.row + direction.deltaRow;
     if (row < 0 || row >= grid.length) return false;
     int column = tile.column + direction.deltaColumn;
@@ -141,7 +139,7 @@ public class Grid {
 
   public static Set<TileDTO> getNonNullNeighborsNotSelf(TileDTO tile) {
     Set<TileDTO> neighbors = new HashSet<>();
-    for (Direction direction : Direction.values()) {
+    for (DirectionType direction : DirectionType.values()) {
       int row = tile.row + direction.deltaRow;
       if (row < 0 || row >= grid.length) continue;
 
@@ -154,7 +152,7 @@ public class Grid {
     return neighbors;
   }
 
-  public static TileDTO getNeighborTile_possiblyNull(TileDTO tile, Direction direction) {
+  public static TileDTO getNeighborTile_possiblyNull(TileDTO tile, DirectionType direction) {
     int row = tile.row + direction.deltaRow;
     int col = tile.column + direction.deltaColumn;
     if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) return null;
@@ -166,7 +164,7 @@ public class Grid {
     Set<TileDTO> validDestinationTiles = new HashSet<>();
 
     //deal neighboring tiles
-    for (Direction direction : Direction.values()) { //includes direction Direction.THIS
+    for (DirectionType direction : DirectionType.values()) { //includes direction Direction.THIS
       TileDTO tileTo = getNeighborTile_possiblyNull(tileFrom, direction); //possibly self
       if (tileTo == null) continue;
       if (tileTo.tileType.equals(TileType.LAKE)) continue;

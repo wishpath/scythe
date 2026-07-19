@@ -2,9 +2,9 @@ package org.sa.decision;
 
 import org.sa.PlayerDTO;
 import org.sa.grid.TileDTO;
-import org.sa.grid.placeable.TokenDTO;
-import org.sa.grid.placeable.movable.Movable;
-import org.sa.grid.placeable.movable.WorkerDTO;
+import org.sa.placeable.locatable.TokenDTO;
+import org.sa.placeable.movable.Movable;
+import org.sa.placeable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.grid.Grid;
 import org.sa.decision.helper.NotMovedHandler;
