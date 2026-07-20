@@ -85,6 +85,22 @@ public class PlayerDTO {
       BuildingType.MINE, false            // move through mine to tunnels
   ));
 
+  private Map<BuildingType, BuildingDTO> buildingType_builtBuildingDTO = new EnumMap<>(new HashMap<>());
+
+  public void buildBuilding(BuildingType type, TileDTO location) {
+    if (buildingType_isBuilt.get(type)) throw new IllegalStateException(type + " is already built." );
+    buildingType_isBuilt.put(type, true);
+    BuildingDTO buildingDTO = new BuildingDTO(type, location);
+    buildingType_builtBuildingDTO.put(type, buildingDTO);
+    location.currentlyPresentLocatables.add(buildingDTO);
+  }
+
+  public boolean isBuilt(BuildingType type) {
+    return buildingType_isBuilt.get(type);
+  }
+
+
+
   /**-------------- BOARD ITEMS --------------------------------------------------------------------------------------*/
   //List<MoveDTO>
   //player board state: each should have coordinate

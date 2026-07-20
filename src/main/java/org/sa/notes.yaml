@@ -2,6 +2,9 @@ COPY_GIT_DIFF_TO_CLIPBOARD:
   git add -N .; git diff HEAD --unified=0 | Set-Clipboard
 
 TASKS:
+  - change "public boolean isBuilt(BuildingType type) {"
+    - replace buildingType_isBuilt with buildingType_builtBuildingDTO
+
   - location should have a double definition, both in TileDTO and Locatable
     - map TileDTO should have list of Locatables
       - locatables should be only present in the list when they are present in that tile

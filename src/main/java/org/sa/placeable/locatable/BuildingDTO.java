@@ -7,8 +7,9 @@ public class BuildingDTO implements Locatable {
   public BuildingType buildingType;
   public TileDTO location;     // where the building is placed
 
-  public BuildingDTO(BuildingType buildingType) {
+  public BuildingDTO(BuildingType buildingType, TileDTO location) {
     this.buildingType = buildingType;
+    this.location = location;
   }
 
   @Override
