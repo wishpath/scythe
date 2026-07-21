@@ -78,25 +78,17 @@ public class PlayerDTO {
   //called when player chooses to do top action: if building is built, player gets some bonus
   //this map is updated by BottomPart_Build
   //building type is also attached in each TopPart
-  private Map<BuildingType, Boolean> buildingType_isBuilt = new EnumMap<>(Map.of(
-      BuildingType.MILL, false,       // produce extra resource from mill tile
-      BuildingType.MONUMENT, false,   // gain popularity
-      BuildingType.ARMORY, false,     // gain power
-      BuildingType.MINE, false            // move through mine to tunnels
-  ));
-
   private Map<BuildingType, BuildingDTO> buildingType_builtBuildingDTO = new EnumMap<>(new HashMap<>());
 
   public void buildBuilding(BuildingType type, TileDTO location) {
-    if (buildingType_isBuilt.get(type)) throw new IllegalStateException(type + " is already built." );
-    buildingType_isBuilt.put(type, true);
+    if (isBuilt(type)) throw new IllegalStateException(type + " is already built." );
     BuildingDTO buildingDTO = new BuildingDTO(type, location);
     buildingType_builtBuildingDTO.put(type, buildingDTO);
     location.currentlyPresentLocatables.add(buildingDTO);
   }
 
   public boolean isBuilt(BuildingType type) {
-    return buildingType_isBuilt.get(type);
+    return buildingType_builtBuildingDTO.get(type) != null;
   }
 
 

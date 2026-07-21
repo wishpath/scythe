@@ -16,7 +16,7 @@ public class TopPart_chooseBetweenTradeGoodsOrGainHearts implements TopPart {
       new TopPartUpgradableAction_Hearts(1, 2),
       new TopPartUpgradableAction_Trade_Decideable(2, 2)
   };
-  private BuildingType ARMORY = BuildingType.ARMORY; // building state stored in PlayerDTO.buildingType_isBuilt
+  private BuildingType ARMORY = BuildingType.ARMORY; // building state stored in playerDTO.isBuilt(type)
 
   @Override
   public TopPartCost getCost() {

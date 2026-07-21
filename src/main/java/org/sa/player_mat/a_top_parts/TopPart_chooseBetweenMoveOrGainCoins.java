@@ -17,7 +17,7 @@ public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
       new TopPartUpgradableAction_Move_Decideable(2, 3),
       new TopPartUpgradableAction_Reward_Coins(1, 2)
   };
-  private BuildingType MINE = BuildingType.MINE; // building state stored in PlayerDTO.buildingType_isBuilt
+  private BuildingType MINE = BuildingType.MINE; // building state stored in playerDTO.isBuilt(type)
 
   /** There's no constructor because all player mats have exactly same structure for this top part */
   @Override
