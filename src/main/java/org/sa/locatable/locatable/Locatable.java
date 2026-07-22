@@ -1,4 +1,4 @@
-package org.sa.placeable.locatable;
+package org.sa.locatable.locatable;
 
 import org.sa.grid.TileDTO;
 

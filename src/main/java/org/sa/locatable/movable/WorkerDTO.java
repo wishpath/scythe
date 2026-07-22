@@ -1,4 +1,4 @@
-package org.sa.placeable.movable;
+package org.sa.locatable.movable;
 
 import org.sa.PlayerDTO;
 import org.sa.grid.TileDTO;

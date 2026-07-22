@@ -1,6 +1,6 @@
 package org.sa.player_mat.a_top_parts;
 
-import org.sa.placeable.locatable.BuildingType;
+import org.sa.locatable.locatable.BuildingType;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
 import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost;

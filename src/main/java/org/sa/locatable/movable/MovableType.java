@@ -1,4 +1,4 @@
-package org.sa.placeable.movable;
+package org.sa.locatable.movable;
 
 public enum MovableType {
   CHARACTER,   // hero unit (leader)

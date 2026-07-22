@@ -1,12 +1,12 @@
 package org.sa;
 
-import org.sa.placeable.locatable.BuildingDTO;
-import org.sa.placeable.locatable.Locatable;
-import org.sa.placeable.locatable.TokenDTO;
-import org.sa.placeable.movable.Movable;
-import org.sa.placeable.movable.WorkerDTO;
+import org.sa.locatable.locatable.BuildingDTO;
+import org.sa.locatable.locatable.Locatable;
+import org.sa.locatable.locatable.TokenDTO;
+import org.sa.locatable.movable.Movable;
+import org.sa.locatable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
-import org.sa.placeable.locatable.BuildingType;
+import org.sa.locatable.locatable.BuildingType;
 import org.sa.enums.FactionMat;
 import org.sa.enums.ResourceType;
 import org.sa.grid.TileDTO;

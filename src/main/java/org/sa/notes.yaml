@@ -2,30 +2,8 @@ COPY_GIT_DIFF_TO_CLIPBOARD:
   git add -N .; git diff HEAD --unified=0 | Set-Clipboard
 
 TASKS:
-  - change "public boolean isBuilt(BuildingType type) {"
-    - replace buildingType_isBuilt with buildingType_builtBuildingDTO
-
-  - location should have a double definition, both in TileDTO and Locatable
-    - map TileDTO should have list of Locatables
-      - locatables should be only present in the list when they are present in that tile
-    - each locatable should have TileDTO location
-
-
-
-  - TopPart_chooseBetweenMoveOrGainCoins > Move
-    - use MINE:
-      - no reward, enables movement between mine and tunnels
-      - use playerDTO.buildingType_isBuilt
-    - continue on getTilesToMoveTo, maybe export to MoveTargetUtil (create class)
-      - use method player.getTilesToMoveTo(Movable main movable) (depends on what abilities the player has enabled, like moving 2 tiles, jumping water, stepping on water, etc)
-    - move interaction logic
-      - if movable type is worker -> it cannot move to enemy?
-      - if movable type is character or mech
-      - if meets mech or character -> war
-      - if meets worker -> sends home
 
   - player mat 
-    - state implementation in PlayerDTO
     - refactor player mat similarly like faction mat
     - when player does top action use playerDTO.buildingType_isBuilt to implement these changes:
       - armory: gain extra power when resolving the second action of the top action
@@ -38,10 +16,16 @@ TASKS:
         - implement in PlayerDecisions example of Choosing trade (top part of action space)
 
 LATER:
-  - BottomPart
-    - create bottom action mechanic
-      - each bottom action should know player's neighbors
-        - if each neighbor has enlisted that specific bottom action — neighbor gets a specific bonus
+  - lets finish NON-INTERACRION logic first: so INTERACTION is postponed
+      - MOVE interaction logic
+        - if movable type is worker -> it cannot move to enemy?
+        - if meets mech or character -> war
+        - if mech brings workers to fight and looses - then what?
+        - if mech or character meets worker -> sends home, correct?
+      - rewards for neighbors if they have enlisted the matching bottom action
+
+  - let's finish with GREEN ALBION faction first: later improve getTilesToMoveTo with other factions (not only GREEN ALBION)
+      - move-important faction-abilities are commented in this method
   - use other faction/deploy abilities regarding MOVE, other than GREEN_ALBION as well. LATER
   - player should pick initial tile for worker but for now we take the first one in the set
   - create turn type (enum) move / enlist / produce

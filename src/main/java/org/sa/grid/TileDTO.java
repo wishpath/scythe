@@ -1,6 +1,6 @@
 package org.sa.grid;
 
-import org.sa.placeable.locatable.Locatable;
+import org.sa.locatable.locatable.Locatable;
 
 import java.util.ArrayList;
 import java.util.EnumSet;

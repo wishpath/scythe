@@ -1,4 +1,4 @@
-package org.sa.placeable.locatable;
+package org.sa.locatable.locatable;
 
 public enum BuildingType {
   MILL,        // Produces resources on its territory during Produce
