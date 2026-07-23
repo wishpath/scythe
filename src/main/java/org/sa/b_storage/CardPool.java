@@ -1,6 +1,6 @@
 package org.sa.b_storage;
 
-import org.sa.enums.FactionMat;
+import org.sa.faction_mat.FactionMat;
 import org.sa.mission.MissionCard;
 import org.sa.mission.MissionDiversifyProduction;
 import org.sa.mission.MissionEstablishHumanShield;

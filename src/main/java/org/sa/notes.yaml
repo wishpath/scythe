@@ -2,7 +2,7 @@ COPY_GIT_DIFF_TO_CLIPBOARD:
   git add -N .; git diff HEAD --unified=0 | Set-Clipboard
 
 TASKS:
-
+  - move all Faction mat classes to package faction_mat and detach them from general interfaces like StateChange
   - player mat 
     - refactor player mat similarly like faction mat
     - when player does top action use playerDTO.buildingType_isBuilt to implement these changes:

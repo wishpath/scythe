@@ -8,7 +8,7 @@ import org.sa.locatable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.grid.Grid;
 import org.sa.decision.helper.NotMovedHandler;
-import org.sa.enums.FactionMat;
+import org.sa.faction_mat.FactionMat;
 import org.sa.player_mat.ActionSpaceDTO;
 import org.sa.player_mat.PlayerMatDTO;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;

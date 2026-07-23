@@ -7,7 +7,7 @@ import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
 import org.sa.b_storage.CardPool;
 import org.sa.locatable.locatable.BuildingType;
-import org.sa.enums.FactionMat;
+import org.sa.faction_mat.FactionMat;
 import org.sa.enums.ResourceType;
 import org.sa.grid.TileDTO;
 import org.sa.mission.MissionCard;

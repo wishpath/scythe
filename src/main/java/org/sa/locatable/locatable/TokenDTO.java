@@ -3,7 +3,7 @@ package org.sa.locatable.locatable;
 import org.sa.PlayerDTO;
 import org.sa.grid.TileDTO;
 import org.sa.locatable.movable.Movable;
-import org.sa.enums.FactionMat;
+import org.sa.faction_mat.FactionMat;
 
 /** this can only belong to Albion faction (GREEN) */
 public class TokenDTO implements Locatable {
