@@ -1,7 +1,6 @@
 package org.sa.faction_mat;
 
-import org.sa.faction_mat.right_side.RightTop_FactionAbility;
-import org.sa.faction_mat.right_side.RightTop_FactionAbility_FlagTokens_Exalt_GREEN;
+import org.sa.faction_mat.right_side.*;
 import org.sa.grid.TileDTO;
 import org.sa.state_change_bonus_reward_ability.StateChange;
 import org.sa.state_change_bonus_reward_ability.get_ability.MechDeployAbility_CanMoveToWorkerOrFlagTokenTerritory_Rally;
@@ -43,8 +42,8 @@ public enum FactionMat {
 
       //initialBonusToApply_oneTime //right side (below faction ability)
       List.of(
-          new ElistActionOneTimeReward_FromFactionMat_Attack(3),
-          new ElistActionOneTimeReward_FromFactionMat_AttackCards(0)),
+          new RightMid_FactionInitialBonus_Attack(3),
+          new RightMid_FactionInitialBonus_AttackCards(0)),
 
       //unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner
       List.of(
@@ -66,7 +65,7 @@ public enum FactionMat {
 
   public final String name;
   public final List<RightTop_FactionAbility> initialReward_factionAbility_ongoing; //top right corner
-  public final List<StateChange> initialBonusToApply_oneTime; //right side (below the faction ability)
+  public final List<RightMid_FactionInitialBonus> initialBonusToApply_oneTime; //right side (below the faction ability)
   public final List<StateChange> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner
   public final List<StateChange> unlockableByEnlistAction_oneTimeRewardPool; //left-bottom corner //TODO also implement the related ongoing rewards related to player mat and neighbor actions
   public final TileDTO homeTile;
@@ -75,7 +74,7 @@ public enum FactionMat {
   FactionMat(
       String name,
       List<RightTop_FactionAbility> initialReward_factionAbility_ongoing, //top right corner
-      List<StateChange> initialBonusToApply_oneTime, //right side (below the faction ability)
+      List<RightMid_FactionInitialBonus> initialBonusToApply_oneTime, //right side (below the faction ability)
       List<StateChange> unlockableByMechDeploy_abilitiesPool, //right-bottom corner
       List<StateChange> unlockableByEnlistAction_oneTimeRewardPool, //left-bottom corner
       TileDTO homeTile
