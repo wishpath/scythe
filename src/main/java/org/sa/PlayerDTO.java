@@ -1,5 +1,8 @@
 package org.sa;
 
+import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility;
+import org.sa.faction_mat.right_side.RightMid_FactionInitialBonus;
+import org.sa.faction_mat.right_side.RightTop_FactionAbility;
 import org.sa.locatable.locatable.BuildingDTO;
 import org.sa.locatable.locatable.Locatable;
 import org.sa.locatable.locatable.TokenDTO;
@@ -148,7 +151,7 @@ public class PlayerDTO {
   public boolean YELLOW_CRIMEA_characterAndMechsGetPlus1Move_speed = false; // character and mechs may move 1 additional territory per Move action
 
   //(MECH DEPLOY) ABILITIES FOR CONCRETE FACTION
-  public List<StateChange> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner //unused remaining ones //please remove when implemented
+  public List<RightBottom_MechDeployAbility> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner //unused remaining ones //please remove when implemented
   public TileDTO homeTile;
   public final List<StateChange> unlockableByEnlistAction_factionMat_oneTimeRewardPool; //left-bottom corner //unused remaining ones //please remove when implemented //TODO also implement the related ongoing rewards related to player mat and neighbor actions
 
@@ -162,8 +165,8 @@ public class PlayerDTO {
 
     //factionMat part
     this.factionMat = factionMat;
-    for (StateChange reward : factionMat.initialReward_factionAbility_ongoing) reward.applyToPlayer(this);
-    for (StateChange reward : factionMat.initialBonusToApply_oneTime) reward.applyToPlayer(this);
+    for (RightTop_FactionAbility reward : factionMat.initialReward_factionAbility_ongoing) reward.applyToPlayer(this);
+    for (RightMid_FactionInitialBonus reward : factionMat.initialBonusToApply_oneTime) reward.applyToPlayer(this);
     this.unlockableByMechDeploy_ongoingAbilitiesPool = factionMat.unlockableByMechDeploy_ongoingAbilitiesPool;
     this.unlockableByEnlistAction_factionMat_oneTimeRewardPool = factionMat.unlockableByEnlistAction_oneTimeRewardPool;
     this.homeTile = factionMat.homeTile;

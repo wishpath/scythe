@@ -3,10 +3,10 @@ package org.sa.faction_mat;
 import org.sa.faction_mat.right_side.*;
 import org.sa.grid.TileDTO;
 import org.sa.state_change_bonus_reward_ability.StateChange;
-import org.sa.state_change_bonus_reward_ability.get_ability.MechDeployAbility_CanMoveToWorkerOrFlagTokenTerritory_Rally;
-import org.sa.state_change_bonus_reward_ability.get_ability.MechDeployAbility_MinusAttackForOpponent_Sword;
-import org.sa.state_change_bonus_reward_ability.get_ability.MechDeployAbility_PlusAttackBeforeDefence_Shield;
-import org.sa.state_change_bonus_reward_ability.get_ability.MechDeployAbility_RiverCrossingToOrFromTunnel_Burrow;
+import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility_CanMoveToWorkerOrFlagTokenTerritory_Rally;
+import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility_MinusAttackForOpponent_Sword;
+import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility_PlusAttackBeforeDefence_Shield;
+import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility_RiverCrossingToOrFromTunnel_Burrow;
 import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Attack;
 import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_AttackCards;
 import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Coins;
@@ -47,10 +47,10 @@ public enum FactionMat {
 
       //unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner
       List.of(
-          new MechDeployAbility_RiverCrossingToOrFromTunnel_Burrow(),
-          new MechDeployAbility_MinusAttackForOpponent_Sword(),
-          new MechDeployAbility_PlusAttackBeforeDefence_Shield(),
-          new MechDeployAbility_CanMoveToWorkerOrFlagTokenTerritory_Rally()),
+          new RightBottom_MechDeployAbility_RiverCrossingToOrFromTunnel_Burrow(),
+          new RightBottom_MechDeployAbility_MinusAttackForOpponent_Sword(),
+          new RightBottom_MechDeployAbility_PlusAttackBeforeDefence_Shield(),
+          new RightBottom_MechDeployAbility_CanMoveToWorkerOrFlagTokenTerritory_Rally()),
 
       //unlockableByEnlistAction_oneTimeRewardPool; //left-bottom corner
       List.of(
@@ -64,9 +64,11 @@ public enum FactionMat {
   );
 
   public final String name;
+  //right
   public final List<RightTop_FactionAbility> initialReward_factionAbility_ongoing; //top right corner
   public final List<RightMid_FactionInitialBonus> initialBonusToApply_oneTime; //right side (below the faction ability)
-  public final List<StateChange> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner
+  public final List<RightBottom_MechDeployAbility> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner
+  //left
   public final List<StateChange> unlockableByEnlistAction_oneTimeRewardPool; //left-bottom corner //TODO also implement the related ongoing rewards related to player mat and neighbor actions
   public final TileDTO homeTile;
   public final int initialWorkersCount = 2;
@@ -75,7 +77,7 @@ public enum FactionMat {
       String name,
       List<RightTop_FactionAbility> initialReward_factionAbility_ongoing, //top right corner
       List<RightMid_FactionInitialBonus> initialBonusToApply_oneTime, //right side (below the faction ability)
-      List<StateChange> unlockableByMechDeploy_abilitiesPool, //right-bottom corner
+      List<RightBottom_MechDeployAbility> unlockableByMechDeploy_abilitiesPool, //right-bottom corner
       List<StateChange> unlockableByEnlistAction_oneTimeRewardPool, //left-bottom corner
       TileDTO homeTile
   ) {
