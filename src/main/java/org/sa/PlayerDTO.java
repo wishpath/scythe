@@ -1,6 +1,5 @@
 package org.sa;
 
-import org.sa.b_storage.CardPool;
 import org.sa.enums.ResourceType;
 import org.sa.faction_mat.FactionMat;
 import org.sa.faction_mat.Left_EnlistOneTimeReward.Left_EnlistOneTimeReward;

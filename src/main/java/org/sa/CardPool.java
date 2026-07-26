@@ -1,4 +1,4 @@
-package org.sa.b_storage;
+package org.sa;
 
 import org.sa.faction_mat.FactionMat;
 import org.sa.mission.MissionCard;
