@@ -1,4 +1,4 @@
-package org.sa.faction_mat.right_side;
+package org.sa.faction_mat.RightBottom_MechDeployAbility;
 
 import org.sa.PlayerDTO;
 

@@ -1,8 +1,12 @@
 COPY_GIT_DIFF_TO_CLIPBOARD:
   git add -N .; git diff HEAD --unified=0 | Set-Clipboard
 
+STRATEGY_IN_SHORT:
+  - complete only:
+      - NON-INTERACTION
+      - GREEN ALBION
+      - AGRICULTURAL
 TASKS:
-  - move all Faction mat classes to package faction_mat and detach them from general interfaces like StateChange
   - player mat 
     - refactor player mat similarly like faction mat
     - when player does top action use playerDTO.buildingType_isBuilt to implement these changes:
@@ -15,8 +19,10 @@ TASKS:
       - trade
         - implement in PlayerDecisions example of Choosing trade (top part of action space)
 
+  - go through project TODO's (marked by comments)
+
 LATER:
-  - lets finish NON-INTERACRION logic first: so INTERACTION is postponed
+  - lets finish NON-INTERACTION logic first: so INTERACTION is postponed
       - MOVE interaction logic
         - if movable type is worker -> it cannot move to enemy?
         - if meets mech or character -> war

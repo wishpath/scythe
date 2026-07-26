@@ -1,24 +1,24 @@
 package org.sa;
 
-import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility;
-import org.sa.faction_mat.right_side.RightMid_FactionInitialBonus;
-import org.sa.faction_mat.right_side.RightTop_FactionAbility;
+import org.sa.b_storage.CardPool;
+import org.sa.enums.ResourceType;
+import org.sa.faction_mat.FactionMat;
+import org.sa.faction_mat.Left_EnlistOneTimeReward.Left_EnlistOneTimeReward;
+import org.sa.faction_mat.RightBottom_MechDeployAbility.RightBottom_MechDeployAbility;
+import org.sa.faction_mat.RightMid_FactionInitialBonus.RightMid_FactionInitialBonus;
+import org.sa.faction_mat.RightTop_FactionAbility.RightTop_FactionAbility;
+import org.sa.grid.TileDTO;
 import org.sa.locatable.locatable.BuildingDTO;
+import org.sa.locatable.locatable.BuildingType;
 import org.sa.locatable.locatable.Locatable;
 import org.sa.locatable.locatable.TokenDTO;
 import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
-import org.sa.b_storage.CardPool;
-import org.sa.locatable.locatable.BuildingType;
-import org.sa.faction_mat.FactionMat;
-import org.sa.enums.ResourceType;
-import org.sa.grid.TileDTO;
 import org.sa.mission.MissionCard;
 import org.sa.player_mat.PlayerMatDTO;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 import org.sa.player_mat.neighbor_bonus.*;
-import org.sa.state_change_bonus_reward_ability.StateChange;
 
 import java.util.*;
 
@@ -153,7 +153,7 @@ public class PlayerDTO {
   //(MECH DEPLOY) ABILITIES FOR CONCRETE FACTION
   public List<RightBottom_MechDeployAbility> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner //unused remaining ones //please remove when implemented
   public TileDTO homeTile;
-  public final List<StateChange> unlockableByEnlistAction_factionMat_oneTimeRewardPool; //left-bottom corner //unused remaining ones //please remove when implemented //TODO also implement the related ongoing rewards related to player mat and neighbor actions
+  public final List<Left_EnlistOneTimeReward> unlockableByEnlistAction_factionMat_oneTimeRewardPool; //left-bottom corner //unused remaining ones //please remove when implemented //TODO also implement the related ongoing rewards related to player mat and neighbor actions
 
   /**-------------- CONSTRUCTOR --------------------------------------------------------------------------------------*/
   public PlayerDTO(PlayerMatDTO playerMat, FactionMat factionMat, List<WorkerDTO> workers) {

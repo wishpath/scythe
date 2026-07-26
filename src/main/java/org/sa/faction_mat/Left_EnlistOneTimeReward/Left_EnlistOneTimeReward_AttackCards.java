@@ -1,12 +1,12 @@
-package org.sa.faction_mat.right_side;
+package org.sa.faction_mat.Left_EnlistOneTimeReward;
 
 import org.sa.PlayerDTO;
 import org.sa.enums.ResourceType;
 
-public class RightMid_FactionInitialBonus_AttackCards implements RightMid_FactionInitialBonus {
+public class Left_EnlistOneTimeReward_AttackCards implements Left_EnlistOneTimeReward {
   private int deltaAttackCardAmount;
 
-  public RightMid_FactionInitialBonus_AttackCards(int deltaAttackCardAmount) {
+  public Left_EnlistOneTimeReward_AttackCards(int deltaAttackCardAmount) {
     this.deltaAttackCardAmount = deltaAttackCardAmount;
   }
 

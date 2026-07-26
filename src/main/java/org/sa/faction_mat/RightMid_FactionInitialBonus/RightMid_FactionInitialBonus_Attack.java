@@ -1,4 +1,4 @@
-package org.sa.faction_mat.right_side;
+package org.sa.faction_mat.RightMid_FactionInitialBonus;
 
 import org.sa.PlayerDTO;
 import org.sa.enums.ResourceType;

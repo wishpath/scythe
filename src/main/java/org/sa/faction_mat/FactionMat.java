@@ -1,16 +1,13 @@
 package org.sa.faction_mat;
 
-import org.sa.faction_mat.right_side.*;
+import org.sa.faction_mat.Left_EnlistOneTimeReward.*;
+import org.sa.faction_mat.RightBottom_MechDeployAbility.*;
+import org.sa.faction_mat.RightMid_FactionInitialBonus.RightMid_FactionInitialBonus;
+import org.sa.faction_mat.RightMid_FactionInitialBonus.RightMid_FactionInitialBonus_Attack;
+import org.sa.faction_mat.RightMid_FactionInitialBonus.RightMid_FactionInitialBonus_AttackCards;
+import org.sa.faction_mat.RightTop_FactionAbility.RightTop_FactionAbility;
+import org.sa.faction_mat.RightTop_FactionAbility.RightTop_FactionAbility_FlagTokens_Exalt_GREEN;
 import org.sa.grid.TileDTO;
-import org.sa.state_change_bonus_reward_ability.StateChange;
-import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility_CanMoveToWorkerOrFlagTokenTerritory_Rally;
-import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility_MinusAttackForOpponent_Sword;
-import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility_PlusAttackBeforeDefence_Shield;
-import org.sa.faction_mat.right_side.RightBottom_MechDeployAbility_RiverCrossingToOrFromTunnel_Burrow;
-import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Attack;
-import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_AttackCards;
-import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Coins;
-import org.sa.state_change_bonus_reward_ability.reward_basic.ElistActionOneTimeReward_FromFactionMat_Hearts;
 
 import java.util.List;
 
@@ -54,10 +51,10 @@ public enum FactionMat {
 
       //unlockableByEnlistAction_oneTimeRewardPool; //left-bottom corner
       List.of(
-          new ElistActionOneTimeReward_FromFactionMat_Attack(2),
-          new ElistActionOneTimeReward_FromFactionMat_Coins(2),
-          new ElistActionOneTimeReward_FromFactionMat_Hearts(2),
-          new ElistActionOneTimeReward_FromFactionMat_AttackCards(2)),
+          new Left_EnlistOneTimeReward_Attack(2),
+          new Left_EnlistOneTimeReward_Coins(2),
+          new Left_EnlistOneTimeReward_Hearts(2),
+          new Left_EnlistOneTimeReward_AttackCards(2)),
 
       //home
       grid[0][5]
@@ -69,7 +66,7 @@ public enum FactionMat {
   public final List<RightMid_FactionInitialBonus> initialBonusToApply_oneTime; //right side (below the faction ability)
   public final List<RightBottom_MechDeployAbility> unlockableByMechDeploy_ongoingAbilitiesPool; //right-bottom corner
   //left
-  public final List<StateChange> unlockableByEnlistAction_oneTimeRewardPool; //left-bottom corner //TODO also implement the related ongoing rewards related to player mat and neighbor actions
+  public final List<Left_EnlistOneTimeReward> unlockableByEnlistAction_oneTimeRewardPool; //left-bottom corner //TODO also implement the related ongoing rewards related to player mat and neighbor actions
   public final TileDTO homeTile;
   public final int initialWorkersCount = 2;
 
@@ -78,7 +75,7 @@ public enum FactionMat {
       List<RightTop_FactionAbility> initialReward_factionAbility_ongoing, //top right corner
       List<RightMid_FactionInitialBonus> initialBonusToApply_oneTime, //right side (below the faction ability)
       List<RightBottom_MechDeployAbility> unlockableByMechDeploy_abilitiesPool, //right-bottom corner
-      List<StateChange> unlockableByEnlistAction_oneTimeRewardPool, //left-bottom corner
+      List<Left_EnlistOneTimeReward> unlockableByEnlistAction_oneTimeRewardPool, //left-bottom corner
       TileDTO homeTile
   ) {
     this.name = name;
