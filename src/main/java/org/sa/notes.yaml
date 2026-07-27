@@ -7,17 +7,16 @@ STRATEGY_IN_SHORT:
       - GREEN ALBION
       - AGRICULTURAL
 TASKS:
-  - player mat 
-    - refactor player mat similarly like faction mat
-    - when player does top action use playerDTO.buildingType_isBuilt to implement these changes:
-      - armory: gain extra power when resolving the second action of the top action
-      - mill: gain extra resource matching tile type each time Produce action is performed
-      - monument: gain popularity each time Bolster action is completed
-
   - implement other player decisions regarding top actions:
       - produce
-      - trade
-        - implement in PlayerDecisions example of Choosing trade (top part of action space)
+        - implement example in PlayerDecisions
+          - use playerDTO.isBuilt() to use MILL to gain extra resources
+      - trade (get popularity or chosen resource)
+        - implement example in PlayerDecisions
+          - use playerDTO.isBuilt() to use ARMORY to gain extra attack
+      - bolster (get attack or attack cards)
+        - implement example in PlayerDecisions
+        - use playerDTO.isBuilt() to use MONUMENT to gain extra popularity/ hearts
 
   - go through project TODO's (marked by comments)
 
