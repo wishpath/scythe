@@ -58,8 +58,6 @@ public class PlayerDecisions {
       actionSpacePool.remove(player.previousActionSpace);
     }
     TYPE__TopPart__TopPartChooseActionArray__ActionSpace pickedActionSpaceType = TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
-
-
     ActionSpaceDTO pickedActionSpaceDTO__MOVE_GAIN = null;
     for (ActionSpaceDTO actionSpace : actionSpaces)
       if (actionSpace.tYPE__TopPart__TopPartChooseActionArray__ActionSpace == pickedActionSpaceType) {

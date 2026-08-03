@@ -58,7 +58,15 @@ public enum FactionMat {
 
       //home
       grid[0][5]
-  );
+  ),
+  RED("Rusviet Union", List.of(), List.of(), List.of(), List.of(), grid[0][0]), //TODO: finish
+  YELLOW("Crimean Khanate", List.of(), List.of(), List.of(), List.of(), grid[0][0]), //TODO: finish
+  WHITE("Polania Republic", List.of(), List.of(), List.of(), List.of(), grid[0][0]), //TODO: finish
+  BLACK("Saxony Empire", List.of(), List.of(), List.of(), List.of(), grid[0][0]), //TODO: finish
+  BLUE("Nordic Kingdom", List.of(), List.of(), List.of(), List.of(), grid[0][0]), //TODO: finish
+  PURPLE("Togawa Shogunate", List.of(), List.of(), List.of(), List.of(), grid[0][0]), //TODO: finish
+  TEAL("Vesna-Tesla", List.of(), List.of(), List.of(), List.of(), grid[0][0]), //TODO: finish
+  ORANGE("Fenris Republic", List.of(), List.of(), List.of(), List.of(), grid[0][0]); //TODO: finish
 
   public final String name;
   //right
