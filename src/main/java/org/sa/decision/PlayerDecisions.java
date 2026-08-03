@@ -17,10 +17,7 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradabl
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class PlayerDecisions {
 
@@ -51,11 +48,16 @@ public class PlayerDecisions {
 
 
     /**EXAMPLE of MOVE ACTION*****************************************************************************************/
-    ActionSpaceDTO[] actionSpaces = playerMat.actionSpaces_leftToRight; //TODO: action spaces should come from playerMat STATE
+    ActionSpaceDTO[] actionSpaces = playerMat.actionSpaces_leftToRight;
 
 
-    //player picks MOVE_GAIN
-    TYPE__TopPart__TopPartChooseActionArray__ActionSpace pickedActionSpaceType = TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick (should not be previous actionSpace(except rusviet)
+    //player picks action space MOVE_GAIN (and topPart of the same type)
+    EnumSet<TYPE__TopPart__TopPartChooseActionArray__ActionSpace> actionSpacePool = EnumSet.allOf(TYPE__TopPart__TopPartChooseActionArray__ActionSpace.class);
+    if (player.previousActionSpace != null && !player.RED_RUSVIET_canChooseSameActionSpaceEveryTurn_relentless) {
+      if (player.factionMat == factionMat.RED) throw new IllegalStateException("this should not happen for RED (rusviet)");
+      actionSpacePool.remove(player.previousActionSpace);
+    }
+    TYPE__TopPart__TopPartChooseActionArray__ActionSpace pickedActionSpaceType = TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
 
 
     ActionSpaceDTO pickedActionSpaceDTO__MOVE_GAIN = null;
