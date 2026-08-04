@@ -1,7 +1,7 @@
 package org.sa.player_mat.a_top_parts;
 
 import org.sa.locatable.locatable.BuildingType;
-import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
 import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost;
 import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_Minus1Coin;
@@ -10,7 +10,7 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradabl
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
 
 public class TopPart_chooseBetweenTradeGoodsOrGainHearts implements TopPart {
-  private TYPE__TopPart__TopPartChooseActionArray__ActionSpace TOP_PART_TYPE__CHOOSE__TRADE__GAIN_HEARTS = TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__TRADE__GAIN_HEARTS;
+  private TYPE_TopPart_ActionSpace TOP_PART_TYPE__CHOOSE__TRADE__GAIN_HEARTS = TYPE_TopPart_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS;
   private TopPartCost MINUS_ONE_COIN = new TopPartCost_Minus1Coin();
   private TopPartUpgradableAction[] CHOOSE_BETWEEN_TRADE_OR_GAIN_HEARTS = new TopPartUpgradableAction[] {
       new TopPartUpgradableAction_Hearts(1, 2),
@@ -24,7 +24,7 @@ public class TopPart_chooseBetweenTradeGoodsOrGainHearts implements TopPart {
   }
 
   @Override
-  public TYPE__TopPart__TopPartChooseActionArray__ActionSpace getTopPartType() {
+  public TYPE_TopPart_ActionSpace getTopPartType() {
     return this.TOP_PART_TYPE__CHOOSE__TRADE__GAIN_HEARTS;
   }
 

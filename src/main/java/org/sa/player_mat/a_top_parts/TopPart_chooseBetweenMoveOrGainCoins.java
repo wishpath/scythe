@@ -1,7 +1,7 @@
 package org.sa.player_mat.a_top_parts;
 
 import org.sa.locatable.locatable.BuildingType;
-import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
 import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost;
 import org.sa.player_mat.a_top_parts.top_part_cost.TopPartCost_0_free;
@@ -11,7 +11,7 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPa
 
 public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
 
-  private TYPE__TopPart__TopPartChooseActionArray__ActionSpace TOP_PART_TYPE__CHOOSE__MOVE__GAIN_COINS = TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS;
+  private TYPE_TopPart_ActionSpace TOP_PART_TYPE__CHOOSE__MOVE__GAIN_COINS = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS;
   private TopPartCost FREE = new TopPartCost_0_free();
   private TopPartUpgradableAction[] CHOOSE_BETWEEN_MOVE_OR_GAIN_COINS = new TopPartUpgradableAction[] {
       new TopPartUpgradableAction_Move_Decideable(2, 3),
@@ -26,7 +26,7 @@ public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
   }
 
   @Override
-  public TYPE__TopPart__TopPartChooseActionArray__ActionSpace getTopPartType() {
+  public TYPE_TopPart_ActionSpace getTopPartType() {
     return this.TOP_PART_TYPE__CHOOSE__MOVE__GAIN_COINS;
   }
 

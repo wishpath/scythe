@@ -4,7 +4,7 @@ import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenAttack_PointsOrCards;
 import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenMoveOrGainCoins;
 import org.sa.player_mat.a_top_parts.TopPart_chooseBetweenTradeGoodsOrGainHearts;
 import org.sa.player_mat.a_top_parts.TopPart_noChoosing_Produce;
-import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
 import org.sa.player_mat.bottom_parts.BottomPart_Build;
 import org.sa.player_mat.bottom_parts.BottomPart_Deploy;
 import org.sa.player_mat.bottom_parts.BottomPart_Enlist;
@@ -29,22 +29,22 @@ public final class PlayerMatRegistry {
         2,
           new ActionSpaceDTO[] { //action-space — left-to-right
               new ActionSpaceDTO(
-                  TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS, //Action top type
+                  TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS, //Action top type
                   new TopPart_chooseBetweenMoveOrGainCoins(),
                   new BottomPart_actionOfUpgrade(AGRICULTURAL)
               ),
               new ActionSpaceDTO(
-                  TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__TRADE__GAIN_HEARTS, //Action top type
+                  TYPE_TopPart_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS, //Action top type
                   new TopPart_chooseBetweenTradeGoodsOrGainHearts(),
                   new BottomPart_Deploy(AGRICULTURAL)
               ),
               new ActionSpaceDTO(
-                  TYPE__TopPart__TopPartChooseActionArray__ActionSpace.NO_CHOOSE__PRODUCE,
+                  TYPE_TopPart_ActionSpace.NO_CHOOSE__PRODUCE,
                   new TopPart_noChoosing_Produce(),
                   new BottomPart_Build(AGRICULTURAL)
               ),
               new ActionSpaceDTO(
-                  TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__POWER__COMBAT_CARDS,
+                  TYPE_TopPart_ActionSpace.CHOOSE__POWER__COMBAT_CARDS,
                   new TopPart_chooseBetweenAttack_PointsOrCards(),
                   new BottomPart_Enlist(AGRICULTURAL)
               ),

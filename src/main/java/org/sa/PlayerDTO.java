@@ -15,7 +15,7 @@ import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
 import org.sa.mission.MissionCard;
 import org.sa.player_mat.PlayerMatDTO;
-import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 import org.sa.player_mat.neighbor_bonus.*;
 
@@ -26,7 +26,7 @@ public class PlayerDTO {
 
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
-  public TYPE__TopPart__TopPartChooseActionArray__ActionSpace previousActionSpace = null; // defined by top action //TODO use
+  public TYPE_TopPart_ActionSpace previousActionSpace = null; // defined by top action //TODO use
   public boolean isEndOfTurn = true; //should be false during turn
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 

@@ -8,7 +8,7 @@ STRATEGY_IN_SHORT:
       - AGRICULTURAL
 TASKS:
   - implement other player decisions regarding top actions:
-      - produce
+      - produce <------- CONTINUE!
         - implement example in PlayerDecisions
           - use playerDTO.isBuilt() to use MILL to gain extra resources
       - trade (get popularity or chosen resource)

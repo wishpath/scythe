@@ -11,7 +11,8 @@ import org.sa.decision.helper.NotMovedHandler;
 import org.sa.faction_mat.FactionMat;
 import org.sa.player_mat.ActionSpaceDTO;
 import org.sa.player_mat.PlayerMatDTO;
-import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE__TopPart__TopPartChooseActionArray__ActionSpace;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
+import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Move_Decideable;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
@@ -20,60 +21,35 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPa
 import java.util.*;
 
 public class PlayerDecisions {
+  private static final int INITIAL_WORKERS_COUNT = 2;
 
   public static void main(String[] args) {
-    //player draws Faction Mat (color)
-    FactionMat factionMat = CardPool.drawEnlistCard();
 
-    //player draws Player Mat (not connected to faction)
-    PlayerMatDTO playerMat = CardPool.drawPlayerMat();
-
-    //player chooses where to place workers
-    final int INITIAL_WORKERS_COUNT = 2;
+    /**INITIALISE PLAYER AND INITIAL DETAILS***************************************************************************/
+    FactionMat factionMat = CardPool.drawEnlistCard(); //player draws Faction Mat (color)
+    PlayerMatDTO playerMat = CardPool.drawPlayerMat(); //player draws Player Mat (not connected to faction)
     List<WorkerDTO> workers = new ArrayList<>(INITIAL_WORKERS_COUNT);
     for (int i = 0; i < INITIAL_WORKERS_COUNT; i++) {
       Set<TileDTO> nearHomeTiles = Grid.getNonNullNeighborsNotSelf(factionMat.homeTile);
-      workers.add(new WorkerDTO(nearHomeTiles.iterator().next())); //TODO: player should pick for each
+      workers.add(new WorkerDTO(nearHomeTiles.iterator().next())); //TODO: player should pick where to place each worker
     }
-
     PlayerDTO player = new PlayerDTO(playerMat, factionMat, workers);
-
-    //someone starts the game and there comes turn for the player
-    player.isEndOfTurn = false;
-    //TODO:
-    // have field "previousActionSpace"
-    // pick new "actionSpace"
-
-    //TODO: write example of each action space and action
+    player.isEndOfTurn = false; // there comes a players turn to play
 
 
-    /**EXAMPLE of MOVE ACTION*****************************************************************************************/
-    ActionSpaceDTO[] actionSpaces = playerMat.actionSpaces_leftToRight;
 
-
-    //player picks action space MOVE_GAIN (and topPart of the same type)
-    EnumSet<TYPE__TopPart__TopPartChooseActionArray__ActionSpace> actionSpacePool = EnumSet.allOf(TYPE__TopPart__TopPartChooseActionArray__ActionSpace.class);
-    if (player.previousActionSpace != null && !player.RED_RUSVIET_canChooseSameActionSpaceEveryTurn_relentless) {
-      if (player.factionMat == factionMat.RED) throw new IllegalStateException("this should not happen for RED (rusviet)");
-      actionSpacePool.remove(player.previousActionSpace);
-    }
-    TYPE__TopPart__TopPartChooseActionArray__ActionSpace pickedActionSpaceType = TYPE__TopPart__TopPartChooseActionArray__ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
-    ActionSpaceDTO pickedActionSpaceDTO__MOVE_GAIN = null;
-    for (ActionSpaceDTO actionSpace : actionSpaces)
-      if (actionSpace.tYPE__TopPart__TopPartChooseActionArray__ActionSpace == pickedActionSpaceType) {
-        pickedActionSpaceDTO__MOVE_GAIN = actionSpace;
-        break;
-      }
+    /**EXAMPLE of MOVE GAIN********************************************************************************************/
+    TYPE_TopPart_ActionSpace move_gain = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
+    TopPart topPart_MOVE_GAIN = getTopPartObject(player, move_gain);
 
     //player decides to actually use (and not skip) MOVE_GAIN and pays for it
     boolean playerDecidedToUseTopAction = true; //TODO: player should decide
     if (playerDecidedToUseTopAction) {
-      pickedActionSpaceDTO__MOVE_GAIN.topPartObject.getCost().applyToPlayer(player);
-
+      topPart_MOVE_GAIN.getCost().applyToPlayer(player);
 
       //player picks MOVE from MOVE_GAIN
       int picked_reward_index__representing_MOVE = 0; //TODO: player should pick (0 for move and 1 for gain coins)
-      TopPartUpgradableAction pickedReward_MOVE = pickedActionSpaceDTO__MOVE_GAIN.topPartObject.getTopPartChoosableActions()[picked_reward_index__representing_MOVE];
+      TopPartUpgradableAction pickedReward_MOVE = topPart_MOVE_GAIN.getTopPartChoosableActions()[picked_reward_index__representing_MOVE];
 
       //player decides what and where to MOVE
       applyTopAction(pickedReward_MOVE, player);
@@ -82,8 +58,35 @@ public class PlayerDecisions {
     //Then player deals with bottom action
     //then turn finishes:
     player.isEndOfTurn = true;
-    player.previousActionSpace = pickedActionSpaceType;
+    player.previousActionSpace = move_gain;
+
+
+
+    /**EXAMPLE of PRODUCE**********************************************************************************************/
+    TYPE_TopPart_ActionSpace produce = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
+    TopPart topPart_PRODUCE = getTopPartObject(player, produce);
   }
+
+
+
+
+  /**HELPER METHODS****************************************************************************************************/
+  private static TopPart getTopPartObject(PlayerDTO player, TYPE_TopPart_ActionSpace pickedTopPartType) {
+    EnumSet<TYPE_TopPart_ActionSpace> actionSpacePool = EnumSet.allOf(TYPE_TopPart_ActionSpace.class);
+    if (player.previousActionSpace != null && !player.RED_RUSVIET_canChooseSameActionSpaceEveryTurn_relentless) {
+      if (player.factionMat == player.factionMat.RED) throw new IllegalStateException("this should not happen for RED (rusviet)");
+      actionSpacePool.remove(player.previousActionSpace);
+    }
+    ActionSpaceDTO pickedActionSpaceDTO = null;
+    for (ActionSpaceDTO actionSpace : player.playerMat.actionSpaces_leftToRight)
+      if (actionSpace.tYPE____TopPart__ActionSpace == pickedTopPartType) {
+        pickedActionSpaceDTO = actionSpace;
+        break;
+      }
+    return pickedActionSpaceDTO.topPartObject; // top part type matches action space
+  }
+
+
 
   private static void applyTopAction(TopPartUpgradableAction pickedReward_MOVE, PlayerDTO player) {
     switch (pickedReward_MOVE.getDecisionType()) {
@@ -94,6 +97,8 @@ public class PlayerDecisions {
       default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedReward_MOVE.getDecisionType());
     };
   }
+
+
 
   private static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveStateChange, PlayerDTO player) {
     int moveCountTotal = moveStateChange.getCurrentChangeDelta();

@@ -6,7 +6,7 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPa
 
 public interface TopPart {
   public TopPartCost getCost();
-  public TYPE__TopPart__TopPartChooseActionArray__ActionSpace getTopPartType();
+  public TYPE_TopPart_ActionSpace getTopPartType();
   public BuildingType getBuildingType();
   public TopPartUpgradableAction[] getTopPartChoosableActions();
 }
