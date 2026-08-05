@@ -15,6 +15,7 @@ import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpa
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Move_Decideable;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Produce_Decideable;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 
@@ -37,34 +38,32 @@ public class PlayerDecisions {
     player.isEndOfTurn = false; // there comes a players turn to play
 
 
-
-    /**EXAMPLE of MOVE GAIN********************************************************************************************/
-    TYPE_TopPart_ActionSpace move_gain = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
+    /**EXAMPLE of MOVE_GAIN********************************************************************************************/
+    TYPE_TopPart_ActionSpace move_gain = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player picks this from actionSpacePool
     TopPart topPart_MOVE_GAIN = getTopPartObject(player, move_gain);
-
-    //player decides to actually use (and not skip) MOVE_GAIN and pays for it
-    boolean playerDecidedToUseTopAction = true; //TODO: player should decide
+    boolean playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
     if (playerDecidedToUseTopAction) {
-      topPart_MOVE_GAIN.getCost().applyToPlayer(player);
-
-      //player picks MOVE from MOVE_GAIN
-      int picked_reward_index__representing_MOVE = 0; //TODO: player should pick (0 for move and 1 for gain coins)
-      TopPartUpgradableAction pickedReward_MOVE = topPart_MOVE_GAIN.getTopPartChoosableActions()[picked_reward_index__representing_MOVE];
-
-      //player decides what and where to MOVE
-      applyTopAction(pickedReward_MOVE, player);
+      topPart_MOVE_GAIN.getCost().applyToPlayer(player); // pay for top action
+      int picked_reward_index__representing_MOVE = 0; //TODO: player picks index (0 for move and 1 for gain coins) (from choosable actions)
+      TopPartUpgradableAction pickedAction_MOVE = topPart_MOVE_GAIN.getTopPartChoosableActions()[picked_reward_index__representing_MOVE]; // select action
+      applyTopAction(pickedAction_MOVE, player); //player decides what and where to MOVE
     }
-
-    //Then player deals with bottom action
-    //then turn finishes:
-    player.isEndOfTurn = true;
-    player.previousActionSpace = move_gain;
-
+    player.isEndOfTurn = true; // finish turn
+    player.previousActionSpace = move_gain; // remember completed action
 
 
     /**EXAMPLE of PRODUCE**********************************************************************************************/
     TYPE_TopPart_ActionSpace produce = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
     TopPart topPart_PRODUCE = getTopPartObject(player, produce);
+    playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
+    if (playerDecidedToUseTopAction) {
+      topPart_PRODUCE.getCost().applyToPlayer(player); // pay for top action
+      int picked_reward_index__representing_PRODUCE = 0; // no choosing because 0 is the only index
+      TopPartUpgradableAction pickedAction_PRODUCE = topPart_PRODUCE.getTopPartChoosableActions()[picked_reward_index__representing_PRODUCE]; // select action
+      applyTopAction(pickedAction_PRODUCE, player); //player decides what and where to MOVE
+    }
+    player.isEndOfTurn = true; // finish turn
+    player.previousActionSpace = move_gain; // remember completed action
   }
 
 
@@ -88,20 +87,18 @@ public class PlayerDecisions {
 
 
 
-  private static void applyTopAction(TopPartUpgradableAction pickedReward_MOVE, PlayerDTO player) {
-    switch (pickedReward_MOVE.getDecisionType()) {
-      case TopPartDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((TopPartUpgradableAction_Move_Decideable) pickedReward_MOVE, player); //cast to MOVE class
-      case TopPartDecision_TYPE_ENUM.PRODUCE -> {} //TODO: create
+  private static void applyTopAction(TopPartUpgradableAction pickedAction, PlayerDTO player) {
+    switch (pickedAction.getDecisionType()) {
+      case TopPartDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((TopPartUpgradableAction_Move_Decideable) pickedAction, player); //cast to MOVE class
+      case TopPartDecision_TYPE_ENUM.PRODUCE -> DECIDE_andApply_TopAction_PRODUCE((TopPartUpgradableAction_Produce_Decideable) pickedAction, player); //cast to PRODUCE class
       case TopPartDecision_TYPE_ENUM.TRADE -> {} //TODO: create
-      case TopPartDecision_TYPE_ENUM.NONE -> ((TopPartUpgradableAction_ConcreteDeltaType) pickedReward_MOVE).applyToPlayer(player); //case when decision is not needed, simply apply
-      default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedReward_MOVE.getDecisionType());
+      case TopPartDecision_TYPE_ENUM.NONE -> ((TopPartUpgradableAction_ConcreteDeltaType) pickedAction).applyToPlayer(player); //case when decision is not needed, simply apply
+      default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedAction.getDecisionType());
     };
   }
 
-
-
-  private static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveStateChange, PlayerDTO player) {
-    int moveCountTotal = moveStateChange.getCurrentChangeDelta();
+  private static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveAction, PlayerDTO player) {
+    int moveCountTotal = moveAction.getCurrentChangeDelta();
     List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
 
     for (int moveCount = 0; moveCount < moveCountTotal && movablesPool.size() > 0; moveCount++) {
@@ -146,6 +143,9 @@ public class PlayerDecisions {
       //fight
       //TODO: fight
     }
+  }
 
+  private static void DECIDE_andApply_TopAction_PRODUCE(TopPartUpgradableAction_Produce_Decideable produceAction, PlayerDTO player) {
+    //TODO: implement
   }
 }

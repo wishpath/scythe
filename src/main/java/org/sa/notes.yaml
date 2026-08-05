@@ -7,6 +7,8 @@ STRATEGY_IN_SHORT:
       - GREEN ALBION
       - AGRICULTURAL
 TASKS:
+  - get rid of placed_workers, instead filter locatables
+  - implement DECIDE_andApply_TopAction_PRODUCE
   - implement other player decisions regarding top actions:
       - produce <------- CONTINUE!
         - implement example in PlayerDecisions
