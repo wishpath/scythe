@@ -104,9 +104,12 @@ public class PlayerDTO {
 
   public List<WorkerDTO> placed_workers;
   public List<Locatable> locatables = new ArrayList<>(); //TODO: idea locatables could be a TRUE list, but all other items — virtual
-  public List<Movable> movables = new ArrayList<>();
 
   public Map<BuildingType, BuildingDTO> buildingsBuilt_presentOnGrid = new HashMap<>(); // presence in this map means presence on grid
+  public List<Movable> getMovables() {
+    return locatables.stream().filter(Movable.class::isInstance).map(Movable.class::cast).toList();
+  }
+
 
 
 
@@ -173,7 +176,6 @@ public class PlayerDTO {
     //workers part
     this.placed_workers = workers;
     this.locatables.addAll(workers);
-    this.movables.addAll(workers);
   }
 
   public boolean hasTileAToken(TileDTO targetTile) {

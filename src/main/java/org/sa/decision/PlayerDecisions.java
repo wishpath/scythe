@@ -99,7 +99,7 @@ public class PlayerDecisions {
 
   private static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveAction, PlayerDTO player) {
     int moveCountTotal = moveAction.getCurrentChangeDelta();
-    List<Movable> movablesPool = new ArrayList<>(player.movables); // new list but references same objects
+    List<Movable> movablesPool = new ArrayList<>(player.getMovables()); // new list but references same objects
 
     for (int moveCount = 0; moveCount < moveCountTotal && movablesPool.size() > 0; moveCount++) {
       //decide who moves
