@@ -99,7 +99,7 @@ public class PlayerDecisions {
 
   private static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveAction, PlayerDTO player) {
     int moveCountTotal = moveAction.getCurrentChangeDelta();
-    List<Movable> movablesPool = new ArrayList<>(player.getMovables()); // new list but references same objects
+    List<Movable> movablesPool = new ArrayList<>(player.getPlacedMovables()); // new list but references same objects
 
     for (int moveCount = 0; moveCount < moveCountTotal && movablesPool.size() > 0; moveCount++) {
       //decide who moves
@@ -134,7 +134,7 @@ public class PlayerDecisions {
       if (player.GREEN_ALBION_flagTokenPool_exalt > 0 && player.isRightAfterMove && userPicked_mainMovable.isCharacter() && !player.hasTileAToken(targetTile)) {
         boolean decidedPlayerToPlaceToken = true; //TODO: player decides
         if (decidedPlayerToPlaceToken) {
-          player.placed_tokens.add(new TokenDTO(player, userPicked_mainMovable));
+          player.locatables.add(new TokenDTO(player, userPicked_mainMovable));
           player.GREEN_ALBION_flagTokenPool_exalt--;
         }
       }

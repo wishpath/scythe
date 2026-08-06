@@ -181,7 +181,7 @@ public class Grid {
 
     //deal tunnels
     if (tileFrom.isTunnel || hasTileMine(tileFrom, player)) {
-      validDestinationTiles.addAll(getAllTunnelsAndMine_notSelf(tileFrom, player));
+      validDestinationTiles.addAll(getAllLocationsOfTunnelsAndMine_notSelf(tileFrom, player));
     }
 
     //deal GREEN_ALBION rally (mech and char move to worker or token)
@@ -220,23 +220,25 @@ public class Grid {
 
   private static Set<TileDTO> getAllWorkerAndTokenTiles_possiblySelf(PlayerDTO player) {
     Set<TileDTO> tilesWithWorkerOrToken = new HashSet<>();
-    for (TokenDTO token : player.placed_tokens) tilesWithWorkerOrToken.add(token.getLocation());
-    for (WorkerDTO worker : player.placed_workers) tilesWithWorkerOrToken.add(worker.getLocation());
+    for (TokenDTO token : player.getPlacedTokens()) tilesWithWorkerOrToken.add(token.getLocation());
+    for (WorkerDTO worker : player.getPlacedWorkers()) tilesWithWorkerOrToken.add(worker.getLocation());
     return tilesWithWorkerOrToken;
   }
 
-  private static Set<TileDTO> getAllTunnelsAndMine_notSelf(TileDTO self, PlayerDTO player) {
-    Set<TileDTO> result = new HashSet<>(tunnels); //separate list but same references to items
-    TileDTO mineTile = player.buildingsBuilt_presentOnGrid.get(BuildingType.MINE).location;
-    if (mineTile != null) result.add(mineTile);
-    result.remove(self);
-    return result;
+  private static Set<TileDTO> getAllLocationsOfTunnelsAndMine_notSelf(TileDTO self, PlayerDTO player) {
+    Set<TileDTO> locations = new HashSet<>(tunnels); //separate list but same references to items
+    for (BuildingDTO building : player.getPlacedBuildings())
+      if (building.buildingType == BuildingType.MINE)
+        locations.add(building.location);
+    locations.remove(self);
+    return locations;
   }
 
   private static boolean hasTileMine(TileDTO questionedTile, PlayerDTO player) {
-    BuildingDTO playerMine = player.buildingsBuilt_presentOnGrid.get(BuildingType.MINE);
-    if (playerMine == null) return false;
-    return playerMine.getLocation() == questionedTile;
+    for (BuildingDTO building : player.getPlacedBuildings())
+      if (building.buildingType == BuildingType.MINE && building.getLocation() == questionedTile)
+        return true;
+    return false;
   }
 }
 

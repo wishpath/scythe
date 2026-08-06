@@ -7,7 +7,7 @@ public class TopPartCost_Produce implements TopPartCost {
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    int workerCount = player.placed_workers.size();
+    int workerCount = player.getPlacedWorkers().size();
     if (workerCount >= 4) player.addResource(ResourceType.ATTACK, -1);
     if (workerCount >= 5) player.addResource(ResourceType.HEARTS, -1);
     if (workerCount >= 6) player.addResource(ResourceType.COINS, -1);;

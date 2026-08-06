@@ -102,21 +102,27 @@ public class PlayerDTO {
   //List<RobotDTO> //initially empty list //mechs can always carry workers
 
 
-  public List<WorkerDTO> placed_workers;
-  public List<Locatable> locatables = new ArrayList<>(); //TODO: idea locatables could be a TRUE list, but all other items — virtual
+  public List<Locatable> locatables = new ArrayList<>();
 
-  public Map<BuildingType, BuildingDTO> buildingsBuilt_presentOnGrid = new HashMap<>(); // presence in this map means presence on grid
-  public List<Movable> getMovables() {
+  public List<Movable> getPlacedMovables() {
     return locatables.stream().filter(Movable.class::isInstance).map(Movable.class::cast).toList();
   }
-
+  public List<WorkerDTO> getPlacedWorkers() {
+    return locatables.stream().filter(WorkerDTO.class::isInstance).map(WorkerDTO.class::cast).toList();
+  }
+  public List<TokenDTO> getPlacedTokens() {
+    return locatables.stream().filter(TokenDTO.class::isInstance).map(TokenDTO.class::cast).toList();
+  }
+  public List<BuildingDTO> getPlacedBuildings() {
+    return locatables.stream().filter(BuildingDTO.class::isInstance).map(BuildingDTO.class::cast).toList();
+  }
 
 
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)
   public int GREEN_ALBION_flagTokenPool_exalt = 0; //Clan Albion gets 4 / placed AFTER character moved on tile where he landed // decrease this pool after a token is place//TODO: apply to character (Movable) method moveTo
-  public List<TokenDTO> placed_tokens = new ArrayList<>();
+
   public boolean GREEN_ALBION_mechAndCharacter_canCrossRiverToOrFromTunnel_burrow = false;
   public boolean GREEN_ALBION_opponentGetsMinus2AttackBeforeYouAttackHim_sword = false; // before combat where player is attacking, opponent gets -2 points of attack
   public boolean GREEN_ALBION_playerGets2AttackBeforeDefence_shield = false; //before combat where you are defending, player gets 2 points of attack
@@ -174,12 +180,11 @@ public class PlayerDTO {
     this.homeTile = factionMat.homeTile;
 
     //workers part
-    this.placed_workers = workers;
     this.locatables.addAll(workers);
   }
 
   public boolean hasTileAToken(TileDTO targetTile) {
-    for (TokenDTO tokenDTO : placed_tokens)
+    for (TokenDTO tokenDTO : getPlacedTokens())
       if (tokenDTO.getLocation() == targetTile)
         return true;
     return false;
