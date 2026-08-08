@@ -7,8 +7,8 @@ STRATEGY_IN_SHORT:
       - GREEN ALBION
       - AGRICULTURAL
 TASKS:
-  - player.placed_tokens seems like locatable. remove
-  - get rid of placed_workers, instead filter locatables
+  - get action space by type / remove action space by type / have pool of types (this matters in the exmaples of picking MOVE or PRODUCE)
+  - continue on DECIDE_andApply_TopAction_PRODUCE
   - implement DECIDE_andApply_TopAction_PRODUCE
   - implement other player decisions regarding top actions:
       - produce <------- CONTINUE!

@@ -40,13 +40,11 @@ public class PlayerDecisions {
 
     /**EXAMPLE of MOVE_GAIN********************************************************************************************/
     TYPE_TopPart_ActionSpace move_gain = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player picks this from actionSpacePool
-    TopPart topPart_MOVE_GAIN = getTopPartObject(player, move_gain);
+    TopPart topPart_MOVE_GAIN = getTopPartObject(player, move_gain); // needed here to know size of action array (for choosing index)
     boolean playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
     if (playerDecidedToUseTopAction) {
-      topPart_MOVE_GAIN.getCost().applyToPlayer(player); // pay for top action
       int picked_reward_index__representing_MOVE = 0; //TODO: player picks index (0 for move and 1 for gain coins) (from choosable actions)
-      TopPartUpgradableAction pickedAction_MOVE = topPart_MOVE_GAIN.getTopPartChoosableActions()[picked_reward_index__representing_MOVE]; // select action
-      applyTopAction(pickedAction_MOVE, player); //player decides what and where to MOVE
+      applyTopAction(player, picked_reward_index__representing_MOVE, topPart_MOVE_GAIN); //player decides what and where to MOVE
     }
     player.isEndOfTurn = true; // finish turn
     player.previousActionSpace = move_gain; // remember completed action
@@ -54,16 +52,14 @@ public class PlayerDecisions {
 
     /**EXAMPLE of PRODUCE**********************************************************************************************/
     TYPE_TopPart_ActionSpace produce = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
-    TopPart topPart_PRODUCE = getTopPartObject(player, produce);
+    TopPart topPart_PRODUCE = getTopPartObject(player, produce); // needed here to know size of action array (for choosing index)
     playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
     if (playerDecidedToUseTopAction) {
-      topPart_PRODUCE.getCost().applyToPlayer(player); // pay for top action
-      int picked_reward_index__representing_PRODUCE = 0; // no choosing because 0 is the only index
-      TopPartUpgradableAction pickedAction_PRODUCE = topPart_PRODUCE.getTopPartChoosableActions()[picked_reward_index__representing_PRODUCE]; // select action
-      applyTopAction(pickedAction_PRODUCE, player); //player decides what and where to MOVE
+      int picked_reward_index__representing_PRODUCE = 0; //TODO: player picks index, but in this case, only index 0 is available
+      applyTopAction(player, picked_reward_index__representing_PRODUCE, topPart_PRODUCE); //player decides what and where to MOVE
     }
     player.isEndOfTurn = true; // finish turn
-    player.previousActionSpace = move_gain; // remember completed action
+    player.previousActionSpace = produce; // remember completed action
   }
 
 
@@ -85,9 +81,10 @@ public class PlayerDecisions {
     return pickedActionSpaceDTO.topPartObject; // top part type matches action space
   }
 
+  private static void applyTopAction(PlayerDTO player, int pickedActionArrayIndex, TopPart topPart) {
+    topPart.getCost().applyToPlayer(player); // pay for top action
+    TopPartUpgradableAction pickedAction = topPart.getTopPartChoosableActions()[pickedActionArrayIndex]; // get action e.g. PRODUCE or MOVE etc, as it picked already
 
-
-  private static void applyTopAction(TopPartUpgradableAction pickedAction, PlayerDTO player) {
     switch (pickedAction.getDecisionType()) {
       case TopPartDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((TopPartUpgradableAction_Move_Decideable) pickedAction, player); //cast to MOVE class
       case TopPartDecision_TYPE_ENUM.PRODUCE -> DECIDE_andApply_TopAction_PRODUCE((TopPartUpgradableAction_Produce_Decideable) pickedAction, player); //cast to PRODUCE class
@@ -147,5 +144,10 @@ public class PlayerDecisions {
 
   private static void DECIDE_andApply_TopAction_PRODUCE(TopPartUpgradableAction_Produce_Decideable produceAction, PlayerDTO player) {
     //TODO: implement
+    //how many tiles can produce? //workers (defined in the player mat)
+    //get pool of player tiles that can produce
+    //player picks which tiles will produce -> list of producing tiles
+    //iterate "list of producing tiles" and produce each
+    //if mill is built, produce extra 1 in the tile of mill
   }
 }
