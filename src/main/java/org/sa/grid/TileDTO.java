@@ -1,10 +1,6 @@
 package org.sa.grid;
 
-import org.sa.locatable.locatable.Locatable;
-
-import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 
 public class TileDTO {
   public final TileType tileType;
@@ -12,7 +8,6 @@ public class TileDTO {
   public final EnumSet<DirectionType> rivers = EnumSet.noneOf(DirectionType.class);
   public final int row;
   public final int column; //diagonal direction like this: "\"
-  public List<Locatable> currentlyPresentLocatables = new ArrayList<>();
 
   public TileDTO(TileType resource, int row, int column) {
     this.tileType = resource;

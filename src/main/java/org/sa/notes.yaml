@@ -7,7 +7,6 @@ STRATEGY_IN_SHORT:
       - GREEN ALBION
       - AGRICULTURAL
 TASKS:
-  - get action space by type / remove action space by type / have pool of types (this matters in the exmaples of picking MOVE or PRODUCE)
   - continue on DECIDE_andApply_TopAction_PRODUCE
   - implement DECIDE_andApply_TopAction_PRODUCE
   - implement other player decisions regarding top actions:
@@ -42,7 +41,7 @@ LATER:
   - player chooses where to place workers in PlayerDecisions
 
 LETS_NOT:
-  -
+  - list locatables in the TileDTO: player locatables should be a single source of truth.
 
 QUESTIONS/ANSWERS:
   -

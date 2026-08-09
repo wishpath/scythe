@@ -76,32 +76,7 @@ public class PlayerDTO {
     BottomPartType.ENLIST,  new NeighborBonus__getAttackCard__ENLIST()
   ));
 
-  /**-------------- BUILDINGS (PLAYER MAT, BOARD ITEMS) --------------------------------------------------------------*/
-  //called when player chooses to do top action: if building is built, player gets some bonus
-  //this map is updated by BottomPart_Build
-  //building type is also attached in each TopPart
-  private Map<BuildingType, BuildingDTO> buildingType_builtBuildingDTO = new EnumMap<>(new HashMap<>());
-
-  public void buildBuilding(BuildingType type, TileDTO location) {
-    if (isBuilt(type)) throw new IllegalStateException(type + " is already built." );
-    BuildingDTO buildingDTO = new BuildingDTO(type, location);
-    buildingType_builtBuildingDTO.put(type, buildingDTO);
-    location.currentlyPresentLocatables.add(buildingDTO);
-  }
-
-  public boolean isBuilt(BuildingType type) {
-    return buildingType_builtBuildingDTO.get(type) != null;
-  }
-
-
-
   /**-------------- BOARD ITEMS --------------------------------------------------------------------------------------*/
-  //List<MoveDTO>
-  //player board state: each should have coordinate
-  //HeroDTO //initially of board new HeroDTO(null);
-  //List<RobotDTO> //initially empty list //mechs can always carry workers
-
-
   public List<Locatable> locatables = new ArrayList<>();
 
   public List<Movable> getPlacedMovables() {
@@ -116,8 +91,17 @@ public class PlayerDTO {
   public List<BuildingDTO> getPlacedBuildings() {
     return locatables.stream().filter(BuildingDTO.class::isInstance).map(BuildingDTO.class::cast).toList();
   }
-
-
+  //called when player chooses to do top action: if building is built, player gets some bonus
+  //this map is updated by BottomPart_Build
+  //building type is also attached in each TopPart
+  public boolean isBuilt(BuildingType type) {
+    return getPlacedBuildings().stream().anyMatch(building -> building.buildingType == type);
+  }
+  public void buildBuilding(BuildingType type, TileDTO location) {
+    if (isBuilt(type)) throw new IllegalStateException(type + " is already built." );
+    BuildingDTO buildingDTO = new BuildingDTO(type, location);
+    locatables.add(buildingDTO);
+  }
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
   //FACTION ABILITIES (ALWAYS ACTIVE AFTER FACTION IS ASSIGNED) | MECH ABILITIES (UNLOCKED SEQUENTIALLY VIA DEPLOY)
