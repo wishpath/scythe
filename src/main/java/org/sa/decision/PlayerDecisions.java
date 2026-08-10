@@ -1,14 +1,14 @@
 package org.sa.decision;
 
+import org.sa.CardPool;
 import org.sa.PlayerDTO;
+import org.sa.decision.helper.NotMovedHandler;
+import org.sa.faction_mat.FactionMat;
+import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
 import org.sa.locatable.locatable.TokenDTO;
 import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
-import org.sa.CardPool;
-import org.sa.grid.Grid;
-import org.sa.decision.helper.NotMovedHandler;
-import org.sa.faction_mat.FactionMat;
 import org.sa.player_mat.ActionSpaceDTO;
 import org.sa.player_mat.PlayerMatDTO;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
@@ -146,9 +146,14 @@ public class PlayerDecisions {
     //TODO: implement
 
     //how many tiles can produce? //workers (defined in the player mat)
-    //get pool of player tiles that can produce
-    //player picks which tiles will produce -> list of producing tiles
-    //iterate "list of producing tiles" and produce each
+    int countOfProducingTiles = produceAction.currentLimit_amountOfTilesThatCanProduce; //TODO: is this upper limit of concrete amount
+
+    //which tiles can produce //having workers
+    Set<Map.Entry<TileDTO, Integer>> tile_produceAmount = player.getProducingTiles().entrySet();
+    for (int i = 0; i < countOfProducingTiles && i < tile_produceAmount.size(); i++) { //TODO: player picks producing tiles
+      //TODO: produce each
+    }
+
     //if mill is built, produce extra 1 in the tile of mill
   }
 }

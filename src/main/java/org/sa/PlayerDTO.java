@@ -20,6 +20,7 @@ import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 import org.sa.player_mat.neighbor_bonus.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PlayerDTO {
 
@@ -84,6 +85,9 @@ public class PlayerDTO {
   }
   public List<WorkerDTO> getPlacedWorkers() {
     return locatables.stream().filter(WorkerDTO.class::isInstance).map(WorkerDTO.class::cast).toList();
+  }
+  public Map<TileDTO, Integer> getProducingTiles() {
+    return getPlacedWorkers().stream().collect(Collectors.groupingBy(WorkerDTO::getLocation, Collectors.summingInt(worker -> 1)));
   }
   public List<TokenDTO> getPlacedTokens() {
     return locatables.stream().filter(TokenDTO.class::isInstance).map(TokenDTO.class::cast).toList();
