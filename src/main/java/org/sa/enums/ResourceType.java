@@ -12,6 +12,7 @@ public enum ResourceType {
 
   COMBAT_CARDS(false, false),
   MISSION_CARDS(false, false),
+
   WORKERS(false, false);
 
   public final boolean canGetThroughTradeAction;

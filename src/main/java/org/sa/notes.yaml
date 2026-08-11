@@ -7,6 +7,10 @@ STRATEGY_IN_SHORT:
       - GREEN ALBION
       - AGRICULTURAL
 TASKS:
+  - ResourceType should have maxAmountToHave
+  - cannot get more attack then MAX, hearts, workers
+  - Resource should be a locatable
+  - when moving there should be a decision to carry resources as well
   - continue on DECIDE_andApply_TopAction_PRODUCE
   - implement other player decisions regarding top actions:
       - produce <------- CONTINUE!
