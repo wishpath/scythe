@@ -3,6 +3,7 @@ package org.sa.decision;
 import org.sa.CardPool;
 import org.sa.PlayerDTO;
 import org.sa.decision.helper.NotMovedHandler;
+import org.sa.enums.ResourceType;
 import org.sa.faction_mat.FactionMat;
 import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
@@ -150,8 +151,15 @@ public class PlayerDecisions {
 
     //which tiles can produce //having workers
     Set<Map.Entry<TileDTO, Integer>> tile_produceAmount = player.getProducingTiles().entrySet();
-    for (int i = 0; i < countOfProducingTiles && i < tile_produceAmount.size(); i++) { //TODO: player picks producing tiles
-      //TODO: produce each
+    int countOfAlreadyProduced = 0;
+
+    for (Map.Entry<TileDTO, Integer> entry : tile_produceAmount) { //TODO: player picks producing tiles
+      TileDTO tile = entry.getKey();
+      ResourceType resourceType = tile.tileType.producesResourceType;
+      if (resourceType == null) throw new IllegalStateException("at this point tile should be producing some resource");
+      int amount = entry.getValue();
+      player.addResource(resourceType, amount);
+      if (++countOfAlreadyProduced >= countOfProducingTiles) break;
     }
 
     //if mill is built, produce extra 1 in the tile of mill

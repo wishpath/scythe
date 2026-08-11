@@ -78,16 +78,20 @@ public class PlayerDTO {
   ));
 
   /**-------------- BOARD ITEMS --------------------------------------------------------------------------------------*/
-  public List<Locatable> locatables = new ArrayList<>();
+  public List<Locatable> locatables = new ArrayList<>(); //includes placed at home movables
 
   public List<Movable> getPlacedMovables() {
+    //includes placed at home
     return locatables.stream().filter(Movable.class::isInstance).map(Movable.class::cast).toList();
   }
   public List<WorkerDTO> getPlacedWorkers() {
+    //includes placed at home
     return locatables.stream().filter(WorkerDTO.class::isInstance).map(WorkerDTO.class::cast).toList();
   }
   public Map<TileDTO, Integer> getProducingTiles() {
-    return getPlacedWorkers().stream().collect(Collectors.groupingBy(WorkerDTO::getLocation, Collectors.summingInt(worker -> 1)));
+    return getPlacedWorkers().stream()
+        .filter(workerDTO -> workerDTO.location.tileType.producesResourceType != null)
+        .collect(Collectors.groupingBy(WorkerDTO::getLocation, Collectors.summingInt(worker -> 1)));
   }
   public List<TokenDTO> getPlacedTokens() {
     return locatables.stream().filter(TokenDTO.class::isInstance).map(TokenDTO.class::cast).toList();

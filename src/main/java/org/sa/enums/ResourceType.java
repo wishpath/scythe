@@ -11,7 +11,8 @@ public enum ResourceType {
   ATTACK(false, true),
 
   COMBAT_CARDS(false, false),
-  MISSION_CARDS(false, false);
+  MISSION_CARDS(false, false),
+  WORKERS(false, false);
 
   public final boolean canGetThroughTradeAction;
   public final boolean isIntegerResource;

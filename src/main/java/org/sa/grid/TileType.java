@@ -1,21 +1,26 @@
 package org.sa.grid;
+
+import org.sa.enums.ResourceType;
+
 import java.util.EnumSet;
 
 public enum TileType {
 
-  WOOD("Forest"),
-  METAL("Mountain"),
-  FOOD("Plains"),
-  OIL("Tundra"),
-  WORKER("Village"),
-  LAKE("Lake"),
-  CENTER("Factory"),
-  HOME("Home Base");
+  FORREST_WOOD("Forest", ResourceType.WOOD),
+  MOUNTAIN_METAL("Mountain", ResourceType.METAL),
+  PLAINS_FOOD("Plains", ResourceType.FOOD),
+  TUNDRA_OIL("Tundra", ResourceType.OIL),
+  VILLAGE_WORKER("Village", ResourceType.WORKERS),
+  LAKE("Lake", null),
+  CENTER("Factory", null),
+  HOME("Home Base", null);
 
   public final String officialTerrainName;
-  public static final EnumSet<TileType> PRIMARY_CONTROLLABLE_TERRAINS = EnumSet.of(WOOD, METAL, FOOD, OIL, WORKER);
+  public final ResourceType producesResourceType;
+  public static final EnumSet<TileType> PRIMARY_CONTROLLABLE_TERRAINS = EnumSet.of(FORREST_WOOD, MOUNTAIN_METAL, PLAINS_FOOD, TUNDRA_OIL, VILLAGE_WORKER);
 
-  TileType(String officialTerrainName) {
+  TileType(String officialTerrainName, ResourceType produces) {
     this.officialTerrainName = officialTerrainName;
+    this.producesResourceType = produces;
   }
 }
