@@ -1,10 +1,10 @@
 package org.sa.enums;
 
 public enum ResourceType {
-  FOOD(true, true, null),
-  METAL(true, true, null),
-  OIL(true, true, null),
-  WOOD(true, true, null),
+  FOOD(true, false, null),
+  METAL(true, false, null),
+  OIL(true, false, null),
+  WOOD(true, false, null),
 
   COINS(false, true, null),
   HEARTS(false, true, 18),

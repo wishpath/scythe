@@ -7,10 +7,7 @@ import org.sa.faction_mat.RightBottom_MechDeployAbility.RightBottom_MechDeployAb
 import org.sa.faction_mat.RightMid_FactionInitialBonus.RightMid_FactionInitialBonus;
 import org.sa.faction_mat.RightTop_FactionAbility.RightTop_FactionAbility;
 import org.sa.grid.TileDTO;
-import org.sa.locatable.locatable.BuildingDTO;
-import org.sa.locatable.locatable.BuildingType;
-import org.sa.locatable.locatable.Locatable;
-import org.sa.locatable.locatable.TokenDTO;
+import org.sa.locatable.locatable.*;
 import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
 import org.sa.mission.MissionCard;
@@ -19,7 +16,10 @@ import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpa
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 import org.sa.player_mat.neighbor_bonus.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class PlayerDTO {
@@ -33,10 +33,6 @@ public class PlayerDTO {
 
   /**-------------- RESOURCES ------------------------------------------------------------------------------------*/
   private Map<ResourceType, Object> resourceMap = new EnumMap<>(Map.of(
-    ResourceType.FOOD, 0,
-    ResourceType.METAL, 0,
-    ResourceType.OIL, 0,
-    ResourceType.WOOD, 0,
     ResourceType.HEARTS, 0,
     ResourceType.COINS, 0,
     ResourceType.ATTACK, 0,
@@ -109,6 +105,15 @@ public class PlayerDTO {
     if (isBuilt(type)) throw new IllegalStateException(type + " is already built." );
     BuildingDTO buildingDTO = new BuildingDTO(type, location);
     locatables.add(buildingDTO);
+  }
+
+  public List<LocatableResourceDTO> getLocatableResources(ResourceType type) {
+    return locatables.stream().filter(LocatableResourceDTO.class::isInstance)
+        .map(LocatableResourceDTO.class::cast).filter(resource -> resource.resourceType == type).toList();
+  }
+
+  public int getAmountOfLocatableResource(ResourceType type) {
+    return getLocatableResources(type).size();
   }
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
