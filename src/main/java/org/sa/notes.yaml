@@ -8,9 +8,14 @@ STRATEGY_IN_SHORT:
       - AGRICULTURAL
 TASKS:
   - resource:
+    - finish up "payOtherResource"
+    - what happens when delta is negative, solve:
+        - OtherResourceType.COMBAT_CARDS, new ArrayList<Integer>(),
+        - OtherResourceType.MISSION_CARDS, new ArrayList<MissionCard>()
+    - implement method "addLocatableResource" "payLocatableResource"
     - define what is integer resource by comment,
     - solve for locatable resources: wood, food, oil, metal;
-    - solve for workers; maybe locatables should not be considered resouces at all and removed from add resource
+    - solve for workers; maybe locatables should not be considered resources at all and removed from add resource
   - when moving there should be a decision to carry resources as well
     - for the sake of simplicity carry all or leave all. never leave unguarded. move where the most fighting power is.
   - continue on DECIDE_andApply_TopAction_PRODUCE:

@@ -3,10 +3,10 @@ package org.sa.decision;
 import org.sa.CardPool;
 import org.sa.PlayerDTO;
 import org.sa.decision.helper.NotMovedHandler;
-import org.sa.enums.ResourceType;
 import org.sa.faction_mat.FactionMat;
 import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
+import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.locatable.locatable.TokenDTO;
 import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
@@ -155,10 +155,10 @@ public class PlayerDecisions {
 
     for (Map.Entry<TileDTO, Integer> entry : tile_produceAmount) { //TODO: player picks producing tiles
       TileDTO tile = entry.getKey();
-      ResourceType resourceType = tile.tileType.producesResourceType;
+      LocatableResourceType resourceType = tile.tileType.producesResourceType;
       if (resourceType == null) throw new IllegalStateException("at this point tile should be producing some resource");
       int amount = entry.getValue();
-      player.addResource(resourceType, amount);
+      player.addLocatableResource(resourceType, amount, tile);
       if (++countOfAlreadyProduced >= countOfProducingTiles) break;
     }
 

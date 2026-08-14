@@ -1,7 +1,7 @@
 package org.sa.faction_mat.RightMid_FactionInitialBonus;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.ResourceType;
+import org.sa.enums.OtherResourceType;
 
 public class RightMid_FactionInitialBonus_Attack implements RightMid_FactionInitialBonus {
   private int deltaAttack;
@@ -12,6 +12,6 @@ public class RightMid_FactionInitialBonus_Attack implements RightMid_FactionInit
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.addResource(ResourceType.ATTACK, deltaAttack);
+    player.addLocatableResource(OtherResourceType.ATTACK, deltaAttack);
   }
 }

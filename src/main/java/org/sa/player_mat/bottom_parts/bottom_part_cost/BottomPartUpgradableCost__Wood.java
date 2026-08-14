@@ -1,7 +1,9 @@
 package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.ResourceType;
+import org.sa.enums.OtherResourceType;
+import org.sa.grid.TileDTO;
+import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.player_mat.PlayerMatType;
 
 // for the bottom part of BUILD
@@ -29,7 +31,7 @@ public class BottomPartUpgradableCost__Wood implements BottomPartUpgradableCost 
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaWood > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.addResource(ResourceType.WOOD, currentDeltaWood);
+    player.payLocatableResource(LocatableResourceType.WOOD, currentDeltaWood);
   }
 
   @Override

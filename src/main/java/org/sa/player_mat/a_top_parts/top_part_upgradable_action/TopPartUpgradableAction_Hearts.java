@@ -1,7 +1,7 @@
 package org.sa.player_mat.a_top_parts.top_part_upgradable_action;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.ResourceType;
+import org.sa.enums.OtherResourceType;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
 
@@ -18,7 +18,7 @@ public class TopPartUpgradableAction_Hearts implements TopPartUpgradableAction_C
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.addResource(ResourceType.HEARTS, currentDeltaHearts);
+    player.addLocatableResource(OtherResourceType.HEARTS, currentDeltaHearts);
   }
 
   @Override

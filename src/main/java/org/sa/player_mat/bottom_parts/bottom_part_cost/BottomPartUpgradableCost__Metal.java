@@ -1,7 +1,7 @@
 package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.ResourceType;
+import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.player_mat.PlayerMatType;
 
 // for the bottom part of DEPLOY
@@ -28,7 +28,7 @@ public class BottomPartUpgradableCost__Metal implements BottomPartUpgradableCost
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaMetal > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.addResource(ResourceType.METAL, currentDeltaMetal); //currentDeltaMetal is a negative number
+    player.payLocatableResource(LocatableResourceType.METAL, currentDeltaMetal); //currentDeltaMetal is a negative number
   }
 
   @Override

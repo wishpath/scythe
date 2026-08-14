@@ -2,10 +2,13 @@ package org.sa.locatable.movable;
 
 import org.sa.PlayerDTO;
 import org.sa.grid.TileDTO;
+import org.sa.locatable.locatable.LocatableResource;
+import org.sa.locatable.locatable.LocatableResourceType;
 
-public class WorkerDTO implements Movable {
+public class WorkerDTO implements Movable, LocatableResource {
   public TileDTO location;
-  public final MovableType type = MovableType.WORKER;
+  public final MovableType movableType = MovableType.WORKER;
+  public final LocatableResourceType locatableResourceType = LocatableResourceType.WORKER;
 
   public WorkerDTO(TileDTO initialLocation) {
     this.location = initialLocation;
@@ -40,5 +43,10 @@ public class WorkerDTO implements Movable {
   @Override
   public TileDTO getLocation() {
     return location;
+  }
+
+  @Override
+  public LocatableResourceType getLocatableResourceType() {
+    return this.locatableResourceType;
   }
 }

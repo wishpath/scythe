@@ -1,7 +1,7 @@
 package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.ResourceType;
+import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.player_mat.PlayerMatType;
 
 // for the bottom part of ENLIST
@@ -28,7 +28,7 @@ public class BottomPartUpgradableCost__Food implements BottomPartUpgradableCost 
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaFood > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.addResource(ResourceType.FOOD, currentDeltaFood); //current delta is a negative number
+    player.payLocatableResource(LocatableResourceType.FOOD, currentDeltaFood); //current delta is a negative number
   }
 
   @Override

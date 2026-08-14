@@ -1,19 +1,23 @@
 package org.sa.locatable.locatable;
 
-import org.sa.enums.ResourceType;
 import org.sa.grid.TileDTO;
 
-public class LocatableResourceDTO implements Locatable {
-  public final ResourceType resourceType;
+public class LocatableResourceDTO implements LocatableResource {
+  public final LocatableResourceType locatableResourceType;
   public TileDTO location;
 
-  public LocatableResourceDTO(ResourceType resourceType, TileDTO location) {
-    this.resourceType = resourceType;
+  public LocatableResourceDTO(LocatableResourceType locatableResourceType, TileDTO location) {
+    this.locatableResourceType = locatableResourceType;
     this.location = location;
   }
 
   @Override
   public TileDTO getLocation() {
     return location;
+  }
+
+  @Override
+  public LocatableResourceType getLocatableResourceType() {
+    return locatableResourceType;
   }
 }

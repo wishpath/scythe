@@ -1,7 +1,7 @@
 package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.ResourceType;
+import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.player_mat.PlayerMatType;
 
 // for the bottom part of UPGRADE
@@ -29,7 +29,7 @@ public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaOil > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.addResource(ResourceType.OIL, currentDeltaOil);
+    player.payLocatableResource(LocatableResourceType.OIL, currentDeltaOil);
   }
 
   @Override

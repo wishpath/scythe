@@ -1,6 +1,6 @@
 package org.sa;
 
-import org.sa.enums.ResourceType;
+import org.sa.enums.OtherResourceType;
 import org.sa.faction_mat.FactionMat;
 import org.sa.faction_mat.Left_EnlistOneTimeReward.Left_EnlistOneTimeReward;
 import org.sa.faction_mat.RightBottom_MechDeployAbility.RightBottom_MechDeployAbility;
@@ -32,29 +32,35 @@ public class PlayerDTO {
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 
   /**-------------- RESOURCES ------------------------------------------------------------------------------------*/
-  private Map<ResourceType, Object> resourceMap = new EnumMap<>(Map.of(
-    ResourceType.HEARTS, 0,
-    ResourceType.COINS, 0,
-    ResourceType.ATTACK, 0,
-    ResourceType.COMBAT_CARDS, new ArrayList<Integer>(),
-    ResourceType.MISSION_CARDS, new ArrayList<MissionCard>()
+  private Map<OtherResourceType, Object> resourceMap = new EnumMap<>(Map.of(
+    OtherResourceType.HEARTS, 0,
+    OtherResourceType.COINS, 0,
+    OtherResourceType.ATTACK, 0,
+    OtherResourceType.COMBAT_CARDS, new ArrayList<Integer>(),
+    OtherResourceType.MISSION_CARDS, new ArrayList<MissionCard>()
   ));
-  public Map<ResourceType, Object> getResourceMap() {
+  public Map<OtherResourceType, Object> getResourceMap() {
     return this.resourceMap;
   }
-  public void addResource(ResourceType resourceType, int amountDelta) {
+  public void addOtherResource(OtherResourceType resourceType, int amountDelta) {
+    if (amountDelta < 0) throw new IllegalArgumentException("delta should be possitive");
     if (resourceType.isIntegerResource) {
       Integer initialQuantity = (Integer) resourceMap.get(resourceType);
       resourceMap.put(resourceType, initialQuantity + amountDelta);
     }
-    else if (resourceType == ResourceType.COMBAT_CARDS) {
+    else if (resourceType == OtherResourceType.COMBAT_CARDS) {
       ArrayList<Integer> mutableAttackCardList = (ArrayList<Integer>) resourceMap.get(resourceType);
       for (int i = 0; i < amountDelta; i++) mutableAttackCardList.add(CardPool.drawAttackCard());
     }
-    else if (resourceType == ResourceType.MISSION_CARDS) {
+    else if (resourceType == OtherResourceType.MISSION_CARDS) {
       ArrayList<MissionCard> mutableAttackCardList = (ArrayList<MissionCard>) resourceMap.get(resourceType);
       for (int i = 0; i < amountDelta; i++) mutableAttackCardList.add(CardPool.drawMissionCard());
     }
+  }
+  public void payOtherResource(OtherResourceType resourceType, int amountDelta) {
+    //tODO: implement
+    if (amountDelta < 0) throw new IllegalArgumentException("delta should be possitive");
+    //delta should be possitive
   }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
@@ -107,13 +113,25 @@ public class PlayerDTO {
     locatables.add(buildingDTO);
   }
 
-  public List<LocatableResourceDTO> getLocatableResources(ResourceType type) {
+  public List<LocatableResourceDTO> getLocatableResources(LocatableResourceType type) {
     return locatables.stream().filter(LocatableResourceDTO.class::isInstance)
-        .map(LocatableResourceDTO.class::cast).filter(resource -> resource.resourceType == type).toList();
+        .map(LocatableResourceDTO.class::cast).filter(resource -> resource.locatableResourceType == type).toList();
   }
 
-  public int getAmountOfLocatableResource(ResourceType type) {
+  public int getAmountOfLocatableResource(LocatableResourceType type) {
     return getLocatableResources(type).size();
+  }
+
+  public void addLocatableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
+    //TODO: implement
+    if (amount < 0) throw new IllegalArgumentException("amount should be possitive");
+    //delta should be >= 0
+  }
+
+  public void payLocatableResource(LocatableResourceType locatableResourceType, int currentDelta) {
+    //TODO: implement
+    if (currentDelta < 0) throw new IllegalArgumentException("currentDelta should be possitive");
+    //delta should be >= 0
   }
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
@@ -164,9 +182,9 @@ public class PlayerDTO {
   public PlayerDTO(PlayerMatDTO playerMat, FactionMat factionMat, List<WorkerDTO> workers) {
     //player mat part
     this.playerMat = playerMat;
-    addResource(ResourceType.HEARTS, playerMat.initialHearts);
-    addResource(ResourceType.COINS, playerMat.initialCoins);
-    addResource(ResourceType.MISSION_CARDS, playerMat.initialMissionCards);
+    addLocatableResource(OtherResourceType.HEARTS, playerMat.initialHearts);
+    addLocatableResource(OtherResourceType.COINS, playerMat.initialCoins);
+    addLocatableResource(OtherResourceType.MISSION_CARDS, playerMat.initialMissionCards);
 
     //factionMat part
     this.factionMat = factionMat;

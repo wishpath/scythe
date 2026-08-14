@@ -1,7 +1,7 @@
 package org.sa.player_mat.neighbor_bonus;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.ResourceType;
+import org.sa.enums.OtherResourceType;
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 
 public class NeighborBonus__getCoin__DEPLOY implements NeighborBonus {
@@ -23,7 +23,7 @@ public class NeighborBonus__getCoin__DEPLOY implements NeighborBonus {
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (!enlisted) throw new IllegalStateException("Should only apply when enlisted and after trigger check.");
-    player.addResource(ResourceType.COINS, currentDeltaCoins);
+    player.addLocatableResource(OtherResourceType.COINS, currentDeltaCoins);
   }
 
   @Override

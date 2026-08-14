@@ -1,7 +1,7 @@
 package org.sa.faction_mat.Left_EnlistOneTimeReward;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.ResourceType;
+import org.sa.enums.OtherResourceType;
 
 public class Left_EnlistOneTimeReward_Hearts implements Left_EnlistOneTimeReward {
   private int deltaHearts;
@@ -12,6 +12,6 @@ public class Left_EnlistOneTimeReward_Hearts implements Left_EnlistOneTimeReward
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.addResource(ResourceType.HEARTS, deltaHearts);
+    player.addLocatableResource(OtherResourceType.HEARTS, deltaHearts);
   }
 }
