@@ -7,10 +7,10 @@ STRATEGY_IN_SHORT:
       - GREEN ALBION
       - AGRICULTURAL
 TASKS:
-  - fix notes on locatable resource, and fix locatable resource
-  - addResource method: define what is integer resource by comment, solve for locatable resources: wood, food, oil, metal; solve for workers; maybe locatables should not be considered resouces at all and removed from add resource
-  - idea: when simulating best strategy for n moves. use similar algorithm as in google maps (weighing local moves, not going to random directions)
-  - Resource should be a locatable: food, metal, oil, wood
+  - resource:
+    - define what is integer resource by comment,
+    - solve for locatable resources: wood, food, oil, metal;
+    - solve for workers; maybe locatables should not be considered resouces at all and removed from add resource
   - when moving there should be a decision to carry resources as well
     - for the sake of simplicity carry all or leave all. never leave unguarded. move where the most fighting power is.
   - continue on DECIDE_andApply_TopAction_PRODUCE:
@@ -29,6 +29,7 @@ TASKS:
   - go through project TODO's (marked by comments)
 
 LATER:
+  - idea: when simulating best strategy for n moves. use similar algorithm as in google maps (weighing local moves, not going to random directions)
   - lets finish NON-INTERACTION logic first: so INTERACTION is postponed
       - MOVE interaction logic
         - if movable type is worker -> it cannot move to enemy?
