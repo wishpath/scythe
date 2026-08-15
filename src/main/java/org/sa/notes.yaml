@@ -9,6 +9,7 @@ STRATEGY_IN_SHORT:
 TASKS:
   - resource:
     - finish up "payOtherResource"
+      - mission cards and attack cards should not be together with int resources, because they are used very much differently
     - what happens when delta is negative, solve:
         - OtherResourceType.COMBAT_CARDS, new ArrayList<Integer>(),
         - OtherResourceType.MISSION_CARDS, new ArrayList<MissionCard>()

@@ -59,8 +59,14 @@ public class PlayerDTO {
   }
   public void payOtherResource(OtherResourceType resourceType, int amountDelta) {
     //tODO: implement
-    if (amountDelta < 0) throw new IllegalArgumentException("delta should be possitive");
-    //delta should be possitive
+    if (amountDelta < 0) throw new IllegalArgumentException("delta should be positive");
+    if (resourceType.isIntegerResource) {
+      Integer initialQuantity = (Integer) resourceMap.get(resourceType);
+      if (initialQuantity < amountDelta) throw new IllegalStateException("not enough of: " + resourceType);
+      resourceMap.put(resourceType, initialQuantity - amountDelta);
+    }
+    else throw new IllegalArgumentException("can only pay integer result");
+    //combat cards and mission cards are instead usedUp, not payed
   }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
