@@ -1,7 +1,7 @@
 package org.sa.player_mat.neighbor_bonus;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.OtherResourceType;
+import org.sa.enums.IntResourceType;
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 
 public class NeighborBonus__getAttackCard__ENLIST implements NeighborBonus {
@@ -24,7 +24,7 @@ public class NeighborBonus__getAttackCard__ENLIST implements NeighborBonus {
     if (!enlisted) throw new IllegalStateException(
         "Should only apply when enlisted and after trigger check."
     );
-    player.addLocatableResource(OtherResourceType.COMBAT_CARDS, currentDeltaCards);
+    player.addLocatableResource(IntResourceType.COMBAT_CARDS, currentDeltaCards);
   }
 
   @Override

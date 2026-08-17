@@ -1,7 +1,7 @@
 package org.sa.player_mat.bottom_parts.bottom_part_coin_benefit;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.OtherResourceType;
+import org.sa.enums.IntResourceType;
 import org.sa.player_mat.PlayerMatType;
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 
@@ -13,7 +13,7 @@ public class BottomPartCoinBenefit {
   }
 
   public void applyToPlayer(PlayerDTO player) {
-    player.addLocatableResource(OtherResourceType.COINS, deltaCoins);
+    player.addLocatableResource(IntResourceType.COINS, deltaCoins);
   }
 
   public int getCurrentChangeDelta() {

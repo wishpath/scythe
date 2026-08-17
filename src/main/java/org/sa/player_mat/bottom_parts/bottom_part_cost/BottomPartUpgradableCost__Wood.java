@@ -1,8 +1,6 @@
 package org.sa.player_mat.bottom_parts.bottom_part_cost;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.OtherResourceType;
-import org.sa.grid.TileDTO;
 import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.player_mat.PlayerMatType;
 

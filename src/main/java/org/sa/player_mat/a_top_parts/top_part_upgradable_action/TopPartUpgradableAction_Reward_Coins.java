@@ -1,7 +1,7 @@
 package org.sa.player_mat.a_top_parts.top_part_upgradable_action;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.OtherResourceType;
+import org.sa.enums.IntResourceType;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
 
@@ -18,7 +18,7 @@ public class TopPartUpgradableAction_Reward_Coins implements TopPartUpgradableAc
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.addLocatableResource(OtherResourceType.COINS, currentDeltaCoins);
+    player.addLocatableResource(IntResourceType.COINS, currentDeltaCoins);
   }
 
   @Override

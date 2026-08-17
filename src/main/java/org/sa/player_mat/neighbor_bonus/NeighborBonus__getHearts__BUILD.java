@@ -1,7 +1,7 @@
 package org.sa.player_mat.neighbor_bonus;
 
 import org.sa.PlayerDTO;
-import org.sa.enums.OtherResourceType;
+import org.sa.enums.IntResourceType;
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 
 public class NeighborBonus__getHearts__BUILD implements NeighborBonus {
@@ -24,7 +24,7 @@ public class NeighborBonus__getHearts__BUILD implements NeighborBonus {
   public void applyToPlayer(PlayerDTO player) {
     if (!enlisted) throw new IllegalStateException("Should only apply when enlisted and after trigger check.");
     for (int i = 0; i < this.currentDeltaHearts; i++)
-      player.addLocatableResource(OtherResourceType.HEARTS, 1);
+      player.addLocatableResource(IntResourceType.HEARTS, 1);
   }
 
   @Override
