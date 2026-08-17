@@ -120,15 +120,14 @@ public class PlayerDTO {
   }
 
   public void addLocatableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
-    //TODO: implement
-    if (amount < 0) throw new IllegalArgumentException("amount should be possitive");
-    //delta should be >= 0
+    if (amount < 0) throw new IllegalArgumentException("amount should be positive");
+    for (int i = 0; i < amount; i++) locatables.add(new LocatableResourceDTO(resourceType, tile));
   }
 
   public void payLocatableResource(LocatableResourceType locatableResourceType, int currentDelta) {
-    //TODO: implement
-    if (currentDelta < 0) throw new IllegalArgumentException("currentDelta should be possitive");
-    //delta should be >= 0
+    if (currentDelta < 0) throw new IllegalArgumentException("currentDelta should be positive");
+    if (getAmountOfLocatableResource(locatableResourceType) < currentDelta) throw new IllegalArgumentException("cannot spend more than we have");
+    getLocatableResources(locatableResourceType).stream().limit(currentDelta).forEach(locatables::remove);
   }
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
