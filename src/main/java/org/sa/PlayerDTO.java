@@ -110,24 +110,34 @@ public class PlayerDTO {
     locatables.add(buildingDTO);
   }
 
-  public List<LocatableResourceDTO> getLocatableResources(LocatableResourceType type) {
-    return locatables.stream().filter(LocatableResourceDTO.class::isInstance)
-        .map(LocatableResourceDTO.class::cast).filter(resource -> resource.locatableResourceType == type).toList();
+  public List<TradeableResourceDTO> getTradeableResources(LocatableResourceType type) {
+    return locatables.stream().filter(TradeableResourceDTO.class::isInstance)
+        .map(TradeableResourceDTO.class::cast).filter(resource -> resource.locatableResourceType == type).toList();
   }
 
-  public int getAmountOfLocatableResource(LocatableResourceType type) {
-    return getLocatableResources(type).size();
+  public int getAmountOfTradeableResource(LocatableResourceType type) {
+    return getTradeableResources(type).size();
   }
 
   public void addLocatableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
     if (amount < 0) throw new IllegalArgumentException("amount should be positive");
-    for (int i = 0; i < amount; i++) locatables.add(new LocatableResourceDTO(resourceType, tile));
+    if (resourceType == LocatableResourceType.WORKER) {
+      for (int i = 0; i < amount; i++) locatables.add(new WorkerDTO(tile));
+    }
+    else addTradeableResource(resourceType, amount, tile);
   }
 
+  public void addTradeableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
+    for (int i = 0; i < amount; i++) locatables.add(new TradeableResourceDTO(resourceType, tile));
+  }
+
+
+
   public void payLocatableResource(LocatableResourceType locatableResourceType, int currentDelta) {
+    if (locatableResourceType == LocatableResourceType.WORKER) throw new IllegalArgumentException("cannot pay with worker");
     if (currentDelta < 0) throw new IllegalArgumentException("currentDelta should be positive");
-    if (getAmountOfLocatableResource(locatableResourceType) < currentDelta) throw new IllegalArgumentException("cannot spend more than we have");
-    getLocatableResources(locatableResourceType).stream().limit(currentDelta).forEach(locatables::remove);
+    if (getAmountOfTradeableResource(locatableResourceType) < currentDelta) throw new IllegalArgumentException("cannot spend more than we have");
+    getTradeableResources(locatableResourceType).stream().limit(currentDelta).forEach(locatables::remove);
   }
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
