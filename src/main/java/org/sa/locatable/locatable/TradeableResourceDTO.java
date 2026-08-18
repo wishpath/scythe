@@ -21,4 +21,9 @@ public class TradeableResourceDTO implements LocatableResource {
   public LocatableResourceType getLocatableResourceType() {
     return locatableResourceType;
   }
+
+  @Override
+  public void carryTo(TileDTO targetTile) {
+    this.location = targetTile;
+  }
 }

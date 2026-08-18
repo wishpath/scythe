@@ -49,4 +49,9 @@ public class WorkerDTO implements Movable, LocatableResource {
   public LocatableResourceType getLocatableResourceType() {
     return this.locatableResourceType;
   }
+
+  @Override
+  public void carryTo(TileDTO targetTile) {
+    this.location = targetTile;
+  }
 }

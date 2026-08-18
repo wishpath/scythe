@@ -8,9 +8,8 @@ STRATEGY_IN_SHORT:
       - AGRICULTURAL
   - for the sake of simplicity:
       - spend random locatable - tradeable resources rather than choosing which ones
+      - allways carry all the tradeable resources, by simplistic rules if to carry at all
 TASKS:
-  - when moving there should be a decision to carry resources as well
-    - for the sake of simplicity carry all or leave all. never leave unguarded. move where the most fighting power is.
   - continue on DECIDE_andApply_TopAction_PRODUCE:
       - ResourceType should have maxAmountToHave -> use that when producing
   - implement other player decisions regarding top actions:
@@ -25,6 +24,7 @@ TASKS:
         - use playerDTO.isBuilt() to use MONUMENT to gain extra popularity/ hearts
 
   - go through project TODO's (marked by comments)
+  - why do i even group woker and tradeable under locatableResourceType?
 
 LATER:
   - idea: when simulating best strategy for n moves. use similar algorithm as in google maps (weighing local moves, not going to random directions)

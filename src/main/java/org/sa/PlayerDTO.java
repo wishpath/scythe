@@ -83,6 +83,12 @@ public class PlayerDTO {
     //includes placed at home
     return locatables.stream().filter(Movable.class::isInstance).map(Movable.class::cast).toList();
   }
+  public boolean hasMovables(TileDTO location) {
+    return getPlacedMovables().stream().anyMatch(movable -> movable.getLocation() == location);
+  }
+  public boolean hasLocationAtLeast2Fighters(TileDTO location) {
+    return getPlacedMovables().stream().filter(movable -> movable.isCharacter() || movable.isMech()).toList().size() >= 2;
+  }
   public List<WorkerDTO> getPlacedWorkers() {
     //includes placed at home
     return locatables.stream().filter(WorkerDTO.class::isInstance).map(WorkerDTO.class::cast).toList();
@@ -94,6 +100,9 @@ public class PlayerDTO {
   }
   public List<TokenDTO> getPlacedTokens() {
     return locatables.stream().filter(TokenDTO.class::isInstance).map(TokenDTO.class::cast).toList();
+  }
+  public boolean hasTileAToken(TileDTO targetTile) {
+    return getPlacedTokens().stream().anyMatch(token -> token.getLocation() == targetTile);
   }
   public List<BuildingDTO> getPlacedBuildings() {
     return locatables.stream().filter(BuildingDTO.class::isInstance).map(BuildingDTO.class::cast).toList();
@@ -113,6 +122,11 @@ public class PlayerDTO {
   public List<TradeableResourceDTO> getTradeableResources(LocatableResourceType type) {
     return locatables.stream().filter(TradeableResourceDTO.class::isInstance)
         .map(TradeableResourceDTO.class::cast).filter(resource -> resource.locatableResourceType == type).toList();
+  }
+
+  public List<TradeableResourceDTO> getTradeableResources(TileDTO location) {
+    return locatables.stream().filter(TradeableResourceDTO.class::isInstance)
+        .map(TradeableResourceDTO.class::cast).filter(resource -> resource.location == location).toList();
   }
 
   public int getAmountOfTradeableResource(LocatableResourceType type) {
@@ -202,12 +216,5 @@ public class PlayerDTO {
 
     //workers part
     this.locatables.addAll(workers);
-  }
-
-  public boolean hasTileAToken(TileDTO targetTile) {
-    for (TokenDTO tokenDTO : getPlacedTokens())
-      if (tokenDTO.getLocation() == targetTile)
-        return true;
-    return false;
   }
 }

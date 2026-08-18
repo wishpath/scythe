@@ -8,6 +8,7 @@ import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
 import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.locatable.locatable.TokenDTO;
+import org.sa.locatable.locatable.TradeableResourceDTO;
 import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
 import org.sa.player_mat.ActionSpaceDTO;
@@ -103,6 +104,7 @@ public class PlayerDecisions {
       //decide who moves
       int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo: PLAYER DECIDES main movable
       Movable userPicked_mainMovable = movablesPool.remove(userPicked_mainMovableIndex);
+      TileDTO initialLocation = userPicked_mainMovable.getLocation();
       List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //includes main movable
       if (userPicked_mainMovable.isMech()) { //mechs can always carry workers
         TileDTO mechLocation = userPicked_mainMovable.getLocation();
@@ -126,6 +128,15 @@ public class PlayerDecisions {
       //move
       TileDTO targetTile = possibleTargets.iterator().next(); //TODO: player picks target tile
       for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move (considered as one move)
+
+      //carry tradeable resources // !!! this part should stay AFTER move because of "hasMovables" check.
+      if (!player.hasLocationAtLeast2Fighters(initialLocation)) {
+        if (userPicked_mainMovable.isCharacter() || userPicked_mainMovable.isCharacter() || !player.hasMovables(initialLocation)) { //there are no such rules in the game but let's keep this part simple as this is quite logical
+          List<TradeableResourceDTO> resourcesToCarry = player.getTradeableResources(initialLocation);
+          for (TradeableResourceDTO resource : resourcesToCarry) resource.carryTo(targetTile);
+        }
+      }
+
 
       //after move effects
       player.isRightAfterMove = true;
