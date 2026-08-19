@@ -11,11 +11,8 @@ STRATEGY_IN_SHORT:
       - allways carry all the tradeable resources, by simplistic rules if to carry at all
 TASKS:
   - continue on DECIDE_andApply_TopAction_PRODUCE:
-      - ResourceType should have maxAmountToHave -> use that when producing
+      - double check the implementation
   - implement other player decisions regarding top actions:
-      - produce <------- CONTINUE!
-        - implement example in PlayerDecisions
-          - use playerDTO.isBuilt() to use MILL to gain extra resources
       - trade (get popularity or chosen resource)
         - implement example in PlayerDecisions
           - use playerDTO.isBuilt() to use ARMORY to gain extra attack
@@ -24,7 +21,7 @@ TASKS:
         - use playerDTO.isBuilt() to use MONUMENT to gain extra popularity/ hearts
 
   - go through project TODO's (marked by comments)
-  - why do i even group woker and tradeable under locatableResourceType?
+  - why do i even group woker and tradeable under locatableResourceType? because both are something that tiles can produce
 
 LATER:
   - idea: when simulating best strategy for n moves. use similar algorithm as in google maps (weighing local moves, not going to random directions)

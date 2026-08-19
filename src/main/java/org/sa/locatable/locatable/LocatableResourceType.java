@@ -1,6 +1,6 @@
 package org.sa.locatable.locatable;
 
-public enum LocatableResourceType {
+public enum LocatableResourceType { //types of things that a tile can be producing
   // tradeable
   WOOD(null, true),
   OIL(null, true),

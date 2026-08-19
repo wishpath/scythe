@@ -113,6 +113,10 @@ public class PlayerDTO {
   public boolean isBuilt(BuildingType type) {
     return getPlacedBuildings().stream().anyMatch(building -> building.buildingType == type);
   }
+  public BuildingDTO getBuilding(BuildingType type) {
+    if (!isBuilt(type)) throw new IllegalArgumentException("cannot get a building that is not present");
+    return getPlacedBuildings().stream().filter(building -> building.buildingType == type).findFirst().get();
+  }
   public void buildBuilding(BuildingType type, TileDTO location) {
     if (isBuilt(type)) throw new IllegalStateException(type + " is already built." );
     BuildingDTO buildingDTO = new BuildingDTO(type, location);
@@ -136,7 +140,14 @@ public class PlayerDTO {
   public void addLocatableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
     if (amount < 0) throw new IllegalArgumentException("amount should be positive");
     if (resourceType == LocatableResourceType.WORKER) {
-      for (int i = 0; i < amount; i++) locatables.add(new WorkerDTO(tile));
+      int totalAmountOfWorkers = getPlacedWorkers().size();
+      for (int i = 0; i < amount; i++) {
+        if (totalAmountOfWorkers < LocatableResourceType.WORKER.maxAmount) {
+          locatables.add(new WorkerDTO(tile));
+          totalAmountOfWorkers++;
+        }
+        else System.out.println("max amount of workers is reached and additional one was not placed on the board");
+      }
     }
     else addTradeableResource(resourceType, amount, tile);
   }

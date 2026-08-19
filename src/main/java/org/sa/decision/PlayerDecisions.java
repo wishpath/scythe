@@ -6,6 +6,7 @@ import org.sa.decision.helper.NotMovedHandler;
 import org.sa.faction_mat.FactionMat;
 import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
+import org.sa.locatable.locatable.BuildingType;
 import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.locatable.locatable.TokenDTO;
 import org.sa.locatable.locatable.TradeableResourceDTO;
@@ -155,8 +156,6 @@ public class PlayerDecisions {
   }
 
   private static void DECIDE_andApply_TopAction_PRODUCE(TopPartUpgradableAction_Produce_Decideable produceAction, PlayerDTO player) {
-    //TODO: implement
-
     //how many tiles can produce? //workers (defined in the player mat)
     int countOfProducingTiles = produceAction.currentLimit_amountOfTilesThatCanProduce; //TODO: is this upper limit of concrete amount
 
@@ -173,6 +172,11 @@ public class PlayerDecisions {
       if (++countOfAlreadyProduced >= countOfProducingTiles) break;
     }
 
-    //if mill is built, produce extra 1 in the tile of mill
+    if (player.isBuilt(BuildingType.MILL)) {
+      TileDTO millLocation = player.getBuilding(BuildingType.MILL).getLocation();
+      LocatableResourceType tradeableResourceOrWorker = millLocation.tileType.producesResourceType;
+      if (tradeableResourceOrWorker == null) throw new IllegalStateException("mill is built on a wrong tile type");
+      player.addLocatableResource(tradeableResourceOrWorker, 1, millLocation);
+    }
   }
 }
