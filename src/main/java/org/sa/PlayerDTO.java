@@ -95,7 +95,7 @@ public class PlayerDTO {
     //includes placed at home
     return locatables.stream().filter(WorkerDTO.class::isInstance).map(WorkerDTO.class::cast).toList();
   }
-  public Map<TileDTO, Integer> getProducingTiles() {
+  public Map<TileDTO, Integer> getProducingTiles() { // mill counts totally separately (not included here)
     return getPlacedWorkers().stream()
         .filter(workerDTO -> workerDTO.location.tileType.producesResourceType != null)
         .collect(Collectors.groupingBy(WorkerDTO::getLocation, Collectors.summingInt(worker -> 1)));

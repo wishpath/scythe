@@ -95,6 +95,8 @@ public class PlayerDecisions {
       case TopPartDecision_TYPE_ENUM.NONE -> ((TopPartUpgradableAction_ConcreteDeltaType) pickedAction).applyToPlayer(player); //case when decision is not needed, simply apply
       default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedAction.getDecisionType());
     };
+
+    //TODO: check if any missions has been completed
   }
 
   private static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveAction, PlayerDTO player) {
@@ -138,7 +140,6 @@ public class PlayerDecisions {
         }
       }
 
-
       //after move effects
       player.isRightAfterMove = true;
       if (player.GREEN_ALBION_flagTokenPool_exalt > 0 && player.isRightAfterMove && userPicked_mainMovable.isCharacter() && !player.hasTileAToken(targetTile)) {
@@ -157,12 +158,13 @@ public class PlayerDecisions {
 
   private static void DECIDE_andApply_TopAction_PRODUCE(TopPartUpgradableAction_Produce_Decideable produceAction, PlayerDTO player) {
     //how many tiles can produce? //workers (defined in the player mat)
-    int countOfProducingTiles = produceAction.currentLimit_amountOfTilesThatCanProduce; //TODO: is this upper limit of concrete amount
+    int countOfProducingTiles = produceAction.currentLimit_amountOfTilesThatCanProduce;
 
-    //which tiles can produce //having workers
+    //which tiles can produce //having workers (not including mill)
     Set<Map.Entry<TileDTO, Integer>> tile_produceAmount = player.getProducingTiles().entrySet();
     int countOfAlreadyProduced = 0;
 
+    //produce
     for (Map.Entry<TileDTO, Integer> entry : tile_produceAmount) { //TODO: player picks producing tiles
       TileDTO tile = entry.getKey();
       LocatableResourceType resourceType = tile.tileType.producesResourceType;
@@ -172,11 +174,16 @@ public class PlayerDecisions {
       if (++countOfAlreadyProduced >= countOfProducingTiles) break;
     }
 
+    //produce from mill
     if (player.isBuilt(BuildingType.MILL)) {
       TileDTO millLocation = player.getBuilding(BuildingType.MILL).getLocation();
       LocatableResourceType tradeableResourceOrWorker = millLocation.tileType.producesResourceType;
       if (tradeableResourceOrWorker == null) throw new IllegalStateException("mill is built on a wrong tile type");
       player.addLocatableResource(tradeableResourceOrWorker, 1, millLocation);
     }
+
+    //no after move effects??
+    player.isRightAfterMove = true;
+    player.isRightAfterMove = false;
   }
 }

@@ -10,8 +10,6 @@ STRATEGY_IN_SHORT:
       - spend random locatable - tradeable resources rather than choosing which ones
       - allways carry all the tradeable resources, by simplistic rules if to carry at all
 TASKS:
-  - continue on DECIDE_andApply_TopAction_PRODUCE:
-      - double check the implementation
   - implement other player decisions regarding top actions:
       - trade (get popularity or chosen resource)
         - implement example in PlayerDecisions
