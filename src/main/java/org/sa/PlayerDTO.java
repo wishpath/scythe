@@ -57,7 +57,9 @@ public class PlayerDTO {
   public void deltaIntResource(IntResourceType resourceType, int amountDelta) {
     Integer initialQuantity = intResourceMap.get(resourceType);
     if (amountDelta < 0 && initialQuantity < (-1 * amountDelta)) throw new IllegalArgumentException("cannot spend more than we have");
-    intResourceMap.put(resourceType, initialQuantity + amountDelta);
+    int resultingSum = initialQuantity + amountDelta;
+    if (resultingSum > resourceType.maxAmountPlayerCanHave) System.out.println("we are trying to put more of this resource than it is allowed");
+    intResourceMap.put(resourceType, Math.min(resultingSum, resourceType.maxAmountPlayerCanHave));
   }
 
   /**-------------- PLAYER MAT ---------------------------------------------------------------------------------------*/
