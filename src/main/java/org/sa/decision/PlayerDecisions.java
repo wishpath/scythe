@@ -19,6 +19,7 @@ import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_ENUM;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Move_Decideable;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Produce_Decideable;
+import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Trade_Decideable;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 
@@ -54,17 +55,28 @@ public class PlayerDecisions {
 
 
     /**EXAMPLE of PRODUCE**********************************************************************************************/
-    TYPE_TopPart_ActionSpace produce = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player should pick this from actionSpacePool
+    TYPE_TopPart_ActionSpace produce = TYPE_TopPart_ActionSpace.NO_CHOOSE__PRODUCE; //TODO: player should pick this from actionSpacePool
     TopPart topPart_PRODUCE = getTopPartObject(player, produce); // needed here to know size of action array (for choosing index)
     playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
     if (playerDecidedToUseTopAction) {
       int picked_reward_index__representing_PRODUCE = 0; //TODO: player picks index, but in this case, only index 0 is available
-      applyTopAction(player, picked_reward_index__representing_PRODUCE, topPart_PRODUCE); //player decides what and where to MOVE
+      applyTopAction(player, picked_reward_index__representing_PRODUCE, topPart_PRODUCE); //player decides what and where to PRODUCE
     }
     player.isEndOfTurn = true; // finish turn
     player.previousActionSpace = produce; // remember completed action
-  }
 
+
+    /**EXAMPLE of TRADE_GAIN*******************************************************************************************/
+    TYPE_TopPart_ActionSpace trade = TYPE_TopPart_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS; //TODO: player should pick this from actionSpacePool
+    TopPart topPart_TRADE_GAIN = getTopPartObject(player, trade); // needed here to know size of action array (for choosing index)
+    playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
+    if (playerDecidedToUseTopAction) {
+      int picked_reward_index__representing_TRADE = 1; //TODO: player picks index, but in this case, only index 0 is available
+      applyTopAction(player, picked_reward_index__representing_TRADE, topPart_TRADE_GAIN); //player decides what and where to TRADE
+    }
+    player.isEndOfTurn = true; // finish turn
+    player.previousActionSpace = trade; // remember completed action
+  }
 
 
 
@@ -91,7 +103,7 @@ public class PlayerDecisions {
     switch (pickedAction.getDecisionType()) {
       case TopPartDecision_TYPE_ENUM.MOVE -> DECIDE_andApply_TopAction_MOVE((TopPartUpgradableAction_Move_Decideable) pickedAction, player); //cast to MOVE class
       case TopPartDecision_TYPE_ENUM.PRODUCE -> DECIDE_andApply_TopAction_PRODUCE((TopPartUpgradableAction_Produce_Decideable) pickedAction, player); //cast to PRODUCE class
-      case TopPartDecision_TYPE_ENUM.TRADE -> {} //TODO: create
+      case TopPartDecision_TYPE_ENUM.TRADE -> DECIDE_andApply_TopAction_TRADE((TopPartUpgradableAction_Trade_Decideable) pickedAction, player); //cast to TRADE class
       case TopPartDecision_TYPE_ENUM.NONE -> ((TopPartUpgradableAction_ConcreteDeltaType) pickedAction).applyToPlayer(player); //case when decision is not needed, simply apply
       default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedAction.getDecisionType());
     };
@@ -185,5 +197,10 @@ public class PlayerDecisions {
     //no after move effects??
     player.isRightAfterMove = true;
     player.isRightAfterMove = false;
+  }
+
+
+  private static void DECIDE_andApply_TopAction_TRADE(TopPartUpgradableAction_Trade_Decideable tradeAction, PlayerDTO player) {
+    //TODO: implement
   }
 }
