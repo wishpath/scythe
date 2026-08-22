@@ -1,5 +1,8 @@
 package org.sa.locatable.locatable;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum LocatableResourceType { //types of things that a tile can be producing
   // tradeable
   WOOD(null, true),
@@ -16,5 +19,9 @@ public enum LocatableResourceType { //types of things that a tile can be produci
   LocatableResourceType(Integer maxAmount, boolean canGetThroughTradeAction) {
     this.maxAmount = maxAmount;
     this.canGetThroughTradeAction = canGetThroughTradeAction;
+  }
+
+  public static List<LocatableResourceType> getTradeableResourceTypes() {
+    return Arrays.stream(values()).filter(type -> type.canGetThroughTradeAction).toList();
   }
 }

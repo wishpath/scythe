@@ -7,10 +7,11 @@ STRATEGY_IN_SHORT:
       - GREEN ALBION
       - AGRICULTURAL
   - for the sake of simplicity:
-      - spend random locatable - tradeable resources rather than choosing which ones
-      - allways carry all the tradeable resources, by simplistic rules if to carry at all
+      - spend random locatable-tradeable-resources rather than choosing which ones of the same type
+      - allways carry all the locatable-tradeable-resources, by simplistic rules if to carry at all
+      - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
-  - implement DECIDE_andApply_TopAction_TRADE;
+  - check DECIDE_andApply_TopAction_TRADE;
   - in "applyTopAction" player pays for top part:
     - topPart.getCost().applyToPlayer(player); // pay for top action
       - if player cannot pay/ doesn't have resources, that top part should be skipped. maybe by "return;"

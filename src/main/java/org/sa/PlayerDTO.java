@@ -16,10 +16,7 @@ import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpa
 import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPartType;
 import org.sa.player_mat.neighbor_bonus.*;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class PlayerDTO {
@@ -85,6 +82,13 @@ public class PlayerDTO {
     //includes placed at home
     return locatables.stream().filter(Movable.class::isInstance).map(Movable.class::cast).toList();
   }
+  public TileDTO getWorkerTileWithMostPower() {
+    return getPlacedMovables().stream().collect(Collectors.groupingBy(Movable::getLocation)).entrySet().stream() // E <TileDTO, List<Movable>>
+        .filter(entry -> entry.getValue().stream().anyMatch(Movable::isWorker)) // entries containing any worker
+        .max(Comparator.comparingInt(entry -> (int) entry.getValue().stream().filter(movable -> !movable.isWorker()).count())) // max power (mech + character)
+        .map(Map.Entry::getKey)
+        .orElse(null); // in case player doesn't have workers on the grid, trade action will put received resources on the null TileDTO
+  }
   public boolean hasMovables(TileDTO location) {
     return getPlacedMovables().stream().anyMatch(movable -> movable.getLocation() == location);
   }
@@ -95,7 +99,7 @@ public class PlayerDTO {
     //includes placed at home
     return locatables.stream().filter(WorkerDTO.class::isInstance).map(WorkerDTO.class::cast).toList();
   }
-  public Map<TileDTO, Integer> getProducingTiles() { // mill counts totally separately (not included here)
+  public Map<TileDTO, Integer> getProducingTilesMappedToWorkerCount() { // mill counts totally separately (not included here)
     return getPlacedWorkers().stream()
         .filter(workerDTO -> workerDTO.location.tileType.producesResourceType != null)
         .collect(Collectors.groupingBy(WorkerDTO::getLocation, Collectors.summingInt(worker -> 1)));

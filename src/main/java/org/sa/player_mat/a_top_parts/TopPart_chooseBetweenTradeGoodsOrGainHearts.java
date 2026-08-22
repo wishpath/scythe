@@ -14,7 +14,7 @@ public class TopPart_chooseBetweenTradeGoodsOrGainHearts implements TopPart {
   private TopPartCost MINUS_ONE_COIN = new TopPartCost_Minus1Coin();
   private TopPartUpgradableAction[] CHOOSE_BETWEEN_TRADE_OR_GAIN_HEARTS = new TopPartUpgradableAction[] {
       new TopPartUpgradableAction_Hearts(1, 2),
-      new TopPartUpgradableAction_Trade_Decideable(2, 2)
+      new TopPartUpgradableAction_Trade_Decideable()
   };
   private BuildingType ARMORY = BuildingType.ARMORY; // building state stored in playerDTO.isBuilt(type)
 

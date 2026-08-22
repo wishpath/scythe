@@ -173,11 +173,11 @@ public class PlayerDecisions {
     int countOfProducingTiles = produceAction.currentLimit_amountOfTilesThatCanProduce;
 
     //which tiles can produce //having workers (not including mill)
-    Set<Map.Entry<TileDTO, Integer>> tile_produceAmount = player.getProducingTiles().entrySet();
+    Set<Map.Entry<TileDTO, Integer>> workerTile_produceAmount = player.getProducingTilesMappedToWorkerCount().entrySet();
     int countOfAlreadyProduced = 0;
 
-    //produce
-    for (Map.Entry<TileDTO, Integer> entry : tile_produceAmount) { //TODO: player picks producing tiles
+    //produce from workerTile
+    for (Map.Entry<TileDTO, Integer> entry : workerTile_produceAmount) { //TODO: player picks producing tiles
       TileDTO tile = entry.getKey();
       LocatableResourceType resourceType = tile.tileType.producesResourceType;
       if (resourceType == null) throw new IllegalStateException("at this point tile should be producing some resource");
@@ -193,14 +193,20 @@ public class PlayerDecisions {
       if (tradeableResourceOrWorker == null) throw new IllegalStateException("mill is built on a wrong tile type");
       player.addLocatableResource(tradeableResourceOrWorker, 1, millLocation);
     }
-
     //no after move effects??
     player.isRightAfterMove = true;
     player.isRightAfterMove = false;
   }
 
-
   private static void DECIDE_andApply_TopAction_TRADE(TopPartUpgradableAction_Trade_Decideable tradeAction, PlayerDTO player) {
-    //TODO: implement
+    LocatableResourceType tradeableResourceType1 = LocatableResourceType.getTradeableResourceTypes().get(0); //TODO: player picks resource type1 to get
+    LocatableResourceType tradeableResourceType2 = LocatableResourceType.getTradeableResourceTypes().get(0); //TODO: player picks resource type2 to get
+    if (tradeableResourceType1 == null || tradeableResourceType2 == null || !tradeableResourceType1.canGetThroughTradeAction || !tradeableResourceType2.canGetThroughTradeAction) throw new IllegalArgumentException("plyer should pick a tradeable resource");
+    TileDTO mostPowerfulTileWithWorkers = player.getWorkerTileWithMostPower(); //for the sake of simplicity defining best tile algorithmically. otherwise player could choose.
+    player.addTradeableResource(tradeableResourceType1, 1, mostPowerfulTileWithWorkers);
+    player.addTradeableResource(tradeableResourceType2, 1, mostPowerfulTileWithWorkers);
+    //no after move effects??
+    player.isRightAfterMove = true;
+    player.isRightAfterMove = false;
   }
 }
