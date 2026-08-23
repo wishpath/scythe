@@ -165,6 +165,7 @@ public class PlayerDecisions {
 
       //fight
       //TODO: fight
+      //TODO: when player brings resources to the fight, but looses the fight, will the opponent take re resources?
     }
   }
 

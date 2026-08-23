@@ -4,17 +4,15 @@ import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPartDecision_TYPE_E
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_AppliedByDecision;
 
 public class TopPartUpgradableAction_Trade_Decideable implements TopPartUpgradableAction_AppliedByDecision {
-  private final int currentDeltaChosenResource_TWO = 2;
-  private final int fullyUpgradedDeltaChosenResult_TWO = 2;
 
-  public TopPartUpgradableAction_Trade_Decideable() {
-    if (currentDeltaChosenResource_TWO < 0 || fullyUpgradedDeltaChosenResult_TWO < 0)
-      throw new IllegalArgumentException("Reward should be expressed in positive values");
-  }
+  // player can get 2 locatable-tradeable resources (same across all player-mats)
+  // each locatable-tradeable resource-type is picked independently
+  // normally player can choose on any workerTile he can put those new resources - but most of the time player might choose a workerTile with most defencive power
+  // if player doesn't have workers place resource on null tile //TODO: can this happen? min amount of 2 workers simply can go back home, and there they can receive the resources, can they?
 
   @Override
   public int getCurrentChangeDelta() {
-    return currentDeltaChosenResource_TWO;
+    return 2; // can always trade two resources
   }
 
   @Override
