@@ -11,10 +11,6 @@ STRATEGY_IN_SHORT:
       - allways carry all the locatable-tradeable-resources, by simplistic rules if to carry at all
       - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
-  - in "applyTopAction" player pays for top part:
-    - topPart.getCost().applyToPlayer(player); // pay for top action
-      - if player cannot pay/ doesn't have resources, that top part should be skipped. maybe by "return;"
-    - go through other parts of action space where any payment is implemented and do decisions what should be done when player cannot afford
   - ActionSpaceDTO[] actionSpaces_leftToRight could be a Map<Type, ActionSpaceDTO>
     - so there would be no need to iterate array to find needed actions space by O(n), but as n is 4, maybe map would only look nicer
       - same with top part object
@@ -31,6 +27,7 @@ TASKS:
   - can player that can walk on water drop resources on water (lake) and consider this a taken territory?
     - will crossing over a lake steel resources that are left on that lake unattended? will that trigger a fight if therese worker? fighter?
   - can player "walk" to his own home tile? then can he bring resources there and leave them there? then can it be considered controlled territory? can player walk on opponent's home tile, and steel his resources there?
+  - go through parts where the payment is needed (player mat) there should be checks if player has enough. if he doesn't - player cannot complete action. if tries to complete impossible pay - throw.
 
 LATER:
   - idea: when simulating best strategy for n moves. use similar algorithm as in google maps (weighing local moves, not going to random directions)

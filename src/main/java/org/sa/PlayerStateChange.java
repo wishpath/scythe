@@ -1,5 +1,5 @@
 package org.sa;
 
 public interface PlayerStateChange {
-  public void applyToPlayer(PlayerDTO player);
+  void applyToPlayer(PlayerDTO player);
 }

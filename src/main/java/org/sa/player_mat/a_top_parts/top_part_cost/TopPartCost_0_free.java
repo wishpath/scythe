@@ -8,4 +8,9 @@ public class TopPartCost_0_free implements TopPartCost {
   public void applyToPlayer(PlayerDTO player) {
     //free of any cost
   }
+
+  @Override
+  public boolean hasPlayerResourcesToPayForThisTopPart(PlayerDTO player) {
+    return true;
+  }
 }
