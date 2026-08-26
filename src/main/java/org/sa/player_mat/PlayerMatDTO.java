@@ -12,7 +12,6 @@ public class PlayerMatDTO {
   public final int initialHearts;
   public final int initialCoins;
   public final int initialMissionCards;
-  public final ActionSpaceDTO[] actionSpaces_leftToRight;
   public final Map<TYPE_TopPart_ActionSpace, ActionSpaceDTO> actionSpaceType_actionSpaceDTO;
 
   public PlayerMatDTO(
@@ -26,7 +25,6 @@ public class PlayerMatDTO {
     this.initialHearts = initialHearts;
     this.initialCoins = initialCoins;
     this.initialMissionCards = initialMissionCards;
-    this.actionSpaces_leftToRight = actionSpaces_leftToRight;
     this.actionSpaceType_actionSpaceDTO = Arrays
         .stream(actionSpaces_leftToRight)
         .collect(Collectors.toMap(

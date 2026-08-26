@@ -90,12 +90,7 @@ public class PlayerDecisions {
       if (player.factionMat == player.factionMat.RED) throw new IllegalStateException("this should not happen for RED (rusviet)");
       actionSpacePool.remove(player.previousActionSpace);
     }
-    ActionSpaceDTO pickedActionSpaceDTO = null;
-    for (ActionSpaceDTO actionSpace : player.playerMat.actionSpaces_leftToRight)
-      if (actionSpace.tYPE____TopPart__ActionSpace == pickedTopPartType) {
-        pickedActionSpaceDTO = actionSpace;
-        break;
-      }
+    ActionSpaceDTO pickedActionSpaceDTO = player.playerMat.actionSpaceType_actionSpaceDTO.get(pickedTopPartType);
     return pickedActionSpaceDTO.topPartObject; // top part type matches action space
   }
 

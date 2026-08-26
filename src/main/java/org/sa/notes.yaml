@@ -11,8 +11,7 @@ STRATEGY_IN_SHORT:
       - allways carry all the locatable-tradeable-resources, by simplistic rules if to carry at all
       - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
-  - instead ActionSpaceDTO[] actionSpaces_leftToRight use Map<Type, ActionSpaceDTO>
-    - same with top part object
+  - instead top part object array use map of type_dto. in PlayerDecisions
   - implement other player decisions regarding top actions:
       - trade (get popularity or chosen resource)
         - implement example in PlayerDecisions
