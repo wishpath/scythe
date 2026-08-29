@@ -11,6 +11,8 @@ STRATEGY_IN_SHORT:
       - allways carry all the locatable-tradeable-resources, by simplistic rules if to carry at all
       - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
+  - Locatable could have boolean "canControlTile" (would be false for tradeable resources)
+    - then in player class use locatables -> get count of controlled tiles
   - implement other player decisions regarding top actions:
       - bolster (get attack or attack cards)
         - implement example in PlayerDecisions
@@ -18,14 +20,19 @@ TASKS:
       - simulate example of other non decision top part actions in Player decisions:
           - gain coins
           - gain hearts
+      - improve MOVE top action:
+          - pick only movables with valid destinations
+          - extract move logic into small methods
+          - remove NotMovedHandler by validating moves before removing movables from the pool
+          - fix duplicated isCharacter() condition and simplify resource-carrying logic
 
   - go through project TODO's (marked by comments)
-  - can player trade workers (slaves).
-  - can player that can walk on water drop resources on water (lake) and consider this a taken territory?
+
+  - can player that can walk on water drop resources on water (lake)?
     - will crossing over a lake steel resources that are left on that lake unattended? will that trigger a fight if therese worker? fighter?
   - can player "walk" to his own home tile? then can he bring resources there and leave them there? then can it be considered controlled territory? can player walk on opponent's home tile, and steel his resources there?
   - go through parts where the payment is needed (player mat) there should be checks if player has enough. if he doesn't - player cannot complete action. if tries to complete impossible pay - throw.
-  - can player drop resources (leave behind and consider that a taken territory).
+
 
 LATER:
   - idea: when simulating best strategy for n moves. use similar algorithm as in google maps (weighing local moves, not going to random directions)
@@ -50,7 +57,13 @@ LETS_NOT:
   - list locatables in the TileDTO: player locatables should be a single source of truth.
 
 QUESTIONS/ANSWERS:
-  - why do are worker and tradeable resources under locatableResourceType? because both are something that tiles can produce
+  - Why are workers and tradeable resources under locatableResourceType?
+    - Because both can be produced by tiles.
+  - Can a player leave resources behind and still control the territory?
+    - No. Territory is only controlled only when unit, token or structure remains there.
+  - can player trade workers (slaves).
+    - No.
+
 
 MOVE_IMPROVEMENTS:
   - riverwalk:
