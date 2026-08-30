@@ -4,4 +4,5 @@ import org.sa.grid.TileDTO;
 
 public interface Locatable {
   TileDTO getLocation();
+  boolean controlsLocation();
 }

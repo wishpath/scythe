@@ -2,16 +2,17 @@ package org.sa.locatable.movable;
 
 import org.sa.PlayerDTO;
 import org.sa.grid.TileDTO;
-import org.sa.locatable.locatable.LocatableResource;
-import org.sa.locatable.locatable.LocatableResourceType;
 
-public class WorkerDTO implements Movable, LocatableResource {
+public class FighterDTO implements Movable { // can be either mech or character
   public TileDTO location;
-  public final MovableType movableType = MovableType.WORKER;
-  public final LocatableResourceType locatableResourceType = LocatableResourceType.WORKER;
+  private boolean isMech;
+  private boolean isCharacter;
 
-  public WorkerDTO(TileDTO initialLocation) {
+  public FighterDTO(TileDTO initialLocation, boolean isMech_isNotCharacter) {
     this.location = initialLocation;
+    this.isMech = isMech_isNotCharacter;
+    this.isCharacter = !isMech_isNotCharacter;
+
   }
 
   @Override
@@ -27,17 +28,17 @@ public class WorkerDTO implements Movable, LocatableResource {
 
   @Override
   public boolean isMech() {
-    return false;
+    return isMech;
   }
 
   @Override
   public boolean isWorker() {
-    return true;
+    return false;
   }
 
   @Override
   public boolean isCharacter() {
-    return false;
+    return isCharacter;
   }
 
   @Override
@@ -48,15 +49,5 @@ public class WorkerDTO implements Movable, LocatableResource {
   @Override
   public boolean controlsLocation() {
     return true;
-  }
-
-  @Override
-  public LocatableResourceType getLocatableResourceType() {
-    return this.locatableResourceType;
-  }
-
-  @Override
-  public void carryTo(TileDTO targetTile) {
-    this.location = targetTile;
   }
 }

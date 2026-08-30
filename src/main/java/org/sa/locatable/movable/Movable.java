@@ -7,7 +7,7 @@ import org.sa.locatable.locatable.Locatable;
 public interface Movable extends Locatable {
   void moveTo(TileDTO targetTile, PlayerDTO player);
   MovableType getMovableType();
-  boolean isMech();
-  boolean isWorker();
-  boolean isCharacter();
+  boolean isMech(); // FighterDTO
+  boolean isWorker(); // WorkerDTO
+  boolean isCharacter(); // FighterDTO
 }

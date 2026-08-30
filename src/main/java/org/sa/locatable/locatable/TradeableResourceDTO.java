@@ -18,6 +18,11 @@ public class TradeableResourceDTO implements LocatableResource {
   }
 
   @Override
+  public boolean controlsLocation() {
+    return false;
+  }
+
+  @Override
   public LocatableResourceType getLocatableResourceType() {
     return locatableResourceType;
   }

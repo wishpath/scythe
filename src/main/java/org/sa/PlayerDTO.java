@@ -128,6 +128,9 @@ public class PlayerDTO {
     BuildingDTO buildingDTO = new BuildingDTO(type, location);
     locatables.add(buildingDTO);
   }
+  public Set<TileDTO> getControlledTiles() {
+    return locatables.stream().filter(Locatable::controlsLocation).map(Locatable::getLocation).collect(Collectors.toSet());
+  }
 
   public List<TradeableResourceDTO> getTradeableResources(LocatableResourceType type) {
     return locatables.stream().filter(TradeableResourceDTO.class::isInstance)

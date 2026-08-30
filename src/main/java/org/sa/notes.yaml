@@ -11,8 +11,6 @@ STRATEGY_IN_SHORT:
       - allways carry all the locatable-tradeable-resources, by simplistic rules if to carry at all
       - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
-  - Locatable could have boolean "canControlTile" (would be false for tradeable resources)
-    - then in player class use locatables -> get count of controlled tiles
   - implement other player decisions regarding top actions:
       - bolster (get attack or attack cards)
         - implement example in PlayerDecisions
@@ -63,6 +61,8 @@ QUESTIONS/ANSWERS:
     - No. Territory is only controlled only when unit, token or structure remains there.
   - can player trade workers (slaves).
     - No.
+  - Can a lake be considered a controlled location?
+    - Yes.
 
 
 MOVE_IMPROVEMENTS:

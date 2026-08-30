@@ -20,4 +20,9 @@ public class TokenDTO implements Locatable {
   public TileDTO getLocation() {
     return location;
   }
+
+  @Override
+  public boolean controlsLocation() {
+    return true;
+  }
 }
