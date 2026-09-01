@@ -38,7 +38,7 @@ public class Helper_MOVE {
       //decide where to move
       Set<TileDTO> possibleTargets = Grid.getTilesToMoveTo(userPicked_mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
       if (possibleTargets.size() == 0) { //main movable has nowhere to go
-        NotMovedHandler.returnOrForgetMovables(player, groupOfMovablesDecidedToMove, userPicked_mainMovable, movablesPool);
+        Helper_NotMoved.returnOrForgetMovables(player, groupOfMovablesDecidedToMove, userPicked_mainMovable, movablesPool);
         moveCount--; // not counting this iteration as move;
         continue; // no need/ impossible to pick targetTile and complete move
       }

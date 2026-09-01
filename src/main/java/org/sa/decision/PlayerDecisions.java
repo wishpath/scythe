@@ -4,11 +4,10 @@ import org.sa.CardPool;
 import org.sa.PlayerDTO;
 import org.sa.decision.helper.Helper_MOVE;
 import org.sa.decision.helper.Helper_PRODUCE;
+import org.sa.decision.helper.Helper_TRADE;
 import org.sa.faction_mat.FactionMat;
 import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
-import org.sa.locatable.locatable.BuildingType;
-import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.locatable.movable.WorkerDTO;
 import org.sa.player_mat.ActionSpaceDTO;
 import org.sa.player_mat.PlayerMatDTO;
@@ -21,7 +20,10 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradabl
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.List;
+import java.util.Set;
 
 public class PlayerDecisions {
   private static final int INITIAL_WORKERS_COUNT = 2;
@@ -114,34 +116,11 @@ public class PlayerDecisions {
     switch (pickedAction.getDecisionType()) {
       case TopPartDecision_TYPE_ENUM.MOVE -> Helper_MOVE.DECIDE_andApply_TopAction_MOVE((TopPartUpgradableAction_Move_Decideable) pickedAction, player); //cast to MOVE class
       case TopPartDecision_TYPE_ENUM.PRODUCE -> Helper_PRODUCE.DECIDE_andApply_TopAction_PRODUCE((TopPartUpgradableAction_Produce_Decideable) pickedAction, player); //cast to PRODUCE class
-      case TopPartDecision_TYPE_ENUM.TRADE -> DECIDE_andApply_TopAction_TRADE((TopPartUpgradableAction_Trade_Decideable) pickedAction, player); //cast to TRADE class
+      case TopPartDecision_TYPE_ENUM.TRADE -> Helper_TRADE.DECIDE_andApply_TopAction_TRADE((TopPartUpgradableAction_Trade_Decideable) pickedAction, player); //cast to TRADE class
       case TopPartDecision_TYPE_ENUM.NONE -> ((TopPartUpgradableAction_ConcreteDeltaType) pickedAction).applyToPlayer(player); //case when decision is not needed, simply apply
       default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedAction.getDecisionType());
     };
 
     //TODO: check if any missions has been completed
-  }
-
-
-
-
-
-  private static void DECIDE_andApply_TopAction_TRADE(TopPartUpgradableAction_Trade_Decideable tradeAction, PlayerDTO player) {
-    //choose resource types
-    LocatableResourceType tradeableResourceType1 = LocatableResourceType.getTradeableResourceTypes().get(0); //TODO: player picks resource type1 to get
-    LocatableResourceType tradeableResourceType2 = LocatableResourceType.getTradeableResourceTypes().get(0); //TODO: player picks resource type2 to get
-    if (tradeableResourceType1 == null || tradeableResourceType2 == null || !tradeableResourceType1.canGetThroughTradeAction || !tradeableResourceType2.canGetThroughTradeAction) throw new IllegalArgumentException("plyer should pick a tradeable resource");
-
-    // place resources on the board
-    TileDTO mostPowerfulTileWithWorkers = player.getWorkerTileWithMostPower(); //for the sake of simplicity defining best tile algorithmically. otherwise player could choose.
-    player.addTradeableResource(tradeableResourceType1, 1, mostPowerfulTileWithWorkers);
-    player.addTradeableResource(tradeableResourceType2, 1, mostPowerfulTileWithWorkers);
-
-    //gain combat cards from armory
-    if (player.isBuilt(BuildingType.ARMORY)) player.addCombatCard(1);
-
-    //no after move effects??
-    player.isRightAfterMove = true;
-    player.isRightAfterMove = false;
   }
 }
