@@ -14,6 +14,8 @@ TASKS:
   - implement other player decisions regarding top actions:
       - bolster (get attack or attack cards)
         - implement example in PlayerDecisions
+          - continue
+          - instead of index (picked_reward_index__representing_GAIN_ATTACK) please decide if TYPE selection is better
         - use playerDTO.isBuilt() to use MONUMENT to gain extra popularity/ hearts. use simple if because 4 building are used in 4 different ways.
       - simulate example of other non decision top part actions in Player decisions:
           - gain coins

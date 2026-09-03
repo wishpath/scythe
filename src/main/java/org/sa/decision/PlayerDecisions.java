@@ -90,6 +90,14 @@ public class PlayerDecisions {
     /******************************************************************************************************************/
 
     /** EXAMPLE of BOLSTER (get attack) *******************************************************************************/
+    TYPE_TopPart_ActionSpace bolsterPower = TYPE_TopPart_ActionSpace.CHOOSE__POWER__COMBAT_CARDS; //TODO: player should pick this from actionSpacePool
+    TopPart topPart_BolsterPower = getTopPartObject(player, bolsterPower);
+    if (topPart_BolsterPower.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
+      boolean playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
+      if (playerDecidedToUseTopAction) {
+        int picked_reward_index__representing_GAIN_ATTACK = 0; //TODO: player picks index, but in this case, only index 0 is available
+        applyTopAction(player, picked_reward_index__representing_GAIN_ATTACK, topPart_TRADE_GAIN); //player decides what and where to TRADE
+      }}
     /** EXAMPLE of BOLSTER (get attack cards) *************************************************************************/
     /** EXAMPLE of MOVE_GAIN (get coins) ******************************************************************************/
     /** EXAMPLE of TRADE_GAIN (get popularity-hearts) *****************************************************************/
