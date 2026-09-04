@@ -13,8 +13,8 @@ public class TopPart_chooseBetweenAttack_PointsOrCards implements TopPart {
   private TYPE_TopPart_ActionSpace TOP_PART_TYPE = TYPE_TopPart_ActionSpace.CHOOSE__POWER__COMBAT_CARDS;
   private TopPartCost MINUS_ONE_COIN = new TopPartCost_Minus1Coin();
   private TopPartUpgradableAction[] CHOOSE_BETWEEN_POWER_OR_COMBAT_CARDS = new TopPartUpgradableAction[] {
-      new TopPartUpgradableAction_Attack(2,3),
-      new TopPartUpgradableAction_AttackCards(1, 2)
+    new TopPartUpgradableAction_Attack(2,3),
+    new TopPartUpgradableAction_AttackCards(1, 2)
   };
   private BuildingType MONUMENT = BuildingType.MONUMENT; // building state stored in playerDTO.isBuilt(type)
 

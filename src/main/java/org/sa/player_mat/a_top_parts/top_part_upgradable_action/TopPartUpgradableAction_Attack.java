@@ -18,7 +18,7 @@ public class TopPartUpgradableAction_Attack implements TopPartUpgradableAction_C
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.addLocatableResource(IntResourceType.ATTACK, currentDeltaAttack);
+    player.deltaIntResource(IntResourceType.ATTACK, currentDeltaAttack);
   }
 
   @Override

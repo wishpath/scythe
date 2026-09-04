@@ -18,7 +18,7 @@ public class TopPartUpgradableAction_Reward_Coins implements TopPartUpgradableAc
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.addLocatableResource(IntResourceType.COINS, currentDeltaCoins);
+    player.deltaIntResource(IntResourceType.COINS, currentDeltaCoins);
   }
 
   @Override

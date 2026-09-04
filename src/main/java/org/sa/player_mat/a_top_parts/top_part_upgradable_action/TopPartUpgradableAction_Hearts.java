@@ -18,7 +18,7 @@ public class TopPartUpgradableAction_Hearts implements TopPartUpgradableAction_C
 
   @Override
   public void applyToPlayer(PlayerDTO player) {
-    player.addLocatableResource(IntResourceType.HEARTS, currentDeltaHearts);
+    player.deltaIntResource(IntResourceType.HEARTS, currentDeltaHearts);
   }
 
   @Override
