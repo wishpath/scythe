@@ -11,7 +11,7 @@ public class TokenDTO implements Locatable {
 
   public TokenDTO(PlayerDTO playerDTO, Movable character) {
     if (!playerDTO.isRightAfterMove) throw new IllegalStateException("Token should only be paced right after a MOVE");
-    if (!character.isCharacter()) throw new IllegalArgumentException("Only after CHARACTER move, a token can be place");
+    if (!character.isCharacter()) throw new IllegalArgumentException("Only when movable is CHARACTER, a token can be placed");
     if (playerDTO.factionMat != FactionMat.GREEN) throw new IllegalStateException("Tokens are only available for Albion faction (green)");
     this.location = character.getLocation();
   }
