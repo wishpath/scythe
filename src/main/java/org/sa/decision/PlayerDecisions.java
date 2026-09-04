@@ -131,6 +131,7 @@ public class PlayerDecisions {
   }
   private static void applyTopAction(PlayerDTO player, int pickedActionArrayIndex, TopPart topPart) {
     topPart.getCost().applyToPlayer(player); // pay for top action
+    topPart.rewardPlayerWithBuildingRelatedIntResourceIfApplicable(player);
     TopPartUpgradableAction pickedAction = topPart.getTopPartChoosableActions()[pickedActionArrayIndex]; // get action e.g. PRODUCE or MOVE etc, as it picked already
 
     switch (pickedAction.getDecisionType()) {

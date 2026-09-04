@@ -1,5 +1,6 @@
 package org.sa.player_mat.a_top_parts;
 
+import org.sa.PlayerDTO;
 import org.sa.locatable.locatable.BuildingType;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
@@ -38,5 +39,10 @@ public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
   @Override
   public TopPartUpgradableAction[] getTopPartChoosableActions() {
     return CHOOSE_BETWEEN_MOVE_OR_GAIN_COINS;
+  }
+
+  @Override
+  public void rewardPlayerWithBuildingRelatedIntResourceIfApplicable(PlayerDTO player) {
+    // no int reward (special ability is dealt with within MOVE implementation
   }
 }

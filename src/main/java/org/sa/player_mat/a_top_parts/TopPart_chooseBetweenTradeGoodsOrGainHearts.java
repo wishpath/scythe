@@ -1,5 +1,7 @@
 package org.sa.player_mat.a_top_parts;
 
+import org.sa.PlayerDTO;
+import org.sa.enums.IntResourceType;
 import org.sa.locatable.locatable.BuildingType;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
@@ -16,7 +18,7 @@ public class TopPart_chooseBetweenTradeGoodsOrGainHearts implements TopPart {
       new TopPartUpgradableAction_Hearts(1, 2),
       new TopPartUpgradableAction_Trade_Decideable()
   };
-  private BuildingType ARMORY = BuildingType.ARMORY; // building state stored in playerDTO.isBuilt(type)
+  private BuildingType type_ARMORY = BuildingType.ARMORY; // building state stored in playerDTO.isBuilt(type)
 
   @Override
   public TopPartCost getCost() {
@@ -30,11 +32,16 @@ public class TopPart_chooseBetweenTradeGoodsOrGainHearts implements TopPart {
 
   @Override
   public BuildingType getBuildingType() {
-    return this.ARMORY;
+    return this.type_ARMORY;
   }
 
   @Override
   public TopPartUpgradableAction[] getTopPartChoosableActions() {
     return CHOOSE_BETWEEN_TRADE_OR_GAIN_HEARTS;
+  }
+
+  @Override
+  public void rewardPlayerWithBuildingRelatedIntResourceIfApplicable(PlayerDTO player) {
+    if (player.isBuilt(type_ARMORY)) player.deltaIntResource(IntResourceType.ATTACK, 1);
   }
 }

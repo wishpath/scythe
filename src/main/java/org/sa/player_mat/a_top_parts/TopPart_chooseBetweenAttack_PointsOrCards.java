@@ -1,5 +1,7 @@
 package org.sa.player_mat.a_top_parts;
 
+import org.sa.PlayerDTO;
+import org.sa.enums.IntResourceType;
 import org.sa.locatable.locatable.BuildingType;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TYPE_TopPart_ActionSpace;
 import org.sa.player_mat.a_top_parts.enums_and_interfaces.TopPart;
@@ -16,7 +18,7 @@ public class TopPart_chooseBetweenAttack_PointsOrCards implements TopPart {
     new TopPartUpgradableAction_Attack(2,3),
     new TopPartUpgradableAction_AttackCards(1, 2)
   };
-  private BuildingType MONUMENT = BuildingType.MONUMENT; // building state stored in playerDTO.isBuilt(type)
+  private BuildingType type_MONUMENT = BuildingType.MONUMENT; // building state stored in playerDTO.isBuilt(type)
 
   @Override
   public TopPartCost getCost() {
@@ -30,11 +32,16 @@ public class TopPart_chooseBetweenAttack_PointsOrCards implements TopPart {
 
   @Override
   public BuildingType getBuildingType() {
-    return this.MONUMENT;
+    return this.type_MONUMENT;
   }
 
   @Override
   public TopPartUpgradableAction[] getTopPartChoosableActions() {
     return CHOOSE_BETWEEN_POWER_OR_COMBAT_CARDS;
+  }
+
+  @Override
+  public void rewardPlayerWithBuildingRelatedIntResourceIfApplicable(PlayerDTO player) {
+    if (player.isBuilt(this.type_MONUMENT)) player.deltaIntResource(IntResourceType.HEARTS, 1);
   }
 }

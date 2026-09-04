@@ -12,8 +12,6 @@ STRATEGY_IN_SHORT:
     - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
   - implement other player decisions regarding top actions:
-    - bolster (get attack or attack cards)
-      - use playerDTO.isBuilt() to use MONUMENT to gain extra popularity/ hearts. use simple if because 4 building are used in 4 different ways.
     - simulate example of other non decision top part actions in Player decisions:
       - gain coins
       - gain hearts
@@ -22,6 +20,7 @@ TASKS:
       - extract move logic into small methods
       - remove NotMovedHandler by validating moves before removing movables from the pool
       - fix duplicated isCharacter() condition and simplify resource-carrying logic
+  - implement examples of bottom parts in the player decisions.
 
   - go through project TODO's (marked by comments)
 
