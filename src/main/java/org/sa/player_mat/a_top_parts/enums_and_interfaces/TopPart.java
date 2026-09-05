@@ -7,6 +7,7 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPa
 
 public interface TopPart {
   TopPartCost getCost();
+  void payForTopPart(PlayerDTO player);
   TYPE_TopPart_ActionSpace getTopPartType();
   BuildingType getBuildingType();
   TopPartUpgradableAction[] getTopPartChoosableActions();

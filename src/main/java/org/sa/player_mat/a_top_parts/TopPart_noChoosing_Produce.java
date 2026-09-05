@@ -23,6 +23,11 @@ public class TopPart_noChoosing_Produce implements TopPart {
   }
 
   @Override
+  public void payForTopPart(PlayerDTO player) {
+    this.SPECIAL_PRODUCE_COST.applyToPlayer(player);
+  }
+
+  @Override
   public TYPE_TopPart_ActionSpace getTopPartType() {
     return this.TOP_PART_TYPE__NO_CHOOSE__PRODUCE;
   }

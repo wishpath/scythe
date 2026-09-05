@@ -27,6 +27,11 @@ public class TopPart_chooseBetweenMoveOrGainCoins implements TopPart {
   }
 
   @Override
+  public void payForTopPart(PlayerDTO player) {
+    this.FREE.applyToPlayer(player); // possible to also delete this line
+  }
+
+  @Override
   public TYPE_TopPart_ActionSpace getTopPartType() {
     return this.TOP_PART_TYPE__CHOOSE__MOVE__GAIN_COINS;
   }

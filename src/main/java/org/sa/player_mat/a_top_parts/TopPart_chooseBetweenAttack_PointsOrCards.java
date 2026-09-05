@@ -26,6 +26,11 @@ public class TopPart_chooseBetweenAttack_PointsOrCards implements TopPart {
   }
 
   @Override
+  public void payForTopPart(PlayerDTO player) {
+    this.MINUS_ONE_COIN.applyToPlayer(player);
+  }
+
+  @Override
   public TYPE_TopPart_ActionSpace getTopPartType() {
     return this.TOP_PART_TYPE;
   }

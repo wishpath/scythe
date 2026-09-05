@@ -130,7 +130,7 @@ public class PlayerDecisions {
     return pickedActionSpaceDTO.topPartObject; // top part type matches action space
   }
   private static void applyTopAction(PlayerDTO player, int pickedActionArrayIndex, TopPart topPart) {
-    topPart.getCost().applyToPlayer(player); // pay for top action
+    topPart.payForTopPart(player);
     topPart.rewardPlayerWithBuildingRelatedIntResourceIfApplicable(player);
     TopPartUpgradableAction pickedAction = topPart.getTopPartChoosableActions()[pickedActionArrayIndex]; // get action e.g. PRODUCE or MOVE etc, as it picked already
 
