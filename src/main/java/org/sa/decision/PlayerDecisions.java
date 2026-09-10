@@ -77,7 +77,7 @@ public class PlayerDecisions {
     if (topPart_TRADE_GAIN.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
       boolean playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
       if (playerDecidedToUseTopAction) {
-        int pickedActionArrayIndex__representing_TRADE = 1; //TODO: player picks index, but in this case, only index 0 is available
+        int pickedActionArrayIndex__representing_TRADE = 1; //TODO: player picks index
         applyTopAction(player, pickedActionArrayIndex__representing_TRADE, topPart_TRADE_GAIN); //player decides what and where to TRADE
       }
       player.isEndOfTurn = true; // finish turn
@@ -123,6 +123,17 @@ public class PlayerDecisions {
     player.isEndOfTurn = true; // finish turn
     player.previousActionSpace = move_gain2; // remember completed action
     /** EXAMPLE of TRADE_GAIN (get popularity-hearts) *****************************************************************/
+    TYPE_TopPart_ActionSpace trade2 = TYPE_TopPart_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS; //TODO: player should pick this from actionSpacePool
+    TopPart topPart_TRADE_GAIN2 = getTopPartObject(player, trade2);
+    if (topPart_TRADE_GAIN2.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
+      boolean playerDecidedToUseTopAction = true; //TODO: player decides if he plays TopPart
+      if (playerDecidedToUseTopAction) {
+        int pickedActionArrayIndex__representing_GainHearts = 0; //TODO: player picks index
+        applyTopAction(player, pickedActionArrayIndex__representing_GainHearts, topPart_TRADE_GAIN2); //player decides what and where to TRADE
+      }
+      player.isEndOfTurn = true; // finish turn
+      player.previousActionSpace = trade2; // remember completed action
+    }
   }
 
 
