@@ -13,9 +13,6 @@ STRATEGY_IN_SHORT:
 TASKS:
 
   - implement other player decisions regarding top actions:
-    - simulate example of other non decision top part actions in Player decisions:
-      - gain coins
-      - gain hearts
     - improve MOVE top action:
       - pick only movables with valid destinations
       - extract move logic into small methods
