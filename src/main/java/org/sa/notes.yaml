@@ -19,14 +19,7 @@ TASKS:
       - remove NotMovedHandler by validating moves before removing movables from the pool
       - fix duplicated isCharacter() condition and simplify resource-carrying logic
   - implement examples of bottom parts in the player decisions.
-
   - go through project TODO's (marked by comments)
-
-  - answer questions
-    - can player that can walk on water drop resources on water (lake)?
-      - will crossing over a lake steel resources that are left on that lake unattended? will that trigger a fight if therese worker? fighter?
-    - can player "walk" to his own home tile? then can he bring resources there and leave them there? then can it be considered controlled territory? can player walk on opponent's home tile, and steel his resources there?
-
   - go through parts where the payment is needed (player mat) there should be checks if player has enough. if he doesn't - player cannot complete action. if tries to complete impossible pay - throw.
 
 
@@ -62,7 +55,28 @@ QUESTIONS/ANSWERS:
     - No.
   - Can a lake be considered a controlled location?
     - Yes.
-
+  - Can workers walk onto, off of, or across a lake under their own power?
+    - No. Workers never gain lake-movement themselves
+  - Is it only possible for a worker to be on a lake when a mech carries it there?
+    - Yes in this version, since it doesn't include the Wind Gambit faction.
+  - Can a mech leave a worker on a lake?
+    - No.
+  - can only player go visit any home tile using any movable?
+    - No by default (Move action can't target any home base, including your own).
+  - Is it only Crimea's character/mechs, and only once Wayfare is researched, that can move freely onto a home tile?
+    - Yes.
+      - can in that case character/mech bring resources to home tile?
+        - Yes.
+          - can it leave resources there?
+            - Yes.
+              - are those resources be considered unreachable for opponents?
+                - Yes, but unusable — can't be spent or counted at scoring.
+  - Can a player's movable ever be on an active opponent's home base?
+    - No
+  - If a player has a unit on their home tile, is it considered a controlled territory?
+    - No. Home base isn't a territory at all.
+  - Does a movable jumping past (not landing on) an opponent-occupied lake trigger anything?
+    - No.
 
 MOVE_IMPROVEMENTS:
   - riverwalk:
