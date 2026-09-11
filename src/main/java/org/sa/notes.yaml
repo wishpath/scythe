@@ -77,6 +77,10 @@ QUESTIONS/ANSWERS:
     - No. Home base isn't a territory at all.
   - Does a movable jumping past (not landing on) an opponent-occupied lake trigger anything?
     - No.
+  - If a player controls two tiles with workers and chooses the Produce action, are they forced to produce on both tiles?
+      - No. The action allows choosing up to 2 (or 3 with Mill) territories, so choosing 1 or 0 is valid.
+  - Can a player choose to produce with only some of the workers on a selected tile?
+    - No. Production is all-or-nothing per selected territory: every worker on a selected tile must produce.
 
 MOVE_IMPROVEMENTS:
   - riverwalk:
