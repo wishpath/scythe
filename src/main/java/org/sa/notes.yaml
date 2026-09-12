@@ -14,11 +14,12 @@ TASKS:
 
   - implement other player decisions regarding top actions:
     - improve MOVE top action:
-      - pick only movables with valid destinations
       - extract move logic into small methods
+        - move methods from other classes like "Grid" should go to Helper_MOVE
       - remove NotMovedHandler by validating moves before removing movables from the pool
       - fix duplicated isCharacter() condition and simplify resource-carrying logic
   - implement examples of bottom parts in the player decisions.
+  - Check whether MovableType and isMech/isWorker/isCharacter fields in Movable are redundant.
   - go through project TODO's (marked by comments)
   - go through parts where the payment is needed (player mat) there should be checks if player has enough. if he doesn't - player cannot complete action. if tries to complete impossible pay - throw.
 
