@@ -3,7 +3,6 @@ package org.sa.decision.helper;
 import org.sa.PlayerDTO;
 import org.sa.grid.TileDTO;
 import org.sa.locatable.movable.Movable;
-import org.sa.grid.Grid;
 
 import java.util.List;
 import java.util.Set;
@@ -41,7 +40,7 @@ public class Helper_NotMoved {
       }
 
     if (worker == null) throw new IllegalArgumentException("AT THIS STAGE A GROUP IS EXPECTED TO CONTAIN A WORKER");
-    Set<TileDTO> targetPossibilities = Grid.getTilesToMoveTo(worker, player);
+    Set<TileDTO> targetPossibilities = Helper_MOVE.getTilesToMoveTo(worker, player);
 
     return targetPossibilities.size() > 0;
   }

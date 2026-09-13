@@ -1,12 +1,12 @@
 package org.sa;
 
+import org.sa.decision.helper.Helper_MOVE;
 import org.sa.enums.IntResourceType;
 import org.sa.faction_mat.FactionMat;
 import org.sa.faction_mat.Left_EnlistOneTimeReward.Left_EnlistOneTimeReward;
 import org.sa.faction_mat.RightBottom_MechDeployAbility.RightBottom_MechDeployAbility;
 import org.sa.faction_mat.RightMid_FactionInitialBonus.RightMid_FactionInitialBonus;
 import org.sa.faction_mat.RightTop_FactionAbility.RightTop_FactionAbility;
-import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
 import org.sa.locatable.locatable.*;
 import org.sa.locatable.movable.Movable;
@@ -85,7 +85,7 @@ public class PlayerDTO {
   }
   public List<Movable> getPlacedMovablesWithValidMoveDestinations() {
     //includes placed at home
-    return getPlacedMovables().stream().filter(movable -> Grid.getTilesToMoveTo(movable, this).size() > 0).toList();
+    return getPlacedMovables().stream().filter(movable -> Helper_MOVE.getTilesToMoveTo(movable, this).size() > 0).toList();
   }
   public TileDTO getWorkerTileWithMostPower() {
     return getPlacedMovables().stream().collect(Collectors.groupingBy(Movable::getLocation)).entrySet().stream() // E <TileDTO, List<Movable>>

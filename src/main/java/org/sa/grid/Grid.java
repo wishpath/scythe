@@ -3,7 +3,6 @@ package org.sa.grid;
 import org.sa.PlayerDTO;
 import org.sa.locatable.locatable.BuildingDTO;
 import org.sa.locatable.locatable.TokenDTO;
-import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
 import org.sa.locatable.locatable.BuildingType;
 
@@ -159,73 +158,14 @@ public class Grid {
     return grid[row][col];
   }
 
-  public static Set<TileDTO> getTilesToMoveTo(Movable movable, PlayerDTO player) {
-    TileDTO tileFrom = movable.getLocation();
-    Set<TileDTO> validDestinationTiles = new HashSet<>();
-
-    //deal neighboring tiles
-    for (DirectionType direction : DirectionType.values()) { //includes direction Direction.THIS
-      TileDTO tileTo = getNeighborTile_possiblyNull(tileFrom, direction); //possibly self
-      if (tileTo == null) continue;
-      if (tileTo.tileType.equals(TileType.LAKE)) continue;
-
-      //deal river
-      if (tileFrom.hasRiverInTheDirection(direction)) {
-        if (player.GREEN_ALBION_mechAndCharacter_canCrossRiverToOrFromTunnel_burrow && (movable.isCharacter() || movable.isMech())) {
-          if (tileFrom.isTunnel || tileTo.isTunnel) validDestinationTiles.add(tileTo);
-          else continue;
-        }
-        else continue;
-      }
-    }
-
-    //deal tunnels
-    if (tileFrom.isTunnel || hasTileMine(tileFrom, player)) {
-      validDestinationTiles.addAll(getAllLocationsOfTunnelsAndMine_notSelf(tileFrom, player));
-    }
-
-    //deal GREEN_ALBION rally (mech and char move to worker or token)
-    if (player.GREEN_ALBION_mechAndCharacter_canMoveToWorkerOrFlagTokenTerritory_rally && (movable.isCharacter() || movable.isMech())) {
-      validDestinationTiles.addAll((getAllWorkerAndTokenTiles_possiblySelf(player)));
-    }
-
-    // TODO player attributes that might also be important:
-    // Teleportation and special spatial adjacencies:
-//    player.BLACK_SAXONY_mountainsAndTunnelsAreAdjacent_underpass;                     // Treats controlled Mountains, Tunnels, and Mine as adjacent
-//    player.PURPLE_TOGAWA_canMoveToAnyTrapTokenAndRearmDisarmedTrap_shinobi;          // Allows direct move to any tile containing your Trap token
-//    player.RED_RUSVIET_controlledVillagesAndFactoryAreAdjacent_township;             // Treats controlled Villages and central Factory as adjacent
-//    player.YELLOW_CRIMEA_moveToOrFrom_ownOrInactiveFactionHome_wayfare;             // Allows move directly to/from your home or inactive faction homes
-    // River crossing rules based on destination tile terrain:
-//    player.BLUE_NORDIC_workersCanCrossRivers_swim;                       // Allows workers to cross rivers onto any terrain except lakes
-//    player.BLACK_SAXONY_canCrossRiverOntoForestOrMountain_riverwalk;     // Cross rivers onto Forest or Mountain tiles
-//    player.BLUE_NORDIC_canCrossRiverOntoForestOrMountain_riverwalk;     // Cross rivers onto Forest or Mountain tiles
-//    player.RED_RUSVIET_canCrossRiverOntoFarmOrVillage_riverwalk;         // Cross rivers onto Farm or Village tiles
-//    player.WHITE_POLANIA_canCrossRiverOntoVillagesAndMountains_riverwalk;// Cross rivers onto Village or Mountain tiles
-//    player.YELLOW_CRIMEA_canCrossRiverOntoFarmsAndTundra_riverwalk;      // Cross rivers onto Farm or Tundra tiles
-//    player.PURPLE_TOGAWA_canCrossRiverOncePerMoveAction_toka;            // Limits river crossing to once per move action
-    // Enables lake tiles as valid move destinations:
-//    player.BLUE_NORDIC_canMoveToOrFromLakes_seaworthy;                      // Move onto/off lake tiles and retreat onto adjacent lakes
-//    player.PURPLE_TOGAWA_canMoveToOrFromLakesAndPlayAdditionalCombatCardThere_suiton; // Move onto/off lake tiles
-//    player.WHITE_POLANIA_canMoveOnLake_canMoveToAnyLake_submerge;            // Move onto/off lakes and move directly between any lake tiles
-    // Increases unit movement range (expanding the reach of reachable tiles):     // TODO: if moving 2 tiles allowed, both should be completed at once, since attack on moving first tile would prevent from going second tile (additional info: first tile cannot be skipped from action)
-//    player.BLACK_SAXONY_characterAndMechsGetPlus1Move_speed; // Grants +1 step distance to Character/Mechs
-//    player.BLUE_NORDIC_characterAndMechsGetPlus1Move_speed;  // Grants +1 step distance to Character/Mechs
-//    player.RED_RUSVIET_characterAndMechsGetPlus1Move_speed;  // Grants +1 step distance to Character/Mechs
-//    player.WHITE_POLANIA_characterAndMechsGetPlus1Move_speed;// Grants +1 step distance to Character/Mechs
-//    player.YELLOW_CRIMEA_characterAndMechsGetPlus1Move_speed; // Grants +1 step distance to Character/Mechs
-
-
-    return validDestinationTiles;
-  }
-
-  private static Set<TileDTO> getAllWorkerAndTokenTiles_possiblySelf(PlayerDTO player) {
+  public static Set<TileDTO> getAllWorkerAndTokenTiles_possiblySelf(PlayerDTO player) {
     Set<TileDTO> tilesWithWorkerOrToken = new HashSet<>();
     for (TokenDTO token : player.getPlacedTokens()) tilesWithWorkerOrToken.add(token.getLocation());
     for (WorkerDTO worker : player.getPlacedWorkers()) tilesWithWorkerOrToken.add(worker.getLocation());
     return tilesWithWorkerOrToken;
   }
 
-  private static Set<TileDTO> getAllLocationsOfTunnelsAndMine_notSelf(TileDTO self, PlayerDTO player) {
+  public static Set<TileDTO> getAllLocationsOfTunnelsAndMine_notSelf(TileDTO self, PlayerDTO player) {
     Set<TileDTO> locations = new HashSet<>(tunnels); //separate list but same references to items
     for (BuildingDTO building : player.getPlacedBuildings())
       if (building.buildingType == BuildingType.MINE)
@@ -234,7 +174,7 @@ public class Grid {
     return locations;
   }
 
-  private static boolean hasTileMine(TileDTO questionedTile, PlayerDTO player) {
+  public static boolean hasTileMine(TileDTO questionedTile, PlayerDTO player) {
     for (BuildingDTO building : player.getPlacedBuildings())
       if (building.buildingType == BuildingType.MINE && building.getLocation() == questionedTile)
         return true;
