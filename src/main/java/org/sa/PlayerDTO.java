@@ -115,6 +115,7 @@ public class PlayerDTO {
   public boolean hasTileAToken(TileDTO targetTile) {
     return getPlacedTokens().stream().anyMatch(token -> token.getLocation() == targetTile);
   }
+
   public List<BuildingDTO> getPlacedBuildings() {
     return locatables.stream().filter(BuildingDTO.class::isInstance).map(BuildingDTO.class::cast).toList();
   }
@@ -133,6 +134,12 @@ public class PlayerDTO {
     BuildingDTO buildingDTO = new BuildingDTO(type, location);
     locatables.add(buildingDTO);
   }
+  public boolean hasTileBuilding(TileDTO tile, BuildingType type) {
+    return getPlacedBuildings().stream()
+        .anyMatch(building -> building.location == tile && building.buildingType == type);
+  }
+
+
   public Set<TileDTO> getControlledTiles() {
     return locatables.stream().filter(Locatable::controlsLocation).map(Locatable::getLocation).collect(Collectors.toSet());
   }
@@ -169,8 +176,6 @@ public class PlayerDTO {
   public void addTradeableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
     for (int i = 0; i < amount; i++) locatables.add(new TradeableResourceDTO(resourceType, tile));
   }
-
-
 
   public void payLocatableResource(LocatableResourceType locatableResourceType, int currentDelta) {
     if (locatableResourceType == LocatableResourceType.WORKER) throw new IllegalArgumentException("cannot pay with worker");

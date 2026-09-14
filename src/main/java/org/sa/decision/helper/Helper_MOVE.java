@@ -5,6 +5,7 @@ import org.sa.grid.DirectionType;
 import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
 import org.sa.grid.TileType;
+import org.sa.locatable.locatable.BuildingType;
 import org.sa.locatable.locatable.TokenDTO;
 import org.sa.locatable.locatable.TradeableResourceDTO;
 import org.sa.locatable.movable.Movable;
@@ -92,7 +93,7 @@ public class Helper_MOVE {
     }
 
     //deal tunnels
-    if (tileFrom.isTunnel || Grid.hasTileMine(tileFrom, player)) {
+    if (tileFrom.isTunnel || player.hasTileBuilding(tileFrom, BuildingType.MINE)) {
       validDestinationTiles.addAll(Grid.getAllLocationsOfTunnelsAndMine_notSelf(tileFrom, player));
     }
 

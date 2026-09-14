@@ -173,13 +173,6 @@ public class Grid {
     locations.remove(self);
     return locations;
   }
-
-  public static boolean hasTileMine(TileDTO questionedTile, PlayerDTO player) {
-    for (BuildingDTO building : player.getPlacedBuildings())
-      if (building.buildingType == BuildingType.MINE && building.getLocation() == questionedTile)
-        return true;
-    return false;
-  }
 }
 
 

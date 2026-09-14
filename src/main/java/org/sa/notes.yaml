@@ -13,6 +13,9 @@ STRATEGY_IN_SHORT:
 TASKS:
 
   - implement other player decisions regarding top actions:
+    - refactor
+        - getAllWorkerAndTokenTiles_possiblySelf -> move to playerDTO
+        - getAllLocationsOfTunnelsAndMine_notSelf -> move mine part to player dto (and use in Helper_MOVE directly from there)
     - improve MOVE top action:
       - extract move logic into small methods
         - move methods from other classes like "Grid" should go to Helper_MOVE
@@ -20,10 +23,7 @@ TASKS:
       - fix duplicated isCharacter() condition and simplify resource-carrying logic
   - implement examples of bottom parts in the player decisions.
   - Check whether MovableType and isMech/isWorker/isCharacter fields in Movable are redundant.
-  - refactor
-    - getAllWorkerAndTokenTiles_possiblySelf -> move to playerDTO
-    - hasTileMine -> move to player dto
-    - getAllLocationsOfTunnelsAndMine_notSelf -> move mine part to player dto (and use in Helper_MOVE directly from there)
+
 
   - go through project TODO's (marked by comments)
   - go through parts where the payment is needed (player mat) there should be checks if player has enough. if he doesn't - player cannot complete action. if tries to complete impossible pay - throw.
