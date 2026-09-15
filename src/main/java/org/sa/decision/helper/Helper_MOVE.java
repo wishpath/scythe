@@ -9,6 +9,7 @@ import org.sa.locatable.locatable.BuildingType;
 import org.sa.locatable.locatable.TokenDTO;
 import org.sa.locatable.locatable.TradeableResourceDTO;
 import org.sa.locatable.movable.Movable;
+import org.sa.locatable.movable.WorkerDTO;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Move_Decideable;
 
 import java.util.*;
@@ -92,14 +93,17 @@ public class Helper_MOVE {
       }
     }
 
-    //deal tunnels
+    //deal tunnels/mines
     if (tileFrom.isTunnel || player.hasTileBuilding(tileFrom, BuildingType.MINE)) {
-      validDestinationTiles.addAll(Grid.getAllLocationsOfTunnelsAndMine_notSelf(tileFrom, player));
+      validDestinationTiles.addAll(Grid.tunnels);
+      validDestinationTiles.addAll(player.getPlacedBuildingLocations(BuildingType.MINE));
+      validDestinationTiles.remove(tileFrom);
     }
 
     //deal GREEN_ALBION rally (mech and char move to worker or token)
     if (player.GREEN_ALBION_mechAndCharacter_canMoveToWorkerOrFlagTokenTerritory_rally && (movable.isCharacter() || movable.isMech())) {
-      validDestinationTiles.addAll((Grid.getAllWorkerAndTokenTiles_possiblySelf(player)));
+      for (TokenDTO token : player.getPlacedTokens()) validDestinationTiles.add(token.getLocation());
+      for (WorkerDTO worker : player.getPlacedWorkers()) validDestinationTiles.add(worker.getLocation());
     }
 
     // TODO player attributes that might also be important:

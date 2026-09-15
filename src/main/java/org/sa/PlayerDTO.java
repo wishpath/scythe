@@ -119,10 +119,16 @@ public class PlayerDTO {
   public List<BuildingDTO> getPlacedBuildings() {
     return locatables.stream().filter(BuildingDTO.class::isInstance).map(BuildingDTO.class::cast).toList();
   }
-  //called when player chooses to do top action: if building is built, player gets some bonus
-  //this map is updated by BottomPart_Build
-  //building type is also attached in each TopPart
+  public List<BuildingDTO> getPlacedBuildings(BuildingType type) {
+    return getPlacedBuildings().stream().filter(building -> building.buildingType == type).toList();
+  }
+  public List<TileDTO> getPlacedBuildingLocations(BuildingType type) {
+    return getPlacedBuildings(type).stream().map(building -> building.location).toList();
+  }
   public boolean isBuilt(BuildingType type) {
+    //called when player chooses to do top action: if building is built, player gets some bonus
+    //this map is updated by BottomPart_Build
+    //building type is also attached in each TopPart
     return getPlacedBuildings().stream().anyMatch(building -> building.buildingType == type);
   }
   public BuildingDTO getBuilding(BuildingType type) {

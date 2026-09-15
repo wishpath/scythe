@@ -1,11 +1,5 @@
 package org.sa.grid;
 
-import org.sa.PlayerDTO;
-import org.sa.locatable.locatable.BuildingDTO;
-import org.sa.locatable.locatable.TokenDTO;
-import org.sa.locatable.movable.WorkerDTO;
-import org.sa.locatable.locatable.BuildingType;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
@@ -117,7 +111,7 @@ public class Grid {
     grid[8][3] = new TileDTO(TileType.VILLAGE_WORKER,  8, 3);
   }
 
-  private static final Set<TileDTO> tunnels = Arrays.stream(grid).flatMap(Arrays::stream).filter(Objects::nonNull).filter(t -> t.isTunnel).collect(Collectors.toSet());
+  public static final Set<TileDTO> tunnels = Arrays.stream(grid).flatMap(Arrays::stream).filter(Objects::nonNull).filter(t -> t.isTunnel).collect(Collectors.toSet());
 
   public static boolean isItemAdjacent(TileDTO tile, TileDTO itemLocation) {
     for (DirectionType direction : DirectionType.values())
@@ -156,22 +150,6 @@ public class Grid {
     int col = tile.column + direction.deltaColumn;
     if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) return null;
     return grid[row][col];
-  }
-
-  public static Set<TileDTO> getAllWorkerAndTokenTiles_possiblySelf(PlayerDTO player) {
-    Set<TileDTO> tilesWithWorkerOrToken = new HashSet<>();
-    for (TokenDTO token : player.getPlacedTokens()) tilesWithWorkerOrToken.add(token.getLocation());
-    for (WorkerDTO worker : player.getPlacedWorkers()) tilesWithWorkerOrToken.add(worker.getLocation());
-    return tilesWithWorkerOrToken;
-  }
-
-  public static Set<TileDTO> getAllLocationsOfTunnelsAndMine_notSelf(TileDTO self, PlayerDTO player) {
-    Set<TileDTO> locations = new HashSet<>(tunnels); //separate list but same references to items
-    for (BuildingDTO building : player.getPlacedBuildings())
-      if (building.buildingType == BuildingType.MINE)
-        locations.add(building.location);
-    locations.remove(self);
-    return locations;
   }
 }
 

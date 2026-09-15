@@ -12,15 +12,11 @@ STRATEGY_IN_SHORT:
     - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
 
-  - implement other player decisions regarding top actions:
-    - refactor
-        - getAllWorkerAndTokenTiles_possiblySelf -> move to playerDTO
-        - getAllLocationsOfTunnelsAndMine_notSelf -> move mine part to player dto (and use in Helper_MOVE directly from there)
-    - improve MOVE top action:
-      - extract move logic into small methods
-        - move methods from other classes like "Grid" should go to Helper_MOVE
-      - remove NotMovedHandler by validating moves before removing movables from the pool
-      - fix duplicated isCharacter() condition and simplify resource-carrying logic
+  - improve MOVE top action:
+    - extract move logic into small methods
+      - move methods from other classes like "Grid" should go to Helper_MOVE
+    - remove NotMovedHandler by validating moves before removing movables from the pool
+    - fix duplicated isCharacter() condition and simplify resource-carrying logic
   - implement examples of bottom parts in the player decisions.
   - Check whether MovableType and isMech/isWorker/isCharacter fields in Movable are redundant.
 
