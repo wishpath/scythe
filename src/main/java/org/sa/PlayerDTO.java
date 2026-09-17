@@ -98,7 +98,7 @@ public class PlayerDTO {
     return getPlacedMovables().stream().anyMatch(movable -> movable.getLocation() == location);
   }
   public boolean hasLocationAtLeast2Fighters(TileDTO location) {
-    return getPlacedMovables().stream().filter(movable -> movable.isCharacter() || movable.isMech()).toList().size() >= 2;
+    return getPlacedMovables().stream().filter(movable -> movable.getLocation() == location).filter(movable -> movable.isCharacter() || movable.isMech()).toList().size() >= 2;
   }
   public List<WorkerDTO> getPlacedWorkers() {
     //includes placed at home

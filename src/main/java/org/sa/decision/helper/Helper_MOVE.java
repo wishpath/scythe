@@ -17,41 +17,36 @@ import java.util.*;
 public class Helper_MOVE {
   public static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveAction, PlayerDTO player) {
     int moveCountTotal = moveAction.getCurrentChangeDelta();
-    List<Movable> movablesPool = new ArrayList<>(player.getPlacedMovablesWithValidMoveDestinations()); // new list but references same objects
+    List<Movable> movablesWithValidDestinationsPool = new ArrayList<>(player.getPlacedMovablesWithValidMoveDestinations()); // new list but references same objects
 
-    for (int moveCount = 0; moveCount < moveCountTotal && movablesPool.size() > 0; moveCount++) {
+    for (int moveCount = 0; moveCount < moveCountTotal && movablesWithValidDestinationsPool.size() > 0; moveCount++) {
       //decide who moves
-      int userPicked_mainMovableIndex = new Random().nextInt(movablesPool.size()); // todo: PLAYER DECIDES main movable
-      Movable userPicked_mainMovable = movablesPool.remove(userPicked_mainMovableIndex);
-      TileDTO initialLocation = userPicked_mainMovable.getLocation();
+      int userPicked_mainMovableIndex = new Random().nextInt(movablesWithValidDestinationsPool.size()); // todo: PLAYER DECIDES main movable
+      Movable userPicked_mainMovable = movablesWithValidDestinationsPool.remove(userPicked_mainMovableIndex);
+      TileDTO mainMovableLocation = userPicked_mainMovable.getLocation();
       List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //includes main movable
       if (userPicked_mainMovable.isMech()) { //mechs can always carry workers
-        TileDTO mechLocation = userPicked_mainMovable.getLocation();
-        List<Movable> workersInMechLocation = movablesPool.stream().filter(Movable::isWorker).filter(worker -> worker.getLocation() == mechLocation).toList(); //creates different list, but objects reference matching references
+        List<Movable> workersInMechLocation = movablesWithValidDestinationsPool.stream().filter(Movable::isWorker).filter(worker -> worker.getLocation() == mainMovableLocation).toList(); //creates different list, but objects reference matching references
         int playerPicked_workersCountToMoveTogether = workersInMechLocation.size();//todo: PLAYER DECIDES how many workers go together
         for (int j = 0; j < playerPicked_workersCountToMoveTogether; j++) {
           Movable worker = workersInMechLocation.get(j);
           groupOfMovablesDecidedToMove.add(worker);
-          movablesPool.remove(worker);
+          movablesWithValidDestinationsPool.remove(worker);
         }
       }
 
-      //decide where to move
+      //decide where to move ()
       Set<TileDTO> possibleTargets = getTilesToMoveTo(userPicked_mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
-      if (possibleTargets.size() == 0) { //main movable has nowhere to go
-        Helper_NotMoved.returnOrForgetMovables(player, groupOfMovablesDecidedToMove, userPicked_mainMovable, movablesPool);
-        moveCount--; // not counting this iteration as move;
-        continue; // no need/ impossible to pick targetTile and complete move
-      }
+      if (possibleTargets.size() < 1) throw new IllegalStateException("since we only picked movables with valid destinations, the size of this list should be > 0");
 
       //move
       TileDTO targetTile = possibleTargets.iterator().next(); //TODO: player picks target tile
       for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move (considered as one move)
 
       //carry tradeable resources // !!! this part should stay AFTER move because of "hasMovables" check.
-      if (!player.hasLocationAtLeast2Fighters(initialLocation)) {
-        if (userPicked_mainMovable.isCharacter() || userPicked_mainMovable.isCharacter() || !player.hasMovables(initialLocation)) { //there are no such rules in the game but let's keep this part simple as this is quite logical
-          List<TradeableResourceDTO> resourcesToCarry = player.getTradeableResources(initialLocation);
+      if (!player.hasLocationAtLeast2Fighters(mainMovableLocation)) {
+        if (userPicked_mainMovable.isCharacter() || userPicked_mainMovable.isCharacter() || !player.hasMovables(mainMovableLocation)) { //there are no such rules in the game but let's keep this part simple as this is quite logical
+          List<TradeableResourceDTO> resourcesToCarry = player.getTradeableResources(mainMovableLocation);
           for (TradeableResourceDTO resource : resourcesToCarry) resource.carryTo(targetTile);
         }
       }
@@ -106,30 +101,32 @@ public class Helper_MOVE {
       for (WorkerDTO worker : player.getPlacedWorkers()) validDestinationTiles.add(worker.getLocation());
     }
 
-    // TODO player attributes that might also be important:
-    // Teleportation and special spatial adjacencies:
-//    player.BLACK_SAXONY_mountainsAndTunnelsAreAdjacent_underpass;                     // Treats controlled Mountains, Tunnels, and Mine as adjacent
-//    player.PURPLE_TOGAWA_canMoveToAnyTrapTokenAndRearmDisarmedTrap_shinobi;          // Allows direct move to any tile containing your Trap token
-//    player.RED_RUSVIET_controlledVillagesAndFactoryAreAdjacent_township;             // Treats controlled Villages and central Factory as adjacent
-//    player.YELLOW_CRIMEA_moveToOrFrom_ownOrInactiveFactionHome_wayfare;             // Allows move directly to/from your home or inactive faction homes
-    // River crossing rules based on destination tile terrain:
-//    player.BLUE_NORDIC_workersCanCrossRivers_swim;                       // Allows workers to cross rivers onto any terrain except lakes
-//    player.BLACK_SAXONY_canCrossRiverOntoForestOrMountain_riverwalk;     // Cross rivers onto Forest or Mountain tiles
-//    player.BLUE_NORDIC_canCrossRiverOntoForestOrMountain_riverwalk;     // Cross rivers onto Forest or Mountain tiles
-//    player.RED_RUSVIET_canCrossRiverOntoFarmOrVillage_riverwalk;         // Cross rivers onto Farm or Village tiles
-//    player.WHITE_POLANIA_canCrossRiverOntoVillagesAndMountains_riverwalk;// Cross rivers onto Village or Mountain tiles
-//    player.YELLOW_CRIMEA_canCrossRiverOntoFarmsAndTundra_riverwalk;      // Cross rivers onto Farm or Tundra tiles
-//    player.PURPLE_TOGAWA_canCrossRiverOncePerMoveAction_toka;            // Limits river crossing to once per move action
-    // Enables lake tiles as valid move destinations:
-//    player.BLUE_NORDIC_canMoveToOrFromLakes_seaworthy;                      // Move onto/off lake tiles and retreat onto adjacent lakes
-//    player.PURPLE_TOGAWA_canMoveToOrFromLakesAndPlayAdditionalCombatCardThere_suiton; // Move onto/off lake tiles
-//    player.WHITE_POLANIA_canMoveOnLake_canMoveToAnyLake_submerge;            // Move onto/off lakes and move directly between any lake tiles
-    // Increases unit movement range (expanding the reach of reachable tiles):     // TODO: if moving 2 tiles allowed, both should be completed at once, since attack on moving first tile would prevent from going second tile (additional info: first tile cannot be skipped from action)
-//    player.BLACK_SAXONY_characterAndMechsGetPlus1Move_speed; // Grants +1 step distance to Character/Mechs
-//    player.BLUE_NORDIC_characterAndMechsGetPlus1Move_speed;  // Grants +1 step distance to Character/Mechs
-//    player.RED_RUSVIET_characterAndMechsGetPlus1Move_speed;  // Grants +1 step distance to Character/Mechs
-//    player.WHITE_POLANIA_characterAndMechsGetPlus1Move_speed;// Grants +1 step distance to Character/Mechs
-//    player.YELLOW_CRIMEA_characterAndMechsGetPlus1Move_speed; // Grants +1 step distance to Character/Mechs
     return validDestinationTiles;
   }
 }
+
+
+//TODO player attributes that might also be important:
+//Teleportation and special spatial adjacencies:
+//player.BLACK_SAXONY_mountainsAndTunnelsAreAdjacent_underpass;                     // Treats controlled Mountains, Tunnels, and Mine as adjacent
+//player.PURPLE_TOGAWA_canMoveToAnyTrapTokenAndRearmDisarmedTrap_shinobi;          // Allows direct move to any tile containing your Trap token
+//player.RED_RUSVIET_controlledVillagesAndFactoryAreAdjacent_township;             // Treats controlled Villages and central Factory as adjacent
+//player.YELLOW_CRIMEA_moveToOrFrom_ownOrInactiveFactionHome_wayfare;             // Allows move directly to/from your home or inactive faction homes
+//River crossing rules based on destination tile terrain:
+//player.BLUE_NORDIC_workersCanCrossRivers_swim;                       // Allows workers to cross rivers onto any terrain except lakes
+//player.BLACK_SAXONY_canCrossRiverOntoForestOrMountain_riverwalk;     // Cross rivers onto Forest or Mountain tiles
+//player.BLUE_NORDIC_canCrossRiverOntoForestOrMountain_riverwalk;     // Cross rivers onto Forest or Mountain tiles
+//player.RED_RUSVIET_canCrossRiverOntoFarmOrVillage_riverwalk;         // Cross rivers onto Farm or Village tiles
+//player.WHITE_POLANIA_canCrossRiverOntoVillagesAndMountains_riverwalk;// Cross rivers onto Village or Mountain tiles
+//player.YELLOW_CRIMEA_canCrossRiverOntoFarmsAndTundra_riverwalk;      // Cross rivers onto Farm or Tundra tiles
+//player.PURPLE_TOGAWA_canCrossRiverOncePerMoveAction_toka;            // Limits river crossing to once per move action
+//Enables lake tiles as valid move destinations:
+//player.BLUE_NORDIC_canMoveToOrFromLakes_seaworthy;                      // Move onto/off lake tiles and retreat onto adjacent lakes
+//player.PURPLE_TOGAWA_canMoveToOrFromLakesAndPlayAdditionalCombatCardThere_suiton; // Move onto/off lake tiles
+//player.WHITE_POLANIA_canMoveOnLake_canMoveToAnyLake_submerge;            // Move onto/off lakes and move directly between any lake tiles
+//Increases unit movement range (expanding the reach of reachable tiles):     // TODO: if moving 2 tiles allowed, both should be completed at once, since attack on moving first tile would prevent from going second tile (additional info: first tile cannot be skipped from action)
+//player.BLACK_SAXONY_characterAndMechsGetPlus1Move_speed; // Grants +1 step distance to Character/Mechs
+//player.BLUE_NORDIC_characterAndMechsGetPlus1Move_speed;  // Grants +1 step distance to Character/Mechs
+//player.RED_RUSVIET_characterAndMechsGetPlus1Move_speed;  // Grants +1 step distance to Character/Mechs
+//player.WHITE_POLANIA_characterAndMechsGetPlus1Move_speed;// Grants +1 step distance to Character/Mechs
+//player.YELLOW_CRIMEA_characterAndMechsGetPlus1Move_speed; // Grants +1 step distance to Character/Mechs
