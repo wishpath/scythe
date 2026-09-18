@@ -87,28 +87,34 @@ public class PlayerDTO {
     //includes placed at home
     return getPlacedMovables().stream().filter(movable -> Helper_MOVE.getTilesToMoveTo(movable, this).size() > 0).toList();
   }
-  public TileDTO getWorkerTileWithMostPower() {
-    return getPlacedMovables().stream().collect(Collectors.groupingBy(Movable::getLocation)).entrySet().stream() // E <TileDTO, List<Movable>>
-        .filter(entry -> entry.getValue().stream().anyMatch(Movable::isWorker)) // entries containing any worker
-        .max(Comparator.comparingInt(entry -> (int) entry.getValue().stream().filter(movable -> !movable.isWorker()).count())) // max power (mech + character)
-        .map(Map.Entry::getKey)
-        .orElse(null); // in case player doesn't have workers on the grid, trade action will put received resources on the null TileDTO
-  }
+
   public boolean hasMovables(TileDTO location) {
     return getPlacedMovables().stream().anyMatch(movable -> movable.getLocation() == location);
   }
   public boolean hasLocationAtLeast2Fighters(TileDTO location) {
     return getPlacedMovables().stream().filter(movable -> movable.getLocation() == location).filter(movable -> movable.isCharacter() || movable.isMech()).toList().size() >= 2;
   }
+
   public List<WorkerDTO> getPlacedWorkers() {
     //includes placed at home
     return locatables.stream().filter(WorkerDTO.class::isInstance).map(WorkerDTO.class::cast).toList();
+  }
+  public List<WorkerDTO> getWorkersInTile(TileDTO tileDTO) {
+    return getPlacedWorkers().stream().filter(workerDTO -> workerDTO.location == tileDTO).toList();
   }
   public Map<TileDTO, Integer> getProducingTilesMappedToWorkerCount() { // mill counts totally separately (not included here)
     return getPlacedWorkers().stream()
         .filter(workerDTO -> workerDTO.location.tileType.producesResourceType != null)
         .collect(Collectors.groupingBy(WorkerDTO::getLocation, Collectors.summingInt(worker -> 1)));
   }
+  public TileDTO getWorkerTileWithMostPower() {
+    return getPlacedMovables().stream().collect(Collectors.groupingBy(Movable::getLocation)).entrySet().stream() // E <TileDTO, List<Movable>>
+        .filter(entry -> entry.getValue().stream().anyMatch(Movable::isWorker)) // entries containing at least 1 worker
+        .max(Comparator.comparingInt(entry -> (int) entry.getValue().stream().filter(movable -> !movable.isWorker()).count())) // max power (mech + character)
+        .map(Map.Entry::getKey)
+        .orElse(null); // in case player doesn't have workers on the grid, trade action will put received resources on the null TileDTO
+  }
+
   public List<TokenDTO> getPlacedTokens() {
     return locatables.stream().filter(TokenDTO.class::isInstance).map(TokenDTO.class::cast).toList();
   }

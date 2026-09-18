@@ -24,18 +24,20 @@ public class Helper_MOVE {
       int userPicked_mainMovableIndex = new Random().nextInt(movablesWithValidDestinationsPool.size()); // todo: PLAYER DECIDES main movable
       Movable userPicked_mainMovable = movablesWithValidDestinationsPool.remove(userPicked_mainMovableIndex);
       TileDTO mainMovableLocation = userPicked_mainMovable.getLocation();
+
+      //decide who moves together
       List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //includes main movable
-      if (userPicked_mainMovable.isMech()) { //mechs can always carry workers
-        List<Movable> workersInMechLocation = movablesWithValidDestinationsPool.stream().filter(Movable::isWorker).filter(worker -> worker.getLocation() == mainMovableLocation).toList(); //creates different list, but objects reference matching references
+      if (userPicked_mainMovable.isMech()) {
+        List<WorkerDTO> workersInMechLocation = player.getWorkersInTile(mainMovableLocation);
         int playerPicked_workersCountToMoveTogether = workersInMechLocation.size();//todo: PLAYER DECIDES how many workers go together
         for (int j = 0; j < playerPicked_workersCountToMoveTogether; j++) {
           Movable worker = workersInMechLocation.get(j);
           groupOfMovablesDecidedToMove.add(worker);
-          movablesWithValidDestinationsPool.remove(worker);
+          movablesWithValidDestinationsPool.remove(worker); //might be in this list initialy, but might be not.
         }
       }
 
-      //decide where to move ()
+      //decide where to move
       Set<TileDTO> possibleTargets = getTilesToMoveTo(userPicked_mainMovable, player); //TODO: get list of available Tiles to go to and PLAYER SHOULD PICK ONE
       if (possibleTargets.size() < 1) throw new IllegalStateException("since we only picked movables with valid destinations, the size of this list should be > 0");
 
