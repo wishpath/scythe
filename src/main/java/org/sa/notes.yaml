@@ -13,8 +13,6 @@ STRATEGY_IN_SHORT:
 TASKS:
 
   - improve MOVE top action:
-    - simplify and correct (workers don't need to have valid destinations themsleves if they are brought by mech), by using method in playerDTO, :
-        - List<Movable> workersInMechLocation = movablesWithValidDestinationsPool.stream().filter(Movable::isWorker).filter(worker -> worker.getLocation() == mainMovableLocation).toList();
     - is this a bug (character mentioned twice):
         - if (userPicked_mainMovable.isCharacter() || userPicked_mainMovable.isCharacter() || !player.hasMovables(mainMovableLocation))
     - remove NotMovedHandler by validating moves before removing movables from the pool
