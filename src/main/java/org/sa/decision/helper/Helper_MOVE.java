@@ -7,7 +7,6 @@ import org.sa.grid.TileDTO;
 import org.sa.grid.TileType;
 import org.sa.locatable.locatable.BuildingType;
 import org.sa.locatable.locatable.TokenDTO;
-import org.sa.locatable.locatable.TradeableResourceDTO;
 import org.sa.locatable.movable.Movable;
 import org.sa.locatable.movable.WorkerDTO;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Move_Decideable;
@@ -23,12 +22,12 @@ public class Helper_MOVE {
       //decide who moves
       int userPicked_mainMovableIndex = new Random().nextInt(movablesWithValidDestinationsPool.size()); // todo: PLAYER DECIDES main movable
       Movable userPicked_mainMovable = movablesWithValidDestinationsPool.remove(userPicked_mainMovableIndex);
-      TileDTO mainMovableLocation = userPicked_mainMovable.getLocation();
+      TileDTO mainMovableInitialLocation = userPicked_mainMovable.getLocation();
 
       //decide who moves together
       List<Movable> groupOfMovablesDecidedToMove = new ArrayList<>(List.of(userPicked_mainMovable)); //includes main movable
       if (userPicked_mainMovable.isMech()) {
-        List<WorkerDTO> workersInMechLocation = player.getWorkersInTile(mainMovableLocation);
+        List<WorkerDTO> workersInMechLocation = player.getWorkersInTile(mainMovableInitialLocation);
         int playerPicked_workersCountToMoveTogether = workersInMechLocation.size();//todo: PLAYER DECIDES how many workers go together
         for (int j = 0; j < playerPicked_workersCountToMoveTogether; j++) {
           Movable worker = workersInMechLocation.get(j);
@@ -45,13 +44,10 @@ public class Helper_MOVE {
       TileDTO targetTile = possibleTargets.iterator().next(); //TODO: player picks target tile
       for (Movable movable : groupOfMovablesDecidedToMove) movable.moveTo(targetTile, player); //execute move (considered as one move)
 
-      //carry tradeable resources // !!! this part should stay AFTER move because of "hasMovables" check.
-      if (!player.hasLocationAtLeast2Fighters(mainMovableLocation)) {
-        if (userPicked_mainMovable.isCharacter() || userPicked_mainMovable.isCharacter() || !player.hasMovables(mainMovableLocation)) { //there are no such rules in the game but let's keep this part simple as this is quite logical
-          List<TradeableResourceDTO> resourcesToCarry = player.getTradeableResources(mainMovableLocation);
-          for (TradeableResourceDTO resource : resourcesToCarry) resource.carryTo(targetTile);
-        }
-      }
+      //carry tradeable resources // !!! this part should stay AFTER move because of "hasMovables" check. ////there are no such rules in the game but let's keep this part simple as this is quite logical
+      if (!userPicked_mainMovable.isWorker() || !player.hasLocationAtLeast1Fighter(mainMovableInitialLocation)) { //main movable has left already to targetTile
+        player.carryAllLocatableTradeableResourcesFromTo(mainMovableInitialLocation, targetTile);
+      } //otherwise leave behind
 
       //after move effects
       player.isRightAfterMove = true;

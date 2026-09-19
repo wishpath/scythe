@@ -11,12 +11,6 @@ STRATEGY_IN_SHORT:
     - allways carry all the locatable-tradeable-resources, by simplistic rules if to carry at all
     - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
-
-  - improve MOVE top action:
-    - is this a bug (character mentioned twice):
-        - if (userPicked_mainMovable.isCharacter() || userPicked_mainMovable.isCharacter() || !player.hasMovables(mainMovableLocation))
-        - fix duplicated isCharacter() condition
-        - simplify resource-carrying logic
   - implement examples of bottom parts in the player decisions.
 
   - go through project TODO's (marked by comments)

@@ -88,11 +88,8 @@ public class PlayerDTO {
     return getPlacedMovables().stream().filter(movable -> Helper_MOVE.getTilesToMoveTo(movable, this).size() > 0).toList();
   }
 
-  public boolean hasMovables(TileDTO location) {
-    return getPlacedMovables().stream().anyMatch(movable -> movable.getLocation() == location);
-  }
-  public boolean hasLocationAtLeast2Fighters(TileDTO location) {
-    return getPlacedMovables().stream().filter(movable -> movable.getLocation() == location).filter(movable -> movable.isCharacter() || movable.isMech()).toList().size() >= 2;
+  public boolean hasLocationAtLeast1Fighter(TileDTO location) {
+    return getPlacedMovables().stream().filter(movable -> movable.getLocation() == location).anyMatch(movable -> movable.isCharacter() || movable.isMech());
   }
 
   public List<WorkerDTO> getPlacedWorkers() {
@@ -141,35 +138,16 @@ public class PlayerDTO {
     if (!isBuilt(type)) throw new IllegalArgumentException("cannot get a building that is not present");
     return getPlacedBuildings().stream().filter(building -> building.buildingType == type).findFirst().get();
   }
-  public void buildBuilding(BuildingType type, TileDTO location) {
-    if (isBuilt(type)) throw new IllegalStateException(type + " is already built." );
-    BuildingDTO buildingDTO = new BuildingDTO(type, location);
-    locatables.add(buildingDTO);
-  }
   public boolean hasTileBuilding(TileDTO tile, BuildingType type) {
     return getPlacedBuildings().stream()
         .anyMatch(building -> building.location == tile && building.buildingType == type);
   }
 
 
-  public Set<TileDTO> getControlledTiles() {
-    return locatables.stream().filter(Locatable::controlsLocation).map(Locatable::getLocation).collect(Collectors.toSet());
+  public void carryAllLocatableTradeableResourcesFromTo(TileDTO tileFrom, TileDTO tileTo) {
+    locatables.stream().filter(TradeableResourceDTO.class::isInstance).map(TradeableResourceDTO.class::cast)
+        .filter(resource -> resource.location == tileFrom).forEach(resource -> resource.carryTo(tileTo));
   }
-
-  public List<TradeableResourceDTO> getTradeableResources(LocatableResourceType type) {
-    return locatables.stream().filter(TradeableResourceDTO.class::isInstance)
-        .map(TradeableResourceDTO.class::cast).filter(resource -> resource.locatableResourceType == type).toList();
-  }
-
-  public List<TradeableResourceDTO> getTradeableResources(TileDTO location) {
-    return locatables.stream().filter(TradeableResourceDTO.class::isInstance)
-        .map(TradeableResourceDTO.class::cast).filter(resource -> resource.location == location).toList();
-  }
-
-  public int getAmountOfTradeableResource(LocatableResourceType type) {
-    return getTradeableResources(type).size();
-  }
-
   public void addLocatableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
     if (amount < 0) throw new IllegalArgumentException("amount should be positive");
     if (resourceType == LocatableResourceType.WORKER) {
@@ -184,16 +162,15 @@ public class PlayerDTO {
     }
     else addTradeableResource(resourceType, amount, tile);
   }
-
   public void addTradeableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
     for (int i = 0; i < amount; i++) locatables.add(new TradeableResourceDTO(resourceType, tile));
   }
-
   public void payLocatableResource(LocatableResourceType locatableResourceType, int currentDelta) {
     if (locatableResourceType == LocatableResourceType.WORKER) throw new IllegalArgumentException("cannot pay with worker");
     if (currentDelta < 0) throw new IllegalArgumentException("currentDelta should be positive");
-    if (getAmountOfTradeableResource(locatableResourceType) < currentDelta) throw new IllegalArgumentException("cannot spend more than we have");
-    getTradeableResources(locatableResourceType).stream().limit(currentDelta).forEach(locatables::remove);
+    List<TradeableResourceDTO> tradeableResources = locatables.stream().filter(TradeableResourceDTO.class::isInstance).map(TradeableResourceDTO.class::cast).filter(resource -> resource.locatableResourceType == locatableResourceType).toList();
+    if (tradeableResources.size() < currentDelta) throw new IllegalArgumentException("cannot spend more than we have");
+    tradeableResources.stream().limit(currentDelta).forEach(locatables::remove);
   }
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/
