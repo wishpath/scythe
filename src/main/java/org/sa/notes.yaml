@@ -12,6 +12,10 @@ STRATEGY_IN_SHORT:
     - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
   - implement examples of bottom parts in the player decisions.
+    - upgrade
+    - deploy
+    - build
+    - enlist
 
   - go through project TODO's (marked by comments)
   - go through parts where the payment is needed (player mat) there should be checks if player has enough. if he doesn't - player cannot complete action. if tries to complete impossible pay - throw.

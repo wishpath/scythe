@@ -134,6 +134,24 @@ public class PlayerDecisions {
       player.isEndOfTurn = true; // finish turn
       player.previousActionSpace = trade2; // remember completed action
     }
+
+    /******************************************************************************************************************/
+    /** BOTTOM ACTIONS ************************************************************************************************/
+    /******************************************************************************************************************/
+
+    /** EXAMPLE UPGRADE ***********************************************************************************************/
+    // 1. player picks action space (one of four) (named by top part)
+    TYPE_TopPart_ActionSpace moveGain_actionSpace = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player picks this from actionSpacePool
+    // 2. player either plays or doesn't play top part
+      // (skip for this example)
+    // 3. player chooses to either play or not play bottom part
+    boolean playerDecidedToPlayBottomAction = true; //TODO: player decides
+    if (playerDecidedToPlayBottomAction) {
+      //player does play bottom part 'UPGRADE' here
+    }
+    /** EXAMPLE DEPLOY ************************************************************************************************/
+    /** EXAMPLE BUILD *************************************************************************************************/
+    /** EXAMPLE ENLIST ************************************************************************************************/
   }
 
 
