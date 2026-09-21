@@ -11,6 +11,8 @@ STRATEGY_IN_SHORT:
     - allways carry all the locatable-tradeable-resources, by simplistic rules if to carry at all
     - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
+  - continue applyBottomAction in PlayerDecisions
+  - continue bottom part upgrade in PlayerDecisions
   - implement examples of bottom parts in the player decisions.
     - upgrade
     - deploy

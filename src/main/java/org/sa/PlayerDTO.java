@@ -165,12 +165,18 @@ public class PlayerDTO {
   public void addTradeableResource(LocatableResourceType resourceType, int amount, TileDTO tile) {
     for (int i = 0; i < amount; i++) locatables.add(new TradeableResourceDTO(resourceType, tile));
   }
-  public void payLocatableResource(LocatableResourceType locatableResourceType, int currentDelta) {
+  public void payLocatableResource(LocatableResourceType locatableResourceType, int amountToPay) {
     if (locatableResourceType == LocatableResourceType.WORKER) throw new IllegalArgumentException("cannot pay with worker");
-    if (currentDelta < 0) throw new IllegalArgumentException("currentDelta should be positive");
+    if (amountToPay < 0) throw new IllegalArgumentException("amountToPay should be positive");
     List<TradeableResourceDTO> tradeableResources = locatables.stream().filter(TradeableResourceDTO.class::isInstance).map(TradeableResourceDTO.class::cast).filter(resource -> resource.locatableResourceType == locatableResourceType).toList();
-    if (tradeableResources.size() < currentDelta) throw new IllegalArgumentException("cannot spend more than we have");
-    tradeableResources.stream().limit(currentDelta).forEach(locatables::remove);
+    if (tradeableResources.size() < amountToPay) throw new IllegalArgumentException("cannot spend more than we have");
+    tradeableResources.stream().limit(amountToPay).forEach(locatables::remove);
+  }
+  public boolean hasAtLeastCountOfResources(int amountToPay, LocatableResourceType locatableResourceType) {
+    if (locatableResourceType == LocatableResourceType.WORKER) throw new IllegalArgumentException("cannot pay with worker");
+    if (amountToPay < 0) throw new IllegalArgumentException("amountToPay should be positive");
+    List<TradeableResourceDTO> tradeableResources = locatables.stream().filter(TradeableResourceDTO.class::isInstance).map(TradeableResourceDTO.class::cast).filter(resource -> resource.locatableResourceType == locatableResourceType).toList();
+    return tradeableResources.size() >= amountToPay;
   }
 
   /**-------------- FACTION MAT --------------------------------------------------------------------------------------*/

@@ -29,7 +29,12 @@ public class BottomPartUpgradableCost__Oil implements BottomPartUpgradableCost {
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaOil > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.payLocatableResource(LocatableResourceType.OIL, currentDeltaOil);
+    player.payLocatableResource(LocatableResourceType.OIL, (-1 * currentDeltaOil));
+  }
+
+  @Override
+  public boolean canPlayerAfford(PlayerDTO player) {
+    return player.hasAtLeastCountOfResources((-1 * currentDeltaOil), LocatableResourceType.OIL);
   }
 
   @Override

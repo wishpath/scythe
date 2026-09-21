@@ -29,7 +29,12 @@ public class BottomPartUpgradableCost__Wood implements BottomPartUpgradableCost 
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaWood > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.payLocatableResource(LocatableResourceType.WOOD, currentDeltaWood);
+    player.payLocatableResource(LocatableResourceType.WOOD, (-1 * currentDeltaWood));
+  }
+
+  @Override
+  public boolean canPlayerAfford(PlayerDTO player) {
+    return player.hasAtLeastCountOfResources((-1 * currentDeltaWood), LocatableResourceType.WOOD);
   }
 
   @Override

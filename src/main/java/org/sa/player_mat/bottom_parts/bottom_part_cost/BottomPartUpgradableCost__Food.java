@@ -28,7 +28,12 @@ public class BottomPartUpgradableCost__Food implements BottomPartUpgradableCost 
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaFood > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.payLocatableResource(LocatableResourceType.FOOD, currentDeltaFood); //current delta is a negative number
+    player.payLocatableResource(LocatableResourceType.FOOD, (-1 * currentDeltaFood)); //current delta is a negative number
+  }
+
+  @Override
+  public boolean canPlayerAfford(PlayerDTO player) {
+    return player.hasAtLeastCountOfResources((-1 * currentDeltaFood), LocatableResourceType.FOOD);
   }
 
   @Override

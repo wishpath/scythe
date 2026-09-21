@@ -28,7 +28,12 @@ public class BottomPartUpgradableCost__Metal implements BottomPartUpgradableCost
   @Override
   public void applyToPlayer(PlayerDTO player) {
     if (currentDeltaMetal > 0) throw new IllegalArgumentException("Cost should be expressed in negative numbers");
-    player.payLocatableResource(LocatableResourceType.METAL, currentDeltaMetal); //currentDeltaMetal is a negative number
+    player.payLocatableResource(LocatableResourceType.METAL, (-1 * currentDeltaMetal)); //currentDeltaMetal is a negative number
+  }
+
+  @Override
+  public boolean canPlayerAfford(PlayerDTO player) {
+    return player.hasAtLeastCountOfResources((-1 * currentDeltaMetal), LocatableResourceType.METAL);
   }
 
   @Override

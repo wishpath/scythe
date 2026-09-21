@@ -19,6 +19,8 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradabl
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Trade_Decideable;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction_ConcreteDeltaType;
+import org.sa.player_mat.bottom_parts.bottom_part_cost.BottomPartUpgradableCost;
+import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPart;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -139,7 +141,7 @@ public class PlayerDecisions {
     /** BOTTOM ACTIONS ************************************************************************************************/
     /******************************************************************************************************************/
 
-    /** EXAMPLE UPGRADE ***********************************************************************************************/
+    /** EXAMPLE UPGRADE (in case of AGRICULTURAL player mat) ***********************************************************************************************/
     // 1. player picks action space (one of four) (named by top part)
     TYPE_TopPart_ActionSpace moveGain_actionSpace = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player picks this from actionSpacePool
     // 2. player either plays or doesn't play top part
@@ -148,10 +150,26 @@ public class PlayerDecisions {
     boolean playerDecidedToPlayBottomAction = true; //TODO: player decides
     if (playerDecidedToPlayBottomAction) {
       //player does play bottom part 'UPGRADE' here
+      //TODO: bottom action triggers neighbors' bonus
+      BottomPart pickedBottomPartObject = player.playerMat.actionSpaceType_actionSpaceDTO.get(moveGain_actionSpace).bottomPartObject;
+      BottomPartUpgradableCost cost = pickedBottomPartObject.getBottomPart_UpgradableCost();
+      int costNumericValueExpressedInNegative = cost.getCurrentChangeDelta();
+      if (costNumericValueExpressedInNegative > 0) throw new IllegalArgumentException("cost should be expressed in a negative value");
+      if (cost.canPlayerAfford(player)) {
+        cost.applyToPlayer(player);
+        pickedBottomPartObject.getBottomPartCoinBenefit().applyToPlayer(player);
+        applyBottomAction(pickedBottomPartObject);
+      }
+      else System.out.println("player cannot afford to play bottom part");
+
     }
     /** EXAMPLE DEPLOY ************************************************************************************************/
     /** EXAMPLE BUILD *************************************************************************************************/
     /** EXAMPLE ENLIST ************************************************************************************************/
+  }
+
+  private static void applyBottomAction(BottomPart pickedBottomPartObject) {
+    //TODO: implement
   }
 
 

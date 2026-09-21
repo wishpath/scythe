@@ -4,10 +4,8 @@ import org.sa.PlayerDTO;
 
 public interface BottomPartUpgradableCost {
   void applyToPlayer(PlayerDTO player);
-
+  boolean canPlayerAfford(PlayerDTO player);
   int getCurrentChangeDelta();
-
   boolean canUpgrade();
-
   void upgrade_lowerTheCost();
 }
