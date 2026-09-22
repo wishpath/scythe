@@ -2,9 +2,7 @@ package org.sa.decision;
 
 import org.sa.CardPool;
 import org.sa.PlayerDTO;
-import org.sa.decision.helper.Helper_MOVE;
-import org.sa.decision.helper.Helper_PRODUCE;
-import org.sa.decision.helper.Helper_TRADE;
+import org.sa.decision.helper.*;
 import org.sa.faction_mat.FactionMat;
 import org.sa.grid.Grid;
 import org.sa.grid.TileDTO;
@@ -158,7 +156,7 @@ public class PlayerDecisions {
       if (cost.canPlayerAfford(player)) {
         cost.applyToPlayer(player);
         pickedBottomPartObject.getBottomPartCoinBenefit().applyToPlayer(player);
-        applyBottomAction(pickedBottomPartObject);
+        applyBottomAction(pickedBottomPartObject, player);
       }
       else System.out.println("player cannot afford to play bottom part");
 
@@ -168,15 +166,18 @@ public class PlayerDecisions {
     /** EXAMPLE ENLIST ************************************************************************************************/
   }
 
-  private static void applyBottomAction(BottomPart pickedBottomPartObject) {
-    //TODO: implement
-  }
-
-
   /********************************************************************************************************************/
   /** HELPER METHODS **************************************************************************************************/
   /********************************************************************************************************************/
 
+  private static void applyBottomAction(BottomPart pickedBottomPartObject, PlayerDTO player) {
+    switch (pickedBottomPartObject.getBottomPartType()) {
+      case UPGRADE -> Helper_Bottom_UPGRADE.applyBottomActionUPGRADE(pickedBottomPartObject, player);
+      case DEPLOY -> Helper_Bottom_DEPLOY.applyBottomActionDEPLOY(pickedBottomPartObject, player);
+      case BUILD -> Helper_Bottom_BUILD.applyBottomActionBUILD(pickedBottomPartObject, player);
+      case ENLIST -> Helper_Bottom_ENLIST.applyBottomActionENLIST(pickedBottomPartObject, player);
+    }
+  }
   private static TopPart getTopPartObject(PlayerDTO player, TYPE_TopPart_ActionSpace pickedTopPartType) {
     EnumSet<TYPE_TopPart_ActionSpace> actionSpacePool = EnumSet.allOf(TYPE_TopPart_ActionSpace.class);
     if (player.previousActionSpace != null && !player.RED_RUSVIET_canChooseSameActionSpaceEveryTurn_relentless) {
@@ -192,9 +193,9 @@ public class PlayerDecisions {
     TopPartUpgradableAction pickedAction = topPart.getTopPartChoosableActions()[pickedActionArrayIndex]; // get action e.g. PRODUCE or MOVE etc, as it picked already
 
     switch (pickedAction.getDecisionType()) {
-      case TopPartDecision_TYPE_ENUM.MOVE -> Helper_MOVE.DECIDE_andApply_TopAction_MOVE((TopPartUpgradableAction_Move_Decideable) pickedAction, player); //cast to MOVE class
-      case TopPartDecision_TYPE_ENUM.PRODUCE -> Helper_PRODUCE.DECIDE_andApply_TopAction_PRODUCE((TopPartUpgradableAction_Produce_Decideable) pickedAction, player); //cast to PRODUCE class
-      case TopPartDecision_TYPE_ENUM.TRADE -> Helper_TRADE.DECIDE_andApply_TopAction_TRADE((TopPartUpgradableAction_Trade_Decideable) pickedAction, player); //cast to TRADE class
+      case TopPartDecision_TYPE_ENUM.MOVE -> Helper_Top_MOVE.DECIDE_andApply_TopAction_MOVE((TopPartUpgradableAction_Move_Decideable) pickedAction, player); //cast to MOVE class
+      case TopPartDecision_TYPE_ENUM.PRODUCE -> Helper_Top_PRODUCE.DECIDE_andApply_TopAction_PRODUCE((TopPartUpgradableAction_Produce_Decideable) pickedAction, player); //cast to PRODUCE class
+      case TopPartDecision_TYPE_ENUM.TRADE -> Helper_Top_TRADE.DECIDE_andApply_TopAction_TRADE((TopPartUpgradableAction_Trade_Decideable) pickedAction, player); //cast to TRADE class
       case TopPartDecision_TYPE_ENUM.NONE -> ((TopPartUpgradableAction_ConcreteDeltaType) pickedAction).applyToPlayer(player); //case when decision is not needed, simply apply
       default -> throw new IllegalStateException("UNEXPECTED DECISION TYPE: " + pickedAction.getDecisionType());
     };

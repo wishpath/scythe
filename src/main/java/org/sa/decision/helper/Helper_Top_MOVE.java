@@ -13,7 +13,7 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradabl
 
 import java.util.*;
 
-public class Helper_MOVE {
+public class Helper_Top_MOVE {
   public static void DECIDE_andApply_TopAction_MOVE(TopPartUpgradableAction_Move_Decideable moveAction, PlayerDTO player) {
     int moveCountTotal = moveAction.getCurrentChangeDelta();
     List<Movable> movablesWithValidDestinationsPool = new ArrayList<>(player.getPlacedMovablesWithValidMoveDestinations()); // new list but references same objects

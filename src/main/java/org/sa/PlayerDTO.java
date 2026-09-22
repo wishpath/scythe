@@ -1,6 +1,6 @@
 package org.sa;
 
-import org.sa.decision.helper.Helper_MOVE;
+import org.sa.decision.helper.Helper_Top_MOVE;
 import org.sa.enums.IntResourceType;
 import org.sa.faction_mat.FactionMat;
 import org.sa.faction_mat.Left_EnlistOneTimeReward.Left_EnlistOneTimeReward;
@@ -85,7 +85,7 @@ public class PlayerDTO {
   }
   public List<Movable> getPlacedMovablesWithValidMoveDestinations() {
     //includes placed at home
-    return getPlacedMovables().stream().filter(movable -> Helper_MOVE.getTilesToMoveTo(movable, this).size() > 0).toList();
+    return getPlacedMovables().stream().filter(movable -> Helper_Top_MOVE.getTilesToMoveTo(movable, this).size() > 0).toList();
   }
 
   public boolean hasLocationAtLeast1Fighter(TileDTO location) {

@@ -9,7 +9,7 @@ import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradabl
 import java.util.Map;
 import java.util.Set;
 
-public class Helper_PRODUCE {
+public class Helper_Top_PRODUCE {
   public static void DECIDE_andApply_TopAction_PRODUCE(TopPartUpgradableAction_Produce_Decideable produceAction, PlayerDTO player) {
     //how many tiles can produce? //workers (defined in the player mat)
     int countOfProducingTiles = produceAction.currentLimit_amountOfTilesThatCanProduce;

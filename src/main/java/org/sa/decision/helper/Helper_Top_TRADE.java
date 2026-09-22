@@ -6,7 +6,7 @@ import org.sa.locatable.locatable.BuildingType;
 import org.sa.locatable.locatable.LocatableResourceType;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.TopPartUpgradableAction_Trade_Decideable;
 
-public class Helper_TRADE {
+public class Helper_Top_TRADE {
   public static void DECIDE_andApply_TopAction_TRADE(TopPartUpgradableAction_Trade_Decideable tradeAction, PlayerDTO player) {
     //choose resource types
     LocatableResourceType tradeableResourceType1 = LocatableResourceType.getTradeableResourceTypes().get(0); //TODO: player picks resource type1 to get
