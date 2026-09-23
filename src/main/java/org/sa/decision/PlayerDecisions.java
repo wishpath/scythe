@@ -172,7 +172,7 @@ public class PlayerDecisions {
 
   private static void applyBottomAction(BottomPart pickedBottomPartObject, PlayerDTO player) {
     switch (pickedBottomPartObject.getBottomPartType()) {
-      case UPGRADE -> Helper_Bottom_UPGRADE.applyBottomActionUPGRADE(pickedBottomPartObject, player);
+      case UPGRADE -> Helper_Bottom_UPGRADE.applyBottomActionUPGRADE(player);
       case DEPLOY -> Helper_Bottom_DEPLOY.applyBottomActionDEPLOY(pickedBottomPartObject, player);
       case BUILD -> Helper_Bottom_BUILD.applyBottomActionBUILD(pickedBottomPartObject, player);
       case ENLIST -> Helper_Bottom_ENLIST.applyBottomActionENLIST(pickedBottomPartObject, player);

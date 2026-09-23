@@ -3,14 +3,13 @@ package org.sa.decision.helper;
 import org.sa.PlayerDTO;
 import org.sa.player_mat.a_top_parts.top_part_upgradable_action.interfaces.TopPartUpgradableAction;
 import org.sa.player_mat.bottom_parts.bottom_part_cost.BottomPartUpgradableCost;
-import org.sa.player_mat.bottom_parts.enums_and_interfaces.BottomPart;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Helper_Bottom_UPGRADE {
-  public static void applyBottomActionUPGRADE(BottomPart pickedBottomPartObject, PlayerDTO player) {
+  public static void applyBottomActionUPGRADE(PlayerDTO player) {
     // get list of all TopPartUpgradableAction across all action spaces. filter out fully upgraded ones
     List<TopPartUpgradableAction> topPartUpgradableActions = player.playerMat.actionSpaceType_actionSpaceDTO.values().stream()
         .flatMap(actionSpace -> Arrays.stream(actionSpace.topPartObject.getTopPartChoosableActions()))
