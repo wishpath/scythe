@@ -39,7 +39,7 @@ public class PlayerDecisions {
       workers.add(new WorkerDTO(nearHomeTiles.iterator().next())); //TODO: player should pick where to place each worker
     }
     PlayerDTO player = new PlayerDTO(playerMat, factionMat, workers);
-    player.isEndOfTurn = false; // there comes a players turn to play
+
 
 
     /******************************************************************************************************************/
@@ -48,6 +48,7 @@ public class PlayerDecisions {
 
 
     /** EXAMPLE of MOVE_GAIN ******************************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     TYPE_TopPart_ActionSpace move_gain = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player picks this from actionSpacePool
     TopPart topPart_MOVE_GAIN = getTopPartObject(player, move_gain);
     if (topPart_MOVE_GAIN.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
@@ -56,10 +57,12 @@ public class PlayerDecisions {
         int pickedActionArrayIndex__representing_MOVE = 0; //TODO: player picks index (0 for move and 1 for gain coins) (from choosable actions)
         applyTopAction(player, pickedActionArrayIndex__representing_MOVE, topPart_MOVE_GAIN); //player decides what and where to MOVE
       }
-      player.isEndOfTurn = true; // finish turn
-      player.previousActionSpace = move_gain; // remember completed action
+      //here player plays bottom part of action space (skip in this example)
+      player.isEndOfTurn_isNotPlayersTurn = true; // finish turn
+      player.previousActionSpace = move_gain; // remember completed action space
     }
     /** EXAMPLE of PRODUCE ********************************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     TYPE_TopPart_ActionSpace produce = TYPE_TopPart_ActionSpace.NO_CHOOSE__PRODUCE; //TODO: player should pick this from actionSpacePool
     TopPart topPart_PRODUCE = getTopPartObject(player, produce);
     if (topPart_PRODUCE.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
@@ -68,10 +71,12 @@ public class PlayerDecisions {
         int pickedActionArrayIndex__representing_PRODUCE = 0; //TODO: player picks index, but in this case, only index 0 is available
         applyTopAction(player, pickedActionArrayIndex__representing_PRODUCE, topPart_PRODUCE); //player decides what and where to PRODUCE
       }
-      player.isEndOfTurn = true; // finish turn
-      player.previousActionSpace = produce; // remember completed action
+      //here player plays bottom part of action space (skip in this example)
+      player.isEndOfTurn_isNotPlayersTurn = true; // finish turn
+      player.previousActionSpace = produce; // remember completed action space
     }
     /** EXAMPLE of TRADE_GAIN *****************************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     TYPE_TopPart_ActionSpace trade = TYPE_TopPart_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS; //TODO: player should pick this from actionSpacePool
     TopPart topPart_TRADE_GAIN = getTopPartObject(player, trade);
     if (topPart_TRADE_GAIN.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
@@ -80,8 +85,9 @@ public class PlayerDecisions {
         int pickedActionArrayIndex__representing_TRADE = 1; //TODO: player picks index
         applyTopAction(player, pickedActionArrayIndex__representing_TRADE, topPart_TRADE_GAIN); //player decides what and where to TRADE
       }
-      player.isEndOfTurn = true; // finish turn
-      player.previousActionSpace = trade; // remember completed action
+      //here player plays bottom part of action space (skip in this example)
+      player.isEndOfTurn_isNotPlayersTurn = true; // finish turn
+      player.previousActionSpace = trade; // remember completed action space
     }
 
 
@@ -90,6 +96,7 @@ public class PlayerDecisions {
     /******************************************************************************************************************/
 
     /** EXAMPLE of BOLSTER (get attack) *******************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     TYPE_TopPart_ActionSpace bolsterPower = TYPE_TopPart_ActionSpace.CHOOSE__POWER__COMBAT_CARDS; //TODO: player should pick this from actionSpacePool
     TopPart topPart_BolsterPower = getTopPartObject(player, bolsterPower);
     if (topPart_BolsterPower.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
@@ -98,9 +105,11 @@ public class PlayerDecisions {
         int pickedActionArrayIndex__representing_GAIN_ATTACK = 0; //TODO: player picks index
         applyTopAction(player, pickedActionArrayIndex__representing_GAIN_ATTACK, topPart_BolsterPower); //player decides what and where to TRADE
       }}
-    player.isEndOfTurn = true; // finish turn
-    player.previousActionSpace = bolsterPower; // remember completed action
+    //here player plays bottom part of action space (skip in this example)
+    player.isEndOfTurn_isNotPlayersTurn = true; // finish turn
+    player.previousActionSpace = bolsterPower; // remember completed action space
     /** EXAMPLE of BOLSTER (get attack cards) *************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     TYPE_TopPart_ActionSpace bolsterPower2 = TYPE_TopPart_ActionSpace.CHOOSE__POWER__COMBAT_CARDS; //TODO: player should pick this from actionSpacePool
     TopPart topPart_BolsterPower2 = getTopPartObject(player, bolsterPower2);
     if (topPart_BolsterPower2.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
@@ -109,9 +118,11 @@ public class PlayerDecisions {
         int pickedActionArrayIndex__representing_GAIN_ATTACK_CARDS = 1; //TODO: player picks index
         applyTopAction(player, pickedActionArrayIndex__representing_GAIN_ATTACK_CARDS, topPart_BolsterPower2); //player decides what and where to TRADE
       }}
-    player.isEndOfTurn = true; // finish turn
-    player.previousActionSpace = bolsterPower2; // remember completed action
+    //here player plays bottom part of action space (skip in this example)
+    player.isEndOfTurn_isNotPlayersTurn = true; // finish turn
+    player.previousActionSpace = bolsterPower2; // remember completed action space
     /** EXAMPLE of MOVE_GAIN (get coins) ******************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     TYPE_TopPart_ActionSpace move_gain2 = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player picks this from actionSpacePool
     TopPart topPart_MoveGain2 = getTopPartObject(player, move_gain2);
     if (topPart_MoveGain2.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
@@ -120,9 +131,11 @@ public class PlayerDecisions {
         int pickedActionArrayIndex__representing_GAIN_COINS = 1; //TODO: player picks index
         applyTopAction(player, pickedActionArrayIndex__representing_GAIN_COINS, topPart_MoveGain2); //player decides what and where to TRADE
       }}
-    player.isEndOfTurn = true; // finish turn
-    player.previousActionSpace = move_gain2; // remember completed action
+    //here player plays bottom part of action space (skip in this example)
+    player.isEndOfTurn_isNotPlayersTurn = true; // finish turn
+    player.previousActionSpace = move_gain2; // remember completed action space
     /** EXAMPLE of TRADE_GAIN (get popularity-hearts) *****************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     TYPE_TopPart_ActionSpace trade2 = TYPE_TopPart_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS; //TODO: player should pick this from actionSpacePool
     TopPart topPart_TRADE_GAIN2 = getTopPartObject(player, trade2);
     if (topPart_TRADE_GAIN2.getCost().hasPlayerResourcesToPayForThisTopPart(player)) {
@@ -131,15 +144,17 @@ public class PlayerDecisions {
         int pickedActionArrayIndex__representing_GainHearts = 0; //TODO: player picks index
         applyTopAction(player, pickedActionArrayIndex__representing_GainHearts, topPart_TRADE_GAIN2); //player decides what and where to TRADE
       }
-      player.isEndOfTurn = true; // finish turn
-      player.previousActionSpace = trade2; // remember completed action
+      //here player plays bottom part of action space (skip in this example)
+      player.isEndOfTurn_isNotPlayersTurn = true; // finish turn
+      player.previousActionSpace = trade2; // remember completed action space
     }
 
     /******************************************************************************************************************/
     /** BOTTOM ACTIONS ************************************************************************************************/
     /******************************************************************************************************************/
 
-    /** EXAMPLE UPGRADE (in case of AGRICULTURAL player mat) ***********************************************************************************************/
+    /** EXAMPLE UPGRADE (in case of AGRICULTURAL player mat) **********************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     // 1. player picks action space (one of four) (named by top part)
     TYPE_TopPart_ActionSpace moveGain_actionSpace = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player picks this from actionSpacePool
     // 2. player either plays or doesn't play top part
@@ -159,7 +174,8 @@ public class PlayerDecisions {
         applyBottomAction(pickedBottomPartObject, player);
       }
       else System.out.println("player cannot afford to play bottom part");
-
+      player.isEndOfTurn_isNotPlayersTurn = true; // finish turn
+      player.previousActionSpace = moveGain_actionSpace; // remember completed action space
     }
     /** EXAMPLE DEPLOY ************************************************************************************************/
     /** EXAMPLE BUILD *************************************************************************************************/
@@ -176,6 +192,7 @@ public class PlayerDecisions {
       case DEPLOY -> Helper_Bottom_DEPLOY.applyBottomActionDEPLOY(pickedBottomPartObject, player);
       case BUILD -> Helper_Bottom_BUILD.applyBottomActionBUILD(pickedBottomPartObject, player);
       case ENLIST -> Helper_Bottom_ENLIST.applyBottomActionENLIST(pickedBottomPartObject, player);
+      default -> throw new IllegalArgumentException("Unknown BottomPartType: " + pickedBottomPartObject.getBottomPartType());
     }
   }
   private static TopPart getTopPartObject(PlayerDTO player, TYPE_TopPart_ActionSpace pickedTopPartType) {

@@ -14,7 +14,7 @@ public class MissionDiversifyProduction implements MissionCard {
      * with at least 1 worker on each
      * at the end of your turn
     */
-    if (player.isEndOfTurn == false || player.getPlacedWorkers().size() < 5) return false;
+    if (player.isEndOfTurn_isNotPlayersTurn == false || player.getPlacedWorkers().size() < 5) return false;
     EnumSet<TileType> controlledTerrainTypes = EnumSet.noneOf(TileType.class);
 
     for (WorkerDTO worker : player.getPlacedWorkers())

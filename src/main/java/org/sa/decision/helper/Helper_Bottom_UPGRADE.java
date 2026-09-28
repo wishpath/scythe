@@ -20,7 +20,7 @@ public class Helper_Bottom_UPGRADE {
       return;
     }
     TopPartUpgradableAction userPickedUpgradableAction = topPartUpgradableActions.get(0); // TODO: user picks
-    userPickedUpgradableAction.upgrade_increaseTheReward(); //upgrades
+    userPickedUpgradableAction.upgrade_increaseTheReward(); //upgrades (player removed little cube from any top part slot)
 
     // get list of all getBottomPart_UpgradableCost() across all action spaces. filter out fully upgraded ones.
     List<BottomPartUpgradableCost> bottomPartUpgradableCosts = player.playerMat.actionSpaceType_actionSpaceDTO.values().stream()
@@ -29,7 +29,6 @@ public class Helper_Bottom_UPGRADE {
         .collect(Collectors.toList());
     if (bottomPartUpgradableCosts.isEmpty()) throw new IllegalStateException("Top and Bottom upgrades mismatch");
     BottomPartUpgradableCost userPickedUpgradableCost = bottomPartUpgradableCosts.get(0); // TODO: user picks
-    userPickedUpgradableCost.upgrade_lowerTheCost(); //upgrades
+    userPickedUpgradableCost.upgrade_lowerTheCost(); //upgrades (player adds cube in the slot on any bottom part)
   }
-
 }
