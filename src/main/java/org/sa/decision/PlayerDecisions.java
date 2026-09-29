@@ -157,9 +157,10 @@ public class PlayerDecisions {
     player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
     // 1. player picks action space (one of four) (named by top part)
     TYPE_TopPart_ActionSpace moveGain_actionSpace = TYPE_TopPart_ActionSpace.CHOOSE__MOVE__GAIN_COINS; //TODO: player picks this from actionSpacePool
-    // 2. player either plays or doesn't play top part
-      // (skip for this example)
-    // 3. player chooses to either play or not play bottom part
+    // 2. player either plays or doesn't play top part // (skip for this example)
+    // 3. game decides if player has can play the bottom part (has resources to pay the cost)
+    // TODO
+    // 4. player chooses to either play or not play bottom part
     boolean playerDecidedToPlayBottomAction = true; //TODO: player decides
     if (playerDecidedToPlayBottomAction) {
       //player does play bottom part 'UPGRADE' here
@@ -178,8 +179,17 @@ public class PlayerDecisions {
       player.previousActionSpace = moveGain_actionSpace; // remember completed action space
     }
     /** EXAMPLE DEPLOY ************************************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
+    // 1. player picks action space (one of four) (named by top part)
+    TYPE_TopPart_ActionSpace tradeGainHearts_actionSpace = TYPE_TopPart_ActionSpace.CHOOSE__TRADE__GAIN_HEARTS; //TODO: player picks this from actionSpacePool
     /** EXAMPLE BUILD *************************************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
+    // 1. player picks action space (one of four) (named by top part)
+    TYPE_TopPart_ActionSpace produce_actionSpace = TYPE_TopPart_ActionSpace.NO_CHOOSE__PRODUCE; //TODO: player picks this from actionSpacePool
     /** EXAMPLE ENLIST ************************************************************************************************/
+    player.isEndOfTurn_isNotPlayersTurn = false; // there comes a players turn to play
+    // 1. player picks action space (one of four) (named by top part)
+    TYPE_TopPart_ActionSpace powerCombatCards_actionSpace = TYPE_TopPart_ActionSpace.CHOOSE__POWER__COMBAT_CARDS; //TODO: player picks this from actionSpacePool
   }
 
   /********************************************************************************************************************/

@@ -11,6 +11,7 @@ STRATEGY_IN_SHORT:
     - allways carry all the locatable-tradeable-resources, by simplistic rules if to carry at all
     - "mostPowerfulTileWithWorkers" is where traded resources are placed. rather than choosing.
 TASKS:
+  - get similar thing for bottom actions (topPart_BolsterPower2.getCost().hasPlayerResourcesToPayForThisTopPart(player))
   - implement examples of bottom parts in the player decisions:
     - deploy
     - build
