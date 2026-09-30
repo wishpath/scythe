@@ -26,7 +26,7 @@ public class PlayerDTO {
   public FactionMat factionMat;
   public int score = 0; //TODO start using (update after each player each move)
   public TYPE_TopPart_ActionSpace previousActionSpace = null; // defined by top action //TODO use
-  public boolean isEndOfTurn_isNotPlayersTurn = true; //should be false during turn
+  public boolean isPlayersTurn = false;
   public boolean isRightAfterMove = false; //should be a short period when the top action was move
 
   /**-------------- COMBAT CARDS -------------------------------------------------------------------------------------*/

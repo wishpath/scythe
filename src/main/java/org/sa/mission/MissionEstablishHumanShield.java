@@ -10,9 +10,9 @@ public class MissionEstablishHumanShield implements MissionCard {
     /**
      Have at least 5 workers
      adjacent to Factory
-     at the end of your turn
+     at the end of player's turn
      */
-    if (player.isEndOfTurn_isNotPlayersTurn == false) return false;
+    if (player.isPlayersTurn == true) return false; // is not at the end of player's turn
     if (player.getPlacedWorkers().size() < 5) return false;
     int factoryAdjacentWorkersCount = 0;
 
